@@ -15,6 +15,14 @@
 		BA22CF7B27FE6161006CE739 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA22CF7927FE6161006CE739 /* LaunchScreen.storyboard */; };
 		BA22CF8627FE6161006CE739 /* PipeLordTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CF8527FE6161006CE739 /* PipeLordTests.swift */; };
 		BA22CF9127FE6161006CE739 /* PipeLordUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CF9027FE6161006CE739 /* PipeLordUITests.swift */; };
+		BA22CFA127FE6230006CE739 /* ShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFA027FE6230006CE739 /* ShapeView.swift */; };
+		BA22CFA327FE6243006CE739 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFA227FE6243006CE739 /* MenuView.swift */; };
+		BA22CFA527FE6251006CE739 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFA427FE6251006CE739 /* ColorTheme.swift */; };
+		BA22CFA727FE6261006CE739 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFA627FE6261006CE739 /* Model.swift */; };
+		BA22CFA927FE626F006CE739 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFA827FE626F006CE739 /* Level.swift */; };
+		BA22CFAB27FE627B006CE739 /* Piece.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFAA27FE627B006CE739 /* Piece.swift */; };
+		BA22CFAD27FE6287006CE739 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFAC27FE6287006CE739 /* Board.swift */; };
+		BA22CFAF27FE6299006CE739 /* GridPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA22CFAE27FE6299006CE739 /* GridPoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +57,14 @@
 		BA22CF8C27FE6161006CE739 /* PipeLordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeLordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA22CF9027FE6161006CE739 /* PipeLordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeLordUITests.swift; sourceTree = "<group>"; };
 		BA22CF9227FE6161006CE739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BA22CFA027FE6230006CE739 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
+		BA22CFA227FE6243006CE739 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		BA22CFA427FE6251006CE739 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
+		BA22CFA627FE6261006CE739 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		BA22CFA827FE626F006CE739 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		BA22CFAA27FE627B006CE739 /* Piece.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Piece.swift; sourceTree = "<group>"; };
+		BA22CFAC27FE6287006CE739 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		BA22CFAE27FE6299006CE739 /* GridPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +117,14 @@
 			children = (
 				BA22CF6E27FE615F006CE739 /* AppDelegate.swift */,
 				BA22CF7027FE615F006CE739 /* SceneDelegate.swift */,
+				BA22CFA027FE6230006CE739 /* ShapeView.swift */,
+				BA22CFA227FE6243006CE739 /* MenuView.swift */,
+				BA22CFA427FE6251006CE739 /* ColorTheme.swift */,
+				BA22CFA627FE6261006CE739 /* Model.swift */,
+				BA22CFA827FE626F006CE739 /* Level.swift */,
+				BA22CFAA27FE627B006CE739 /* Piece.swift */,
+				BA22CFAC27FE6287006CE739 /* Board.swift */,
+				BA22CFAE27FE6299006CE739 /* GridPoints.swift */,
 				BA22CF7227FE615F006CE739 /* ViewController.swift */,
 				BA22CF7427FE615F006CE739 /* Main.storyboard */,
 				BA22CF7727FE6161006CE739 /* Assets.xcassets */,
@@ -258,8 +282,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA22CFA727FE6261006CE739 /* Model.swift in Sources */,
+				BA22CFA327FE6243006CE739 /* MenuView.swift in Sources */,
+				BA22CFAD27FE6287006CE739 /* Board.swift in Sources */,
 				BA22CF7327FE615F006CE739 /* ViewController.swift in Sources */,
 				BA22CF6F27FE615F006CE739 /* AppDelegate.swift in Sources */,
+				BA22CFA527FE6251006CE739 /* ColorTheme.swift in Sources */,
+				BA22CFAF27FE6299006CE739 /* GridPoints.swift in Sources */,
+				BA22CFAB27FE627B006CE739 /* Piece.swift in Sources */,
+				BA22CFA127FE6230006CE739 /* ShapeView.swift in Sources */,
+				BA22CFA927FE626F006CE739 /* Level.swift in Sources */,
 				BA22CF7127FE615F006CE739 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
