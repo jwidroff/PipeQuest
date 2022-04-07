@@ -650,7 +650,7 @@ extension ViewController: ModelDelegate {
         
         
         
-//        piece.view.subviews.first!.removeFromSuperview()
+        piece.view.subviews.first!.removeFromSuperview()
         piece.view.addSubview(nextPieceView)
     }
     
