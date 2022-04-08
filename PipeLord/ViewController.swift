@@ -105,6 +105,7 @@ class ViewController: UIViewController {
         pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9
         pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9
         distanceFromPieceCenter = (pieceWidth / 8.5 * 10) / 2
+        
     }
     
     func setupControls() {
@@ -254,6 +255,12 @@ class ViewController: UIViewController {
             default:
                 break
             }
+//            if model.check4GameOver() == true {
+//
+//                runPopUpView(title: "You Lose", message: "No Pieces ")
+//
+//
+//            }
         }
     }
     

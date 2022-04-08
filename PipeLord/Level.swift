@@ -9,6 +9,25 @@ import Foundation
 import UIKit
 
 
+// Introduce to ice
+// Introduce to no walls
+// Introduce to holes
+// Introduce to switches
+// Introduce to multiColor switches
+// Introduce to multiple colors
+// Introduce to pieceMaker
+// Introduce to colorChanger
+// Introduce to loops
+// Introduce to crosses
+// Introduce to multi color crosses
+// Introduce to pieces switching after balls move
+// Introduce to multiple balls
+// Introduce to pieces being locked
+// Introduce to pieces that do nothing (walls that dont move)
+
+
+
+
 class Level {
     
     var number = 12
@@ -33,20 +52,24 @@ class LevelModel {
                       "try to guess",
                       "lucky guess",
                       "infinite",
-        "test10",
-        "Around and back",
+                      "test10",
+                      "Around and back",
                       "you tell me",
                       "test1",
+                      "Sharp Elbow", //DIFFICULT
                       "test2",
-                      "test3",
+                      "everything",
+                      "Around and back",
                       "test4",
+                      "test3",
+       
                       "test5",
                       "test6",
                       "test7",
                       "test8",
                       "test9",
-                      "everything",
-                      "Around and back"]
+                      
+                      ]
         
     func returnBoard(levelNumber: Int) -> Board {
         
@@ -537,12 +560,47 @@ class LevelModel {
 
 
 
+        case "Sharp Elbow":
+            
+            
+            
+            board.colorTheme.gradientBackgroundColor = [UIColor.cyan, UIColor.green]
+            
+            board.moves = 14
+            board.randomPieceColors = [UIColor.red]
+            board.randomPieceShapes = [.diagElbow]
+            board.heightSpaces = 10
+            board.widthSpaces = 5
+            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
+
+            let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "bottom", doesPivot: nil)
+            board.pieces.append(entrance)
 
 
+            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "left", doesPivot: nil)
+            board.pieces.append(exit)
 
 
+            let piece1 = Piece(indexes: Indexes(x: 2, y: 3), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: true)
+
+            board.pieces.append(piece1)
+
+            let wall1 = Piece(indexes: Indexes(x: 2, y: 4), shape: .wall, colors: [UIColor.black], version: 1, currentSwitch: 2, isLocked: true, opening: nil, doesPivot: false)
+            
+            board.pieces.append(wall1)
+
+            let wall2 = Piece(indexes: Indexes(x: 2, y: 8), shape: .wall, colors: [UIColor.black], version: 1, currentSwitch: 2, isLocked: true, opening: nil, doesPivot: false)
+            
+            board.pieces.append(wall2)
+            
 
 
+            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 2, exception: [2], pieceMakerOpening: nil)
+
+
+            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 6, exception: [2], pieceMakerOpening: nil)
+
+            
 
         case "test1":
             
@@ -574,7 +632,7 @@ class LevelModel {
 
         case "test2":
 
-            board.colorTheme.gradientBackgroundColor = [UIColor.red, UIColor.green]
+            board.colorTheme.gradientBackgroundColor = [UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)]
             
             
             board.randomPieceColors = [UIColor.red, UIColor.blue]
@@ -630,12 +688,13 @@ class LevelModel {
 
         case "test3":
 
-            board.colorTheme.gradientBackgroundColor = [UIColor.brown, UIColor.yellow]
+            board.colorTheme.gradientBackgroundColor = [UIColor.purple, UIColor.blue]
 
             board.randomPieceShapes = [.elbow]//, .cross, .stick, .elbow]
             board.amountOfRandomPieces = 8
-            board.heightSpaces = 8
-            board.widthSpaces = 4
+            board.heightSpaces = 10
+            board.widthSpaces = 5
+            addBorderAroundBoardOf(.wall, exceptionIndexes: [Indexes(x: 0, y: 1)])
 
             let entrance = Piece(indexes: Indexes(x: 1, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: "right", doesPivot: nil)
             board.pieces.append(entrance)
@@ -1077,11 +1136,12 @@ class LevelModel {
     }
     
     private func setUpLevelDefaults() {
-        
+
         setupRandomPieces()
         setupNextPieces()
         setupBalls()
     }
+    
     
     private func setupNextPieces() {
         

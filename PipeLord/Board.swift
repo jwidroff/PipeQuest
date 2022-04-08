@@ -256,7 +256,7 @@ class IceView: UIView {
         gradient.frame = bounds
         gradient.opacity = 0.5
         //These are the colors of the gradient(that are being passed in)
-        gradient.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.cyan.cgColor]
+        gradient.colors = [UIColor.cyan.cgColor, UIColor.systemBlue.cgColor, UIColor.cyan.cgColor]
         
         //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
         layer.insertSublayer(gradient, at: 1)
@@ -274,7 +274,7 @@ class IceView: UIView {
         gradient2.frame = bounds
         gradient2.opacity = 0.5
         //These are the colors of the gradient(that are being passed in)
-        gradient2.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.cyan.cgColor]
+        gradient2.colors = [UIColor.cyan.cgColor, UIColor.systemBlue.cgColor, UIColor.cyan.cgColor]
         
 
         //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)

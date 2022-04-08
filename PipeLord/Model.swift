@@ -17,7 +17,7 @@ import UIKit
 
 //TODO: Make a piece that rotates pieces
 
-//TODO: Make the pieces have a PATH? var and use it only once instead of all the times it's being used
+//TODO: MAKE IT THAT THAT PIECEMAKER CAN ALSO MAKE PIECEMAKERS
 
 //TODO: Make cracks for ice
 
@@ -39,7 +39,7 @@ import UIKit
 //TODO: May need to utilize the closing property for the doubleElbow when is comes in from a side but the pivot is the other way
 
 
-//TODO: Random ColorChanger needs work
+//TODO: Random ColorChanger needs work - SEE EVERYTHING LEVEL! PIECES COME OUT IN BLACK CIRCLES
 
 //TODO: May want to consider putting in a special piece (possibly one that changes shape/color every time its tapped) when a loop is made or when a line is complete. Whichever is harder
 
@@ -49,24 +49,20 @@ import UIKit
 
 //TODO: Should diagElbows switch after passing?
 
-//TODO: Make sure that all size screens work
-
 //TODO: Finish making color themes for each individual level
 
 //TODO: Consider making pieces stick together
 
 //Fix up menuView
 
-//NextPiece has a shadow. Get rid of it
-
 //Need to disable movePiece when balls are moving
 
 //Need to make sure that the check if ball exited works when a ball goes into an infinite loop
 
-//Make it that if any balls are lost the game is over
 
-//TODO: Seems like the pieces that are created in the pieceMaker never get removed when the new pieces come out. Fix this.
+//Make ball move automatically if there is a connection complete (Hard to do due to needing to know if pieces switched and which pieces switched)
 
+//Sometimes there are multiple popups trying to come up at the same time since there is multiple reasons why the user has lost (Ex losing an entrance piece as a last moveable piece)
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -120,6 +116,9 @@ class Model {
         let moves = "\(board.moves)"
         delegate?.updateLevelInfo(name: name, moves: moves)
     }
+    
+    
+    
     
     func showLoadingAnimation() {
         
@@ -876,7 +875,10 @@ class Model {
                                 deletePiece(piece: piece)
                                 
                                 if piece.shape == .entrance {
+                                    
+                                    board.balls.removeAll()
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                                    break
                                     
                                 }
                             }
@@ -913,7 +915,7 @@ class Model {
                                     
                                     if piece.shape == .entrance {
                                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        
+                                        break
                                     }
                                 }
                                 resetPieceMaker(piece: piece)
@@ -963,7 +965,7 @@ class Model {
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    
+                                    break
                                 }
                             }
                         }
@@ -1000,7 +1002,7 @@ class Model {
                                     
                                     if piece.shape == .entrance {
                                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        
+                                        break
                                     }
                                 }
                                 resetPieceMaker(piece: piece)
@@ -1048,7 +1050,7 @@ class Model {
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    
+                                    break
                                 }
                             }
                         }
@@ -1083,7 +1085,7 @@ class Model {
                                     
                                     if piece.shape == .entrance {
                                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        
+                                        break
                                     }
                                 }
                                 resetPieceMaker(piece: piece)
@@ -1131,7 +1133,7 @@ class Model {
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    
+                                    break
                                 }
                             }
                         }
@@ -1166,7 +1168,7 @@ class Model {
                                     
                                     if piece.shape == .entrance {
                                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        
+                                        break
                                     }
                                     
                                   
@@ -1284,23 +1286,45 @@ class Model {
             delegate?.movePieceView(piece: piece)
         }
         
-        let gameIsOver = check4GameOver()
+        let gameIsOver = check4GameOver().0
+        let message = check4GameOver().1
         if gameIsOver {
 
-            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+            delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
             gameOver = false
             return
         }
     }
     
-    func check4GameOver() -> Bool {
+
+    
+    func check4GameOver() -> (Bool, String) {
         
+        var message = ""
         var bool = false
+        var moveablePieceCount = 0
+        
         if board.balls.count == 0 {
             
             bool = true
+            message = "You lost your ball!"
+            return (bool, message)
         }
-        return bool
+        
+        for piece in board.pieces {
+            
+            if piece.isLocked == false {
+                moveablePieceCount += 1
+            }
+        }
+        
+        if moveablePieceCount == 0 {
+            bool = true
+            message = "No more pieces to move!"
+            return (bool, message)
+        }
+        
+        return (bool, message)
     }
     
     func addToPiecesPassed(ball: Ball, piece: Piece) {
@@ -1410,7 +1434,7 @@ class Model {
                 if piece.side.top.color != ball.onColor {
                     
                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                    return
+                    break
                 }
                 
                 if piece.shape == .cross {
@@ -1475,7 +1499,9 @@ class Model {
                 
                 delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                 print("crashed into a wall, or no track in place")
-                return
+                                
+                
+                break
             }
             
         case "bottom":
@@ -1554,7 +1580,7 @@ class Model {
                 
                 print("crashed into a wall, or no track in place")
                 
-                return
+                break
             }
             
         case "left":
@@ -1567,7 +1593,7 @@ class Model {
                     
                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                     
-                    return
+                    break
                 }
                 
                 if piece.shape == .cross {
@@ -1633,7 +1659,7 @@ class Model {
                 
                 print("crashed into a wall, or no track in place")
                 
-                return
+                break
             }
             
         case "right":
@@ -1646,7 +1672,7 @@ class Model {
                     
                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                     
-                    return
+                    break
                 }
                 
                 if piece.shape == .cross {
@@ -1712,7 +1738,7 @@ class Model {
                 
                 print("crashed into a wall, or no track in place")
                 
-                return
+                break
             }
         default:
             break
@@ -1936,7 +1962,7 @@ class Model {
             
             delegate?.removeView(view: ball.view)
         }
-        
+                
         board.balls.removeAll()
         gameOver = false
     }
