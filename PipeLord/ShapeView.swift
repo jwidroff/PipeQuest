@@ -1015,6 +1015,15 @@ class ShapeView : UIView {
             
         case .wall: //MARK: WALL VIEW
             
+            let eclipseHeight2 = frame.height / 2
+            let eclipseWidth2 = frame.width / 2
+            let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
+            context.setFillColor(UIColor.darkGray.cgColor)
+            context.addEllipse(in: rect3)
+            context.fillEllipse(in: rect3)
+            
+            
+            
             print()
             
         case .ball: //MARK: BALL VIEW

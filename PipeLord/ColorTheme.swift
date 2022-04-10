@@ -29,8 +29,8 @@ class ColorTheme {
         gameBackground = UIColor.lightGray
         boardBackground = UIColor.black
         pieceBackground = UIColor.clear
-        lockedPieceBackground = UIColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-        lockPieceScrewColor = boardBackground
+        lockedPieceBackground = UIColor.black
+        lockPieceScrewColor = UIColor.lightGray
         holeColor = gameBackground
         gridLineColor = gameBackground
         buttonColors = UIColor.white

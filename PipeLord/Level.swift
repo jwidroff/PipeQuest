@@ -625,16 +625,16 @@ class LevelModel {
             let exit2 = Piece(indexes: Indexes(x: 2, y: 8), shape: .exit, colors: [UIColor.blue], version: 1, currentSwitch: 1, isLocked: true, opening: "top", doesPivot: nil)
             board.pieces.append(exit2)
 
-            let piece1 = Piece(indexes: Indexes(x: 4, y: 4), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+            let piece1 = Piece(indexes: Indexes(x: 5, y: 4), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
 
             board.pieces.append(piece1)
             
-            let piece2 = Piece(indexes: Indexes(x: 4, y: 5), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+            let piece2 = Piece(indexes: Indexes(x: 5, y: 5), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
 
             board.pieces.append(piece2)
             
             
-            let piece3 = Piece(indexes: Indexes(x: 3, y: 4), shape: .elbow, colors: [UIColor.red], version: 3, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+            let piece3 = Piece(indexes: Indexes(x: 4, y: 4), shape: .elbow, colors: [UIColor.red], version: 3, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
 
             board.pieces.append(piece3)
             
@@ -662,6 +662,7 @@ class LevelModel {
             setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 1, exception: [], pieceMakerOpening: nil)
             setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 8, exception: [2], pieceMakerOpening: nil)
 
+            
             
             
 
@@ -698,8 +699,8 @@ class LevelModel {
             board.colorTheme.gradientBackgroundColor = [UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)]
             
             
-            board.randomPieceColors = [UIColor.red, UIColor.blue]
-            board.randomPieceShapes = [.diagElbow, .cross, .stick, .elbow]
+            board.randomPieceColors = [UIColor.systemGreen, UIColor.cyan, UIColor.yellow]
+            board.randomPieceShapes = [.wall, .diagElbow, .cross, .stick, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 3, y: 7), Indexes(x: 3, y: 9)]
             board.holeLocations = [Indexes(x: 0, y: 1), Indexes(x: 5, y: 1)]
@@ -730,16 +731,16 @@ class LevelModel {
 //            board.pieces.append(exit)
 
 
-            let exit = Piece(indexes: Indexes(x: 2, y: 4), shape: .exit, colors: [UIColor.blue], version: 1, currentSwitch: 1, isLocked: true, opening: "top", doesPivot: nil)
+            let exit = Piece(indexes: Indexes(x: 2, y: 4), shape: .exit, colors: [UIColor.cyan], version: 1, currentSwitch: 1, isLocked: true, opening: "top", doesPivot: nil)
             board.pieces.append(exit)
 
-            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.blue, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
             board.pieces.append(piece)
 
 //            let wall = Piece(indexes: Indexes(x: 3, y: 4), shape: .wall, colors: [.darkGray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
 //            board.pieces.append(wall)
 
-            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.blue], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
+            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
             board.pieces.append(colorChanger)
 
             let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.black], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
@@ -1256,7 +1257,7 @@ class LevelModel {
             
             let version = Int(arc4random_uniform(UInt32(4))) + 1
             piece.version = version
-            let randomShapes:[Shape] = [.diagElbow]//, .elbow, .stick]// .doubleElbow, .quadBox, .diagElbow]//, "sword"]
+            let randomShapes:[Shape] = [.wall, .diagElbow, .elbow, .doubleElbow, .diagElbow]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
             
         }
@@ -1265,19 +1266,34 @@ class LevelModel {
     
     private func setPieceColor(piece: Piece) {
                 
-        if board.randomPieceColors != [UIColor]() {
+        
+        
+//        if piece.shape == .wall {
+//
+//            let color = UIColor.darkGray
+//            piece.colors = [color, color]
+//
+//        } else {
             
-            let randomColor1 = board.randomPieceColors[Int(arc4random_uniform(UInt32(board.randomPieceColors.count)))]
-            let randomColor2 = board.randomPieceColors[Int(arc4random_uniform(UInt32(board.randomPieceColors.count)))]
-            piece.colors = [randomColor1, randomColor2]
+            if board.randomPieceColors != [UIColor]() {
+                
+                let randomColor1 = board.randomPieceColors[Int(arc4random_uniform(UInt32(board.randomPieceColors.count)))]
+                let randomColor2 = board.randomPieceColors[Int(arc4random_uniform(UInt32(board.randomPieceColors.count)))]
+                piece.colors = [randomColor1, randomColor2]
+                
+            } else {
+                
+                let randomColors:[UIColor] = [UIColor.red, UIColor.yellow, UIColor.green, UIColor.cyan]
+                let randomColor1 = randomColors[Int(arc4random_uniform(UInt32(randomColors.count)))]
+                let randomColor2 = randomColors[Int(arc4random_uniform(UInt32(randomColors.count)))]
+                piece.colors = [randomColor1, randomColor2]
+            }
             
-        } else {
             
-            let randomColors:[UIColor] = [UIColor.red]//, UIColor.blue]//, UIColor.green, UIColor.purple, UIColor.yellow, UIColor.orange]//, UIColor.white, UIColor.cyan]
-            let randomColor1 = randomColors[Int(arc4random_uniform(UInt32(randomColors.count)))]
-            let randomColor2 = randomColors[Int(arc4random_uniform(UInt32(randomColors.count)))]
-            piece.colors = [randomColor1, randomColor2]
-        }
+            
+//        }
+        
+        
     }
     
     private func setPieceSwitches(piece: Piece) {
@@ -1924,7 +1940,7 @@ class LevelModel {
                         if !exception.contains(where: { (index) -> Bool in
                             index == xIndex
                         }) {
-                            let wall = Piece(indexes: Indexes(x: xIndex, y: index), shape: shape, colors: [UIColor.gray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                            let wall = Piece(indexes: Indexes(x: xIndex, y: index), shape: shape, colors: [UIColor.darkGray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                             board.pieces.append(wall)
                         }
                     }
@@ -1990,7 +2006,7 @@ class LevelModel {
                             index == yIndex
                         }) {
 
-                            let piece = Piece(indexes: Indexes(x: index, y: yIndex), shape: shape, colors: [UIColor.gray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                            let piece = Piece(indexes: Indexes(x: index, y: yIndex), shape: shape, colors: [UIColor.darkGray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                             board.pieces.append(piece)
                         }
                     }

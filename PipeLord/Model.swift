@@ -41,6 +41,8 @@ import UIKit
 
 //TODO: Random ColorChanger needs work - SEE EVERYTHING LEVEL! PIECES COME OUT IN BLACK CIRCLES
 
+//TODO: FOR SOME REASON THE BALL DOESNT FOLLOW THE PIECE INTO THE HOLE BUT ONLY WHEN SWIPING UP
+
 //TODO: May want to consider putting in a special piece (possibly one that changes shape/color every time its tapped) when a loop is made or when a line is complete. Whichever is harder
 
 //TODO: May want to consider saving pieces from a level and using all those pieces for the bonus level
@@ -876,7 +878,7 @@ class Model {
                                 
                                 if piece.shape == .entrance {
                                     
-                                    board.balls.removeAll()
+//                                    board.balls.removeAll()
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                                     break
                                     
@@ -914,6 +916,7 @@ class Model {
                                     deletePiece(piece: newPiece)
                                     
                                     if piece.shape == .entrance {
+//                                        board.balls.removeAll()
                                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                                         break
                                     }
