@@ -66,33 +66,33 @@ class ShapeView : UIView {
         context.addRects([rect1])
         context.fill(rect1)
         
-        let distanceFromSides = frame.width / 10
-        let screwWidthAndHeight = frame.width / 10
-        let color = colorTheme.lockPieceScrewColor.cgColor
-        
-        let topLeftCorner = CGPoint(x: distanceFromSides, y: distanceFromSides)
-        let topLeftRect = CGRect(x: topLeftCorner.x, y: topLeftCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
-        context.addRect(topLeftRect)
-        context.setFillColor(color)
-        context.fill(topLeftRect)
-        
-        let topRightCorner = CGPoint(x: frame.width - distanceFromSides - screwWidthAndHeight, y: distanceFromSides)
-        let topRightRect = CGRect(x: topRightCorner.x, y: topRightCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
-        context.addRect(topRightRect)
-        context.setFillColor(color)
-        context.fill(topRightRect)
-        
-        let bottomLeftCorner = CGPoint(x: distanceFromSides, y: frame.height - distanceFromSides - screwWidthAndHeight)
-        let bottomLeftRect = CGRect(x: bottomLeftCorner.x, y: bottomLeftCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
-        context.addRect(bottomLeftRect)
-        context.setFillColor(color)
-        context.fill(bottomLeftRect)
-        
-        let bottomRightCorner = CGPoint(x: frame.width - distanceFromSides - screwWidthAndHeight, y: frame.height - distanceFromSides - screwWidthAndHeight)
-        let bottomRightRect = CGRect(x: bottomRightCorner.x, y: bottomRightCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
-        context.addRect(bottomRightRect)
-        context.setFillColor(color)
-        context.fill(bottomRightRect)
+//        let distanceFromSides = frame.width / 10
+//        let screwWidthAndHeight = frame.width / 10
+//        let color = colorTheme.lockPieceScrewColor.cgColor
+//
+//        let topLeftCorner = CGPoint(x: distanceFromSides, y: distanceFromSides)
+//        let topLeftRect = CGRect(x: topLeftCorner.x, y: topLeftCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
+//        context.addRect(topLeftRect)
+//        context.setFillColor(color)
+//        context.fill(topLeftRect)
+//
+//        let topRightCorner = CGPoint(x: frame.width - distanceFromSides - screwWidthAndHeight, y: distanceFromSides)
+//        let topRightRect = CGRect(x: topRightCorner.x, y: topRightCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
+//        context.addRect(topRightRect)
+//        context.setFillColor(color)
+//        context.fill(topRightRect)
+//
+//        let bottomLeftCorner = CGPoint(x: distanceFromSides, y: frame.height - distanceFromSides - screwWidthAndHeight)
+//        let bottomLeftRect = CGRect(x: bottomLeftCorner.x, y: bottomLeftCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
+//        context.addRect(bottomLeftRect)
+//        context.setFillColor(color)
+//        context.fill(bottomLeftRect)
+//
+//        let bottomRightCorner = CGPoint(x: frame.width - distanceFromSides - screwWidthAndHeight, y: frame.height - distanceFromSides - screwWidthAndHeight)
+//        let bottomRightRect = CGRect(x: bottomRightCorner.x, y: bottomRightCorner.y, width: screwWidthAndHeight, height: screwWidthAndHeight)
+//        context.addRect(bottomRightRect)
+//        context.setFillColor(color)
+//        context.fill(bottomRightRect)
         
         context.restoreGState()
 
@@ -144,7 +144,7 @@ class ShapeView : UIView {
         context.setLineWidth(frame.height / 4)
         
         if isLocked == true {
-            
+
             setLock(context: context)
         }
         
@@ -607,7 +607,7 @@ class ShapeView : UIView {
             let y = x
             
             let rect1 = CGRect(x: x, y: y, width: w, height: h)
-            context.setFillColor(colorTheme.boardBackground.cgColor)
+            context.setFillColor(UIColor.lightGray.cgColor)
             context.addRects([rect1])
             context.fill(rect1)
             

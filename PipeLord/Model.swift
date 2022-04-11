@@ -17,6 +17,8 @@ import UIKit
 
 //TODO: Make a piece that rotates pieces
 
+//TODO: Make it that the pieceMakers can have multiple openings
+
 //TODO: MAKE IT THAT THAT PIECEMAKER CAN ALSO MAKE PIECEMAKERS
 
 //TODO: Make cracks for ice

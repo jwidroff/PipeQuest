@@ -696,8 +696,9 @@ class LevelModel {
 
         case "test2":
 
-            board.colorTheme.gradientBackgroundColor = [UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)]
-            
+//            board.colorTheme.gradientBackgroundColor = [UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), UIColor.init(red: 0.9, green: 0.9, blue: 0.9, alpha: 0.8)]
+            board.colorTheme.gradientBackgroundColor = [UIColor.red, UIColor.yellow]
+
             
             board.randomPieceColors = [UIColor.systemGreen, UIColor.cyan, UIColor.yellow]
             board.randomPieceShapes = [.wall, .diagElbow, .cross, .stick, .elbow]
@@ -743,7 +744,7 @@ class LevelModel {
             let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
             board.pieces.append(colorChanger)
 
-            let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.black], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
+            let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
             board.pieces.append(pieceMaker)
 
 //            setUpLevelDefaults()
@@ -1960,7 +1961,7 @@ class LevelModel {
                                 if !exception.contains(where: { (index) -> Bool in
                                     index == xIndex
                                 }) {
-                                    let pieceMaker = Piece(indexes: Indexes(x: xIndex, y: index), shape: .pieceMaker, colors: [.black], version: 3, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                                    let pieceMaker = Piece(indexes: Indexes(x: xIndex, y: index), shape: .pieceMaker, colors: [.clear], version: 3, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                                     board.pieces.append(pieceMaker)
                                 }
                             }
@@ -1972,7 +1973,7 @@ class LevelModel {
                                     index == xIndex
                                 }) {
 
-                                    let pieceMaker = Piece(indexes: Indexes(x: xIndex, y: index), shape: .pieceMaker, colors: [.black], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                                    let pieceMaker = Piece(indexes: Indexes(x: xIndex, y: index), shape: .pieceMaker, colors: [.clear], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                                     board.pieces.append(pieceMaker)
                                 }
                             }
@@ -2028,7 +2029,7 @@ class LevelModel {
                                     index == yIndex
                                 }) {
 
-                                    let pieceMaker = Piece(indexes: Indexes(x: index, y: yIndex), shape: .pieceMaker, colors: [.black], version: 4, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                                    let pieceMaker = Piece(indexes: Indexes(x: index, y: yIndex), shape: .pieceMaker, colors: [.clear], version: 4, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                                     board.pieces.append(pieceMaker)
                                 }
                             }
@@ -2042,7 +2043,7 @@ class LevelModel {
                                     index == yIndex
                                 }) {
 
-                                    let pieceMaker = Piece(indexes: Indexes(x: index, y: yIndex), shape: .pieceMaker, colors: [.black], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+                                    let pieceMaker = Piece(indexes: Indexes(x: index, y: yIndex), shape: .pieceMaker, colors: [.clear], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
                                     board.pieces.append(pieceMaker)
                                 }
                             }
