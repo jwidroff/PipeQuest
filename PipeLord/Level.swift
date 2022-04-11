@@ -58,6 +58,7 @@ class LevelModel {
                       "test1",
                       "Sharp Elbow", //DIFFICULT
                       "intro to double elbow",
+                      "puzzle",
                       "test2",
                       "everything",
                       "Around and back",
@@ -1143,6 +1144,86 @@ class LevelModel {
             setupRowOrColumnOf(.pieceMaker, rowOrColumn: "row", index: 3, exception: [4,5], pieceMakerOpening: "top")
             
             
+        case "puzzle":
+            
+            board.heightSpaces = 10
+            board.widthSpaces = 5
+            board.moves = 22
+
+
+//            board.randomPieceColors = [UIColor.red, UIColor.green, UIColor.blue]
+//
+//            board.randomPieceShapes = [.doubleElbow, .cross, .diagElbow, .elbow, .stick, .colorChanger]
+
+            let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "right", doesPivot: nil)
+            board.pieces.append(entrance)
+            
+            let entrance2 = Piece(indexes: Indexes(x: 3, y: 8), shape: .entrance, colors: [UIColor.cyan], version: 1, currentSwitch: 1, isLocked: false, opening: "bottom", doesPivot: nil)
+            board.pieces.append(entrance2)
+            
+            let exit = Piece(indexes: Indexes(x: 3, y: 4), shape: .exit, colors: [UIColor.cyan], version: 3, currentSwitch: 1, isLocked: true, opening: "top", doesPivot: true)
+            board.pieces.append(exit)
+
+            
+            let exit2 = Piece(indexes: Indexes(x: 1, y: 7), shape: .exit, colors: [UIColor.red], version: 3, currentSwitch: 1, isLocked: false, opening: "top", doesPivot: true)
+            board.pieces.append(exit2)
+            
+            let piece1 = Piece(indexes: Indexes(x: 2, y: 1), shape: .stick, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
+            
+            board.pieces.append(piece1)
+            
+            
+            let piece2 = Piece(indexes: Indexes(x: 2, y: 3), shape: .stick, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
+            
+            board.pieces.append(piece2)
+            
+            
+            let piece3 = Piece(indexes: Indexes(x: 3, y: 2), shape: .stick, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
+            
+            board.pieces.append(piece3)
+            
+            
+            
+            let piece4 = Piece(indexes: Indexes(x: 3, y: 1), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
+            
+            board.pieces.append(piece4)
+            
+            
+            let piece5 = Piece(indexes: Indexes(x: 3, y: 3), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
+            
+            board.pieces.append(piece5)
+            
+            
+            let piece6 = Piece(indexes: Indexes(x: 1, y: 3), shape: .elbow, colors: [UIColor.red], version: 4, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
+            
+            board.pieces.append(piece6)
+            
+            
+            let piece7 = Piece(indexes: Indexes(x: 2, y: 4), shape: .stick, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+
+            board.pieces.append(piece7)
+
+            let piece8 = Piece(indexes: Indexes(x: 2, y: 5), shape: .stick, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+
+            board.pieces.append(piece8)
+
+            let wall = Piece(indexes: Indexes(x: 2, y: 7), shape: .wall, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+            
+            board.pieces.append(wall)
+            
+            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
+
+            
+            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 4, exception: [4,5], pieceMakerOpening: "top")
+            
+            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 5, exception: [], pieceMakerOpening: nil)
+            
+//            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 6, exception: [], pieceMakerOpening: nil)
+//
+//
+//            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 7, exception: [4,5], pieceMakerOpening: "top")
+//
+//            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 8, exception: [4,5], pieceMakerOpening: "top")
             
         case "Around and back":
             
