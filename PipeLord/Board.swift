@@ -155,7 +155,7 @@ class BoardView : UIView {
 
         
         
-//        addHolesX(context: context)
+//        addHolesX(holeLocations: self.holeLocations, context: context)
 
         
         
@@ -165,6 +165,8 @@ class BoardView : UIView {
         
         
     }
+    
+    
     
     private func addIce(iceLocations: [Indexes]) {
         
@@ -187,6 +189,11 @@ class BoardView : UIView {
         
         for holeLocation in self.holeLocations {
 
+//            let context = UIGraphicsGetCurrentContext() else { return }
+            
+            
+            
+            
             let point1 = CGPoint(x: self.xArray[0], y: self.yArray[0])
             let point2 = CGPoint(x: self.xArray[1], y: self.yArray[1])
             let halfX = (point1.x - point2.x) / 2
@@ -223,6 +230,67 @@ class BoardView : UIView {
 //            layer.mask = maskLayer
 //        }
     }
+    
+    
+    private func addHolesX(holeLocations: [Indexes], context: CGContext) {
+        
+        
+        //The following code makes a hole however when animating over it when the piece is supposed to fall into the hole, it doesnt animate at all. Also we seem to lose all the shadows etc. Need to come back to this at a later time and figure it out
+        
+        let pathToOverlay = UIBezierPath(rect: bounds)
+
+        for holeLocation in self.holeLocations {
+
+            let point1 = CGPoint(x: self.xArray[0], y: self.yArray[0])
+            let point2 = CGPoint(x: self.xArray[1], y: self.yArray[1])
+            let halfX = (point1.x - point2.x) / 2
+            let halfY = (point1.y - point2.y) / 2
+
+            let rect1 = CGRect(x: self.xArray[holeLocation.x!] - halfX, y: self.yArray[holeLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
+
+            
+            pathToOverlay.append(UIBezierPath(rect: rect1))
+            pathToOverlay.usesEvenOddFillRule = true
+            
+//            pathToOverlay
+        
+            let maskLayer = CAShapeLayer()
+
+            maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
+            
+            
+            maskLayer.path = pathToOverlay.cgPath
+
+            
+//            let path1 = UIBezierPath(roundedRect:yourView.bounds,
+//                                        byRoundingCorners:[.topRight, .bottomLeft],
+//                                        cornerRadii: CGSize(width: 20, height:  20))
+
+//                let maskLayer1 = CAShapeLayer()
+//            maskLayer.path = UIBezierPath(rect: path1)
+//            maskLayer.fillColor = UIColor.blue.cgColor
+//            maskLayer.shadowColor = UIColor.darkGray.cgColor
+            maskLayer.shadowPath = maskLayer.path
+            maskLayer.shadowOffset = CGSize(width: 0.0, height: 2.0)
+            maskLayer.shadowOpacity = 0.1
+            maskLayer.shadowRadius = 2
+            
+            self.layer.insertSublayer(maskLayer, at: 0)
+//            CAShapeLayer().insertSublayer(maskLayer, at: 0)
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            layer.mask = maskLayer
+        }
+        
+    }
+    
 }
 
 

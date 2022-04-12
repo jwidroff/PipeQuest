@@ -620,8 +620,11 @@ extension ViewController: ModelDelegate {
     
     func removeView(view: UIView) {
         
-        
+        self.model.board.view.layer.mask?.shadowOpacity = 0.2
         model.board.view.bringSubviewToFront(view)
+        
+        
+//        model.board.view.insertSubview(view, at: 10)
         
         let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
@@ -632,6 +635,10 @@ extension ViewController: ModelDelegate {
             
             UIView.animate(withDuration: self.duration4Animation, delay: 0.0, options: .curveEaseInOut) {
                 
+                self.model.board.view.layer.mask?.shadowOpacity = 0.1
+                
+                
+                self.model.board.view.bringSubviewToFront(view)
                 
                 
                 view.transform = scale

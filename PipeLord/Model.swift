@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-
+//TODO: Need to change the hole into an actual hole - Use "addHoleX" (and comment out "addHole") to do this however it seems to be a mask layer and the pieces dont animate well over the mask
 
 //TODO: Make the possibility for more balls in each entrance
 
