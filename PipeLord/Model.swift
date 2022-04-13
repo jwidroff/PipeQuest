@@ -659,7 +659,7 @@ class Model {
         
         switch piece.shape {
         
-        case .diagElbow, .elbow:
+        case .diagElbow, .elbow, .colorChanger:
             
             let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
             
@@ -791,10 +791,19 @@ class Model {
     
     func resetPieceMaker(piece: Piece) {
         
+        print("Reset called")
+        
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
         setPieceShape(piece: nextPiece)
+        
+        print(nextPiece.shape)
+        
+        
         setPieceColor(piece: nextPiece)
+        
+        print(nextPiece.colors)
+
         setPieceSwitches(piece: nextPiece)
         setPieceSides(piece: nextPiece)
         piece.nextPiece = nextPiece
@@ -803,7 +812,7 @@ class Model {
     
     func updateMovesLeft() {
         
-        print("board.moves \(board.moves)")
+//        print("board.moves \(board.moves)")
         
         var movesX = String()
         

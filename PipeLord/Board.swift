@@ -53,11 +53,11 @@ class BoardView : UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.colorTheme = colorTheme
-        self.layer.shadowPath = CGPath(rect: bounds, transform: nil)
-        self.layer.shadowColor = UIColor.darkGray.cgColor
-        self.layer.shadowOffset = CGSize(width: 6, height: 0)
-        self.layer.shadowRadius = 5
-        self.layer.shadowOpacity = 1
+//        self.layer.shadowPath = CGPath(rect: bounds, transform: nil)
+//        self.layer.shadowColor = UIColor.darkGray.cgColor
+//        self.layer.shadowOffset = CGSize(width: 6, height: 0)
+//        self.layer.shadowRadius = 5
+//        self.layer.shadowOpacity = 1
         
         self.xArray = xArray.sorted(by: { (x1, x2) -> Bool in
             x1 < x2
@@ -70,13 +70,11 @@ class BoardView : UIView {
         self.holeLocations = holeLocations
 
         addIce(iceLocations: self.iceLocations)
+        
         addHoles(holeLocations: self.holeLocations)
         
-  
-        
-//        layer.mask = CALayer()
-        
     }
+    
     
     override func draw(_ rect: CGRect) {
 
@@ -190,9 +188,7 @@ class BoardView : UIView {
         for holeLocation in self.holeLocations {
 
 //            let context = UIGraphicsGetCurrentContext() else { return }
-            
-            
-            
+                        
             
             let point1 = CGPoint(x: self.xArray[0], y: self.yArray[0])
             let point2 = CGPoint(x: self.xArray[1], y: self.yArray[1])
@@ -200,7 +196,43 @@ class BoardView : UIView {
             let halfY = (point1.y - point2.y) / 2
 
             let rect = CGRect(x: self.xArray[holeLocation.x!] - halfX, y: self.yArray[holeLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
+            
+            
+            print(rect)
 
+//            
+//            let pathBigRect = UIBezierPath(rect: rect)
+//            
+//            let smallRect = CGRect(x: rect.width / 10, y: rect.height / 10, width: rect.width / 10 * 10, height: rect.height / 10 * 10)
+//            let pathSmallRect = UIBezierPath(rect: smallRect)
+//            
+//            
+//            pathBigRect.append(pathSmallRect)
+//            
+//            pathBigRect.usesEvenOddFillRule = true
+//            
+//            
+//            let fillLayer = CAShapeLayer()
+//            fillLayer.path = pathBigRect.cgPath
+//            fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
+//            fillLayer.fillColor = UIColor.clear.cgColor
+//            fillLayer.opacity = 1.0
+//            self.layer.addSublayer(fillLayer)
+            
+//
+//            fillLayer.shadowPath = fillLayer.path
+//            fillLayer.shadowOpacity = 0.3
+//            fillLayer.shadowColor = UIColor.black.cgColor
+//            fillLayer.shadowOffset = CGSize(width: -6, height: 10)
+//            fillLayer.shadowRadius = 1
+            
+            
+            
+            
+            
+            
+            
+            
             let holeView = HoleView(frame: rect, holeLocation: holeLocation)
 
             addSubview(holeView)
@@ -245,47 +277,29 @@ class BoardView : UIView {
             let point2 = CGPoint(x: self.xArray[1], y: self.yArray[1])
             let halfX = (point1.x - point2.x) / 2
             let halfY = (point1.y - point2.y) / 2
-
-            let rect1 = CGRect(x: self.xArray[holeLocation.x!] - halfX, y: self.yArray[holeLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
-
+            let xLoc = self.xArray[holeLocation.x!] - halfX
+            let yLoc = self.yArray[holeLocation.y!] - halfY
             
+            
+//            print(self.xArray[0])
+//            print(self.yArray[0])
+//            print(self.xArray[1])
+//            print(self.yArray[1])
+//            print(xLoc)
+//            print(yLoc)
+//            print()
+
+            let rect1 = CGRect(x: xLoc, y: yLoc, width: halfX * 2, height: halfY * 2)
             pathToOverlay.append(UIBezierPath(rect: rect1))
             pathToOverlay.usesEvenOddFillRule = true
-            
-//            pathToOverlay
-        
             let maskLayer = CAShapeLayer()
-
             maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
-            
-            
             maskLayer.path = pathToOverlay.cgPath
-
-            
-//            let path1 = UIBezierPath(roundedRect:yourView.bounds,
-//                                        byRoundingCorners:[.topRight, .bottomLeft],
-//                                        cornerRadii: CGSize(width: 20, height:  20))
-
-//                let maskLayer1 = CAShapeLayer()
-//            maskLayer.path = UIBezierPath(rect: path1)
-//            maskLayer.fillColor = UIColor.blue.cgColor
-//            maskLayer.shadowColor = UIColor.darkGray.cgColor
             maskLayer.shadowPath = maskLayer.path
             maskLayer.shadowOffset = CGSize(width: 0.0, height: 2.0)
             maskLayer.shadowOpacity = 0.1
             maskLayer.shadowRadius = 2
-            
             self.layer.insertSublayer(maskLayer, at: 0)
-//            CAShapeLayer().insertSublayer(maskLayer, at: 0)
-            
-            
-            
-            
-            
-            
-            
-            
-            
             layer.mask = maskLayer
         }
         

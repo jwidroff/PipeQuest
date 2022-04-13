@@ -686,8 +686,7 @@ class ShapeView : UIView {
             addSubview(nextPieceView)
             
         case .colorChanger: //MARK: COLORCHANGER VIEW
-            
-            
+                        
             
             let eclipseHeight1 = frame.height / 1.75
             let eclipseWidth1 = frame.width / 1.75
@@ -695,6 +694,13 @@ class ShapeView : UIView {
             context.addEllipse(in: rectX)
             context.setFillColor(UIColor.black.cgColor)
             context.fillEllipse(in: rectX)
+            
+            
+            print(version)
+            print(colors)
+            print(currentSwitch)
+            
+            
             
             switch version {
             
@@ -716,37 +722,37 @@ class ShapeView : UIView {
                     
                     drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
 
-                    let bottomLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4 * 3)
-                    let bottomCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4 * 3)
-                    let bottomRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4 * 3)
-                    
-                    let topLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4)
-                    let topCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4)
-                    let topRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4)
-                    
-                    setShadow(context: context)
-                    
-                    //left cresant
-                    let path = UIBezierPath()
-                    path.move(to: topCenter)
-                    path.addCurve(to: bottomCenter, controlPoint1: topLeft, controlPoint2: bottomLeft)
-                    context.setFillColor(colors[0])
-                    context.addPath(path.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    //right cresant
-                    let path2 = UIBezierPath()
-                    path2.move(to: topCenter)
-                    path2.addCurve(to: bottomCenter, controlPoint1: topRight, controlPoint2: bottomRight)
-                    context.setFillColor(colors[1])
-                    context.addPath(path2.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    context.restoreGState()
-                    
-                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
+//                    let bottomLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4 * 3)
+//                    let bottomCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4 * 3)
+//                    let bottomRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4 * 3)
+//
+//                    let topLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4)
+//                    let topCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4)
+//                    let topRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4)
+//
+//                    setShadow(context: context)
+//
+//                    //left cresant
+//                    let path = UIBezierPath()
+//                    path.move(to: topCenter)
+//                    path.addCurve(to: bottomCenter, controlPoint1: topLeft, controlPoint2: bottomLeft)
+//                    context.setFillColor(colors[0])
+//                    context.addPath(path.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    //right cresant
+//                    let path2 = UIBezierPath()
+//                    path2.move(to: topCenter)
+//                    path2.addCurve(to: bottomCenter, controlPoint1: topRight, controlPoint2: bottomRight)
+//                    context.setFillColor(colors[1])
+//                    context.addPath(path2.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    context.restoreGState()
+//
+//                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
                     
                 } else if currentSwitch == 2 {
                     
@@ -762,36 +768,36 @@ class ShapeView : UIView {
                     
                     drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
                     
-                    let bottomLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4 * 3)
-                    let bottomCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4 * 3)
-                    let bottomRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4 * 3)
-                    
-                    let topLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4)
-                    let topCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4)
-                    let topRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4)
-                    
-                    setShadow(context: context)
-
-                    
-                    let path = UIBezierPath()
-                    path.move(to: topCenter)
-                    path.addCurve(to: bottomCenter, controlPoint1: topLeft, controlPoint2: bottomLeft)
-                    context.setFillColor(colors[1])
-                    context.addPath(path.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    let path2 = UIBezierPath()
-                    path2.move(to: topCenter)
-                    path2.addCurve(to: bottomCenter, controlPoint1: topRight, controlPoint2: bottomRight)
-                    context.setFillColor(colors[0])
-                    context.addPath(path2.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    context.restoreGState()
-                    
-                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
+//                    let bottomLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4 * 3)
+//                    let bottomCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4 * 3)
+//                    let bottomRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4 * 3)
+//
+//                    let topLeft = CGPoint(x: (self.frame.width / 8), y: self.frame.height / 4)
+//                    let topCenter = CGPoint(x: (self.frame.width / 4 * 2), y: self.frame.height / 4)
+//                    let topRight = CGPoint(x: (self.frame.width - (self.frame.width / 8)), y: self.frame.height / 4)
+//
+//                    setShadow(context: context)
+//
+//
+//                    let path = UIBezierPath()
+//                    path.move(to: topCenter)
+//                    path.addCurve(to: bottomCenter, controlPoint1: topLeft, controlPoint2: bottomLeft)
+//                    context.setFillColor(colors[1])
+//                    context.addPath(path.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    let path2 = UIBezierPath()
+//                    path2.move(to: topCenter)
+//                    path2.addCurve(to: bottomCenter, controlPoint1: topRight, controlPoint2: bottomRight)
+//                    context.setFillColor(colors[0])
+//                    context.addPath(path2.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    context.restoreGState()
+//
+//                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
                 }
                 
             case 2, 4:
@@ -812,36 +818,36 @@ class ShapeView : UIView {
                     
                     drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
                     
-                    let leftTop = CGPoint(x: self.frame.width / 4, y: self.frame.height / 8)
-                    let leftCenter = CGPoint(x: self.frame.width / 4, y: self.frame.height / 4 * 2)
-                    let leftBottom = CGPoint(x: self.frame.width / 4, y: self.frame.height - (self.frame.height / 8))
-                    
-                    let rightTop = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 8)
-                    let rightCenter = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 4 * 2)
-                    let rightBottom = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height - (self.frame.height / 8))
-                    
-                    setShadow(context: context)
-
-                    
-                    let path = UIBezierPath()
-                    path.move(to: leftCenter)
-                    path.addCurve(to: rightCenter, controlPoint1: leftTop, controlPoint2: rightTop)
-                    context.setFillColor(colors[0])
-                    context.addPath(path.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    let path2 = UIBezierPath()
-                    path2.move(to: leftCenter)
-                    path2.addCurve(to: rightCenter, controlPoint1: leftBottom, controlPoint2: rightBottom)
-                    context.setFillColor(colors[1])
-                    context.addPath(path2.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    context.restoreGState()
-                    
-                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
+//                    let leftTop = CGPoint(x: self.frame.width / 4, y: self.frame.height / 8)
+//                    let leftCenter = CGPoint(x: self.frame.width / 4, y: self.frame.height / 4 * 2)
+//                    let leftBottom = CGPoint(x: self.frame.width / 4, y: self.frame.height - (self.frame.height / 8))
+//
+//                    let rightTop = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 8)
+//                    let rightCenter = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 4 * 2)
+//                    let rightBottom = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height - (self.frame.height / 8))
+//
+//                    setShadow(context: context)
+//
+//
+//                    let path = UIBezierPath()
+//                    path.move(to: leftCenter)
+//                    path.addCurve(to: rightCenter, controlPoint1: leftTop, controlPoint2: rightTop)
+//                    context.setFillColor(colors[0])
+//                    context.addPath(path.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    let path2 = UIBezierPath()
+//                    path2.move(to: leftCenter)
+//                    path2.addCurve(to: rightCenter, controlPoint1: leftBottom, controlPoint2: rightBottom)
+//                    context.setFillColor(colors[1])
+//                    context.addPath(path2.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    context.restoreGState()
+//
+//                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
                     
                 } else if  currentSwitch == 2 {
                     
@@ -857,38 +863,38 @@ class ShapeView : UIView {
                     
                     drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
 
-                    let leftTop = CGPoint(x: self.frame.width / 4, y: self.frame.height / 8)
-                    let leftCenter = CGPoint(x: self.frame.width / 4, y: self.frame.height / 4 * 2)
-                    let leftBottom = CGPoint(x: self.frame.width / 4, y: self.frame.height - (self.frame.height / 8))
-                    
-                    let rightTop = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 8)
-                    let rightCenter = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 4 * 2)
-                    let rightBottom = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height - (self.frame.height / 8))
-                    
-                    setShadow(context: context)
-
-                    
-                    let path = UIBezierPath()
-                    path.move(to: leftCenter)
-                    path.addCurve(to: rightCenter, controlPoint1: leftTop, controlPoint2: rightTop)
-                    context.setFillColor(colors[1])
-                    context.addPath(path.cgPath)
-                    context.closePath()
-                    context.fillPath()
-                    
-                    let path2 = UIBezierPath()
-                    path2.move(to: leftCenter)
-                    path2.addCurve(to: rightCenter, controlPoint1: leftBottom, controlPoint2: rightBottom)
-                    context.setFillColor(colors[0])
-                    context.addPath(path2.cgPath)
-                    context.closePath()
-                    context.fillPath()
-
-                    
-                    context.restoreGState()
-                    
-                    
-                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
+//                    let leftTop = CGPoint(x: self.frame.width / 4, y: self.frame.height / 8)
+//                    let leftCenter = CGPoint(x: self.frame.width / 4, y: self.frame.height / 4 * 2)
+//                    let leftBottom = CGPoint(x: self.frame.width / 4, y: self.frame.height - (self.frame.height / 8))
+//
+//                    let rightTop = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 8)
+//                    let rightCenter = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height / 4 * 2)
+//                    let rightBottom = CGPoint(x: self.frame.width / 4 * 3, y: self.frame.height - (self.frame.height / 8))
+//
+//                    setShadow(context: context)
+//
+//
+//                    let path = UIBezierPath()
+//                    path.move(to: leftCenter)
+//                    path.addCurve(to: rightCenter, controlPoint1: leftTop, controlPoint2: rightTop)
+//                    context.setFillColor(colors[1])
+//                    context.addPath(path.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//                    let path2 = UIBezierPath()
+//                    path2.move(to: leftCenter)
+//                    path2.addCurve(to: rightCenter, controlPoint1: leftBottom, controlPoint2: rightBottom)
+//                    context.setFillColor(colors[0])
+//                    context.addPath(path2.cgPath)
+//                    context.closePath()
+//                    context.fillPath()
+//
+//
+//                    context.restoreGState()
+//
+//
+//                    overlapPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
                     
                 }
             default:

@@ -701,16 +701,16 @@ class LevelModel {
             board.colorTheme.gradientBackgroundColor = [UIColor.red, UIColor.yellow]
 
             
-            board.randomPieceColors = [UIColor.systemGreen, UIColor.cyan, UIColor.yellow]
-            board.randomPieceShapes = [.wall, .diagElbow, .cross, .stick, .elbow]
+            board.randomPieceColors = [UIColor.cyan, UIColor.red]//, UIColor.yellow]
+            board.randomPieceShapes = [.colorChanger]//, .cross]// .wall, .diagElbow, .cross, .stick, .elbow]
             board.amountOfRandomPieces = 0
-            board.iceLocations = [Indexes(x: 3, y: 7), Indexes(x: 3, y: 9)]
-            board.holeLocations = [Indexes(x: 0, y: 1), Indexes(x: 5, y: 1),Indexes(x: 5, y: 0), Indexes(x: 6, y: 0), Indexes(x: 6, y: 1)]
+            board.iceLocations = [Indexes(x: 3, y: 7), Indexes(x: 3, y: 8)]
+            board.holeLocations = [Indexes(x: 0, y: 1), Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x: 4, y: 1)]
 
-            board.heightSpaces = 14
-            board.widthSpaces = 7
+            board.heightSpaces = 10
+            board.widthSpaces = 5
 
-            addBorderAroundBoardOf(.wall, exceptionIndexes: [Indexes(x: 0, y: 1),Indexes(x: 5, y: 1),Indexes(x: 5, y: 0), Indexes(x: 6, y: 0), Indexes(x: 6, y: 1)])
+            addBorderAroundBoardOf(.wall, exceptionIndexes: [Indexes(x: 0, y: 1),Indexes(x: 3, y: 1),Indexes(x: 3, y: 0), Indexes(x: 4, y: 0), Indexes(x: 4, y: 1)])
 
 
 //            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 0, exception: [0], pieceMakerOpening: nil)
