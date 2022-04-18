@@ -664,7 +664,7 @@ class Model {
         
         switch piece.shape {
         
-        case .diagElbow, .elbow, .colorChanger:
+        case .diagElbow, .elbow:
             
             let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
             
@@ -696,6 +696,11 @@ class Model {
             
             piece.switches = 1
             piece.currentSwitch = 1
+            
+        case .colorChanger:
+            
+            piece.switches = 2
+            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
             
         default:
             break
@@ -818,7 +823,7 @@ class Model {
 //                switch direction {
 //                case .up:
 //
-//                    
+//
 //                    indexOfHole = Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1)
 //                    
 //                case .down:

@@ -1316,7 +1316,7 @@ class LevelModel {
             
             let version = Int(arc4random_uniform(UInt32(4))) + 1
             piece.version = version
-            let randomShapes:[Shape] = [.wall, .diagElbow, .elbow, .doubleElbow, .diagElbow]
+            let randomShapes:[Shape] = [.wall, .diagElbow, .elbow, .doubleElbow, .diagElbow, .colorChanger]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
             
         }
