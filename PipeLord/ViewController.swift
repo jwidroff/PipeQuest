@@ -555,22 +555,46 @@ extension ViewController: ModelDelegate {
             pieceX.indexes == piece.indexes
         }) {
             
-            
-            let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
-            
-            let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
-            
-            let shapeView = ShapeView(frame: frame, piece: newPiece)
-            piece.view.removeFromSuperview()
-            piece.view = shapeView
-            self.addTapGestureRecognizer(view: piece.view)
-            self.model.board.view.addSubview(piece.view)
-            
-            for ball in self.model.board.balls {
+            if piece.shape == .colorChanger {
                 
-                self.model.board.view.bringSubviewToFront(ball.view)
+                rotateView(view: piece.view)
+            } else {
+                
+                let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
+                
+                let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
+                
+                let shapeView = ShapeView(frame: frame, piece: newPiece)
+                piece.view.removeFromSuperview()
+                piece.view = shapeView
+                self.addTapGestureRecognizer(view: piece.view)
+                self.model.board.view.addSubview(piece.view)
+                
+                for ball in self.model.board.balls {
+                    
+                    self.model.board.view.bringSubviewToFront(ball.view)
+                }
             }
         }
+    }
+    
+    func rotateView(view: UIView) {
+        
+        if view.transform.isIdentity {
+            
+            print("is identity")
+            UIView.animate(withDuration: 0.5) {
+                let rotationDegrees = 180.0
+                let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
+                view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+            }
+        } else {
+            print("isn't identity")
+            UIView.animate(withDuration: 0.5) {
+                view.transform = CGAffineTransform.identity
+            }
+        }
+        
     }
     
     func crashBallViewIntoCross(piece: Piece, ball: Ball) {

@@ -705,7 +705,7 @@ class LevelModel {
             board.randomPieceShapes = [.colorChanger, .wall]//, .cross]// .wall, .diagElbow, .cross, .stick, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
-            board.holeLocations = [Indexes(x: 3, y: 1)]//, Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0)]
+            board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1)]
 
             board.heightSpaces = 10
             board.widthSpaces = 5
@@ -724,8 +724,8 @@ class LevelModel {
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
             board.pieces.append(piece)
 
-//            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: nil)
-//            board.pieces.append(colorChanger)
+            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+            board.pieces.append(colorChanger)
             
             let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
             board.pieces.append(pieceMaker)

@@ -35,7 +35,7 @@ class ColorTheme {
         gridLineColor = gameBackground
         buttonColors = UIColor.white
         buttonTextColor = UIColor.black
-        gradientBackgroundColor = [UIColor.yellow, UIColor.green] // DEFAULT
+        gradientBackgroundColor = [UIColor.init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0), UIColor.init(red: 0.9, green: 0.1, blue: 0.7, alpha: 1.0)] // DEFAULT
         
         //cross divider color
         //Piece outline color
