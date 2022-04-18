@@ -696,12 +696,6 @@ class ShapeView : UIView {
             context.fillEllipse(in: rectX)
             
             
-            print(version)
-            print(colors)
-            print(currentSwitch)
-            
-            
-            
             switch version {
             
             case 1, 3:

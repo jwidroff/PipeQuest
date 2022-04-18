@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+//TODO: Make it that the walls dont slide on the ice
+
+//TODO: Make it that walls fill holes
+
 //TODO: Need to change the hole into an actual hole - Use "addHoleX" (and comment out "addHole") to do this however it seems to be a mask layer and the pieces dont animate well over the mask
 
 //TODO: Make the possibility for more balls in each entrance
@@ -87,6 +91,7 @@ protocol ModelDelegate {
     func updateLevelInfo(name: String, moves: String)
     func updateMovesLeftLabel(moves: String)
     func addSwipeGestureRecognizer(view: UIView)
+    func removeHole(indexes: Indexes)
     
 }
 
@@ -777,14 +782,93 @@ class Model {
         return bool
     }
     
-    func checkForHole(piece: Piece) -> Bool {
+    func checkForHole(piece: Piece, direction: Direction) -> Bool {
 
+        
         var bool = false
-
+        
         if board.holeLocations.contains(where: { (index) -> Bool in
             index == piece.indexes
         }) {
-            bool = true
+            
+            
+            if piece.shape == .wall {
+                
+                
+                //UP TO HERE - THE WALLS INDEXES NEED TO UPDATE BEFORE WE CAN 'Fill' the hole
+                
+                
+                
+                
+                //Get CGPoint of the center of where the piece would be
+
+                
+                
+                
+                
+                
+                var indexOfHole = piece.indexes
+                
+                
+                
+                
+                bool = false
+                
+                
+//                switch direction {
+//                case .up:
+//
+//                    
+//                    indexOfHole = Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1)
+//                    
+//                case .down:
+//
+//
+//                    indexOfHole = Indexes(x: piece.indexes.x!, y: piece.indexes.y! + 1)
+//
+//                case .left:
+//
+//                    indexOfHole = Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y!)
+//
+//
+//                case .right:
+//
+//                    indexOfHole = Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y!)
+//
+//                case .none:
+//                    break
+//                }
+                
+                
+                
+                delegate?.removeHole(indexes: indexOfHole)
+                
+                
+                var int = 0
+                
+                for holeLocation in board.holeLocations {
+                    
+                    
+                    
+                    if holeLocation == indexOfHole {
+                        
+                        print("indexOfHole \(indexOfHole)")
+                        
+                        board.holeLocations.remove(at: int)
+                    }
+                    
+                    int += 1
+                }
+                
+//                board.holeLocations.remove(at: <#T##Int#>)
+                
+                
+            } else {
+                
+                bool = true
+            }
+            
+            
         }
         return bool
     }
@@ -883,7 +967,7 @@ class Model {
                                 return
                             }
                             
-                            if checkForHole(piece: piece) == true {
+                            if checkForHole(piece: piece, direction: .up) == true {
                                 
                                 deletePiece(piece: piece)
                                 
@@ -922,7 +1006,7 @@ class Model {
                                     return
                                 }
                                 
-                                if checkForHole(piece: newPiece) == true {
+                                if checkForHole(piece: newPiece, direction: .down) == true {
                                     
                                     deletePiece(piece: newPiece)
                                     
@@ -973,7 +1057,7 @@ class Model {
                                 return
                             }
                             
-                            if checkForHole(piece: piece) == true {
+                            if checkForHole(piece: piece, direction: .down) == true {
                                 
                                 deletePiece(piece: piece)
                                 
@@ -1010,7 +1094,7 @@ class Model {
                                     return
                                 }
                                 
-                                if checkForHole(piece: newPiece) == true {
+                                if checkForHole(piece: newPiece, direction: .down) == true {
                                     
                                     deletePiece(piece: newPiece)
                                     
@@ -1058,7 +1142,7 @@ class Model {
                                 movePiecesHelper(piece: piece, direction: direction)
                             }
                             
-                            if checkForHole(piece: piece) == true {
+                            if checkForHole(piece: piece, direction: .left) == true {
                                 
                                 deletePiece(piece: piece)
                                 
@@ -1093,7 +1177,7 @@ class Model {
                                     movePiecesHelper(piece: newPiece, direction: direction)
                                 }
                                 
-                                if checkForHole(piece: newPiece) == true {
+                                if checkForHole(piece: newPiece, direction: .left) == true {
                                     
                                     deletePiece(piece: newPiece)
                                     
@@ -1141,7 +1225,7 @@ class Model {
                                 movePiecesHelper(piece: piece, direction: direction)
                             }
                             
-                            if checkForHole(piece: piece) == true {
+                            if checkForHole(piece: piece, direction: .right) == true {
                                 
                                 deletePiece(piece: piece)
                                 
@@ -1176,7 +1260,7 @@ class Model {
                                     movePiecesHelper(piece: newPiece, direction: direction)
                                 }
                                 
-                                if checkForHole(piece: newPiece) == true {
+                                if checkForHole(piece: newPiece, direction: .right) == true {
                                     
                                     deletePiece(piece: newPiece)
                                     

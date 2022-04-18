@@ -555,6 +555,7 @@ extension ViewController: ModelDelegate {
             pieceX.indexes == piece.indexes
         }) {
             
+            
             let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
             
             let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
@@ -648,6 +649,26 @@ extension ViewController: ModelDelegate {
             } completion: { (true) in
 
                 view.removeFromSuperview()
+            }
+        }
+    }
+    
+    func removeHole(indexes: Indexes) {
+        
+        for subview in model.board.view.subviews {
+
+            let centerX = self.model.board.grid[indexes]
+            let pieceCenter = CGPoint(x: centerX!.x.rounded(), y: centerX!.y.rounded())
+            
+            let subviewCenter = CGPoint(x: subview.center.x.rounded(), y: subview.center.y.rounded())
+
+            if subviewCenter  == pieceCenter {
+                    let piece = self.model.getPieceInfo(index: indexes)
+                    self.removeView(view: subview)
+                    self.removeView(view: piece.view)
+                    self.model.deletePiece(piece: piece)
+
+                return
             }
         }
     }

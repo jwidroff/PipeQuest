@@ -178,6 +178,7 @@ class BoardView : UIView {
             let rect = CGRect(x: self.xArray[iceLocation.x!] - halfX, y: self.yArray[iceLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
             
             let iceView = IceView(frame: rect, iceLocation: iceLocation)
+            iceView.alpha = 0.8
             addSubview(iceView)
         }
     }
