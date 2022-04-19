@@ -12,6 +12,7 @@ import UIKit
 // Introduce to ice
 // Introduce to no walls
 // Introduce to holes
+// Introduce how walls fill up holes
 // Introduce to switches
 // Introduce to multiColor switches
 // Introduce to multiple colors

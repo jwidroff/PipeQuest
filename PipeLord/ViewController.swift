@@ -557,7 +557,12 @@ extension ViewController: ModelDelegate {
             
             if piece.shape == .colorChanger {
                 
-                rotateView(view: piece.view)
+                rotateView(view: piece.view, rotationDegrees: 180)
+                
+            } else if piece.shape == .cross {
+                    
+                rotateView(view: piece.view, rotationDegrees: 90)
+                
             } else {
                 
                 let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
@@ -578,15 +583,18 @@ extension ViewController: ModelDelegate {
         }
     }
     
-    func rotateView(view: UIView) {
+    func rotateView(view: UIView, rotationDegrees: CGFloat) {
+        
+        print("rotate view called")
         
         if view.transform.isIdentity {
             
             print("is identity")
             UIView.animate(withDuration: 0.5) {
-                let rotationDegrees = 180.0
+//                let rotationDegrees = 90.0
                 let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
                 view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+//                view.transform = CGAffineTransform.identity
             }
         } else {
             print("isn't identity")
