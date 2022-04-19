@@ -1555,9 +1555,9 @@ class Model {
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 90
-                            self.delegate?.rotateView(view: piece.view, rotationDegrees: 90)
+//                            self.delegate?.rotateView(view: piece.view, rotationDegrees: 90)
                             
-//                            self.delegate?.replacePieceView(piece: piece)
+                            self.delegate?.replacePieceView(piece: piece)
                         }
                     }
                 }
@@ -1939,25 +1939,7 @@ class Model {
             }
         }
     }
-    
-//    func switchCross(piece: Piece, ball: Ball) { //NOT CALLED
-//
-//        piece.side.left.closing.isOpen = !piece.side.left.closing.isOpen
-//        piece.side.right.closing.isOpen = !piece.side.right.closing.isOpen
-//        piece.side.top.closing.isOpen = !piece.side.top.closing.isOpen
-//        piece.side.bottom.closing.isOpen = !piece.side.bottom.closing.isOpen
-//
-//        if piece.currentSwitch == 1 {
-//            piece.currentSwitch = 2
-//        } else {
-//            piece.currentSwitch = 1
-//        }
-//
-////        delegate?.rotateView(view: piece.view)
-//
-//        delegate?.replacePieceView(piece: piece)
-//    }
-    
+
     func check4CrossCrash(piece: Piece, ball: Ball, startSide: String) -> Bool {
         
         //TODO: Move this to the Model
@@ -2007,16 +1989,7 @@ class Model {
         
         setPieceSides(piece: piece)
         
-        
-//        if piece.shape == .cross {
-//            delegate?.rotateView(view: piece.view, rotationDegrees: 90)
-//
-//        } else if piece.shape == .colorChanger {
-//            delegate?.rotateView(view: piece.view, rotationDegrees: 180)
-//        } else {
-            delegate?.replacePieceView(piece: piece)
-//        }
-        
+        delegate?.replacePieceView(piece: piece)
     }
     
     func switchSwitches(piece: Piece) {

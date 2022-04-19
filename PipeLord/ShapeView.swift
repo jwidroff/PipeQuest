@@ -1064,6 +1064,9 @@ class ShapeView : UIView {
     
     func addPivotRect(context: CGContext, side: String, color: CGColor) {
         
+        
+        let color = UIColor.black.cgColor
+        
         switch side {
         
         case "top":

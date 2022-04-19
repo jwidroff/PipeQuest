@@ -594,6 +594,7 @@ extension ViewController: ModelDelegate {
 //                let rotationDegrees = 90.0
                 let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
                 view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+                
 //                view.transform = CGAffineTransform.identity
             }
         } else {
@@ -658,6 +659,8 @@ extension ViewController: ModelDelegate {
         
         
 //        model.board.view.insertSubview(view, at: 10)
+        
+        
         
         let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
