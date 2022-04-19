@@ -133,13 +133,13 @@ class ShapeView : UIView {
         let rightCenterPoint = CGPoint(x: frame.width, y: frame.height / 2)
         let centerPoint = CGPoint(x: frame.width / 2, y: frame.height / 2)
         
-        context.beginPath()
-        context.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
-        context.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
-        context.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
-        context.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
-        context.closePath()
-        context.strokePath()
+//        context.beginPath()
+//        context.move(to: CGPoint(x: bounds.minX, y: bounds.minY))
+//        context.addLine(to: CGPoint(x: bounds.minX, y: bounds.maxY))
+//        context.addLine(to: CGPoint(x: bounds.maxX, y: bounds.maxY))
+//        context.addLine(to: CGPoint(x: bounds.maxX, y: bounds.minY))
+//        context.closePath()
+//        context.strokePath()
         
         context.setLineWidth(frame.height / 4)
         
@@ -1019,8 +1019,11 @@ class ShapeView : UIView {
             let eclipseWidth2 = frame.width / 2
             let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
             context.setFillColor(UIColor.darkGray.cgColor)
-            context.addEllipse(in: rect3)
-            context.fillEllipse(in: rect3)
+//            context.addEllipse(in: rect3)
+//            context.fillEllipse(in: rect3)
+            context.fill(rect3)
+            
+            
             
             
             

@@ -680,6 +680,8 @@ extension ViewController: ModelDelegate {
 
             } completion: { (true) in
 
+//                self.removeView(view: view)
+                
                 view.removeFromSuperview()
             }
         }
