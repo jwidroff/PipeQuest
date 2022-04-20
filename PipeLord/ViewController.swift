@@ -561,26 +561,38 @@ extension ViewController: ModelDelegate {
                 
             } else if piece.shape == .cross {
                     
-                rotateView(view: piece.view, rotationDegrees: 90)
+                if piece.colors[0] == piece.colors[1] {
+                    rotateView(view: piece.view, rotationDegrees: 90)
+                } else {
+                    replacePieceHelper(piece: piece)
+                }
+                
                 
             } else {
                 
-                let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
-                
-                let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
-                
-                let shapeView = ShapeView(frame: frame, piece: newPiece)
-                piece.view.removeFromSuperview()
-                piece.view = shapeView
-                self.addTapGestureRecognizer(view: piece.view)
-                self.model.board.view.addSubview(piece.view)
-                
-                for ball in self.model.board.balls {
-                    
-                    self.model.board.view.bringSubviewToFront(ball.view)
-                }
+                replacePieceHelper(piece: piece)
             }
         }
+    }
+    
+    func replacePieceHelper(piece: Piece) {
+        
+        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
+        
+        let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
+        
+        let shapeView = ShapeView(frame: frame, piece: newPiece)
+        piece.view.removeFromSuperview()
+        piece.view = shapeView
+        self.addTapGestureRecognizer(view: piece.view)
+        self.model.board.view.addSubview(piece.view)
+        
+        for ball in self.model.board.balls {
+            
+            self.model.board.view.bringSubviewToFront(ball.view)
+        }
+        
+        
     }
     
     func rotateView(view: UIView, rotationDegrees: CGFloat) {

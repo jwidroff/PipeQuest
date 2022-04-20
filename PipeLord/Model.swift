@@ -710,10 +710,29 @@ class Model {
     
     func setPieceShape(piece: Piece) {
         
+//        print("count = \(piece.colors.count)")
+        
         let version = Int(arc4random_uniform(UInt32(4))) + 1
         let randomShapes:[Shape] = board.randomPieceShapes
         piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
         piece.version = version
+        
+        
+        if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
+            
+//            print("00000000000000000000000000000000")
+            
+            setPieceShape(piece: piece)
+            
+        } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
+            
+//            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            
+            if piece.colors[0] == piece.colors[1] {
+                setPieceShape(piece: piece)
+            }
+        }
+        
     }
     
     func setPieceColor(piece: Piece) {
@@ -885,12 +904,13 @@ class Model {
         
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
+        setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
         
         print(nextPiece.shape)
         
         
-        setPieceColor(piece: nextPiece)
+        
         
         print(nextPiece.colors)
 

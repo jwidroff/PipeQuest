@@ -1134,7 +1134,7 @@ class LevelModel {
 
             board.amountOfRandomPieces = 0
 
-            board.randomPieceColors = [UIColor.red, UIColor.cyan]//, UIColor.blue]
+            board.randomPieceColors = [UIColor.red, UIColor.red, UIColor.red, UIColor.red, UIColor.red, UIColor.cyan]//, UIColor.blue]
 
             board.randomPieceShapes = [.diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .cross]
 
@@ -1331,8 +1331,8 @@ class LevelModel {
                 
                 let nextPiece = Piece()
                 nextPiece.indexes = piece.indexes
-                setPieceShape(piece: nextPiece)
                 setPieceColor(piece: nextPiece)
+                setPieceShape(piece: nextPiece)
                 setPieceSwitches(piece: nextPiece)
                 setPieceSides(piece: nextPiece)
                 piece.nextPiece = nextPiece
@@ -1362,12 +1362,40 @@ class LevelModel {
     }
     
     private func setPieceShape(piece: Piece) {
-        
+                
         if board.randomPieceShapes != [Shape]() {
             
             let version = Int(arc4random_uniform(UInt32(4))) + 1
             piece.version = version
             piece.shape = board.randomPieceShapes[Int(arc4random_uniform(UInt32(board.randomPieceShapes.count)))]
+            
+//            if piece.colors.count == 1 && piece.shape == .colorChanger {
+//
+//                print("00000000000000000000000000000000")
+//
+//                setPieceShape(piece: piece)
+//
+//            } else if piece.colors[0] == piece.colors[1] && piece.shape == .colorChanger {
+//
+//                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+//            }
+            
+            if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
+                
+//                print("00000000000000000000000000000000")
+                
+                setPieceShape(piece: piece)
+                
+            } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
+                
+//                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+                
+                if piece.colors[0] == piece.colors[1] {
+                    setPieceShape(piece: piece)
+                }
+            }
+            
+            
             
         } else {
             
