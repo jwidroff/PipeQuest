@@ -664,7 +664,10 @@ class Model {
         
         case .diagElbow, .elbow:
             
-            let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
+//            let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
+            let pivotDecision = 1
+
+            
             
             switch pivotDecision {
             case 1:

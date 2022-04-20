@@ -1134,9 +1134,9 @@ class LevelModel {
 
             board.amountOfRandomPieces = 0
 
-            board.randomPieceColors = [UIColor.red]//, UIColor.green, UIColor.blue]
+            board.randomPieceColors = [UIColor.red, UIColor.cyan]//, UIColor.blue]
 
-            board.randomPieceShapes = [.diagElbow]
+            board.randomPieceShapes = [.diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .diagElbow, .cross]
 
             let entrance = Piece(indexes: Indexes(x: 1, y: 0), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
             board.pieces.append(entrance)
@@ -1414,8 +1414,9 @@ class LevelModel {
     
     private func setPieceSwitches(piece: Piece) {
         
-        let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
-        
+//        let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
+        let pivotDecision = 1
+
         switch pivotDecision {
         
         case 1: //Pivot allowed
