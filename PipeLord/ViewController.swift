@@ -616,18 +616,19 @@ extension ViewController: ModelDelegate {
             lockView.backgroundColor = .black
             model.board.view.insertSubview(lockView, belowSubview: piece.view)
             piece.isLocked = true
-        } else {
-            for subview in model.board.view.subviews {
-                if subview.center == piece.center && subview.backgroundColor == .black {
-                    removeView(view: subview)
-
-                }
-            }
-            
-            piece.isLocked = false
-            
-            
         }
+//        else {
+//            for subview in model.board.view.subviews {
+//                if subview.center == piece.center && subview.backgroundColor == .black {
+//                    removeView(view: subview)
+//
+//                }
+//            }
+//
+//            piece.isLocked = false
+//
+//
+//        }
         
         
         

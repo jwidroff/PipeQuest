@@ -2004,12 +2004,21 @@ class Model {
     }
     
     func switchSwitches(piece: Piece) {
+        
+        print(piece.currentSwitch)
 
         if piece.isLocked || piece.doesPivot == false { return }
         
         if piece.shape != .entrance {
             
             updateMovesLeft()
+        }
+        
+        if piece.shape == .wall && piece.currentSwitch == 2 {
+            
+            print("ZXXZZXZXZXZX")
+            return
+            
         }
         
         if piece.currentSwitch != piece.switches {
