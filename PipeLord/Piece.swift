@@ -62,6 +62,9 @@ class Piece {
             
             switch shape {
             
+            case .wall:
+                switches = 2
+                
             case .elbow:
                 switches = 2
                 

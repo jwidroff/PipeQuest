@@ -38,10 +38,21 @@ class Level {
     
 }
 
+
+protocol LevelDelegate {
+    
+    func resetPieceMaker(piece: Piece)
+    
+    
+}
+
+
+
+
 class LevelModel {
     
     let board = Board()
-    
+    var delegate: LevelDelegate?
     let levelNames = [
                       "basic",
                       "walls intro",
@@ -1294,16 +1305,6 @@ class LevelModel {
             let stick2 = Piece(indexes: Indexes(x: 4, y: 6), shape: .stick, colors: [UIColor.red, UIColor.red], version: 4, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(stick2)
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
         default:
             break
             
@@ -1319,15 +1320,46 @@ class LevelModel {
 
         setupRandomPieces()
         setupNextPieces()
+        
         setupBalls()
+        setupLocks()
+        
     }
     
+    private func setupLocks() {
+        
+        for piece in self.board.pieces {
+            
+            if piece.isLocked {
+                
+                
+                let w = piece.view.frame.width / 10 * 9
+                let h = piece.view.frame.height / 10 * 9
+                let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
+                let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
+                
+                
+                let frame = CGRect(x: x, y: y, width: w, height: h)
+                
+                
+                
+                let lockView = UIView(frame: frame)
+                lockView.backgroundColor = .black
+//                model.board.view.insertSubview(lockView, belowSubview: piece.view)
+                
+                
+            }
+        }
+        
+    }
     
     private func setupNextPieces() {
         
         for piece in self.board.pieces {
             
             if piece.shape == .pieceMaker {
+                
+//                delegate?.resetPieceMaker(piece: piece)
                 
                 let nextPiece = Piece()
                 nextPiece.indexes = piece.indexes
@@ -1369,27 +1401,12 @@ class LevelModel {
             piece.version = version
             piece.shape = board.randomPieceShapes[Int(arc4random_uniform(UInt32(board.randomPieceShapes.count)))]
             
-//            if piece.colors.count == 1 && piece.shape == .colorChanger {
-//
-//                print("00000000000000000000000000000000")
-//
-//                setPieceShape(piece: piece)
-//
-//            } else if piece.colors[0] == piece.colors[1] && piece.shape == .colorChanger {
-//
-//                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-//            }
-            
             if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
-                
-//                print("00000000000000000000000000000000")
-                
+                                
                 setPieceShape(piece: piece)
                 
             } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
-                
-//                print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-                
+                                
                 if piece.colors[0] == piece.colors[1] {
                     setPieceShape(piece: piece)
                 }
@@ -1455,6 +1472,11 @@ class LevelModel {
                 
                 piece.switches = 2
                 piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+                
+            case .wall:
+                
+                piece.switches = 2
+                piece.currentSwitch = 1
                 
             case .diagElbow:
                 

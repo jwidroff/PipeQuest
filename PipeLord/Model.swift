@@ -900,20 +900,10 @@ class Model {
     
     func resetPieceMaker(piece: Piece) {
         
-        print("Reset called")
-        
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
-        
-        print(nextPiece.shape)
-        
-        
-        
-        
-        print(nextPiece.colors)
-
         setPieceSwitches(piece: nextPiece)
         setPieceSides(piece: nextPiece)
         piece.nextPiece = nextPiece
@@ -1964,9 +1954,7 @@ class Model {
     }
 
     func check4CrossCrash(piece: Piece, ball: Ball, startSide: String) -> Bool {
-        
-        //TODO: Move this to the Model
-        
+                
         var bool = false
         
         switch startSide {

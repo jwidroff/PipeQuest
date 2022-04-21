@@ -555,6 +555,8 @@ extension ViewController: ModelDelegate {
             pieceX.indexes == piece.indexes
         }) {
             
+            
+            
             if piece.shape == .colorChanger {
                 
                 rotateView(view: piece.view, rotationDegrees: 180)
@@ -566,7 +568,9 @@ extension ViewController: ModelDelegate {
                 } else {
                     replacePieceHelper(piece: piece)
                 }
+            } else if piece.shape == .wall {
                 
+                lockPieceInPlace(piece: piece)
                 
             } else {
                 
@@ -591,6 +595,40 @@ extension ViewController: ModelDelegate {
             
             self.model.board.view.bringSubviewToFront(ball.view)
         }
+    }
+    
+    func lockPieceInPlace(piece: Piece) {
+        
+        if piece.isLocked == false {
+            
+            
+            let w = piece.view.frame.width / 10 * 9
+            let h = piece.view.frame.height / 10 * 9
+            let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
+            let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
+            
+            
+            let frame = CGRect(x: x, y: y, width: w, height: h)
+            
+            
+            
+            let lockView = UIView(frame: frame)
+            lockView.backgroundColor = .black
+            model.board.view.insertSubview(lockView, belowSubview: piece.view)
+            piece.isLocked = true
+        } else {
+            for subview in model.board.view.subviews {
+                if subview.center == piece.center && subview.backgroundColor == .black {
+                    removeView(view: subview)
+
+                }
+            }
+            
+            piece.isLocked = false
+            
+            
+        }
+        
         
         
     }
@@ -726,14 +764,6 @@ extension ViewController: ModelDelegate {
  
         let frame = piece.view.subviews.first!.frame
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
-        
-//        nextPieceView.layer.shadowPath.r
-//
-//        nextPieceView.layer.shadowOpacity = 0
-        
-        
-        
-        
         piece.view.subviews.first!.removeFromSuperview()
         piece.view.addSubview(nextPieceView)
     }

@@ -695,7 +695,7 @@ class ShapeView : UIView {
             context.setFillColor(UIColor.black.cgColor)
             context.fillEllipse(in: rectX)
             
-            
+         
             switch version {
             
             case 1, 3:
