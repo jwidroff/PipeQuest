@@ -910,9 +910,13 @@ class Model {
         delegate?.resetPieceMakerView(piece: piece)
     }
     
+    var counterX = 0
+    
     func updateMovesLeft() {
         
-//        print("board.moves \(board.moves)")
+        counterX += 1
+        
+        print("count = \(counterX)")
         
         var movesX = String()
         
@@ -1429,6 +1433,7 @@ class Model {
             
             if piece.isLocked == false {
                 moveablePieceCount += 1
+                
             }
         }
         

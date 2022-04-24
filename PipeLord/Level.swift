@@ -73,6 +73,7 @@ class LevelModel {
                       "puzzle",
                       "test2",
                       "zigzag",
+                      "holy hell",
                       "everything",
                       "Around and back",
                       "test4",
@@ -1192,6 +1193,46 @@ class LevelModel {
             setupRowOrColumnOf(.pieceMaker, rowOrColumn: "column", index: 0, exception: [0,1,3,5,7,9,11,13], pieceMakerOpening: "right")
             setupRowOrColumnOf(.pieceMaker, rowOrColumn: "column", index: 6, exception: [0,2,4,6,8,10,12, 13], pieceMakerOpening: "left")
             
+            
+        case "holy hell":
+
+            board.heightSpaces = 10
+            board.widthSpaces = 5
+            board.moves = 39
+
+            board.amountOfRandomPieces = 0
+
+            board.randomPieceColors = [UIColor.red, UIColor.red, UIColor.red, UIColor.red, UIColor.red, UIColor.cyan]//, UIColor.blue]
+
+            board.randomPieceShapes = [.wall]
+
+//            board.iceLocations = [Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
+            board.holeLocations = [Indexes(x: 2, y: 0),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1), Indexes(x:3, y: 1), Indexes(x:2, y: 1), Indexes(x:1, y: 2), Indexes(x:0, y: 2), Indexes(x:4, y: 2), Indexes(x:3, y: 2), Indexes(x:2, y: 2), Indexes(x:0, y: 3), Indexes(x:1, y: 3), Indexes(x:2, y: 3), Indexes(x:3, y: 3), Indexes(x:4, y: 3)]
+            
+            let entrance = Piece(indexes: Indexes(x: 1, y: 0), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "bottom", doesPivot: nil)
+            board.pieces.append(entrance)
+//
+//
+            let exit = Piece(indexes: Indexes(x: 3, y: 6), shape: .exit, colors: [UIColor.red, UIColor.red], version: 3, currentSwitch: 1, isLocked: true, opening: "top", doesPivot: true)
+            board.pieces.append(exit)
+//
+            let piece1 = Piece(indexes: Indexes(x: 2, y: 6), shape: .pieceMaker, colors: [UIColor.red, UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+            board.pieces.append(piece1)
+//
+//            let piece2 = Piece(indexes: Indexes(x: 4, y: 8), shape: .diagElbow, colors: [UIColor.red, UIColor.red], version: 4, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+//            board.pieces.append(piece2)
+//
+//            let piece3 = Piece(indexes: Indexes(x: 1, y: 5), shape: .diagElbow, colors: [UIColor.red, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+//            board.pieces.append(piece3)
+//
+//            let piece4 = Piece(indexes: Indexes(x: 5, y: 6), shape: .diagElbow, colors: [UIColor.red, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: true)
+//            board.pieces.append(piece4)
+            
+            
+//            setupRowOrColumnOf(.pieceMaker, rowOrColumn: "row", index: 0, exception: [0,1,3,5,6], pieceMakerOpening: "bottom")
+//            setupRowOrColumnOf(.pieceMaker, rowOrColumn: "row", index: 13, exception: [0,2,4,6], pieceMakerOpening: "top")
+//            setupRowOrColumnOf(.pieceMaker, rowOrColumn: "column", index: 0, exception: [0,1,3,5,7,9,11,13], pieceMakerOpening: "right")
+//            setupRowOrColumnOf(.pieceMaker, rowOrColumn: "column", index: 6, exception: [0,2,4,6,8,10,12, 13], pieceMakerOpening: "left")
             
             
         case "puzzle":
