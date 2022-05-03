@@ -40,7 +40,7 @@ class BoardView : UIView {
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.gray
         self.frame = frame
     }
     
@@ -51,7 +51,7 @@ class BoardView : UIView {
     init(frame: CGRect, xArray: [CGFloat], yArray: [CGFloat], iceLocations: [Indexes], holeLocations: [Indexes], colorTheme: ColorTheme) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.gray
         self.colorTheme = colorTheme
 //        self.layer.shadowPath = CGPath(rect: bounds, transform: nil)
 //        self.layer.shadowColor = UIColor.darkGray.cgColor
@@ -83,10 +83,10 @@ class BoardView : UIView {
         
         
         
-        let point1 = CGPoint(x: xArray[0], y: yArray[0])
-        let point2 = CGPoint(x: xArray[1], y: yArray[1])
-        let halfX = (point1.x - point2.x) / 2
-        let halfY = (point1.y - point2.y) / 2
+//        let point1 = CGPoint(x: xArray[0], y: yArray[0])
+//        let point2 = CGPoint(x: xArray[1], y: yArray[1])
+//        let halfX = (point1.x - point2.x) / 2
+//        let halfY = (point1.y - point2.y) / 2
         
         
         //THE FOLLOWING IS CODE FOR THE GREDIENT. DO NOT DELETE. USE LATER ON WHEN THIS BECOMES A VIEW ON TOP OF THE BOARDVIEW
@@ -111,9 +111,73 @@ class BoardView : UIView {
         let startPoint = CGPoint(x: 0, y: self.bounds.height)
         let endPoint = CGPoint(x: self.bounds.width,y: self.bounds.height)
 
-        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: UInt32(1)))
+        context.setFillColor(UIColor.gray.cgColor)
+        context.fill(rect)
+        
+//        addGridLines(context: context)
+        
+        
+        
+//        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: UInt32(1)))
 
 //        context.setStrokeColor(UIColor.black.cgColor)
+//        context.setLineWidth(2.0)
+//        context.beginPath()
+//        context.move(to: CGPoint(x: 0, y: 0))
+//        context.addLine(to: CGPoint(x: 0, y: frame.maxY))
+//        context.strokePath()
+//
+//        context.beginPath()
+//        context.move(to: CGPoint(x: frame.maxX, y: 0))
+//        context.addLine(to: CGPoint(x: 0, y: 0))
+//        context.strokePath()
+//
+//        for x in xArray {
+//
+//            context.beginPath()
+//            context.move(to: CGPoint(x: x + halfX, y: yArray.first! + halfY))
+//            context.addLine(to: CGPoint(x: x + halfX, y: yArray.last! - halfY))
+//            context.strokePath()
+//        }
+//
+//        context.beginPath()
+//        context.move(to: CGPoint(x: frame.width, y: 0))
+//        context.addLine(to: CGPoint(x: frame.width, y: frame.height))
+//        context.strokePath()
+//
+//        for y in yArray {
+//
+//            context.beginPath()
+//            context.move(to: CGPoint(x: xArray.first! + halfX, y: y + halfY))
+//            context.addLine(to: CGPoint(x: xArray.last! - halfX, y: y + halfY))
+//            context.strokePath()
+//        }
+//
+//        context.beginPath()
+//        context.move(to: CGPoint(x: 0, y: frame.height))
+//        context.addLine(to: CGPoint(x: frame.width, y: frame.height))
+//        context.strokePath()
+//
+//
+//
+////        addHolesX(holeLocations: self.holeLocations, context: context)
+//
+//
+//
+//        setNeedsDisplay()
+//        self.context = context
+        
+        
+        
+    }
+    
+    private func addGridLines(context: CGContext) {
+        
+        let point1 = CGPoint(x: xArray[0], y: yArray[0])
+        let point2 = CGPoint(x: xArray[1], y: yArray[1])
+        let halfX = (point1.x - point2.x) / 2
+        let halfY = (point1.y - point2.y) / 2
+        
         context.setLineWidth(2.0)
         context.beginPath()
         context.move(to: CGPoint(x: 0, y: 0))
