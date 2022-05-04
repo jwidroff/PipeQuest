@@ -564,7 +564,7 @@ extension ViewController: ModelDelegate {
             } else if piece.shape == .cross {
                     
                 if piece.colors[0] == piece.colors[1] {
-                    rotateView(view: piece.view, rotationDegrees: 90)
+                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
                 } else {
                     replacePieceHelper(piece: piece)
                 }
