@@ -52,9 +52,9 @@ class ShapeView : UIView {
         
         makeSoft()
         
+//        self.layer.cornerRadius = self.frame.width / 2
+        
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        
-        
         let topView = ShapeViewTopView(frame: frameX, piece: piece)
         
         self.addSubview(topView)
@@ -70,7 +70,7 @@ class ShapeView : UIView {
     func makeSoft() {
         self.backgroundColor = .gray
         self.layer.masksToBounds = false
-        let cornerRadius: CGFloat = 2
+        let cornerRadius: CGFloat = self.frame.width / 4
         let shadowRadius: CGFloat = 2
         
         let darkShadow = CALayer()
@@ -91,21 +91,22 @@ class ShapeView : UIView {
         lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
         lightShadow.shadowOpacity = 1
         lightShadow.shadowRadius = shadowRadius
-        self.layer.insertSublayer(lightShadow, at: 0)
+        self.layer.insertSublayer(lightShadow, at: 1)
     }
     
     func setLock(context: CGContext) {
         
-        let w = frame.width / 10 * 9
-        let h = frame.height / 10 * 9
-        let x = (frame.width - w) / 2
-        let y = (frame.height - h) / 2
-        let rect1 = CGRect(x: x, y: y, width: w, height: h)
+//        let w = frame.width / 10 * 9
+//        let h = frame.height / 10 * 9
+//        let x = (frame.width - w) / 2
+//        let y = (frame.height - h) / 2
+//        let rect1 = CGRect(x: x, y: y, width: w, height: h)
         setShadow(context: context)
-        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
-        context.addRects([rect1])
-        context.fill(rect1)
-        
+//        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
+//        context.addRects([rect1])
+////        context.addEllipse(in: rect1)
+//        context.fill(rect1)
+//
 //        let distanceFromSides = frame.width / 10
 //        let screwWidthAndHeight = frame.width / 10
 //        let color = colorTheme.lockPieceScrewColor.cgColor
@@ -185,6 +186,7 @@ class ShapeView : UIView {
         context.setLineWidth(frame.height / 4)
         
         if isLocked == true {
+            
 
             setLock(context: context)
         }
@@ -1152,6 +1154,7 @@ class ShapeView : UIView {
         
         if isLocked == true {
 
+//            backgroundColor = .darkGray
             setLock(context: context)
         }
         
@@ -2293,6 +2296,8 @@ class ShapeViewTopView: UIView {
         setShadow(context: context)
         context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
         context.addRects([rect1])
+//        context.addEllipse(in: rect1)
+//        context.fillEllipse(in: rect1)
         context.fill(rect1)
         
 //        let distanceFromSides = frame.width / 10
@@ -2376,10 +2381,11 @@ class ShapeViewTopView: UIView {
         
         context.setLineWidth(frame.height / 4)
         
-        if isLocked == true {
-
-            setLock(context: context)
-        }
+//        if isLocked == true {
+//
+//
+//            setLock(context: context)
+//        }
         
         switch shape {
         
@@ -3248,13 +3254,20 @@ class ShapeViewTopView: UIView {
             
         case .wall: //MARK: WALL VIEW
             
-            let eclipseHeight2 = frame.height / 2
-            let eclipseWidth2 = frame.width / 2
-            let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-            context.setFillColor(UIColor.darkGray.cgColor)
-//            context.addEllipse(in: rect3)
-//            context.fillEllipse(in: rect3)
-            context.fill(rect3)
+            
+//            if isLocked == true {
+//                backgroundColor = .darkGray
+//
+//            } else {
+                let eclipseHeight2 = frame.height / 2
+                let eclipseWidth2 = frame.width / 2
+                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
+                context.setFillColor(UIColor.darkGray.cgColor)
+    //            context.addEllipse(in: rect3)
+    //            context.fillEllipse(in: rect3)
+                context.fill(rect3)
+//            }
+            
             
             
             

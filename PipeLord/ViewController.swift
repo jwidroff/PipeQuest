@@ -102,8 +102,8 @@ class ViewController: UIViewController {
         heightCushion = self.view.frame.height / 5
         boardHeight = self.view.frame.height - heightCushion
         boardWidth = boardHeight / 2
-        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9
-        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9
+        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.0
+        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.0
         distanceFromPieceCenter = (pieceWidth / 8.5 * 10) / 2
         
     }
@@ -564,7 +564,36 @@ extension ViewController: ModelDelegate {
             } else if piece.shape == .cross {
                     
                 if piece.colors[0] == piece.colors[1] {
-                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
+//                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
+                    rotateView(view: piece.view, rotationDegrees: 90)
+//
+//
+//
+//                    let cornerRadius: CGFloat = piece.view.frame.height / 20
+//                    let shadowRadius: CGFloat = 2
+//
+//                    let darkShadow = CALayer()
+//                    darkShadow.frame = piece.view.layer.bounds
+//                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+//                    darkShadow.shadowColor = UIColor.black.cgColor
+//                    darkShadow.cornerRadius = cornerRadius
+//                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//                    darkShadow.shadowOpacity = 1
+//                    darkShadow.shadowRadius = shadowRadius
+//                    piece.view.layer.insertSublayer(darkShadow, at: 0)
+//
+//                    let lightShadow = CALayer()
+//                    lightShadow.frame = piece.view.layer.bounds
+//                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+//                    lightShadow.shadowColor = UIColor.white.cgColor
+//                    lightShadow.cornerRadius = cornerRadius
+//                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//                    lightShadow.shadowOpacity = 1
+//                    lightShadow.shadowRadius = shadowRadius
+//                    piece.view.layer.insertSublayer(lightShadow, at: 0)
+//
+
+                   
                 } else {
                     replacePieceHelper(piece: piece)
                 }
@@ -636,25 +665,59 @@ extension ViewController: ModelDelegate {
     
     func rotateView(view: UIView, rotationDegrees: CGFloat) {
         
-        print("rotate view called")
-        
         if view.transform.isIdentity {
-            
-            print("is identity")
+
             UIView.animate(withDuration: 0.5) {
 //                let rotationDegrees = 90.0
                 let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
                 view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
                 
-//                view.transform = CGAffineTransform.identity
+                if let sublayers = view.layer.sublayers {
+
+                    let cornerRadius: CGFloat = view.frame.width / 4
+                    let shadowRadius: CGFloat = 2
+                    sublayers[0].frame = view.layer.bounds
+                    sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].cornerRadius = cornerRadius
+                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+                    sublayers[0].shadowOpacity = 1
+                    sublayers[0].shadowRadius = shadowRadius
+                    sublayers[1].frame = view.layer.bounds
+                    sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].cornerRadius = cornerRadius
+                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+                    sublayers[1].shadowOpacity = 1
+                    sublayers[1].shadowRadius = shadowRadius
+                }
             }
         } else {
-            print("isn't identity")
+            
             UIView.animate(withDuration: 0.5) {
+                
+                if let sublayers = view.layer.sublayers {
+                    
+                    let cornerRadius: CGFloat = view.frame.width / 4
+                    let shadowRadius: CGFloat = 2
+                    sublayers[0].frame = view.layer.bounds
+                    sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].cornerRadius = cornerRadius
+                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+                    sublayers[0].shadowOpacity = 1
+                    sublayers[0].shadowRadius = shadowRadius
+                    sublayers[1].frame = view.layer.bounds
+                    sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].cornerRadius = cornerRadius
+                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+                    sublayers[1].shadowOpacity = 1
+                    sublayers[1].shadowRadius = shadowRadius
+                }
                 view.transform = CGAffineTransform.identity
             }
         }
-        
     }
     
     func crashBallViewIntoCross(piece: Piece, ball: Ball) {
