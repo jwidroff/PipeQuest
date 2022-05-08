@@ -1301,6 +1301,7 @@ class ShapeViewTopView: UIView {
         self.currentSwitch = piece.currentSwitch
         
         
+        
     }
     
     func makeSoft() {
@@ -1869,6 +1870,8 @@ class ShapeViewTopView: UIView {
             
             case 1:
                 
+                
+                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
                 
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[1])
@@ -1894,6 +1897,8 @@ class ShapeViewTopView: UIView {
             context.setFillColor(UIColor.lightGray.cgColor)
             context.addRects([rect1])
             context.fill(rect1)
+            
+            
             
             switch version {
             case 1:
@@ -2443,7 +2448,9 @@ class ShapeViewTopView: UIView {
     
     func drawPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
 
-        setShadow(context: context)
+//        setShadow(context: context)
+        
+        context.saveGState()
         
         path.move(to: pivotPoint)
         path.addQuadCurve(to: endPoint, controlPoint: center)
