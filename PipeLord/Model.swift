@@ -900,12 +900,15 @@ class Model {
     
     func resetPieceMaker(piece: Piece) {
         
+//        piece.nextPiece?.view.removeFromSuperview()
+        
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
         setPieceSwitches(piece: nextPiece)
         setPieceSides(piece: nextPiece)
+        
         piece.nextPiece = nextPiece
         delegate?.resetPieceMakerView(piece: piece)
     }

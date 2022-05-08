@@ -840,6 +840,8 @@ extension ViewController: ModelDelegate {
  
 //        let frame = piece.view.subviews.first!.frame
         
+//        piece.nextPiece?.view.removeFromSuperview()
+        
         let w = piece.view.frame.width / 2
         let h = piece.view.frame.height / 2
         let x = (piece.view.frame.width - w) / 2
@@ -850,7 +852,7 @@ extension ViewController: ModelDelegate {
         let frame = CGRect(x: x, y: y, width: w, height: h)
         
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
-        nextPieceView.backgroundColor = .darkGray
+//        nextPieceView.backgroundColor = .darkGray
         
 //        if let sublayers = nextPieceView.layer.sublayers {
 //
@@ -872,7 +874,9 @@ extension ViewController: ModelDelegate {
 //            sublayers[1].shadowRadius = shadowRadius
 //        }
         
-        piece.view.subviews[1].removeFromSuperview()
+//        piece.view.subviews[0].removeFromSuperview()
+        
+        
         piece.view.addSubview(nextPieceView)
     }
     
