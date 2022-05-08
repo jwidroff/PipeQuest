@@ -630,21 +630,33 @@ extension ViewController: ModelDelegate {
         
         if piece.isLocked == false {
             
+//            piece.view.backgroundColor = .darkGray
             
-            let w = piece.view.frame.width / 10 * 9
-            let h = piece.view.frame.height / 10 * 9
+            let w = piece.view.frame.width / 10 * 9.5
+            let h = piece.view.frame.height / 10 * 9.5
             let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
             let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
-            
-            
+
+
             let frame = CGRect(x: x, y: y, width: w, height: h)
+
+            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
             
+            piece.view.removeFromSuperview()
             
+
+            let pieceView = ShapeView(frame: frame, piece: lockView)
             
-            let lockView = UIView(frame: frame)
-            lockView.backgroundColor = .black
-            model.board.view.insertSubview(lockView, belowSubview: piece.view)
+//            let lockView = UIView(frame: frame)
+//            lockView.backgroundColor = .black
+//            model.board.view.insertSubview(lockView, belowSubview: piece.view)
+
+            model.board.view.addSubview(pieceView)
+            
+            piece.view = pieceView
             piece.isLocked = true
+            
+//            piece.isLocked = true
         }
 //        else {
 //            for subview in model.board.view.subviews {
