@@ -838,9 +838,41 @@ extension ViewController: ModelDelegate {
     
     func resetPieceMakerView(piece: Piece) {
  
-        let frame = piece.view.subviews.first!.frame
+//        let frame = piece.view.subviews.first!.frame
+        
+        let w = piece.view.frame.width / 2
+        let h = piece.view.frame.height / 2
+        let x = (piece.view.frame.width - w) / 2
+        let y = (piece.view.frame.height - h) / 2
+
+
+
+        let frame = CGRect(x: x, y: y, width: w, height: h)
+        
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
-        piece.view.subviews.first!.removeFromSuperview()
+        nextPieceView.backgroundColor = .darkGray
+        
+//        if let sublayers = nextPieceView.layer.sublayers {
+//
+//            let cornerRadius: CGFloat = nextPieceView.frame.width / 4
+//            let shadowRadius: CGFloat = 2
+//            sublayers[0].frame = nextPieceView.layer.bounds
+//            sublayers[0].backgroundColor = UIColor.darkGray.cgColor
+//            sublayers[0].shadowColor = UIColor.red.cgColor
+//            sublayers[0].cornerRadius = cornerRadius
+//            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+//            sublayers[0].shadowOpacity = 1
+//            sublayers[0].shadowRadius = shadowRadius
+//            sublayers[1].frame = nextPieceView.layer.bounds
+//            sublayers[1].backgroundColor = UIColor.darkGray.cgColor
+//            sublayers[1].shadowColor = UIColor.green.cgColor
+//            sublayers[1].cornerRadius = cornerRadius
+//            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+//            sublayers[1].shadowOpacity = 1
+//            sublayers[1].shadowRadius = shadowRadius
+//        }
+        
+        piece.view.subviews[1].removeFromSuperview()
         piece.view.addSubview(nextPieceView)
     }
     

@@ -1879,8 +1879,8 @@ class ShapeViewTopView: UIView {
             
         case .pieceMaker: //MARK: PIECEMAKER VIEW
             
-            let w = frame.width / 10 * 6
-            let h = frame.height / 10 * 6
+            let w = frame.width / 2
+            let h = frame.height / 2
             let x = (frame.width - w) / 2
             let y = x
             
