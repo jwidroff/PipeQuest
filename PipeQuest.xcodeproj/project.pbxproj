@@ -43,7 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA22CF6B27FE615F006CE739 /* PipeLord.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeLord.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA22CF6B27FE615F006CE739 /* PipeQuest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeQuest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA22CF6E27FE615F006CE739 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA22CF7027FE615F006CE739 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		BA22CF7227FE615F006CE739 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,10 +51,10 @@
 		BA22CF7727FE6161006CE739 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BA22CF7A27FE6161006CE739 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA22CF7C27FE6161006CE739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA22CF8127FE6161006CE739 /* PipeLordTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeLordTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA22CF8127FE6161006CE739 /* PipeQuestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeQuestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA22CF8527FE6161006CE739 /* PipeLordTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeLordTests.swift; sourceTree = "<group>"; };
 		BA22CF8727FE6161006CE739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BA22CF8C27FE6161006CE739 /* PipeLordUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeLordUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA22CF8C27FE6161006CE739 /* PipeQuestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PipeQuestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA22CF9027FE6161006CE739 /* PipeLordUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeLordUITests.swift; sourceTree = "<group>"; };
 		BA22CF9227FE6161006CE739 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA22CFA027FE6230006CE739 /* ShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeView.swift; sourceTree = "<group>"; };
@@ -105,9 +105,9 @@
 		BA22CF6C27FE615F006CE739 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BA22CF6B27FE615F006CE739 /* PipeLord.app */,
-				BA22CF8127FE6161006CE739 /* PipeLordTests.xctest */,
-				BA22CF8C27FE6161006CE739 /* PipeLordUITests.xctest */,
+				BA22CF6B27FE615F006CE739 /* PipeQuest.app */,
+				BA22CF8127FE6161006CE739 /* PipeQuestTests.xctest */,
+				BA22CF8C27FE6161006CE739 /* PipeQuestUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BA22CF6A27FE615F006CE739 /* PipeLord */ = {
+		BA22CF6A27FE615F006CE739 /* PipeQuest */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA22CF9527FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLord" */;
+			buildConfigurationList = BA22CF9527FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuest" */;
 			buildPhases = (
 				BA22CF6727FE615F006CE739 /* Sources */,
 				BA22CF6827FE615F006CE739 /* Frameworks */,
@@ -167,14 +167,14 @@
 			);
 			dependencies = (
 			);
-			name = PipeLord;
+			name = PipeQuest;
 			productName = PipeLord;
-			productReference = BA22CF6B27FE615F006CE739 /* PipeLord.app */;
+			productReference = BA22CF6B27FE615F006CE739 /* PipeQuest.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BA22CF8027FE6161006CE739 /* PipeLordTests */ = {
+		BA22CF8027FE6161006CE739 /* PipeQuestTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA22CF9827FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLordTests" */;
+			buildConfigurationList = BA22CF9827FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuestTests" */;
 			buildPhases = (
 				BA22CF7D27FE6161006CE739 /* Sources */,
 				BA22CF7E27FE6161006CE739 /* Frameworks */,
@@ -185,14 +185,14 @@
 			dependencies = (
 				BA22CF8327FE6161006CE739 /* PBXTargetDependency */,
 			);
-			name = PipeLordTests;
+			name = PipeQuestTests;
 			productName = PipeLordTests;
-			productReference = BA22CF8127FE6161006CE739 /* PipeLordTests.xctest */;
+			productReference = BA22CF8127FE6161006CE739 /* PipeQuestTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		BA22CF8B27FE6161006CE739 /* PipeLordUITests */ = {
+		BA22CF8B27FE6161006CE739 /* PipeQuestUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA22CF9B27FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLordUITests" */;
+			buildConfigurationList = BA22CF9B27FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuestUITests" */;
 			buildPhases = (
 				BA22CF8827FE6161006CE739 /* Sources */,
 				BA22CF8927FE6161006CE739 /* Frameworks */,
@@ -203,9 +203,9 @@
 			dependencies = (
 				BA22CF8E27FE6161006CE739 /* PBXTargetDependency */,
 			);
-			name = PipeLordUITests;
+			name = PipeQuestUITests;
 			productName = PipeLordUITests;
-			productReference = BA22CF8C27FE6161006CE739 /* PipeLordUITests.xctest */;
+			productReference = BA22CF8C27FE6161006CE739 /* PipeQuestUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -230,7 +230,7 @@
 					};
 				};
 			};
-			buildConfigurationList = BA22CF6627FE615F006CE739 /* Build configuration list for PBXProject "PipeLord" */;
+			buildConfigurationList = BA22CF6627FE615F006CE739 /* Build configuration list for PBXProject "PipeQuest" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -243,9 +243,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BA22CF6A27FE615F006CE739 /* PipeLord */,
-				BA22CF8027FE6161006CE739 /* PipeLordTests */,
-				BA22CF8B27FE6161006CE739 /* PipeLordUITests */,
+				BA22CF6A27FE615F006CE739 /* PipeQuest */,
+				BA22CF8027FE6161006CE739 /* PipeQuestTests */,
+				BA22CF8B27FE6161006CE739 /* PipeQuestUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -317,12 +317,12 @@
 /* Begin PBXTargetDependency section */
 		BA22CF8327FE6161006CE739 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA22CF6A27FE615F006CE739 /* PipeLord */;
+			target = BA22CF6A27FE615F006CE739 /* PipeQuest */;
 			targetProxy = BA22CF8227FE6161006CE739 /* PBXContainerItemProxy */;
 		};
 		BA22CF8E27FE6161006CE739 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BA22CF6A27FE615F006CE739 /* PipeLord */;
+			target = BA22CF6A27FE615F006CE739 /* PipeQuest */;
 			targetProxy = BA22CF8D27FE6161006CE739 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -518,7 +518,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeLord.app/PipeLord";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeQuest.app/PipeQuest";
 			};
 			name = Debug;
 		};
@@ -539,7 +539,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeLord.app/PipeLord";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PipeQuest.app/PipeQuest";
 			};
 			name = Release;
 		};
@@ -584,7 +584,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA22CF6627FE615F006CE739 /* Build configuration list for PBXProject "PipeLord" */ = {
+		BA22CF6627FE615F006CE739 /* Build configuration list for PBXProject "PipeQuest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA22CF9327FE6161006CE739 /* Debug */,
@@ -593,7 +593,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA22CF9527FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLord" */ = {
+		BA22CF9527FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA22CF9627FE6161006CE739 /* Debug */,
@@ -602,7 +602,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA22CF9827FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLordTests" */ = {
+		BA22CF9827FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuestTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA22CF9927FE6161006CE739 /* Debug */,
@@ -611,7 +611,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA22CF9B27FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeLordUITests" */ = {
+		BA22CF9B27FE6161006CE739 /* Build configuration list for PBXNativeTarget "PipeQuestUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BA22CF9C27FE6161006CE739 /* Debug */,
