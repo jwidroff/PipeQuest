@@ -404,9 +404,10 @@ class LevelModel {
         case "look away": //5
 
 
+            board.moves = 17
             board.heightSpaces = 12
             board.widthSpaces = 6
-            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
+//            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
             let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "right", doesPivot: nil)
             board.pieces.append(entrance)
@@ -428,19 +429,26 @@ class LevelModel {
             let piece4 = Piece(indexes: Indexes(x: 2, y: 5), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
             board.pieces.append(piece4)
 
+            
+            let wall1 = Piece(indexes: Indexes(x: 0, y: 5), shape: .wall, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
+            board.pieces.append(wall1)
+            
+            let wall2 = Piece(indexes: Indexes(x: 4, y: 11), shape: .wall, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
+            board.pieces.append(wall2)
 
 
         case "piecey": //6
 
+            board.moves = 23
             board.heightSpaces = 12
             board.widthSpaces = 6
-            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
+//            addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
             let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "right", doesPivot: nil)
             board.pieces.append(entrance)
 
 
-            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "top", doesPivot: nil)
+            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 3, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "top", doesPivot: nil)
             board.pieces.append(exit)
 
 
@@ -457,6 +465,11 @@ class LevelModel {
             board.pieces.append(piece4)
 
 
+            let wall1 = Piece(indexes: Indexes(x: 2, y: 11), shape: .wall, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
+            board.pieces.append(wall1)
+            
+            
+            
             print()
 
 
@@ -474,18 +487,24 @@ class LevelModel {
             board.pieces.append(entrance)
 
 
-            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "top", doesPivot: nil)
+            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "right", doesPivot: nil)
             board.pieces.append(exit)
 
 
             let piece1 = Piece(indexes: Indexes(x: 2, y: 4), shape: .stick, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
             board.pieces.append(piece1)
 
-            let piece2 = Piece(indexes: Indexes(x: 3, y: 5), shape: .stick, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
+            let piece2 = Piece(indexes: Indexes(x: 3, y: 2), shape: .stick, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
             board.pieces.append(piece2)
-
-            let piece3 = Piece(indexes: Indexes(x: 3, y: 8), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
+            
+            let piece3 = Piece(indexes: Indexes(x: 2, y: 6), shape: .stick, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
             board.pieces.append(piece3)
+
+            let piece4 = Piece(indexes: Indexes(x: 3, y: 8), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
+            board.pieces.append(piece4)
+            
+            let piece5 = Piece(indexes: Indexes(x: 3, y: 6), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: false)
+            board.pieces.append(piece5)
 
         case "lucky guess"://8
 
@@ -765,8 +784,8 @@ class LevelModel {
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
             board.pieces.append(piece)
 
-            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
-            board.pieces.append(colorChanger)
+//            let colorChanger = Piece(indexes: Indexes(x: 2, y: 3), shape: .colorChanger, colors: [UIColor.red, UIColor.cyan], version: 2, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+//            board.pieces.append(colorChanger)
             
             let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, currentSwitch: 1, isLocked: true, opening: "bottom", doesPivot: nil)
             board.pieces.append(pieceMaker)
@@ -1487,7 +1506,7 @@ class LevelModel {
             
             let version = Int(arc4random_uniform(UInt32(4))) + 1
             piece.version = version
-            let randomShapes:[Shape] = [.wall, .diagElbow, .elbow, .doubleElbow, .diagElbow, .colorChanger]
+            let randomShapes:[Shape] = [.wall, .stick, .elbow, .doubleElbow, .diagElbow, .colorChanger]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
             
         }
