@@ -57,7 +57,7 @@ class ShapeView : UIView {
         
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         let topView = ShapeViewTopView(frame: frameX, piece: piece)
-        
+//        topView.layer.cornerRadius = topView.frame.width / 2
         self.addSubview(topView)
         
         
@@ -72,7 +72,7 @@ class ShapeView : UIView {
     func makeSoft() {
         self.backgroundColor = .gray
         self.layer.masksToBounds = false
-        let cornerRadius: CGFloat = self.frame.width / 4
+        let cornerRadius: CGFloat = self.frame.width / 2
         let shadowRadius: CGFloat = 2
         
         let darkShadow = CALayer()
@@ -1304,32 +1304,32 @@ class ShapeViewTopView: UIView {
         
     }
     
-    func makeSoft() {
-        self.backgroundColor = .gray
-        self.layer.masksToBounds = false
-        let cornerRadius: CGFloat = 20
-        let shadowRadius: CGFloat = 2
-        
-        let darkShadow = CALayer()
-        darkShadow.frame = self.layer.bounds
-        darkShadow.backgroundColor = self.backgroundColor?.cgColor
-        darkShadow.shadowColor = UIColor.black.cgColor
-        darkShadow.cornerRadius = cornerRadius
-        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-        darkShadow.shadowOpacity = 1
-        darkShadow.shadowRadius = shadowRadius
-        self.layer.insertSublayer(darkShadow, at: 0)
-
-        let lightShadow = CALayer()
-        lightShadow.frame = self.layer.bounds
-        lightShadow.backgroundColor = self.backgroundColor?.cgColor
-        lightShadow.shadowColor = UIColor.white.cgColor
-        lightShadow.cornerRadius = cornerRadius
-        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-        lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = shadowRadius
-        self.layer.insertSublayer(lightShadow, at: 0)
-    }
+//    func makeSoft() {
+//        self.backgroundColor = .gray
+//        self.layer.masksToBounds = false
+//        let cornerRadius: CGFloat = 20
+//        let shadowRadius: CGFloat = 2
+//
+//        let darkShadow = CALayer()
+//        darkShadow.frame = self.layer.bounds
+//        darkShadow.backgroundColor = self.backgroundColor?.cgColor
+//        darkShadow.shadowColor = UIColor.black.cgColor
+//        darkShadow.cornerRadius = cornerRadius
+//        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//        darkShadow.shadowOpacity = 1
+//        darkShadow.shadowRadius = shadowRadius
+//        self.layer.insertSublayer(darkShadow, at: 0)
+//
+//        let lightShadow = CALayer()
+//        lightShadow.frame = self.layer.bounds
+//        lightShadow.backgroundColor = self.backgroundColor?.cgColor
+//        lightShadow.shadowColor = UIColor.white.cgColor
+//        lightShadow.cornerRadius = cornerRadius
+//        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//        lightShadow.shadowOpacity = 1
+//        lightShadow.shadowRadius = shadowRadius
+//        self.layer.insertSublayer(lightShadow, at: 0)
+//    }
     
     func setLock(context: CGContext) {
         

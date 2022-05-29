@@ -116,6 +116,7 @@ class Model {
     
     func setUpGame() {
         self.level.number = self.defaults.integer(forKey: "level")
+        self.level.number = 17
         self.getLevel()
         self.setBoard()
     }
@@ -2042,6 +2043,9 @@ class Model {
     func updateUserDefaults() {
         
         defaults.set(level.number, forKey: "level")
+        
+//        defaults.set(18, forKey: "level")
+
         
         // Checking to make sure that the highest level hasnt been saved to user defaults and then saving it there
         if self.level.number > self.defaults.integer(forKey: "highestLevel") {

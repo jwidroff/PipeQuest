@@ -31,8 +31,8 @@ import UIKit
 
 class Level {
     
-    var number = 12
-//    var highestLevel = 1
+    var number = 18
+//    var highestLevel = 17
 
     var board = Board()
     

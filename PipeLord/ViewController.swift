@@ -689,7 +689,7 @@ extension ViewController: ModelDelegate {
                         
                         if let sublayers = view.layer.sublayers {
 
-                            let cornerRadius: CGFloat = view.frame.width / 4
+                            let cornerRadius: CGFloat = view.frame.width / 2
                             let shadowRadius: CGFloat = 2
                             sublayers[0].frame = view.layer.bounds
                             sublayers[0].backgroundColor = view.backgroundColor?.cgColor
@@ -713,7 +713,7 @@ extension ViewController: ModelDelegate {
                         
                         if let sublayers = view.layer.sublayers {
                             
-                            let cornerRadius: CGFloat = view.frame.width / 4
+                            let cornerRadius: CGFloat = view.frame.width / 2
                             let shadowRadius: CGFloat = 2
                             sublayers[0].frame = view.layer.bounds
                             sublayers[0].backgroundColor = view.backgroundColor?.cgColor
@@ -744,7 +744,7 @@ extension ViewController: ModelDelegate {
                         
                         if let sublayers = view.layer.sublayers {
 
-                            let cornerRadius: CGFloat = view.frame.width / 4
+                            let cornerRadius: CGFloat = view.frame.width / 2
                             let shadowRadius: CGFloat = 2
                             sublayers[0].frame = view.layer.bounds
                             sublayers[0].backgroundColor = view.backgroundColor?.cgColor
@@ -768,7 +768,7 @@ extension ViewController: ModelDelegate {
                         
                         if let sublayers = view.layer.sublayers {
                             
-                            let cornerRadius: CGFloat = view.frame.width / 4
+                            let cornerRadius: CGFloat = view.frame.width / 2
                             let shadowRadius: CGFloat = 2
                             sublayers[0].frame = view.layer.bounds
                             sublayers[0].backgroundColor = view.backgroundColor?.cgColor

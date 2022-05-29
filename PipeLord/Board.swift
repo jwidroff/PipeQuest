@@ -69,6 +69,9 @@ class BoardView : UIView {
         self.iceLocations = iceLocations
         self.holeLocations = holeLocations
 
+        
+        addBoardTiles()
+        
         addIce(iceLocations: self.iceLocations)
         
         addHoles(holeLocations: self.holeLocations)
@@ -228,7 +231,63 @@ class BoardView : UIView {
         
     }
     
+    private func addBoardTiles() {
+        let widthAndHeight = (xArray[1] - xArray [0])
+        var counterX = 0
+        for x in xArray {
+            var counterY = 0
+            for y in yArray {
+                
+                let rect = CGRect(x: x, y: y, width: widthAndHeight, height: widthAndHeight)
+
+//                let rect = CGRect(x: self.xArray[iceLocation.x!] - halfX, y: self.yArray[iceLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
+                
+//                let iceView = IceView(frame: rect, iceLocation: iceLocation)
+//                iceView.alpha = 0.8
+                
+                
+                let viewX = UIView(frame: rect)
+                viewX.backgroundColor = .green
+                viewX.center = CGPoint(x: x, y: y)
+                addSubview(viewX)
+                makeSoft(view: viewX)
+                
+            }
+            counterY += 1
+        }
+        counterX += 1
+    }
     
+    private func makeSoft(view: UIView) {
+        
+        view.backgroundColor = .gray
+//        view.layer.masksToBounds = false
+//        let cornerRadius: CGFloat = view.frame.width / 4
+        let shadowRadius: CGFloat = 2
+        
+        let darkShadow = CALayer()
+        darkShadow.frame = view.layer.bounds
+        darkShadow.backgroundColor = view.backgroundColor?.cgColor
+        darkShadow.shadowColor = UIColor.black.cgColor
+//        darkShadow.cornerRadius = cornerRadius
+        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+        darkShadow.shadowOpacity = 1
+//        darkShadow.shadowRadius = shadowRadius
+        view.layer.insertSublayer(darkShadow, at: 0)
+
+//        let lightShadow = CALayer()
+//        lightShadow.frame = view.layer.bounds
+//        lightShadow.backgroundColor = view.backgroundColor?.cgColor
+//        lightShadow.shadowColor = UIColor.white.cgColor
+////        lightShadow.cornerRadius = cornerRadius
+//        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//        lightShadow.shadowOpacity = 1
+////        lightShadow.shadowRadius = shadowRadius
+//        view.layer.insertSublayer(lightShadow, at: 1)
+//
+        
+        
+    }
     
     private func addIce(iceLocations: [Indexes]) {
         
