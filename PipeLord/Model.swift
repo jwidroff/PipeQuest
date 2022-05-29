@@ -116,7 +116,7 @@ class Model {
     
     func setUpGame() {
         self.level.number = self.defaults.integer(forKey: "level")
-        self.level.number = 17
+//        self.level.number = 17
         self.getLevel()
         self.setBoard()
     }

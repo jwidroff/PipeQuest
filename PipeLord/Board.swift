@@ -40,7 +40,7 @@ class BoardView : UIView {
     override init(frame: CGRect) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.gray
+//        self.backgroundColor = UIColor.gray
         self.frame = frame
     }
     
@@ -51,7 +51,7 @@ class BoardView : UIView {
     init(frame: CGRect, xArray: [CGFloat], yArray: [CGFloat], iceLocations: [Indexes], holeLocations: [Indexes], colorTheme: ColorTheme) {
         
         super.init(frame: frame)
-        self.backgroundColor = UIColor.gray
+//        self.backgroundColor = UIColor.red
         self.colorTheme = colorTheme
 //        self.layer.shadowPath = CGPath(rect: bounds, transform: nil)
 //        self.layer.shadowColor = UIColor.darkGray.cgColor
@@ -74,49 +74,49 @@ class BoardView : UIView {
         
         addIce(iceLocations: self.iceLocations)
         
-        addHoles(holeLocations: self.holeLocations)
+//        addHoles(holeLocations: self.holeLocations)
         
     }
     
     
     override func draw(_ rect: CGRect) {
 
-        guard let context = UIGraphicsGetCurrentContext() else { return }
+//        guard let context = UIGraphicsGetCurrentContext() else { return }
         
-        
-        
-        
-//        let point1 = CGPoint(x: xArray[0], y: yArray[0])
-//        let point2 = CGPoint(x: xArray[1], y: yArray[1])
-//        let halfX = (point1.x - point2.x) / 2
-//        let halfY = (point1.y - point2.y) / 2
-        
-        
-        //THE FOLLOWING IS CODE FOR THE GREDIENT. DO NOT DELETE. USE LATER ON WHEN THIS BECOMES A VIEW ON TOP OF THE BOARDVIEW
-
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-
-        let startColor = colorTheme.gradientBackgroundColor[0]
-
-        guard let startColorComponents = startColor.cgColor.components else { return }
-
-        let endColor = colorTheme.gradientBackgroundColor[1]
-        
-        guard let endColorComponents = endColor.cgColor.components else { return }
-
-        let colorComponents: [CGFloat]
-            = [startColorComponents[0], startColorComponents[1], startColorComponents[2], startColorComponents[3], endColorComponents[0], endColorComponents[1], endColorComponents[2], endColorComponents[3]]
-
-        let locations:[CGFloat] = [0.0, 1.0]
-
-        guard let gradient = CGGradient(colorSpace: colorSpace,colorComponents: colorComponents,locations: locations,count: 2) else { return }
-
-        let startPoint = CGPoint(x: 0, y: self.bounds.height)
-        let endPoint = CGPoint(x: self.bounds.width,y: self.bounds.height)
-
-        context.setFillColor(UIColor.gray.cgColor)
-        context.fill(rect)
-        
+//
+//
+//
+////        let point1 = CGPoint(x: xArray[0], y: yArray[0])
+////        let point2 = CGPoint(x: xArray[1], y: yArray[1])
+////        let halfX = (point1.x - point2.x) / 2
+////        let halfY = (point1.y - point2.y) / 2
+//
+//
+//        //THE FOLLOWING IS CODE FOR THE GREDIENT. DO NOT DELETE. USE LATER ON WHEN THIS BECOMES A VIEW ON TOP OF THE BOARDVIEW
+//
+//        let colorSpace = CGColorSpaceCreateDeviceRGB()
+//
+//        let startColor = colorTheme.gradientBackgroundColor[0]
+//
+//        guard let startColorComponents = startColor.cgColor.components else { return }
+//
+//        let endColor = colorTheme.gradientBackgroundColor[1]
+//
+//        guard let endColorComponents = endColor.cgColor.components else { return }
+//
+//        let colorComponents: [CGFloat]
+//            = [startColorComponents[0], startColorComponents[1], startColorComponents[2], startColorComponents[3], endColorComponents[0], endColorComponents[1], endColorComponents[2], endColorComponents[3]]
+//
+//        let locations:[CGFloat] = [0.0, 1.0]
+//
+//        guard let gradient = CGGradient(colorSpace: colorSpace,colorComponents: colorComponents,locations: locations,count: 2) else { return }
+//
+//        let startPoint = CGPoint(x: 0, y: self.bounds.height)
+//        let endPoint = CGPoint(x: self.bounds.width,y: self.bounds.height)
+//
+////        context.setFillColor(UIColor.gray.cgColor)
+//        context.fill(rect)
+//
 //        addGridLines(context: context)
         
         
@@ -233,29 +233,76 @@ class BoardView : UIView {
     
     private func addBoardTiles() {
         let widthAndHeight = (xArray[1] - xArray [0])
-        var counterX = 0
+//        var counterX = 0
         for x in xArray {
-            var counterY = 0
+//            var counterY = 0
             for y in yArray {
                 
-                let rect = CGRect(x: x, y: y, width: widthAndHeight, height: widthAndHeight)
+//                for holeLocation in holeLocations {
+                    
+                if !holeLocations.contains(where: { (indexesX) -> Bool in
+                    self.xArray[indexesX.x!] == x && self.yArray[indexesX.y!] == y
+                }) {
+                    
+                    
+                    let rect = CGRect(x: x, y: y, width: widthAndHeight, height: widthAndHeight)
+                    
+                    let viewX = UIView(frame: rect)
 
-//                let rect = CGRect(x: self.xArray[iceLocation.x!] - halfX, y: self.yArray[iceLocation.y!] - halfY, width: halfX * 2, height: halfY * 2)
+                    viewX.center = CGPoint(x: x, y: y)
+                    addSubview(viewX)
+                    makeSoft(view: viewX)
+                    
+                }
+                    
+                    
+                    
+                    
+//                    if self.xArray[holeLocation.x!] == x && self.yArray[holeLocation.y!] == y {
+//                        return
+//                    } else {
+//                        let rect = CGRect(x: x, y: y, width: widthAndHeight, height: widthAndHeight)
+//
+//                        let viewX = UIView(frame: rect)
+//
+//                        viewX.center = CGPoint(x: x, y: y)
+//                        addSubview(viewX)
+//                        makeSoft(view: viewX)
+//                    }
+                    
+                    
+                    
+                    
+//                }
                 
-//                let iceView = IceView(frame: rect, iceLocation: iceLocation)
-//                iceView.alpha = 0.8
-                
-                
-                let viewX = UIView(frame: rect)
-                viewX.backgroundColor = .green
-                viewX.center = CGPoint(x: x, y: y)
-                addSubview(viewX)
-                makeSoft(view: viewX)
-                
+               
+               
+//                if holeLocations.contains(where: { (index) -> Bool in
+//                    index == Indexes(x: counterX, y: counterY)
+//                }) {
+//
+//                    print("TRUEEEEEEEEEEEEEEEEEEEE")
+//
+//                    return
+//                } else {
+                    
+//                    print("FALSEEEEEEEEEEEEEEEEEEE")
+                    
+//                    print(Indexes(x: counterX, y: counterY))
+                    
+                    
+//                    let rect = CGRect(x: x, y: y, width: widthAndHeight, height: widthAndHeight)
+//
+//                    let viewX = UIView(frame: rect)
+//
+//                    viewX.center = CGPoint(x: x, y: y)
+//                    addSubview(viewX)
+//                    makeSoft(view: viewX)
+//                }
             }
-            counterY += 1
+//            counterY += 1
         }
-        counterX += 1
+//        counterX += 1
     }
     
     private func makeSoft(view: UIView) {
@@ -324,38 +371,7 @@ class BoardView : UIView {
             
             print(rect)
 
-//            
-//            let pathBigRect = UIBezierPath(rect: rect)
-//            
-//            let smallRect = CGRect(x: rect.width / 10, y: rect.height / 10, width: rect.width / 10 * 10, height: rect.height / 10 * 10)
-//            let pathSmallRect = UIBezierPath(rect: smallRect)
-//            
-//            
-//            pathBigRect.append(pathSmallRect)
-//            
-//            pathBigRect.usesEvenOddFillRule = true
-//            
-//            
-//            let fillLayer = CAShapeLayer()
-//            fillLayer.path = pathBigRect.cgPath
-//            fillLayer.fillRule = CAShapeLayerFillRule.evenOdd
-//            fillLayer.fillColor = UIColor.clear.cgColor
-//            fillLayer.opacity = 1.0
-//            self.layer.addSublayer(fillLayer)
-            
-//
-//            fillLayer.shadowPath = fillLayer.path
-//            fillLayer.shadowOpacity = 0.3
-//            fillLayer.shadowColor = UIColor.black.cgColor
-//            fillLayer.shadowOffset = CGSize(width: -6, height: 10)
-//            fillLayer.shadowRadius = 1
-            
-            
-            
-            
-            
-            
-            
+
             
             let holeView = HoleView(frame: rect, holeLocation: holeLocation)
 

@@ -27,7 +27,7 @@ class ColorTheme {
     init() {
         
         gameBackground = UIColor.lightGray
-        boardBackground = UIColor.black
+        boardBackground = UIColor.clear
         pieceBackground = UIColor.clear
         lockedPieceBackground = UIColor.black
         lockPieceScrewColor = UIColor.lightGray
