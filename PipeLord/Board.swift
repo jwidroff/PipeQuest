@@ -322,16 +322,16 @@ class BoardView : UIView {
 //        darkShadow.shadowRadius = shadowRadius
         view.layer.insertSublayer(darkShadow, at: 0)
 
-//        let lightShadow = CALayer()
-//        lightShadow.frame = view.layer.bounds
-//        lightShadow.backgroundColor = view.backgroundColor?.cgColor
-//        lightShadow.shadowColor = UIColor.white.cgColor
-////        lightShadow.cornerRadius = cornerRadius
-//        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-//        lightShadow.shadowOpacity = 1
-////        lightShadow.shadowRadius = shadowRadius
-//        view.layer.insertSublayer(lightShadow, at: 1)
-//
+        let lightShadow = CALayer()
+        lightShadow.frame = view.layer.bounds
+        lightShadow.backgroundColor = view.backgroundColor?.cgColor
+        lightShadow.shadowColor = UIColor.white.cgColor
+//        lightShadow.cornerRadius = cornerRadius
+        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+        lightShadow.shadowOpacity = 1
+//        lightShadow.shadowRadius = shadowRadius
+        view.layer.insertSublayer(lightShadow, at: 1)
+
         
         
     }

@@ -53,6 +53,7 @@ class ShapeView : UIView {
         
         
 //        self.layer.cornerRadius = self.frame.width / 2
+        
         makeSoft()
         
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -1890,13 +1891,15 @@ class ShapeViewTopView: UIView {
             
             let w = frame.width / 2
             let h = frame.height / 2
-            let x = (frame.width - w) / 2
+            let x = ((frame.width / 9 * 10) - w) / 2
             let y = x
+
+//            let rect1 = CGRect(x: x, y: y, width: w, height: h)
+            let fillColor = UIColor(red: 0.0, green: 9.0, blue: 0.5, alpha: 0.5).cgColor
             
-            let rect1 = CGRect(x: x, y: y, width: w, height: h)
-            context.setFillColor(UIColor.lightGray.cgColor)
-            context.addRects([rect1])
-            context.fill(rect1)
+            context.setFillColor(fillColor)
+//            context.addRects([rect1])
+//            context.fill(rect1)
             
             
             
@@ -1904,10 +1907,10 @@ class ShapeViewTopView: UIView {
             case 1:
                 
                 //Spits a new piece out of the bottom
-                let point1 = CGPoint(x: x, y: h + y)
+                let point1 = CGPoint(x: x, y: h )
                 let point2 = CGPoint(x: 0, y: frame.height)
-                let point3 = CGPoint(x: frame.width, y: frame.height)
-                let point4 = CGPoint(x: frame.width - (x), y: h + y)
+                let point3 = CGPoint(x: frame.width , y: frame.height)
+                let point4 = CGPoint(x: frame.width - (x), y: h )
                 context.beginPath()
                 context.move(to: point1)
                 context.addLine(to: point2)
@@ -1919,10 +1922,10 @@ class ShapeViewTopView: UIView {
             case 2:
                 
                 //Spits a new piece out of the left
-                let point1 = CGPoint(x: frame.width - (x + w), y: y)
+                let point1 = CGPoint(x: frame.width - ( w), y: y)
                 let point2 = CGPoint(x: 0, y: 0)
                 let point3 = CGPoint(x: 0, y: frame.height)
-                let point4 = CGPoint(x: frame.width - (x + w), y: frame.height - ((y)))
+                let point4 = CGPoint(x: frame.width - (w), y: frame.height - ((y)))
                 context.beginPath()
                 context.move(to: point1)
                 context.addLine(to: point2)
@@ -1934,10 +1937,10 @@ class ShapeViewTopView: UIView {
             case 3:
                 
                 //Spits a new piece out of the top
-                let point1 = CGPoint(x: x, y: frame.height - (h + y))
+                let point1 = CGPoint(x: x, y: frame.height - ( y))
                 let point2 = CGPoint(x: 0, y: 0)
                 let point3 = CGPoint(x: frame.width, y: 0)
-                let point4 = CGPoint(x: frame.width - (x), y: frame.height - (h + y))
+                let point4 = CGPoint(x: frame.width - (x), y: frame.height - ( y))
                 context.beginPath()
                 context.move(to: point1)
                 context.addLine(to: point2)
@@ -1949,10 +1952,10 @@ class ShapeViewTopView: UIView {
             case 4:
                 
                 //Spits a new piece out of the right
-                let point1 = CGPoint(x: x + w, y: y)
+                let point1 = CGPoint(x:  w, y: y)
                 let point2 = CGPoint(x: frame.width, y: 0)
                 let point3 = CGPoint(x: frame.width, y: frame.height)
-                let point4 = CGPoint(x: x + w, y: frame.width - (y))
+                let point4 = CGPoint(x: w, y: frame.width - (y))
                 context.beginPath()
                 context.move(to: point1)
                 context.addLine(to: point2)
@@ -1973,6 +1976,8 @@ class ShapeViewTopView: UIView {
             let frameX = CGRect(x: x2, y: y2, width: w2, height: h2)
             let nextPieceView = ShapeView(frame: frameX, piece: nextPiece!)
             addSubview(nextPieceView)
+            nextPieceView.layer.cornerRadius = nextPieceView.frame.width / 2
+            nextPieceView.layer.shadowRadius = 0
             
         case .colorChanger: //MARK: COLORCHANGER VIEW
                         

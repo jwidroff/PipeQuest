@@ -72,6 +72,15 @@ import UIKit
 
 //Sometimes there are multiple popups trying to come up at the same time since there is multiple reasons why the user has lost (Ex losing an entrance piece as a last moveable piece)
 
+
+//Fix PieceMaker
+//Make game playable only horizontal and move buttons etc
+//Make it that all pieces move 90 degrees and they dont count as moves
+//Fix corners on pieces - doesnt look good when rotating
+//Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
+//Make it that ball doesnt need to be tapped to move
+
+
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
     func setUpControlViews()
@@ -116,7 +125,7 @@ class Model {
     
     func setUpGame() {
         self.level.number = self.defaults.integer(forKey: "level")
-//        self.level.number = 17
+//        self.level.number = 25
         self.getLevel()
         self.setBoard()
     }
