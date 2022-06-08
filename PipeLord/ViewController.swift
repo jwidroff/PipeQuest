@@ -549,68 +549,149 @@ extension ViewController: ModelDelegate {
         }
     }
     
+//    func replacePieceView(piece: Piece) {
+//
+//        if self.model.board.pieces.contains(where: { (pieceX) -> Bool in
+//            pieceX.indexes == piece.indexes
+//        }) {
+//
+//
+//
+//            if piece.shape == .colorChanger {
+//
+//                rotateView(view: piece.view, rotationDegrees: 180)
+//
+//            } else if piece.shape == .cross {
+//
+//                if piece.colors[0] == piece.colors[1] {
+////                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
+//                    rotateView(view: piece.view, rotationDegrees: 90)
+////
+////
+////
+////                    let cornerRadius: CGFloat = piece.view.frame.height / 20
+////                    let shadowRadius: CGFloat = 2
+////
+////                    let darkShadow = CALayer()
+////                    darkShadow.frame = piece.view.layer.bounds
+////                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+////                    darkShadow.shadowColor = UIColor.black.cgColor
+////                    darkShadow.cornerRadius = cornerRadius
+////                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+////                    darkShadow.shadowOpacity = 1
+////                    darkShadow.shadowRadius = shadowRadius
+////                    piece.view.layer.insertSublayer(darkShadow, at: 0)
+////
+////                    let lightShadow = CALayer()
+////                    lightShadow.frame = piece.view.layer.bounds
+////                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+////                    lightShadow.shadowColor = UIColor.white.cgColor
+////                    lightShadow.cornerRadius = cornerRadius
+////                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+////                    lightShadow.shadowOpacity = 1
+////                    lightShadow.shadowRadius = shadowRadius
+////                    piece.view.layer.insertSublayer(lightShadow, at: 0)
+////
+//
+//
+//                } else {
+//                    replacePieceHelper(piece: piece)
+//                }
+//            } else if piece.shape == .wall {
+//
+//                lockPieceInPlace(piece: piece)
+//
+//            } else {
+//
+//                replacePieceHelper(piece: piece)
+//            }
+//        }
+//    }
+    
     func replacePieceView(piece: Piece) {
         
         if self.model.board.pieces.contains(where: { (pieceX) -> Bool in
             pieceX.indexes == piece.indexes
         }) {
             
+            var radianDegrees: CGFloat = 0
             
-            
-            if piece.shape == .colorChanger {
+            switch piece.version {
                 
-                rotateView(view: piece.view, rotationDegrees: 180)
-                
-            } else if piece.shape == .cross {
-                    
-                if piece.colors[0] == piece.colors[1] {
-//                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
-                    rotateView(view: piece.view, rotationDegrees: 90)
-//
-//
-//
-//                    let cornerRadius: CGFloat = piece.view.frame.height / 20
-//                    let shadowRadius: CGFloat = 2
-//
-//                    let darkShadow = CALayer()
-//                    darkShadow.frame = piece.view.layer.bounds
-//                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-//                    darkShadow.shadowColor = UIColor.black.cgColor
-//                    darkShadow.cornerRadius = cornerRadius
-//                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-//                    darkShadow.shadowOpacity = 1
-//                    darkShadow.shadowRadius = shadowRadius
-//                    piece.view.layer.insertSublayer(darkShadow, at: 0)
-//
-//                    let lightShadow = CALayer()
-//                    lightShadow.frame = piece.view.layer.bounds
-//                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-//                    lightShadow.shadowColor = UIColor.white.cgColor
-//                    lightShadow.cornerRadius = cornerRadius
-//                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-//                    lightShadow.shadowOpacity = 1
-//                    lightShadow.shadowRadius = shadowRadius
-//                    piece.view.layer.insertSublayer(lightShadow, at: 0)
-//
+            case 1:
+                radianDegrees = 90
+            case 2:
+                radianDegrees = 180
 
-                   
-                } else {
-                    replacePieceHelper(piece: piece)
-                }
-            } else if piece.shape == .wall {
+            case 3:
+                radianDegrees = 270
+
+            case 4:
+                radianDegrees = 360
                 
-                lockPieceInPlace(piece: piece)
-                
-            } else {
-                
-                replacePieceHelper(piece: piece)
+            default:
+                break
             }
+        
+            
+            rotateView(view: piece.view, rotationDegrees: radianDegrees)
+            
+//            if piece.shape == .colorChanger {
+//
+//                rotateView(view: piece.view, rotationDegrees: 180)
+//
+//            } else if piece.shape == .cross {
+//
+//                if piece.colors[0] == piece.colors[1] {
+////                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
+//                    rotateView(view: piece.view, rotationDegrees: 90)
+////
+////
+////
+////                    let cornerRadius: CGFloat = piece.view.frame.height / 20
+////                    let shadowRadius: CGFloat = 2
+////
+////                    let darkShadow = CALayer()
+////                    darkShadow.frame = piece.view.layer.bounds
+////                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+////                    darkShadow.shadowColor = UIColor.black.cgColor
+////                    darkShadow.cornerRadius = cornerRadius
+////                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+////                    darkShadow.shadowOpacity = 1
+////                    darkShadow.shadowRadius = shadowRadius
+////                    piece.view.layer.insertSublayer(darkShadow, at: 0)
+////
+////                    let lightShadow = CALayer()
+////                    lightShadow.frame = piece.view.layer.bounds
+////                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
+////                    lightShadow.shadowColor = UIColor.white.cgColor
+////                    lightShadow.cornerRadius = cornerRadius
+////                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+////                    lightShadow.shadowOpacity = 1
+////                    lightShadow.shadowRadius = shadowRadius
+////                    piece.view.layer.insertSublayer(lightShadow, at: 0)
+////
+//
+//
+//                } else {
+//                    replacePieceHelper(piece: piece)
+//                }
+//            } else if piece.shape == .wall {
+//
+//                lockPieceInPlace(piece: piece)
+//
+//            } else {
+//
+//                replacePieceHelper(piece: piece)
+//            }
         }
     }
     
+    
+    
     func replacePieceHelper(piece: Piece) {
         
-        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, currentSwitch: piece.currentSwitch, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
+        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
         
         let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
         
@@ -640,7 +721,7 @@ extension ViewController: ModelDelegate {
 
             let frame = CGRect(x: x, y: y, width: w, height: h)
 
-            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, currentSwitch: 1, isLocked: true, opening: nil, doesPivot: nil)
+            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, opening: nil, doesPivot: nil)
             
             piece.view.removeFromSuperview()
             
@@ -679,117 +760,208 @@ extension ViewController: ModelDelegate {
         
         
             
-            if rotationDegrees == 90 {
+//            if rotationDegrees == 90 {
                 
-                if view.transform.isIdentity {
-                    UIView.animate(withDuration: 0.5) {
+                let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
+
+                
+//                if view.transform.isIdentity {
+                    
+//                    print("view is Identity")
+                    
+                    UIView.animate(withDuration: 0.25) {
         //                let rotationDegrees = 90.0
-                        let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
                         view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
                         
-                        if let sublayers = view.layer.sublayers {
-
-                            let cornerRadius: CGFloat = view.frame.width / 2
-                            let shadowRadius: CGFloat = 2
-                            sublayers[0].frame = view.layer.bounds
-                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[0].shadowColor = UIColor.white.cgColor
-                            sublayers[0].cornerRadius = cornerRadius
-                            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
-                            sublayers[0].shadowOpacity = 1
-                            sublayers[0].shadowRadius = shadowRadius
-                            sublayers[1].frame = view.layer.bounds
-                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[1].shadowColor = UIColor.black.cgColor
-                            sublayers[1].cornerRadius = cornerRadius
-                            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
-                            sublayers[1].shadowOpacity = 1
-                            sublayers[1].shadowRadius = shadowRadius
-                        }
-                    }
-                } else {
-                    
-                    UIView.animate(withDuration: 0.5) {
+                        print(rotationDegrees)
                         
-                        if let sublayers = view.layer.sublayers {
+                        switch rotationDegrees {
                             
-                            let cornerRadius: CGFloat = view.frame.width / 2
-                            let shadowRadius: CGFloat = 2
-                            sublayers[0].frame = view.layer.bounds
-                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[0].shadowColor = UIColor.white.cgColor
-                            sublayers[0].cornerRadius = cornerRadius
-                            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-                            sublayers[0].shadowOpacity = 1
-                            sublayers[0].shadowRadius = shadowRadius
-                            sublayers[1].frame = view.layer.bounds
-                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[1].shadowColor = UIColor.black.cgColor
-                            sublayers[1].cornerRadius = cornerRadius
-                            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-                            sublayers[1].shadowOpacity = 1
-                            sublayers[1].shadowRadius = shadowRadius
-                        }
-                        view.transform = CGAffineTransform.identity
-                    }
-                }
-                
-            } else if rotationDegrees == 180 {
-                
-                if view.transform.isIdentity {
-                    UIView.animate(withDuration: 0.5) {
-        //                let rotationDegrees = 90.0
-                        let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
-                        view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
-                        
-                        if let sublayers = view.layer.sublayers {
-
-                            let cornerRadius: CGFloat = view.frame.width / 2
-                            let shadowRadius: CGFloat = 2
-                            sublayers[0].frame = view.layer.bounds
-                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[0].shadowColor = UIColor.white.cgColor
-                            sublayers[0].cornerRadius = cornerRadius
-                            sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-                            sublayers[0].shadowOpacity = 1
-                            sublayers[0].shadowRadius = shadowRadius
-                            sublayers[1].frame = view.layer.bounds
-                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[1].shadowColor = UIColor.black.cgColor
-                            sublayers[1].cornerRadius = cornerRadius
-                            sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-                            sublayers[1].shadowOpacity = 1
-                            sublayers[1].shadowRadius = shadowRadius
-                        }
-                    }
-                } else {
-                    
-                    UIView.animate(withDuration: 0.5) {
-                        
-                        if let sublayers = view.layer.sublayers {
                             
-                            let cornerRadius: CGFloat = view.frame.width / 2
-                            let shadowRadius: CGFloat = 2
-                            sublayers[0].frame = view.layer.bounds
-                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[0].shadowColor = UIColor.white.cgColor
-                            sublayers[0].cornerRadius = cornerRadius
-                            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-                            sublayers[0].shadowOpacity = 1
-                            sublayers[0].shadowRadius = shadowRadius
-                            sublayers[1].frame = view.layer.bounds
-                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
-                            sublayers[1].shadowColor = UIColor.black.cgColor
-                            sublayers[1].cornerRadius = cornerRadius
-                            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-                            sublayers[1].shadowOpacity = 1
-                            sublayers[1].shadowRadius = shadowRadius
+                            
+                            
+                        case 90:
+                            
+                            if let sublayers = view.layer.sublayers {
+
+                                let cornerRadius: CGFloat = view.frame.width / 2
+                                let shadowRadius: CGFloat = 2
+                                sublayers[0].frame = view.layer.bounds
+                                sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[0].shadowColor = UIColor.white.cgColor
+                                sublayers[0].cornerRadius = cornerRadius
+                                sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+                                sublayers[0].shadowOpacity = 1
+                                sublayers[0].shadowRadius = shadowRadius
+                                sublayers[1].frame = view.layer.bounds
+                                sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[1].shadowColor = UIColor.black.cgColor
+                                sublayers[1].cornerRadius = cornerRadius
+                                sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+                                sublayers[1].shadowOpacity = 1
+                                sublayers[1].shadowRadius = shadowRadius
+                            }
+                            
+                        case 180:
+                            
+                            if let sublayers = view.layer.sublayers {
+
+                                let cornerRadius: CGFloat = view.frame.width / 2
+                                let shadowRadius: CGFloat = 2
+                                sublayers[0].frame = view.layer.bounds
+                                sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[0].shadowColor = UIColor.white.cgColor
+                                sublayers[0].cornerRadius = cornerRadius
+                                sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+                                sublayers[0].shadowOpacity = 1
+                                sublayers[0].shadowRadius = shadowRadius
+                                sublayers[1].frame = view.layer.bounds
+                                sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[1].shadowColor = UIColor.black.cgColor
+                                sublayers[1].cornerRadius = cornerRadius
+                                sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+                                sublayers[1].shadowOpacity = 1
+                                sublayers[1].shadowRadius = shadowRadius
+                            }
+                            
+                            
+                        case 270:
+                            
+                            if let sublayers = view.layer.sublayers {
+
+                                let cornerRadius: CGFloat = view.frame.width / 2
+                                let shadowRadius: CGFloat = 2
+                                sublayers[0].frame = view.layer.bounds
+                                sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[0].shadowColor = UIColor.white.cgColor
+                                sublayers[0].cornerRadius = cornerRadius
+                                sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+                                sublayers[0].shadowOpacity = 1
+                                sublayers[0].shadowRadius = shadowRadius
+                                sublayers[1].frame = view.layer.bounds
+                                sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[1].shadowColor = UIColor.black.cgColor
+                                sublayers[1].cornerRadius = cornerRadius
+                                sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+                                sublayers[1].shadowOpacity = 1
+                                sublayers[1].shadowRadius = shadowRadius
+                            }
+                            
+                        case 360:
+                            
+                            if let sublayers = view.layer.sublayers {
+
+                                let cornerRadius: CGFloat = view.frame.width / 2
+                                let shadowRadius: CGFloat = 2
+                                sublayers[0].frame = view.layer.bounds
+                                sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[0].shadowColor = UIColor.white.cgColor
+                                sublayers[0].cornerRadius = cornerRadius
+                                sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+                                sublayers[0].shadowOpacity = 1
+                                sublayers[0].shadowRadius = shadowRadius
+                                sublayers[1].frame = view.layer.bounds
+                                sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+                                sublayers[1].shadowColor = UIColor.black.cgColor
+                                sublayers[1].cornerRadius = cornerRadius
+                                sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+                                sublayers[1].shadowOpacity = 1
+                                sublayers[1].shadowRadius = shadowRadius
+                            }
+                            
+                        default:
+                            
+                            break
                         }
-                        view.transform = CGAffineTransform.identity
+                        
+                        
+//                        view.transform = CGAffineTransform.identity
                     }
-                }
+//                } else {
+//                    print("view isnt Identity")
+//
+//                    UIView.animate(withDuration: 0.25) {
+//
+//                        if let sublayers = view.layer.sublayers {
+//
+//                            let cornerRadius: CGFloat = view.frame.width / 2
+//                            let shadowRadius: CGFloat = 2
+//                            sublayers[0].frame = view.layer.bounds
+//                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[0].shadowColor = UIColor.white.cgColor
+//                            sublayers[0].cornerRadius = cornerRadius
+//                            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//                            sublayers[0].shadowOpacity = 1
+//                            sublayers[0].shadowRadius = shadowRadius
+//                            sublayers[1].frame = view.layer.bounds
+//                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[1].shadowColor = UIColor.black.cgColor
+//                            sublayers[1].cornerRadius = cornerRadius
+//                            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//                            sublayers[1].shadowOpacity = 1
+//                            sublayers[1].shadowRadius = shadowRadius
+//                        }
+//                        view.transform = CGAffineTransform.identity
+//
+//                    }
+//                }
                 
-            }
+//            } else if rotationDegrees == 180 {
+//
+//                if view.transform.isIdentity {
+//                    UIView.animate(withDuration: 0.5) {
+//        //                let rotationDegrees = 90.0
+//                        let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
+//                        view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
+//
+//                        if let sublayers = view.layer.sublayers {
+//
+//                            let cornerRadius: CGFloat = view.frame.width / 2
+//                            let shadowRadius: CGFloat = 2
+//                            sublayers[0].frame = view.layer.bounds
+//                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[0].shadowColor = UIColor.white.cgColor
+//                            sublayers[0].cornerRadius = cornerRadius
+//                            sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//                            sublayers[0].shadowOpacity = 1
+//                            sublayers[0].shadowRadius = shadowRadius
+//                            sublayers[1].frame = view.layer.bounds
+//                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[1].shadowColor = UIColor.black.cgColor
+//                            sublayers[1].cornerRadius = cornerRadius
+//                            sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//                            sublayers[1].shadowOpacity = 1
+//                            sublayers[1].shadowRadius = shadowRadius
+//                        }
+//                    }
+//                } else {
+//
+//                    UIView.animate(withDuration: 0.5) {
+//
+//                        if let sublayers = view.layer.sublayers {
+//
+//                            let cornerRadius: CGFloat = view.frame.width / 2
+//                            let shadowRadius: CGFloat = 2
+//                            sublayers[0].frame = view.layer.bounds
+//                            sublayers[0].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[0].shadowColor = UIColor.white.cgColor
+//                            sublayers[0].cornerRadius = cornerRadius
+//                            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//                            sublayers[0].shadowOpacity = 1
+//                            sublayers[0].shadowRadius = shadowRadius
+//                            sublayers[1].frame = view.layer.bounds
+//                            sublayers[1].backgroundColor = view.backgroundColor?.cgColor
+//                            sublayers[1].shadowColor = UIColor.black.cgColor
+//                            sublayers[1].cornerRadius = cornerRadius
+//                            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//                            sublayers[1].shadowOpacity = 1
+//                            sublayers[1].shadowRadius = shadowRadius
+//                        }
+//                        view.transform = CGAffineTransform.identity
+//                    }
+//                }
+//
+//            }
 
         
     }
