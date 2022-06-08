@@ -75,10 +75,11 @@ import UIKit
 
 //Fix PieceMaker
 //Make game playable only horizontal and move buttons etc
-//Make it that all pieces move 90 degrees and they dont count as moves
+//Make it that round pieces can turn as much as they want and square pieces stay in that same position
 //Fix corners on pieces - doesnt look good when rotating
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
 //Make it that ball doesnt need to be tapped to move
+
 
 
 protocol ModelDelegate {
@@ -674,11 +675,8 @@ class Model {
         
         case .diagElbow, .elbow:
             
-//            let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
             let pivotDecision = 1
 
-            
-            
             switch pivotDecision {
             case 1:
                 piece.switches = 2
@@ -719,25 +717,18 @@ class Model {
     }
     
     func setPieceShape(piece: Piece) {
-        
-//        print("count = \(piece.colors.count)")
-        
+                
         let version = Int(arc4random_uniform(UInt32(4))) + 1
         let randomShapes:[Shape] = board.randomPieceShapes
         piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
         piece.version = version
         
-        
         if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
-            
-//            print("00000000000000000000000000000000")
-            
+                        
             setPieceShape(piece: piece)
             
         } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
-            
-//            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            
+                        
             if piece.colors[0] == piece.colors[1] {
                 setPieceShape(piece: piece)
             }
@@ -829,88 +820,26 @@ class Model {
             
             if piece.shape == .wall {
                 
-                
-                //UP TO HERE - THE WALLS INDEXES NEED TO UPDATE BEFORE WE CAN 'Fill' the hole
-                
-                
-                
-                
-                //Get CGPoint of the center of where the piece would be
-
-                
-                
-                
-                
-                
                 let indexOfHole = piece.indexes
-                
-                
-                
-                
                 bool = false
-                
-                
-//                switch direction {
-//                case .up:
-//
-//
-//                    indexOfHole = Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1)
-//                    
-//                case .down:
-//
-//
-//                    indexOfHole = Indexes(x: piece.indexes.x!, y: piece.indexes.y! + 1)
-//
-//                case .left:
-//
-//                    indexOfHole = Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y!)
-//
-//
-//                case .right:
-//
-//                    indexOfHole = Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y!)
-//
-//                case .none:
-//                    break
-//                }
-                
-                
-                
                 delegate?.removeHole(indexes: indexOfHole)
                 
-                
                 var int = 0
-                
                 for holeLocation in board.holeLocations {
                     
-                    
-                    
                     if holeLocation == indexOfHole {
-                        
-                        print("indexOfHole \(indexOfHole)")
-                        
                         board.holeLocations.remove(at: int)
                     }
-                    
                     int += 1
                 }
-                
-//                board.holeLocations.remove(at: <#T##Int#>)
-                
-                
             } else {
-                
                 bool = true
             }
-            
-            
         }
         return bool
     }
     
     func resetPieceMaker(piece: Piece) {
-        
-//        piece.nextPiece?.view.removeFromSuperview()
         
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
@@ -956,11 +885,8 @@ class Model {
             } else {
                 
                 movesX = "∞"
-                
             }
-            
             delegate?.updateMovesLeftLabel(moves: movesX)
-            
             moveStarted = false
         }
     }
@@ -1320,8 +1246,6 @@ class Model {
     
     func deletePiece(piece: Piece) {
         
-//        board.view.bringSubviewToFront(piece.view)
-        
         board.pieces.removeAll { (piece) -> Bool in
             
             if piece.indexes.x! < 0 || piece.indexes.x! > board.widthSpaces - 1 || piece.indexes.y! < 0 || piece.indexes.y! > board.heightSpaces - 1 {
@@ -1367,7 +1291,6 @@ class Model {
 
                     delegate?.removeView(view: ball.view)
 
-//                    delegate?.removeBall(ball: ball)
                     return true
                 }
             }
@@ -1410,9 +1333,6 @@ class Model {
         }
         
         for piece in board.pieces {
-            
-            
-            
             movePiecesHelper(piece: piece, direction: direction)
             delegate?.movePieceView(piece: piece)
         }
@@ -1585,8 +1505,6 @@ class Model {
                         setPieceSides(piece: piece)
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-90
-//                            self.delegate?.rotateView(view: piece.view, rotationDegrees: 90)
                             
                             self.delegate?.replacePieceView(piece: piece)
                         }
@@ -1632,9 +1550,6 @@ class Model {
             } else {
                 
                 delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                print("crashed into a wall, or no track in place")
-                                
-                
                 break
             }
             
@@ -1913,24 +1828,13 @@ class Model {
     
     func check4Winner(){
         
-        
-        print(board.balls.isEmpty)
-        
         if board.balls.isEmpty {
             
-//            if gameIsLoading == false {
-                
-                self.delegate?.runPopUpView(title: "YOU WIN", message: "Great Job - Next Level?")
-                self.gameOver = true
-                return
-                
-//            } else {
-//
-//                gameIsLoading = false
-//            }
+            self.delegate?.runPopUpView(title: "YOU WIN", message: "Great Job - Next Level?")
+            self.gameOver = true
+            return
             
         } else {
-            
             return
         }
     }
@@ -2017,7 +1921,6 @@ class Model {
         }
         
         setPieceSides(piece: piece)
-        
         delegate?.replacePieceView(piece: piece)
     }
     
@@ -2033,10 +1936,7 @@ class Model {
         }
         
         if piece.shape == .wall && piece.currentSwitch == 2 {
-            
-            print("ZXXZZXZXZXZX")
             return
-            
         }
         
         if piece.currentSwitch != piece.switches {
@@ -2052,11 +1952,6 @@ class Model {
     func updateUserDefaults() {
         
         defaults.set(level.number, forKey: "level")
-        
-//        defaults.set(18, forKey: "level")
-
-        
-        // Checking to make sure that the highest level hasnt been saved to user defaults and then saving it there
         if self.level.number > self.defaults.integer(forKey: "highestLevel") {
             
             self.defaults.set(self.level.number, forKey: "highestLevel")
@@ -2065,27 +1960,18 @@ class Model {
     
     func resetGame() {
         
-        
         updateUserDefaults()
-                        
+        
         for piece in board.pieces {
-            
-//            var counter = 0
-
             delegate?.clearPiecesAnimation(view: piece.view)
-//            board.pieces.remove(at: counter)
-//            counter += 1
         }
         
         board.pieces.removeAll()
         
         for ball in board.balls {
-            
             ball.piecesPassed = [Piece]()
             delegate?.clearPiecesAnimation(view: ball.view)
         }
-        
-        
         
         for ball in board.balls {
             
