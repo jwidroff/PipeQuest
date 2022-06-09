@@ -51,55 +51,55 @@ class Piece {
             self.colors.append(colors[0])
         }
         
-        setPieceSwitches() //MARK: NOT USED
+//        setPieceSwitches() //MARK: NOT USED
         setPieceSides(shape: shape, version: version, colors: self.colors, opening: opening)
     }
     
-    private func setPieceSwitches() {
-        
-        //DO NOT DELETE. THIS IS NEEDED FOR THE MANUALLY ADDED PIECES
-        if doesPivot == true {
-            
-//            switch shape {
+//    private func setPieceSwitches() {
 //
-//            case .wall:
-//                switches = 2
+//        //DO NOT DELETE. THIS IS NEEDED FOR THE MANUALLY ADDED PIECES
+//        if doesPivot == true {
 //
-//            case .elbow:
-//                switches = 2
+////            switch shape {
+////
+////            case .wall:
+////                switches = 2
+////
+////            case .elbow:
+////                switches = 2
+////
+////            case .diagElbow:
+////
+////                switches = 2
+////
+////            case .cross:
+////
+////                switches = 2
+////
+////            case .doubleElbow:
+////
+////                switches = 2
+////
+////            case .stick:
+////
+////                switches = 1
+////
+////            case .colorChanger:
+////
+////                //MARK: CHANGES MADE HERE
+////                switches = 2
+////
+////            default:
+////                break
+////            }
 //
-//            case .diagElbow:
+//        } else {
 //
-//                switches = 2
-//
-//            case .cross:
-//
-//                switches = 2
-//
-//            case .doubleElbow:
-//
-//                switches = 2
-//
-//            case .stick:
-//
-//                switches = 1
-//
-//            case .colorChanger:
-//
-//                //MARK: CHANGES MADE HERE
-//                switches = 2
-//
-//            default:
-//                break
-//            }
-            
-        } else {
-            
-//            switches = 1
-        }
-    }
+////            switches = 1
+//        }
+//    }
     
-    private func setPieceSides(shape: Shape, version: Int, colors: [UIColor], opening: String?) { //MARK: THIS NEEDED TO BE CHANGED FOR COLORCHANGER
+    func setPieceSides(shape: Shape, version: Int, colors: [UIColor], opening: String?) {
         
         switch shape {
         
@@ -382,15 +382,17 @@ class Piece {
             
             switch version {
             
-            case 1, 3:
+            case 1:
                 
 //                if currentSwitch == 1 {
                     
                     //Horizontal Pipe on top
-                    side.left.closing.isOpen = true
-                    side.right.closing.isOpen = true
-                    side.top.closing.isOpen = false
-                    side.bottom.closing.isOpen = false
+                side.left.closing.isOpen = true
+                side.right.closing.isOpen = true
+                side.top.closing.isOpen = false
+                side.bottom.closing.isOpen = false
+                
+               
                     
 //                } else if currentSwitch == 2 {
 //
@@ -401,16 +403,16 @@ class Piece {
 //                    side.bottom.closing.isOpen = true
 //                }
 
-            case 2, 4:
+            case 2:
                 
 //                if  currentSwitch == 1 {
                     
                     //Horizontal Pipe on top
-                    side.left.closing.isOpen = true
-                    side.right.closing.isOpen = true
-                    side.top.closing.isOpen = false
-                    side.bottom.closing.isOpen = false
                     
+                side.left.closing.isOpen = false
+                side.right.closing.isOpen = false
+                side.top.closing.isOpen = true
+                side.bottom.closing.isOpen = true
 //                } else if currentSwitch == 2 {
 //
 //                    //Vertical Pipe on top
@@ -419,6 +421,48 @@ class Piece {
 //                    side.top.closing.isOpen = true
 //                    side.bottom.closing.isOpen = true
 //                }
+                
+            case 3:
+                
+//                if currentSwitch == 1 {
+                    
+//                    //Horizontal Pipe on top
+//                    side.left.closing.isOpen = true
+//                    side.right.closing.isOpen = true
+//                    side.top.closing.isOpen = false
+//                    side.bottom.closing.isOpen = false
+                    
+//                } else if currentSwitch == 2 {
+//
+//                    //Vertical Pipe on top
+                    
+//                }
+                
+                side.left.closing.isOpen = true
+                side.right.closing.isOpen = true
+                side.top.closing.isOpen = false
+                side.bottom.closing.isOpen = false
+
+            case 4:
+                
+//                if  currentSwitch == 1 {
+                    
+//                    //Horizontal Pipe on top
+//                    side.left.closing.isOpen = true
+//                    side.right.closing.isOpen = true
+//                    side.top.closing.isOpen = false
+//                    side.bottom.closing.isOpen = false
+                    
+//                } else if currentSwitch == 2 {
+//
+//                    //Vertical Pipe on top
+                    
+//                }
+                
+                side.left.closing.isOpen = false
+                side.right.closing.isOpen = false
+                side.top.closing.isOpen = true
+                side.bottom.closing.isOpen = true
                 
             default:
                 break

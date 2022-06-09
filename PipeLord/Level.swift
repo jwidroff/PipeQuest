@@ -154,7 +154,7 @@ class LevelModel {
             board.pieces.append(exit)
             
             
-            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .stick, colors: [UIColor.red], version: 2, isLocked: false, opening: nil, doesPivot: true)
+            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .cross, colors: [UIColor.red, UIColor.red], version: 1, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(piece)
 
 
@@ -954,8 +954,9 @@ class LevelModel {
                 nextPiece.indexes = piece.indexes
                 setPieceColor(piece: nextPiece)
                 setPieceShape(piece: nextPiece)
-                setPieceSwitches(piece: nextPiece)
-                setPieceSides(piece: nextPiece)
+//                setPieceSwitches(piece: nextPiece)
+//                setPieceSides(piece: nextPiece)
+                nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors, opening: nextPiece.opening)
                 piece.nextPiece = nextPiece
             }
         }
@@ -1028,114 +1029,114 @@ class LevelModel {
         }
     }
     
-    private func setPieceSwitches(piece: Piece) {
-        
-//        let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
-        let pivotDecision = 1
-
-        switch pivotDecision {
-        
-        case 1: //Pivot allowed
-        
-            switch piece.shape {
-            
-            case .elbow:
-                print()
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//    private func setPieceSwitches(piece: Piece) {
 //
-            case .wall:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = 1
-                
-            case .diagElbow:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            case .doubleElbow:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            case .cross:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
+////        let pivotDecision = Int(arc4random_uniform(UInt32(2))) + 1
+//        let pivotDecision = 1
+//
+//        switch pivotDecision {
+//
+//        case 1: //Pivot allowed
+//
+//            switch piece.shape {
+//
+//            case .elbow:
+//                print()
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+////
+//            case .wall:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = 1
+//
+//            case .diagElbow:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            case .doubleElbow:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            case .cross:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+////            case .stick:
+////                print()
+//
+////                piece.switches = 1
+////                piece.currentSwitch = 1
+//
 //            case .stick:
 //                print()
-
-//                piece.switches = 1
-//                piece.currentSwitch = 1
-                
-            case .stick:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            default:
-                break
-            }
-            
-        case 2: //Pivot not allowed
-        
-            switch piece.shape {
-            
-            case .elbow:
-                print()
-
-                piece.doesPivot = false
-//                piece.switches = 1
-//                piece.currentSwitch = 1
-                
-            case .diagElbow:
-                print()
-
-                piece.doesPivot = false
-//                piece.switches = 1
-//                piece.currentSwitch = 1
-                
-            case .doubleElbow:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            case .cross:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            default:
+//                break
+//            }
+//
+//        case 2: //Pivot not allowed
+//
+//            switch piece.shape {
+//
+//            case .elbow:
+//                print()
+//
+//                piece.doesPivot = false
+////                piece.switches = 1
+////                piece.currentSwitch = 1
+//
+//            case .diagElbow:
+//                print()
+//
+//                piece.doesPivot = false
+////                piece.switches = 1
+////                piece.currentSwitch = 1
+//
+//            case .doubleElbow:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            case .cross:
+//                print()
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+////            case .stick:
+////                print()
+//
+////                piece.switches = 1
+////                piece.currentSwitch = 1
+//
 //            case .stick:
 //                print()
-
-//                piece.switches = 1
-//                piece.currentSwitch = 1
-                
-            case .stick:
-                print()
-
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            default:
-                break
-            }
-        
-        default:
-            break
-        }
-    }
+//
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            default:
+//                break
+//            }
+//
+//        default:
+//            break
+//        }
+//    }
     
-    private func setPieceSides(piece: Piece) {
+    private func setPieceSides(piece: Piece) { //NOT CALLED
       
         switch piece.shape {
         
@@ -1835,8 +1836,9 @@ class LevelModel {
             setPieceIndex(piece: piece)
             setPieceShape(piece: piece)
             setPieceColor(piece: piece)
-            setPieceSwitches(piece: piece)
-            setPieceSides(piece: piece)
+//            setPieceSwitches(piece: piece)
+            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//            setPieceSides(piece: piece)
             board.pieces.append(piece)
             
             

@@ -80,9 +80,7 @@ import UIKit
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
 //Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go
 //Cross - The versions need to be updated
-//Stick - Seems like after a switch is done, the ball will automatically work with that piece even if its not correct
 //DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
-//Get rid of sticks - No need for them with the colorChanger (Better yet, change the name of the color changer to stick and then get rid of the stick piece
 
 
 
@@ -195,7 +193,7 @@ class Model {
         updateLevelInfo()
     }
     
-    func setPieceSides(piece: Piece) {
+    func setPieceSides(piece: Piece) { //NOT CALLED
         
         switch piece.shape {
         
@@ -342,6 +340,8 @@ class Model {
             piece.side.bottom.opening.isOpen = true
             piece.side.left.opening.isOpen = true
             piece.side.right.opening.isOpen = true
+            
+            
             
             switch piece.version {
             
@@ -722,57 +722,57 @@ class Model {
         }
     }
     
-    func setPieceSwitches(piece: Piece) {
-        
-        switch piece.shape {
-        
-        case .diagElbow, .elbow:
-            
-            let pivotDecision = 1
-
-            switch pivotDecision {
-            case 1:
-                print()
-//                piece.switches = 2
-//                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-                
-            case 2:
-//                piece.switches = 1
-//                piece.currentSwitch = 1
-                piece.doesPivot = false
-                
-            default:
-                break
-            }
-            
-        case .doubleElbow:
-
-            print()
-//            piece.switches = 2
-//            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-            
-        case .cross:
-            print()
-
-//            piece.switches = 2
-//            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-            
+//    func setPieceSwitches(piece: Piece) {
+//
+//        switch piece.shape {
+//
+//        case .diagElbow, .elbow:
+//
+//            let pivotDecision = 1
+//
+//            switch pivotDecision {
+//            case 1:
+//                print()
+////                piece.switches = 2
+////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//            case 2:
+////                piece.switches = 1
+////                piece.currentSwitch = 1
+//                piece.doesPivot = false
+//
+//            default:
+//                break
+//            }
+//
+//        case .doubleElbow:
+//
+//            print()
+////            piece.switches = 2
+////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//        case .cross:
+//            print()
+//
+////            piece.switches = 2
+////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+////        case .stick:
+////            print()
+//
+////            piece.switches = 1
+////            piece.currentSwitch = 1
+//
 //        case .stick:
 //            print()
-
-//            piece.switches = 1
-//            piece.currentSwitch = 1
-            
-        case .stick:
-            print()
-
-//            piece.switches = 2
-//            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-            
-        default:
-            break
-        }
-    }
+//
+////            piece.switches = 2
+////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
+//
+//        default:
+//            break
+//        }
+//    }
     
     func setPieceShape(piece: Piece) {
                 
@@ -903,8 +903,9 @@ class Model {
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
-        setPieceSwitches(piece: nextPiece)
-        setPieceSides(piece: nextPiece)
+//        setPieceSwitches(piece: nextPiece)
+//        setPieceSides(piece: nextPiece)
+        nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors, opening: nextPiece.opening)
         
         piece.nextPiece = nextPiece
         delegate?.resetPieceMakerView(piece: piece)
@@ -1560,7 +1561,8 @@ class Model {
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
                         switchSwitches(piece: piece)
-                        setPieceSides(piece: piece)
+//                        setPieceSides(piece: piece)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                             
@@ -1575,7 +1577,9 @@ class Model {
                     
                     
                     switchSwitches(piece: piece)
-                    setPieceSides(piece: piece)
+//                    setPieceSides(piece: piece)
+                    
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
@@ -1637,7 +1641,8 @@ class Model {
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
                         switchSwitches(piece: piece)
-                        setPieceSides(piece: piece)
+//                        setPieceSides(piece: piece)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
@@ -1651,7 +1656,8 @@ class Model {
                     let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                     
                     switchSwitches(piece: piece)
-                    setPieceSides(piece: piece)
+//                    setPieceSides(piece: piece)
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
@@ -1716,8 +1722,8 @@ class Model {
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
                         switchSwitches(piece: piece)
-                        setPieceSides(piece: piece)
-                        
+//                        setPieceSides(piece: piece)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.delegate?.replacePieceView(piece: piece)
@@ -1730,8 +1736,8 @@ class Model {
                     let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                     
                     switchSwitches(piece: piece)
-                    setPieceSides(piece: piece)
-                    
+//                    setPieceSides(piece: piece)
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
                         self.delegate?.replacePieceView(piece: piece)
@@ -1795,8 +1801,8 @@ class Model {
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
                         switchSwitches(piece: piece)
-                        setPieceSides(piece: piece)
-                        
+//                        setPieceSides(piece: piece)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.delegate?.replacePieceView(piece: piece)
@@ -1809,8 +1815,8 @@ class Model {
                     let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                     
                     switchSwitches(piece: piece)
-                    setPieceSides(piece: piece)
-                    
+//                    setPieceSides(piece: piece)
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
                         self.delegate?.replacePieceView(piece: piece)
@@ -1914,24 +1920,32 @@ class Model {
                 if board.moves > 0 || infiniteMoves == true {
                     
                     switchSwitches(piece: piece)
-                    setPieceSides(piece: piece)
-                    
+//                    setPieceSides(piece: piece)
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                    print()
                     print("Top")
                     print("Open = \(piece.side.top.opening.isOpen)")
                     print("Color = \(piece.side.top.color?.accessibilityName)")
+                    print("closing side = \(piece.side.top.closing.isOpen)")
                     print()
                     print("Right")
                     print("Open = \(piece.side.right.opening.isOpen)")
                     print("Color = \(piece.side.right.color?.accessibilityName)")
+                    print("closing side = \(piece.side.right.closing.isOpen)")
+
                     print()
                     print("Bottom")
                     print("Open = \(piece.side.bottom.opening.isOpen)")
                     print("Color = \(piece.side.bottom.color?.accessibilityName)")
+                    print("closing side = \(piece.side.bottom.closing.isOpen)")
+
                     print()
                     print("Left")
                     print("Open = \(piece.side.left.opening.isOpen)")
                     print("Color = \(piece.side.left.color?.accessibilityName)")
-                    print()
+                    print("closing side = \(piece.side.left.closing.isOpen)")
+
+                    
 
                     
                     
