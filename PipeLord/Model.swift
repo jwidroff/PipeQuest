@@ -82,8 +82,7 @@ import UIKit
 //Cross - The versions need to be updated
 //Stick - Seems like after a switch is done, the ball will automatically work with that piece even if its not correct
 //DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
-//Get rid of sticks - No need for them with the colorChanger
-//MARK: Need to make it that with the switch it rotates 90 degrees forward each time - The last commit didnt do this properly b/c it was based on the test piece's version, not any version
+//Get rid of sticks - No need for them with the colorChanger (Better yet, change the name of the color changer to stick and then get rid of the stick piece
 
 
 
@@ -389,30 +388,30 @@ class Model {
                 
             }
             
-        case .stick:
-            
-            switch piece.version {
-            case 1, 3:
-                
-                piece.side.right.exitSide = "left"
-                piece.side.left.exitSide = "right"
-                piece.side.right.color = piece.colors[0]
-                piece.side.left.color = piece.colors[0]
-                piece.side.left.opening.isOpen = true
-                piece.side.right.opening.isOpen = true
-                
-            case 2, 4:
-                
-                piece.side.top.exitSide = "bottom"
-                piece.side.bottom.exitSide = "top"
-                piece.side.top.color = piece.colors[0]
-                piece.side.bottom.color = piece.colors[0]
-                piece.side.top.opening.isOpen = true
-                piece.side.bottom.opening.isOpen = true
-
-            default:
-                break
-            }
+//        case .stick:
+//
+//            switch piece.version {
+//            case 1, 3:
+//
+//                piece.side.right.exitSide = "left"
+//                piece.side.left.exitSide = "right"
+//                piece.side.right.color = piece.colors[0]
+//                piece.side.left.color = piece.colors[0]
+//                piece.side.left.opening.isOpen = true
+//                piece.side.right.opening.isOpen = true
+//
+//            case 2, 4:
+//
+//                piece.side.top.exitSide = "bottom"
+//                piece.side.bottom.exitSide = "top"
+//                piece.side.top.color = piece.colors[0]
+//                piece.side.bottom.color = piece.colors[0]
+//                piece.side.top.opening.isOpen = true
+//                piece.side.bottom.opening.isOpen = true
+//
+//            default:
+//                break
+//            }
             
         case .doubleElbow:
             
@@ -619,7 +618,7 @@ class Model {
             }
             
             
-        case .colorChanger:
+        case .stick:
             
             switch piece.version {
             
@@ -758,13 +757,13 @@ class Model {
 //            piece.switches = 2
 //            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
             
-        case .stick:
-            print()
+//        case .stick:
+//            print()
 
 //            piece.switches = 1
 //            piece.currentSwitch = 1
             
-        case .colorChanger:
+        case .stick:
             print()
 
 //            piece.switches = 2
@@ -782,11 +781,11 @@ class Model {
         piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
         piece.version = version
         
-        if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
+        if board.randomPieceColors.count == 1 && piece.shape == .stick {
                         
             setPieceShape(piece: piece)
             
-        } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
+        } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
                         
             if piece.colors[0] == piece.colors[1] {
                 setPieceShape(piece: piece)
@@ -1584,7 +1583,7 @@ class Model {
                     }
                 }
                 
-                if piece.shape == .colorChanger {
+                if piece.shape == .stick {
                     
                     ball.onColor = piece.side.bottom.color!
                 }
@@ -1660,7 +1659,7 @@ class Model {
                     }
                 }
                 
-                if piece.shape == .colorChanger {
+                if piece.shape == .stick {
                     
                     ball.onColor = piece.side.top.color!
                 }
@@ -1739,7 +1738,7 @@ class Model {
                     }
                 }
                 
-                if piece.shape == .colorChanger {
+                if piece.shape == .stick {
                     
                     ball.onColor = piece.side.right.color!
                 }
@@ -1818,7 +1817,7 @@ class Model {
                     }
                 }
                 
-                if piece.shape == .colorChanger {
+                if piece.shape == .stick {
                     
                     ball.onColor = piece.side.left.color!
                 }

@@ -103,7 +103,7 @@ class Piece {
         
         switch shape {
         
-        case .colorChanger:
+        case .stick:
             
             switch version {
             case 1: //Horizontal
@@ -424,30 +424,30 @@ class Piece {
                 break
             }
             
-        case .stick:
-            
-            switch version {
-            case 1, 3:
-                
-                side.right.exitSide = "left"
-                side.left.exitSide = "right"
-                side.right.color = colors[0]
-                side.left.color = colors[0]
-                side.left.opening.isOpen = true
-                side.right.opening.isOpen = true
-                
-            case 2, 4:
-                
-                side.top.exitSide = "bottom"
-                side.bottom.exitSide = "top"
-                side.top.color = colors[0]
-                side.bottom.color = colors[0]
-                side.top.opening.isOpen = true
-                side.bottom.opening.isOpen = true
-
-            default:
-                break
-            }
+//        case .stick:
+//
+//            switch version {
+//            case 1, 3:
+//
+//                side.right.exitSide = "left"
+//                side.left.exitSide = "right"
+//                side.right.color = colors[0]
+//                side.left.color = colors[0]
+//                side.left.opening.isOpen = true
+//                side.right.opening.isOpen = true
+//
+//            case 2, 4:
+//
+//                side.top.exitSide = "bottom"
+//                side.bottom.exitSide = "top"
+//                side.top.color = colors[0]
+//                side.bottom.color = colors[0]
+//                side.top.opening.isOpen = true
+//                side.bottom.opening.isOpen = true
+//
+//            default:
+//                break
+//            }
             
         case .doubleElbow:
                         

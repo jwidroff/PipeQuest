@@ -622,7 +622,6 @@ extension ViewController: ModelDelegate {
             case 0:
                 radianDegrees = 90
                 piece.view.rotations += 1
-                
             case 1:
                 radianDegrees = 180
                 piece.view.rotations += 1

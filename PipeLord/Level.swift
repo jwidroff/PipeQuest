@@ -154,7 +154,7 @@ class LevelModel {
             board.pieces.append(exit)
             
             
-            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .colorChanger, colors: [UIColor.red, UIColor.green], version: 2, isLocked: false, opening: nil, doesPivot: true)
+            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .stick, colors: [UIColor.red], version: 2, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(piece)
 
 
@@ -397,7 +397,7 @@ class LevelModel {
             board.heightSpaces = 10
             board.widthSpaces = 5
             board.randomPieceColors = [.red, .blue]
-            board.randomPieceShapes = [.stick, .colorChanger]//.cross, .elbow, .stick, .diagElbow]
+            board.randomPieceShapes = [.stick]//.cross, .elbow, .stick, .diagElbow]
             board.amountOfRandomPieces = 16
 
             let entrance1 = Piece(indexes: Indexes(x: 4, y: 3), shape: .exit, colors: [UIColor.red], version: 1, isLocked: true, opening: "left", doesPivot: nil)
@@ -501,7 +501,7 @@ class LevelModel {
 
             board.colorTheme.gradientBackgroundColor = [UIColor.yellow, UIColor.purple]
             board.randomPieceColors = [UIColor.cyan, UIColor.red]//, UIColor.yellow]
-            board.randomPieceShapes = [.colorChanger, .wall]//, .cross]// .wall, .diagElbow, .cross, .stick, .elbow]
+            board.randomPieceShapes = [.stick, .wall]//, .cross]// .wall, .diagElbow, .cross, .stick, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
             board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1)]
@@ -766,7 +766,7 @@ class LevelModel {
             board.widthSpaces = 6
             board.amountOfRandomPieces = 10
             board.randomPieceColors = [UIColor.red]//, UIColor.green, UIColor.blue]
-            board.randomPieceShapes = [.doubleElbow, .cross, .diagElbow, .elbow, .stick, .colorChanger]
+            board.randomPieceShapes = [.doubleElbow, .cross, .diagElbow, .elbow, .stick, .stick]
 
             let entrance = Piece(indexes: Indexes(x: 2, y: 5), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "right", doesPivot: nil)
             board.pieces.append(entrance)
@@ -990,11 +990,11 @@ class LevelModel {
             piece.version = version
             piece.shape = board.randomPieceShapes[Int(arc4random_uniform(UInt32(board.randomPieceShapes.count)))]
             
-            if board.randomPieceColors.count == 1 && piece.shape == .colorChanger {
+            if board.randomPieceColors.count == 1 && piece.shape == .stick {
                                 
                 setPieceShape(piece: piece)
                 
-            } else if board.randomPieceColors.count == 2 && piece.shape == .colorChanger {
+            } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
                                 
                 if piece.colors[0] == piece.colors[1] {
                     setPieceShape(piece: piece)
@@ -1004,7 +1004,7 @@ class LevelModel {
             
             let version = Int(arc4random_uniform(UInt32(4))) + 1
             piece.version = version
-            let randomShapes:[Shape] = [.wall, .stick, .elbow, .doubleElbow, .diagElbow, .colorChanger]
+            let randomShapes:[Shape] = [.wall, .elbow, .doubleElbow, .diagElbow, .stick]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
             
         }
@@ -1068,13 +1068,13 @@ class LevelModel {
 //                piece.switches = 2
 //                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
                 
-            case .stick:
-                print()
+//            case .stick:
+//                print()
 
 //                piece.switches = 1
 //                piece.currentSwitch = 1
                 
-            case .colorChanger:
+            case .stick:
                 print()
 
 //                piece.switches = 2
@@ -1114,13 +1114,13 @@ class LevelModel {
 //                piece.switches = 2
 //                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
                 
-            case .stick:
-                print()
+//            case .stick:
+//                print()
 
 //                piece.switches = 1
 //                piece.currentSwitch = 1
                 
-            case .colorChanger:
+            case .stick:
                 print()
 
 //                piece.switches = 2
@@ -1327,30 +1327,30 @@ class LevelModel {
                 break
             }
             
-        case .stick:
-            
-            switch piece.version {
-            case 1, 3:
-                
-                piece.side.right.exitSide = "left"
-                piece.side.left.exitSide = "right"
-                piece.side.right.color = piece.colors[0]
-                piece.side.left.color = piece.colors[0]
-                piece.side.left.opening.isOpen = true
-                piece.side.right.opening.isOpen = true
-                
-            case 2, 4:
-                    
-                piece.side.top.exitSide = "bottom"
-                piece.side.bottom.exitSide = "top"
-                piece.side.top.color = piece.colors[0]
-                piece.side.bottom.color = piece.colors[0]
-                piece.side.top.opening.isOpen = true
-                piece.side.bottom.opening.isOpen = true
-                    
-            default:
-                break
-            }
+//        case .stick:
+//            
+//            switch piece.version {
+//            case 1, 3:
+//                
+//                piece.side.right.exitSide = "left"
+//                piece.side.left.exitSide = "right"
+//                piece.side.right.color = piece.colors[0]
+//                piece.side.left.color = piece.colors[0]
+//                piece.side.left.opening.isOpen = true
+//                piece.side.right.opening.isOpen = true
+//                
+//            case 2, 4:
+//                    
+//                piece.side.top.exitSide = "bottom"
+//                piece.side.bottom.exitSide = "top"
+//                piece.side.top.color = piece.colors[0]
+//                piece.side.bottom.color = piece.colors[0]
+//                piece.side.top.opening.isOpen = true
+//                piece.side.bottom.opening.isOpen = true
+//                    
+//            default:
+//                break
+//            }
             
             
         case .doubleElbow:
@@ -1512,7 +1512,7 @@ class LevelModel {
             }
             
             
-        case .colorChanger:
+        case .stick:
             
             
             switch piece.version {

@@ -268,21 +268,21 @@ class ShapeViewTopView: UIView {
         
         switch shape {
         
-        case .stick: //MARK: STICK VIEW
-            
-            switch version {
-            
-            case 1, 3:
-                
-                drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[0])
-                
-            case 2, 4:
-                
-                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
-                
-            default:
-                break
-            }
+//        case .stick: //MARK: STICK VIEW
+//            
+//            switch version {
+//            
+//            case 1, 3:
+//                
+//                drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[0])
+//                
+//            case 2, 4:
+//                
+//                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
+//                
+//            default:
+//                break
+//            }
             
         case .elbow: //MARK: ELBOW VIEW
             
@@ -803,7 +803,7 @@ class ShapeViewTopView: UIView {
             nextPieceView.layer.cornerRadius = nextPieceView.frame.width / 2
             nextPieceView.layer.shadowRadius = 0
             
-        case .colorChanger: //MARK: COLORCHANGER VIEW
+        case .stick: //MARK: COLORCHANGER VIEW
                         
             let eclipseHeight1 = frame.height / 1.75
             let eclipseWidth1 = frame.width / 1.75
@@ -1223,8 +1223,8 @@ enum Shape {
     case elbow
     case diagElbow
     case cross
+//    case stick
     case stick
-    case colorChanger
     case doubleElbow
     case entrance
     case exit
