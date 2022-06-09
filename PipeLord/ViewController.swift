@@ -614,20 +614,24 @@ extension ViewController: ModelDelegate {
             pieceX.indexes == piece.indexes
         }) {
             
+
             var radianDegrees: CGFloat = 0
             
-            switch piece.version {
+            switch piece.view.rotations {
+                
+            case 0:
+                radianDegrees = 90
+                piece.view.rotations += 1
                 
             case 1:
-                radianDegrees = 90
-            case 2:
                 radianDegrees = 180
-
-            case 3:
+                piece.view.rotations += 1
+            case 2:
                 radianDegrees = 270
-
-            case 4:
+                piece.view.rotations += 1
+            case 3:
                 radianDegrees = 360
+                piece.view.rotations = 0
                 
             default:
                 break

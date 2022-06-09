@@ -21,6 +21,7 @@ class ShapeView : UIView {
     var doesPivot = true
     var nextPiece: Piece?
     var context : CGContext?
+    var rotations = 0
     
     private var colorTheme = ColorTheme()
     

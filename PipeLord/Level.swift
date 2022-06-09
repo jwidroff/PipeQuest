@@ -154,7 +154,7 @@ class LevelModel {
             board.pieces.append(exit)
             
             
-            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .colorChanger, colors: [UIColor.red, UIColor.green], version: 4, isLocked: false, opening: nil, doesPivot: true)
+            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .colorChanger, colors: [UIColor.red, UIColor.green], version: 2, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(piece)
 
 

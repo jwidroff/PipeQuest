@@ -78,14 +78,14 @@ import UIKit
 //Make it that all pieces move 90 degrees and they dont count as moves
 //Fix corners on pieces - doesnt look good when rotating
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
-//Make it that ball doesnt need to be tapped to move
-//ColorChanger doesnt seem to work sometimes when it should
-//ColorChangers versions 1 and 3, 2 and 4 are the same. This wont work well for rotating 90 degrees
+//Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go
 //Cross - The versions need to be updated
 //Stick - Seems like after a switch is done, the ball will automatically work with that piece even if its not correct
 //DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
 //Get rid of sticks - No need for them with the colorChanger
-//Need to make it that with the switch it rotates 90 degrees forward each time
+//MARK: Need to make it that with the switch it rotates 90 degrees forward each time - The last commit didnt do this properly b/c it was based on the test piece's version, not any version
+
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
