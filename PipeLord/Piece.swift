@@ -371,10 +371,7 @@ class Piece {
             side.left.exitSide = "right"
             side.top.exitSide = "bottom"
             side.bottom.exitSide = "top"
-            side.right.color = colors[1]
-            side.left.color = colors[1]
-            side.top.color = colors[0]
-            side.bottom.color = colors[0]
+            
             side.top.opening.isOpen = true
             side.bottom.opening.isOpen = true
             side.left.opening.isOpen = true
@@ -392,6 +389,10 @@ class Piece {
                 side.top.closing.isOpen = false
                 side.bottom.closing.isOpen = false
                 
+                side.right.color = colors[1]
+                side.left.color = colors[1]
+                side.top.color = colors[0]
+                side.bottom.color = colors[0]
                
                     
 //                } else if currentSwitch == 2 {
@@ -408,6 +409,11 @@ class Piece {
 //                if  currentSwitch == 1 {
                     
                     //Horizontal Pipe on top
+                
+                side.right.color = colors[0]
+                side.left.color = colors[0]
+                side.top.color = colors[1]
+                side.bottom.color = colors[1]
                     
                 side.left.closing.isOpen = false
                 side.right.closing.isOpen = false
@@ -438,10 +444,15 @@ class Piece {
                     
 //                }
                 
-                side.left.closing.isOpen = true
-                side.right.closing.isOpen = true
-                side.top.closing.isOpen = false
-                side.bottom.closing.isOpen = false
+                side.right.color = colors[1]
+                side.left.color = colors[1]
+                side.top.color = colors[0]
+                side.bottom.color = colors[0]
+                
+                side.left.closing.isOpen = false
+                side.right.closing.isOpen = false
+                side.top.closing.isOpen = true
+                side.bottom.closing.isOpen = true
 
             case 4:
                 
@@ -458,11 +469,16 @@ class Piece {
 //                    //Vertical Pipe on top
                     
 //                }
+                side.right.color = colors[0]
+                side.left.color = colors[0]
+                side.top.color = colors[1]
+                side.bottom.color = colors[1]
                 
-                side.left.closing.isOpen = false
-                side.right.closing.isOpen = false
-                side.top.closing.isOpen = true
-                side.bottom.closing.isOpen = true
+                
+                side.left.closing.isOpen = true
+                side.right.closing.isOpen = true
+                side.top.closing.isOpen = false
+                side.bottom.closing.isOpen = false
                 
             default:
                 break

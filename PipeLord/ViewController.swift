@@ -639,6 +639,16 @@ extension ViewController: ModelDelegate {
             
             rotateView(view: piece.view, rotationDegrees: radianDegrees)
             
+            if piece.shape == .cross && (piece.version == 1 || piece.version == 3)  {
+                
+//                replacePieceView(piece: piece)
+                
+                
+                //MARK: COME BACK HERE
+                piece.view.setNeedsDisplay()
+                
+            }
+            
 //            if piece.shape == .colorChanger {
 //
 //                rotateView(view: piece.view, rotationDegrees: 180)
