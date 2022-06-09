@@ -104,7 +104,7 @@ protocol ModelDelegate {
     func updateMovesLeftLabel(moves: String)
     func addSwipeGestureRecognizer(view: UIView)
     func removeHole(indexes: Indexes)
-    func rotateView(view: UIView, rotationDegrees: CGFloat)
+    func rotateView(piece: Piece, rotationDegrees: CGFloat)
     
 }
 
