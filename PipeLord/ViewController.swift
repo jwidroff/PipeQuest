@@ -907,16 +907,19 @@ extension ViewController: ModelDelegate {
                 print("YEESSSSSSSSSSSSSSSSSSSS")
 //                piece.view.draw(piece.view.bounds)
 
+                self.switchCrissCross(piece: piece)
+                
+//                self.replacePieceView(piece: piece)
 
-                let newView = ShapeView(frame: piece.view.frame, piece: piece)
-
-                self.addTapGestureRecognizer(view: newView)
-
-                self.boardView.addSubview(newView)
-
-                piece.view.removeFromSuperview()
-
-                piece.view = newView
+//                let newView = ShapeView(frame: piece.view.frame, piece: piece)
+//
+//                self.addTapGestureRecognizer(view: newView)
+//
+//                self.boardView.addSubview(newView)
+//
+//                piece.view.removeFromSuperview()
+//
+//                piece.view = newView
 
 //                piece.view.setNeedsDisplay()
 
@@ -927,6 +930,39 @@ extension ViewController: ModelDelegate {
         }
         
     }
+    
+    func switchCrissCross(piece: Piece) {
+        
+        let newView = ShapeView(frame: piece.view.frame, piece: piece)
+
+        self.addTapGestureRecognizer(view: newView)
+
+        self.boardView.addSubview(newView)
+
+        piece.view.removeFromSuperview()
+
+        piece.view = newView
+
+        
+    }
+    
+    
+    
+//    func replaceView(piece: Piece) {
+//
+//        let newView = ShapeView(frame: piece.view.frame, piece: piece)
+//
+//        self.addTapGestureRecognizer(view: newView)
+//
+//        self.boardView.addSubview(newView)
+//
+//        piece.view.removeFromSuperview()
+//
+//        piece.view = newView
+//
+//
+//
+//    }
     
     func crashBallViewIntoCross(piece: Piece, ball: Ball) {
         

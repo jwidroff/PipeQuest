@@ -74,14 +74,21 @@ import UIKit
 
 
 //Fix PieceMaker
+//See if the Opening init for the Piece class is necessary
 //Make game playable only horizontal and move buttons etc
 //Make it that all pieces move 90 degrees and they dont count as moves
 //Fix corners on pieces - doesnt look good when rotating
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
 //Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go
-//Cross - The versions need to be updated
 //DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
+//Cross - Need to make it that when the ball crosses the cross, it doesnt rotate but rather puts the other side on top
+//Cross - Need to make it that theres only 2 versions when switching when the colors are the same. otherwise its confusing
+//Make a blank piece
 
+//DoubleElbow - Need to make it that the front pieces switch when a ball crosses
+
+
+//Consider a triple elbow or quad elbow
 
 
 protocol ModelDelegate {
@@ -105,6 +112,7 @@ protocol ModelDelegate {
     func addSwipeGestureRecognizer(view: UIView)
     func removeHole(indexes: Indexes)
     func rotateView(piece: Piece, rotationDegrees: CGFloat)
+    func switchCrissCross(piece: Piece)
     
 }
 
@@ -1560,32 +1568,39 @@ class Model {
  
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
-                        switchSwitches(piece: piece)
+//                        switchPieceAfterBall(piece: piece)
+
+//                        switchVersions(piece: piece)
 //                        setPieceSides(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         
+                        
+                        
+//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                            
-                            self.delegate?.replacePieceView(piece: piece)
+
+                            self.switchPieceAfterBall(piece: piece)
+
+//                            self.delegate?.replacePieceView(piece: piece)
                         }
                     }
                 }
                 
-                if piece.shape == .doubleElbow || piece.shape == .elbow {
-                    
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                    
-                    
-                    switchSwitches(piece: piece)
-//                    setPieceSides(piece: piece)
-                    
-                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        self.delegate?.replacePieceView(piece: piece)
-                    }
-                }
+//                if piece.shape == .doubleElbow || piece.shape == .elbow {
+//
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//
+////                    switchPieceAfterBall(piece: piece)
+////                    switchVersions(piece: piece)
+////                    setPieceSides(piece: piece)
+//
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                        self.switchPieceAfterBall(piece: piece)
+//                    }
+//                }
                 
                 if piece.shape == .stick {
                     
@@ -1640,30 +1655,44 @@ class Model {
                         
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
-                        switchSwitches(piece: piece)
+//                        switchPieceAfterBall(piece: piece)
+//                        switchVersions(piece: piece)
 //                        setPieceSides(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                            self.delegate?.replacePieceView(piece: piece)
+//                        }
+                        
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.delegate?.replacePieceView(piece: piece)
+                            self.switchPieceAfterBall(piece: piece)
                         }
                     }
                 }
                 
-                if piece.shape == .doubleElbow || piece.shape == .elbow {
-                    
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                    
-                    switchSwitches(piece: piece)
-//                    setPieceSides(piece: piece)
-                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        self.delegate?.replacePieceView(piece: piece)
-                    }
-                }
+//                if piece.shape == .doubleElbow || piece.shape == .elbow {
+//
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//
+////                    switchPieceAfterBall(piece: piece)
+////                    switchVersions(piece: piece)
+////                    setPieceSides(piece: piece)
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                        self.delegate?.replacePieceView(piece: piece)
+//                    }
+//                DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                    self.switchPieceAfterBall(piece: piece)
+//                }
+                
+                
+//                }
                 
                 if piece.shape == .stick {
                     
@@ -1721,28 +1750,36 @@ class Model {
                         
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
-                        switchSwitches(piece: piece)
-//                        setPieceSides(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                        
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.delegate?.replacePieceView(piece: piece)
+                            self.switchPieceAfterBall(piece: piece)
                         }
+                        
+//                        switchPieceAfterBall(piece: piece)
+//                        switchVersions(piece: piece)
+//                        setPieceSides(piece: piece)
+//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                            self.delegate?.replacePieceView(piece: piece)
+//                        }
                     }
                 }
                 
-                if piece.shape == .doubleElbow || piece.shape == .elbow {
-                    
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                    
-                    switchSwitches(piece: piece)
-//                    setPieceSides(piece: piece)
-                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        self.delegate?.replacePieceView(piece: piece)
-                    }
-                }
+//                if piece.shape == .doubleElbow || piece.shape == .elbow {
+//
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//
+////                    switchPieceAfterBall(piece: piece)
+////                    switchVersions(piece: piece)
+////                    setPieceSides(piece: piece)
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                        self.delegate?.replacePieceView(piece: piece)
+//                    }
+//                }
                 
                 if piece.shape == .stick {
                     
@@ -1800,28 +1837,35 @@ class Model {
                         
                         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
-                        switchSwitches(piece: piece)
+//                        switchPieceAfterBall(piece: piece)
+//                        switchVersions(piece: piece)
 //                        setPieceSides(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                            self.delegate?.replacePieceView(piece: piece)
+//                        }
+                        
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.delegate?.replacePieceView(piece: piece)
+                            self.switchPieceAfterBall(piece: piece)
                         }
                     }
                 }
                 
-                if piece.shape == .doubleElbow || piece.shape == .elbow {
-                    
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                    
-                    switchSwitches(piece: piece)
-//                    setPieceSides(piece: piece)
-                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        self.delegate?.replacePieceView(piece: piece)
-                    }
-                }
+//                if piece.shape == .doubleElbow || piece.shape == .elbow {
+//
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//
+////                    switchPieceAfterBall(piece: piece)
+////                    switchVersions(piece: piece)
+////                    setPieceSides(piece: piece)
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//
+//                        self.delegate?.replacePieceView(piece: piece)
+//                    }
+//                }
                 
                 if piece.shape == .stick {
                     
@@ -1919,7 +1963,8 @@ class Model {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
-                    switchSwitches(piece: piece)
+                    switchVersions(piece: piece)
+//                    switchVersions(piece: piece)
 //                    setPieceSides(piece: piece)
                     piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     print()
@@ -2016,7 +2061,105 @@ class Model {
 //        delegate?.replacePieceView(piece: piece)
 //    }
     
-    func switchSwitches(piece: Piece) {
+    
+    func switchPieceAfterBall(piece: Piece) {
+        
+        
+//        return
+//        print("XXXXXXXXXXXXXXXXXX")
+        
+        
+//        if piece.version != 4 {
+//
+//            piece.version += 1
+//
+//        } else {
+//
+//            piece.version = 1
+//        }
+        
+        
+        switch piece.shape {
+
+        case .cross:
+
+            if piece.colors[1] == piece.colors[0] {
+                //If the colors are the same lets rotate
+
+                switch piece.version {
+
+                case 1:
+
+                    piece.version = 2
+                    
+                case 2:
+                    piece.version = 1
+                case 3:
+                    piece.version = 4
+                case 4:
+                    piece.version = 3
+                default:
+                    break
+
+                }
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                
+            delegate?.replacePieceView(piece: piece)
+                
+//                delegate?.rotateView(piece: piece, rotationDegrees: 90)
+
+            } else {
+//                //If the colors are different lets switch which pipe is on top
+//
+//
+////                print("Colors are different")
+//
+                switch piece.version {
+
+                case 1:
+                    piece.version = 3
+                case 2:
+                    piece.version = 4
+                case 3:
+                    piece.version = 1
+                case 4:
+                    piece.version = 2
+                default:
+                    break
+
+                }
+
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//                delegate?.replacePieceView(piece: piece)
+                
+                delegate?.switchCrissCross(piece: piece)
+            }
+
+
+
+        case .doubleElbow:
+            break
+
+        case .stick:
+
+            break
+        case .diagElbow:
+            break
+
+        case .elbow:
+
+            break
+        default:
+
+            break
+
+
+        }
+        
+    }
+    
+    
+    func switchVersions(piece: Piece) {
         
 //        print(piece.currentSwitch)
 
@@ -2031,14 +2174,61 @@ class Model {
             return
         }
         
-        if piece.version != 4 {
+        switch piece.shape {
             
-            piece.version += 1
             
-        } else {
+        case .cross:
             
-            piece.version = 1
+            if piece.colors[0] == piece.colors[1] {
+                
+                switch piece.version{
+                    
+                case 1:
+                    piece.version = 2
+                case 2:
+                    piece.version = 1
+                case 3:
+                    
+                    piece.version = 4
+                case 4:
+                    piece.version = 3
+                    
+                default:
+                    
+                    break
+                    
+                }
+                
+                
+                
+                
+            } else {
+                
+                if piece.version != 4 {
+                    
+                    piece.version += 1
+                    
+                } else {
+                    
+                    piece.version = 1
+                }
+                
+            }
+            
+        default:
+            
+            if piece.version != 4 {
+                
+                piece.version += 1
+                
+            } else {
+                
+                piece.version = 1
+            }
+            
         }
+        
+        
     }
  
     func updateUserDefaults() {
