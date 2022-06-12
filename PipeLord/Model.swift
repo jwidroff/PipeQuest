@@ -244,16 +244,30 @@ class Model {
                 //Left Pivot
 //                if piece.currentSwitch == 1 {
                     
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.left.opening.isOpen = true
-                    piece.side.bottom.exitSide = "left"
-                    piece.side.left.exitSide = "bottom"
-                    piece.side.right.exitSide = nil
-                    piece.side.top.exitSide = nil
-                    piece.side.bottom.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.top.color = nil
-                    piece.side.right.color = nil
+                
+                piece.side.bottom.opening.isOpen = true
+                piece.side.left.opening.isOpen = true
+                piece.side.bottom.exitSide = "left"
+                piece.side.left.exitSide = "bottom"
+                piece.side.right.exitSide = nil
+                piece.side.top.exitSide = nil
+                piece.side.bottom.color = piece.colors[0]
+                piece.side.left.color = piece.colors[0]
+                piece.side.top.color = nil
+                piece.side.right.color = nil
+                
+                
+                
+//                    piece.side.bottom.opening.isOpen = true
+//                    piece.side.left.opening.isOpen = true
+//                    piece.side.bottom.exitSide = "left"
+//                    piece.side.left.exitSide = "bottom"
+//                    piece.side.right.exitSide = nil
+//                    piece.side.top.exitSide = nil
+//                    piece.side.bottom.color = piece.colors[0]
+//                    piece.side.left.color = piece.colors[0]
+//                    piece.side.top.color = nil
+//                    piece.side.right.color = nil
                     
 //                } else if piece.currentSwitch == 2 {
 //
@@ -304,16 +318,28 @@ class Model {
                 //Right Pivot
 //                if piece.currentSwitch == 1 {
                     
-                    piece.side.top.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    piece.side.top.exitSide = "right"
-                    piece.side.right.exitSide = "top"
-                    piece.side.bottom.exitSide = nil
-                    piece.side.left.exitSide = nil
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.right.color = piece.colors[0]
-                    piece.side.bottom.color = nil
-                    piece.side.left.color = nil
+                piece.side.bottom.opening.isOpen = true
+                piece.side.left.opening.isOpen = true
+                piece.side.bottom.exitSide = "left"
+                piece.side.left.exitSide = "bottom"
+                piece.side.right.exitSide = nil
+                piece.side.top.exitSide = nil
+                piece.side.bottom.color = piece.colors[0]
+                piece.side.left.color = piece.colors[0]
+                piece.side.top.color = nil
+                piece.side.right.color = nil
+                
+                
+//                    piece.side.top.opening.isOpen = true
+//                    piece.side.right.opening.isOpen = true
+//                    piece.side.top.exitSide = "right"
+//                    piece.side.right.exitSide = "top"
+//                    piece.side.bottom.exitSide = nil
+//                    piece.side.left.exitSide = nil
+//                    piece.side.top.color = piece.colors[0]
+//                    piece.side.right.color = piece.colors[0]
+//                    piece.side.bottom.color = nil
+//                    piece.side.left.color = nil
 
 //                } else if piece.currentSwitch == 2 {
 //
@@ -1963,38 +1989,43 @@ class Model {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
-                    switchVersions(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    print()
-                    print("Top")
-                    print("Open = \(piece.side.top.opening.isOpen)")
-                    print("Color = \(piece.side.top.color?.accessibilityName)")
-                    print("closing side = \(piece.side.top.closing.isOpen)")
-                    print()
-                    print("Right")
-                    print("Open = \(piece.side.right.opening.isOpen)")
-                    print("Color = \(piece.side.right.color?.accessibilityName)")
-                    print("closing side = \(piece.side.right.closing.isOpen)")
+                    if piece.doesPivot == true && piece.isLocked == false {
+                        
+                        switchVersions(piece: piece)
+    //                    switchVersions(piece: piece)
+    //                    setPieceSides(piece: piece)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                        print()
+                        print("Top")
+                        print("Open = \(piece.side.top.opening.isOpen)")
+                        print("Color = \(piece.side.top.color?.accessibilityName)")
+                        print("closing side = \(piece.side.top.closing.isOpen)")
+                        print()
+                        print("Right")
+                        print("Open = \(piece.side.right.opening.isOpen)")
+                        print("Color = \(piece.side.right.color?.accessibilityName)")
+                        print("closing side = \(piece.side.right.closing.isOpen)")
 
-                    print()
-                    print("Bottom")
-                    print("Open = \(piece.side.bottom.opening.isOpen)")
-                    print("Color = \(piece.side.bottom.color?.accessibilityName)")
-                    print("closing side = \(piece.side.bottom.closing.isOpen)")
+                        print()
+                        print("Bottom")
+                        print("Open = \(piece.side.bottom.opening.isOpen)")
+                        print("Color = \(piece.side.bottom.color?.accessibilityName)")
+                        print("closing side = \(piece.side.bottom.closing.isOpen)")
 
-                    print()
-                    print("Left")
-                    print("Open = \(piece.side.left.opening.isOpen)")
-                    print("Color = \(piece.side.left.color?.accessibilityName)")
-                    print("closing side = \(piece.side.left.closing.isOpen)")
+                        print()
+                        print("Left")
+                        print("Open = \(piece.side.left.opening.isOpen)")
+                        print("Color = \(piece.side.left.color?.accessibilityName)")
+                        print("closing side = \(piece.side.left.closing.isOpen)")
 
+                        
+
+                        
+                        
+                        delegate?.replacePieceView(piece: piece)
+                        
+                    }
                     
-
-                    
-                    
-                    delegate?.replacePieceView(piece: piece)
                 }
                 
             } else if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) && piece.shape == .entrance && piece.shape != .exit {
@@ -2163,7 +2194,7 @@ class Model {
         
 //        print(piece.currentSwitch)
 
-        if piece.isLocked || piece.doesPivot == false { return }
+//        if piece.isLocked || piece.doesPivot == false { return }
         
 //        if piece.shape != .entrance {
             
@@ -2175,7 +2206,6 @@ class Model {
         }
         
         switch piece.shape {
-            
             
         case .cross:
             
@@ -2214,6 +2244,7 @@ class Model {
                 }
                 
             }
+            
             
         default:
             

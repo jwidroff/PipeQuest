@@ -272,18 +272,28 @@ class Piece {
                 
                 //Left Pivot
                 
+                side.top.opening.isOpen = true
+                side.right.opening.isOpen = true
+                side.top.exitSide = "right"
+                side.right.exitSide = "top"
+                side.bottom.exitSide = nil
+                side.left.exitSide = nil
+                side.top.color = colors[0]
+                side.right.color = colors[0]
+                side.bottom.color = nil
+                side.left.color = nil
 //                if currentSwitch == 1 {
                     
-                    side.bottom.opening.isOpen = true
-                    side.left.opening.isOpen = true
-                    side.bottom.exitSide = "left"
-                    side.left.exitSide = "bottom"
-                    side.right.exitSide = nil
-                    side.top.exitSide = nil
-                    side.bottom.color = colors[0]
-                    side.left.color = colors[0]
-                    side.top.color = nil
-                    side.right.color = nil
+//                    side.bottom.opening.isOpen = true
+//                    side.left.opening.isOpen = true
+//                    side.bottom.exitSide = "left"
+//                    side.left.exitSide = "bottom"
+//                    side.right.exitSide = nil
+//                    side.top.exitSide = nil
+//                    side.bottom.color = colors[0]
+//                    side.left.color = colors[0]
+//                    side.top.color = nil
+//                    side.right.color = nil
                     
 //                } else if currentSwitch == 2 {
 //
@@ -336,16 +346,18 @@ class Piece {
                 
 //                if currentSwitch == 1 {
                     
-                    side.top.opening.isOpen = true
-                    side.right.opening.isOpen = true
-                    side.top.exitSide = "right"
-                    side.right.exitSide = "top"
-                    side.bottom.exitSide = nil
-                    side.left.exitSide = nil
-                    side.top.color = colors[0]
-                    side.right.color = colors[0]
-                    side.bottom.color = nil
-                    side.left.color = nil
+                    
+                
+                side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = true
+                side.bottom.exitSide = "left"
+                side.left.exitSide = "bottom"
+                side.right.exitSide = nil
+                side.top.exitSide = nil
+                side.bottom.color = colors[0]
+                side.left.color = colors[0]
+                side.top.color = nil
+                side.right.color = nil
 
 //                } else if currentSwitch == 2 {
 //

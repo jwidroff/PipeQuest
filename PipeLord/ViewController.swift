@@ -899,30 +899,7 @@ extension ViewController: ModelDelegate {
             
             if piece.shape == .cross && (piece.version == 1 || piece.version == 3)  {
 
-//                replacePieceView(piece: piece)
-
-
-                //MARK: COME BACK HERE
-
-                print("YEESSSSSSSSSSSSSSSSSSSS")
-//                piece.view.draw(piece.view.bounds)
-
                 self.switchCrissCross(piece: piece)
-                
-//                self.replacePieceView(piece: piece)
-
-//                let newView = ShapeView(frame: piece.view.frame, piece: piece)
-//
-//                self.addTapGestureRecognizer(view: newView)
-//
-//                self.boardView.addSubview(newView)
-//
-//                piece.view.removeFromSuperview()
-//
-//                piece.view = newView
-
-//                piece.view.setNeedsDisplay()
-
 
             }
             

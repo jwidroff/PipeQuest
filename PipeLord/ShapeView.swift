@@ -40,6 +40,7 @@ class ShapeView : UIView {
         if let nextPieceX = piece.nextPiece {
             self.nextPiece = nextPieceX
         }
+        
 
         makeSoft()
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
@@ -50,7 +51,19 @@ class ShapeView : UIView {
     func makeSoft() {
         self.backgroundColor = .gray
         self.layer.masksToBounds = false
-        let cornerRadius: CGFloat = self.frame.width / 2
+        
+        
+        //MARK: PLAY WITH THIS TO TOGGLE b/w Square and cirle
+        var cornerRadius: CGFloat = self.frame.width / 2
+        
+//        if isLocked == true || doesPivot == false {
+//            cornerRadius = 0
+//        } else {
+//
+//            cornerRadius = self.frame.width / 2
+//        }
+        
+        
         let shadowRadius: CGFloat = 2
         let darkShadow = CALayer()
         darkShadow.frame = self.layer.bounds
@@ -84,6 +97,10 @@ class ShapeView : UIView {
         context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
         context.addEllipse(in: rect1)
         context.fillEllipse(in: rect1)
+        
+//        context.addRect(rect1)
+//        context.fill(rect1)
+        
         context.restoreGState()
     }
     
@@ -243,6 +260,9 @@ class ShapeViewTopView: UIView {
         setShadow(context: context)
         context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
         context.addEllipse(in: rect1)
+        
+//        context.addRect(rect1)
+//        context.fill(rect1)
         context.fillEllipse(in: rect1)
         context.restoreGState()
     }
@@ -317,7 +337,9 @@ class ShapeViewTopView: UIView {
 //                if currentSwitch == 1 {
                     
                     //LEFT PIVOT TO BOTTOM
-                    drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
+//                    drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
+                
+                drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
                     
 //                } else if currentSwitch == 2 {
 //
@@ -358,7 +380,9 @@ class ShapeViewTopView: UIView {
 //                if currentSwitch == 1 {
                     
                     //RIGHT PIVOT TO TOP
-                    drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
+                
+                drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
+//                    drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
                     
 //                } else if currentSwitch == 2  {
 //
