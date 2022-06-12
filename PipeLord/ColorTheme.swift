@@ -13,7 +13,7 @@ import UIKit
 class ColorTheme {
     
     var gameBackground = UIColor()
-    var boardBackground = UIColor()
+    static var boardBackground = UIColor()
     var pieceBackground = UIColor()
     var lockedPieceBackground = UIColor()
     var holeColor = UIColor()
@@ -27,7 +27,7 @@ class ColorTheme {
     init() {
         
         gameBackground = UIColor.yellow
-        boardBackground = UIColor.red
+        ColorTheme.boardBackground = UIColor.gray
         pieceBackground = UIColor.clear
         lockedPieceBackground = UIColor(red: 0.2, green: 0.2, blue: 0.3, alpha: 0.4)
         

@@ -59,34 +59,21 @@ class ShapeView : UIView {
     }
     
     func makeSoft() {
-        self.backgroundColor = .gray
+        self.backgroundColor = UIColor.clear
         self.layer.masksToBounds = false
-        
-        
-        //MARK: PLAY WITH THIS TO TOGGLE b/w Square and cirle
         var cornerRadius: CGFloat = 0
         var frame = CGRect.zero
-        
-//        if isLocked == true {
-//            cornerRadius = 0
-////
-////            frame = CGRect(x: 0, y: 0, width: self.frame.width / 10 * 9, height: self.frame.height / 10 * 9)
-//            frame = self.bounds
-//
-//        } else
         
         if doesPivot == false {
             
             cornerRadius = 0
             frame = self.bounds
-//
             
         } else {
 
             cornerRadius = self.frame.width / 2
             frame = self.layer.bounds
         }
-        
         
         let shadowRadius: CGFloat = 2
         let darkShadow = CALayer()
@@ -130,69 +117,69 @@ class ShapeView : UIView {
         context.restoreGState()
     }
     
-    func addPivotRect(context: CGContext, side: String, color: CGColor) {
-        
-        
-        let color = UIColor.black.cgColor
-        
-        switch side {
-        
-        case "top":
-            
-            let width = bounds.width / 2
-            let x = (bounds.midX - (width / 2))
-            let pivotRect2 = CGRect(x: x, y: bounds.minY, width: width, height: bounds.height / 10)
-            let rect2 = CGRect(x: pivotRect2.minX - pivotRect2.width * 0.1 , y: 0, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
-            context.addRects([rect2])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
-            context.fill(rect2)
-            context.setFillColor(color)
-            context.addRects([pivotRect2])
-            context.fill(pivotRect2)
-            
-        case "bottom":
-            
-            let width = bounds.width / 2
-            let x = (bounds.midX - (width / 2))
-            let pivotRect = CGRect(x: x, y: bounds.maxY - (bounds.height / 10), width: width, height: bounds.height / 10)
-            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.1 , y: pivotRect.minY - pivotRect.height * 0.2, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
-            context.addRects([rect])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
-            context.fill(rect)
-            context.setFillColor(color)
-            context.addRects([pivotRect])
-            context.fill(pivotRect)
-            
-        case "left":
-            
-            let height = bounds.height / 2
-            let y = (bounds.midY - (height / 2))
-            let pivotRect2 = CGRect(x: bounds.minX, y: y, width: bounds.width / 10, height: height)
-            let rect2 = CGRect(x: 0 , y: pivotRect2.minY - pivotRect2.height * 0.1, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
-            context.addRects([rect2])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
-            context.fill(rect2)
-            context.setFillColor(color)
-            context.addRects([pivotRect2])
-            context.fill(pivotRect2)
-            
-        case "right":
-            
-            let height = bounds.height / 2
-            let y = (bounds.midY - (height / 2))
-            let pivotRect = CGRect(x: bounds.maxX - (bounds.height / 10), y: y, width: bounds.width / 10, height: height)
-            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.2 , y: pivotRect.minY - pivotRect.height * 0.1, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
-            context.addRects([rect])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
-            context.fill(rect)
-            context.setFillColor(color)
-            context.addRects([pivotRect])
-            context.fill(pivotRect)
-            
-        default:
-            break
-        }
-    }
+//    func addPivotRect(context: CGContext, side: String, color: CGColor) {
+//
+//
+//        let color = UIColor.black.cgColor
+//
+//        switch side {
+//
+//        case "top":
+//
+//            let width = bounds.width / 2
+//            let x = (bounds.midX - (width / 2))
+//            let pivotRect2 = CGRect(x: x, y: bounds.minY, width: width, height: bounds.height / 10)
+//            let rect2 = CGRect(x: pivotRect2.minX - pivotRect2.width * 0.1 , y: 0, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
+//            context.addRects([rect2])
+//            context.setFillColor(ColorTheme.boardBackground.cgColor)
+//            context.fill(rect2)
+//            context.setFillColor(color)
+//            context.addRects([pivotRect2])
+//            context.fill(pivotRect2)
+//
+//        case "bottom":
+//
+//            let width = bounds.width / 2
+//            let x = (bounds.midX - (width / 2))
+//            let pivotRect = CGRect(x: x, y: bounds.maxY - (bounds.height / 10), width: width, height: bounds.height / 10)
+//            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.1 , y: pivotRect.minY - pivotRect.height * 0.2, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
+//            context.addRects([rect])
+//            context.setFillColor(ColorTheme.boardBackground.cgColor)
+//            context.fill(rect)
+//            context.setFillColor(color)
+//            context.addRects([pivotRect])
+//            context.fill(pivotRect)
+//
+//        case "left":
+//
+//            let height = bounds.height / 2
+//            let y = (bounds.midY - (height / 2))
+//            let pivotRect2 = CGRect(x: bounds.minX, y: y, width: bounds.width / 10, height: height)
+//            let rect2 = CGRect(x: 0 , y: pivotRect2.minY - pivotRect2.height * 0.1, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
+//            context.addRects([rect2])
+//            context.setFillColor(ColorTheme.boardBackground.cgColor)
+//            context.fill(rect2)
+//            context.setFillColor(color)
+//            context.addRects([pivotRect2])
+//            context.fill(pivotRect2)
+//
+//        case "right":
+//
+//            let height = bounds.height / 2
+//            let y = (bounds.midY - (height / 2))
+//            let pivotRect = CGRect(x: bounds.maxX - (bounds.height / 10), y: y, width: bounds.width / 10, height: height)
+//            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.2 , y: pivotRect.minY - pivotRect.height * 0.1, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
+//            context.addRects([rect])
+//            context.setFillColor(ColorTheme.boardBackground.cgColor)
+//            context.fill(rect)
+//            context.setFillColor(color)
+//            context.addRects([pivotRect])
+//            context.fill(pivotRect)
+//
+//        default:
+//            break
+//        }
+//    }
     
     func setShadow(context: CGContext) {
         context.saveGState()
@@ -885,12 +872,12 @@ class ShapeViewTopView: UIView {
             
         case .stick: //MARK: COLORCHANGER VIEW
                         
-            let eclipseHeight1 = frame.height / 1.75
-            let eclipseWidth1 = frame.width / 1.75
-            let rectX = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-            context.addEllipse(in: rectX)
-            context.setFillColor(UIColor.black.cgColor)
-            context.fillEllipse(in: rectX)
+//            let eclipseHeight1 = frame.height / 1.75
+//            let eclipseWidth1 = frame.width / 1.75
+//            let rectX = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
+//            context.addEllipse(in: rectX)
+//            context.setFillColor(UIColor.black.cgColor)
+//            context.fillEllipse(in: rectX)
             
             switch version { //MARK: Had to make changes here
             
@@ -1182,7 +1169,7 @@ class ShapeViewTopView: UIView {
             let pivotRect2 = CGRect(x: x, y: bounds.minY, width: width, height: bounds.height / 10)
             let rect2 = CGRect(x: pivotRect2.minX - pivotRect2.width * 0.1 , y: 0, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
             context.addRects([rect2])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
+            context.setFillColor(ColorTheme.boardBackground.cgColor)
             context.fill(rect2)
             context.setFillColor(color)
             context.addRects([pivotRect2])
@@ -1195,7 +1182,7 @@ class ShapeViewTopView: UIView {
             let pivotRect = CGRect(x: x, y: bounds.maxY - (bounds.height / 10), width: width, height: bounds.height / 10)
             let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.1 , y: pivotRect.minY - pivotRect.height * 0.2, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
             context.addRects([rect])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
+            context.setFillColor(ColorTheme.boardBackground.cgColor)
             context.fill(rect)
             context.setFillColor(color)
             context.addRects([pivotRect])
@@ -1208,7 +1195,7 @@ class ShapeViewTopView: UIView {
             let pivotRect2 = CGRect(x: bounds.minX, y: y, width: bounds.width / 10, height: height)
             let rect2 = CGRect(x: 0 , y: pivotRect2.minY - pivotRect2.height * 0.1, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
             context.addRects([rect2])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
+            context.setFillColor(ColorTheme.boardBackground.cgColor)
             context.fill(rect2)
             context.setFillColor(color)
             context.addRects([pivotRect2])
@@ -1221,7 +1208,7 @@ class ShapeViewTopView: UIView {
             let pivotRect = CGRect(x: bounds.maxX - (bounds.height / 10), y: y, width: bounds.width / 10, height: height)
             let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.2 , y: pivotRect.minY - pivotRect.height * 0.1, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
             context.addRects([rect])
-            context.setFillColor(colorTheme.boardBackground.cgColor)
+            context.setFillColor(ColorTheme.boardBackground.cgColor)
             context.fill(rect)
             context.setFillColor(color)
             context.addRects([pivotRect])

@@ -145,7 +145,7 @@ class ViewController: UIViewController {
         
         boardView = BoardView(frame: frame, xArray: xArray, yArray: yArray, iceLocations: model.board.iceLocations, holeLocations: model.board.holeLocations, colorTheme: board.colorTheme)
         self.model.board.view = boardView
-        self.model.board.view.backgroundColor = colorTheme.boardBackground
+//        self.model.board.view.backgroundColor = ColorTheme.boardBackground
         self.addSwipeGestureRecognizer(view: model.board.view)
         
         view.addSubview(self.model.board.view)
@@ -774,7 +774,7 @@ extension ViewController: ModelDelegate {
     
     
     
-    func replacePieceHelper(piece: Piece) {
+    func replacePieceHelper(piece: Piece) { //NOT CALLED
         
         let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
         
@@ -862,14 +862,15 @@ extension ViewController: ModelDelegate {
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[0].backgroundColor = UIColor.gray.cgColor
                     sublayers[0].shadowColor = UIColor.white.cgColor
                     sublayers[0].cornerRadius = cornerRadius
                     sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
+                    
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[1].backgroundColor = UIColor.gray.cgColor
                     sublayers[1].shadowColor = UIColor.black.cgColor
                     sublayers[1].cornerRadius = cornerRadius
                     sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
@@ -884,14 +885,14 @@ extension ViewController: ModelDelegate {
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[0].backgroundColor = UIColor.gray.cgColor
                     sublayers[0].shadowColor = UIColor.white.cgColor
                     sublayers[0].cornerRadius = cornerRadius
                     sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[1].backgroundColor = UIColor.gray.cgColor
                     sublayers[1].shadowColor = UIColor.black.cgColor
                     sublayers[1].cornerRadius = cornerRadius
                     sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
@@ -907,14 +908,14 @@ extension ViewController: ModelDelegate {
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[0].backgroundColor = UIColor.gray.cgColor
                     sublayers[0].shadowColor = UIColor.white.cgColor
                     sublayers[0].cornerRadius = cornerRadius
                     sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[1].backgroundColor = UIColor.gray.cgColor
                     sublayers[1].shadowColor = UIColor.black.cgColor
                     sublayers[1].cornerRadius = cornerRadius
                     sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
@@ -929,14 +930,14 @@ extension ViewController: ModelDelegate {
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[0].backgroundColor = UIColor.gray.cgColor
                     sublayers[0].shadowColor = UIColor.white.cgColor
                     sublayers[0].cornerRadius = cornerRadius
                     sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = piece.view.backgroundColor?.cgColor
+                    sublayers[1].backgroundColor = UIColor.gray.cgColor
                     sublayers[1].shadowColor = UIColor.black.cgColor
                     sublayers[1].cornerRadius = cornerRadius
                     sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
@@ -954,10 +955,10 @@ extension ViewController: ModelDelegate {
             if piece.shape == .cross && (piece.version == 1 || piece.version == 3)  {
 
                 self.switchCrissCross(piece: piece)
+                
 
+//                piece.view.makeSoft()
             }
-            
-            
         }
         
     }
@@ -971,10 +972,12 @@ extension ViewController: ModelDelegate {
         self.boardView.addSubview(newView)
 
         piece.view.removeFromSuperview()
+        
+       
 
         piece.view = newView
 
-        
+//        piece.view.makeSoft()
     }
     
     
