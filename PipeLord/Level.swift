@@ -216,10 +216,10 @@ class LevelModel {
             let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, isLocked: true, opening: "left", doesPivot: nil)
             board.pieces.append(exit)
 
-            let piece1 = Piece(indexes: Indexes(x: 2, y: 1), shape: .elbow, colors: [UIColor.red], version: 3, isLocked: false, opening: nil, doesPivot: false)
+            let piece1 = Piece(indexes: Indexes(x: 2, y: 1), shape: .elbow, colors: [UIColor.red], version: 3, isLocked: true, opening: nil, doesPivot: true)
             board.pieces.append(piece1)
 
-            let piece2 = Piece(indexes: Indexes(x: 2, y: 2), shape: .elbow, colors: [UIColor.red], version: 4, isLocked: false, opening: nil, doesPivot: false)
+            let piece2 = Piece(indexes: Indexes(x: 2, y: 2), shape: .elbow, colors: [UIColor.red], version: 4, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(piece2)
             
             setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 3, exception: [2], pieceMakerOpening: "")

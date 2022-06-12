@@ -102,8 +102,8 @@ class ViewController: UIViewController {
         heightCushion = self.view.frame.height / 5
         boardHeight = self.view.frame.height - heightCushion
         boardWidth = boardHeight / 2
-        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.0
-        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.0
+        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 8.0
+        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 8.0
         distanceFromPieceCenter = (pieceWidth / 8.5 * 10) / 2
         
     }

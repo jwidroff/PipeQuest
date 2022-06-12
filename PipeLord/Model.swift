@@ -19,8 +19,6 @@ import UIKit
 
 //TODO: Give pieces the ability to rotate (May want to consider the cross piece
 
-//TODO: Make a piece that rotates pieces
-
 //TODO: Make it that the pieceMakers can have multiple openings
 
 //TODO: MAKE IT THAT THAT PIECEMAKER CAN ALSO MAKE PIECEMAKERS
@@ -81,14 +79,15 @@ import UIKit
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
 //Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go
 //DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
-//Cross - Need to make it that when the ball crosses the cross, it doesnt rotate but rather puts the other side on top
-//Cross - Need to make it that theres only 2 versions when switching when the colors are the same. otherwise its confusing
+
 //Make a blank piece
 
 //DoubleElbow - Need to make it that the front pieces switch when a ball crosses
 
 
 //Consider a triple elbow or quad elbow
+
+//TODO: Make it that the entrance and exit pieces can rotate as well (This will be tricky because you'll need to first have the ball auto move if pipes are lined up b/c after the change, there will no longer be a way to make the ball move by tapping it)
 
 
 protocol ModelDelegate {
