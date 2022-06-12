@@ -32,7 +32,13 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
-        self.view.backgroundColor = colorTheme.gameBackground
+//        self.view.backgroundColor = colorTheme.gameBackground
+        
+        
+        addGradient()
+        
+        
+        
         model = Model()
         model.delegate = self
 //        model.showLoadingAnimation()
@@ -47,6 +53,54 @@ class ViewController: UIViewController {
             self.model.setUpGame()
             self.model.loadingMode = false
 //        }
+    }
+    
+    func addGradient() {
+        
+        let gradient = CAGradientLayer()
+        
+        //These angle the gradient on the X & Y axis (negative numbers can be used too)
+        gradient.startPoint = .init(x: 0.0, y: 0.0)
+        gradient.endPoint = .init(x: 0.0, y: 2.0)
+        
+        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
+        gradient.locations = [-0.1, 0.5, 1.1]
+        
+        //This keeps the gradient within the bounds of the view
+        gradient.frame = self.view.bounds
+        gradient.opacity = 0.5
+        //These are the colors of the gradient(that are being passed in)
+        gradient.colors = [UIColor.cyan.cgColor, UIColor.white.cgColor, UIColor.blue.cgColor]
+        
+        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
+        self.view.layer.insertSublayer(gradient, at: 1)
+        
+        let gradient2 = CAGradientLayer()
+        
+        //These angle the gradient on the X & Y axis (negative numbers can be used too)
+        gradient2.startPoint = .init(x: 0.0, y: 0.0)
+        gradient2.endPoint = .init(x: 2.0, y: 0.0)
+        
+        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
+        gradient2.locations = [-0.1, 0.5, 1.1]
+        
+        //This keeps the gradient within the bounds of the view
+        gradient2.frame = self.view.bounds
+        gradient2.opacity = 0.5
+        //These are the colors of the gradient(that are being passed in)
+        gradient2.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
+        
+
+        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
+        self.view.layer.insertSublayer(gradient2, at: 2)
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     //MARK: Initial Setup
@@ -104,7 +158,7 @@ class ViewController: UIViewController {
         boardWidth = boardHeight / 2
         pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 8.0
         pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 8.0
-        distanceFromPieceCenter = (pieceWidth / 8.5 * 10) / 2
+        distanceFromPieceCenter = (pieceWidth / 8.0 * 10) / 2
         
     }
     
@@ -738,7 +792,7 @@ extension ViewController: ModelDelegate {
         }
     }
     
-    func lockPieceInPlace(piece: Piece) {
+    func lockPieceInPlace(piece: Piece) { //Not Called
         
         if piece.isLocked == false {
             

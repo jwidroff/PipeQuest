@@ -16,9 +16,9 @@ class ShapeView : UIView {
     var colors = [CGColor]()
     var switches = Int()
 //    var currentSwitch = Int()
-    var isLocked = Bool()
+    var isLocked: Bool?
     var opening = String()
-    var doesPivot = Bool()
+    var doesPivot: Bool?
     var nextPiece: Piece?
     var context : CGContext?
     var rotations = 0
@@ -47,7 +47,15 @@ class ShapeView : UIView {
         makeSoft()
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         let topView = ShapeViewTopView(frame: frameX, piece: piece)
+        
+        
+        
         self.addSubview(topView)
+        
+        
+//        if piece.doesPivot == true {
+//            topView.layer.cornerRadius = topView.frame.height / 2
+//        }
     }
     
     func makeSoft() {
@@ -59,13 +67,15 @@ class ShapeView : UIView {
         var cornerRadius: CGFloat = 0
         var frame = CGRect.zero
         
-        if isLocked == true {
-            cornerRadius = 0
+//        if isLocked == true {
+//            cornerRadius = 0
+////
+////            frame = CGRect(x: 0, y: 0, width: self.frame.width / 10 * 9, height: self.frame.height / 10 * 9)
+//            frame = self.bounds
 //
-//            frame = CGRect(x: 0, y: 0, width: self.frame.width / 10 * 9, height: self.frame.height / 10 * 9)
-            frame = self.bounds
-            
-        } else if doesPivot == false {
+//        } else
+        
+        if doesPivot == false {
             
             cornerRadius = 0
             frame = self.bounds
@@ -262,14 +272,29 @@ class ShapeViewTopView: UIView {
         self.backgroundColor = .clear
         self.layer.cornerRadius = 2
         self.clipsToBounds = true
+        
+        
+        if piece.doesPivot == true {
+            
+            self.layer.cornerRadius = self.frame.width / 2
+            
+        }
+        
+//        if piece.isLocked == true {
+//
+//            self.backgroundColor = .black
+//        }
+        
+        
+        
 //        self.switches = piece.switches
 //        self.currentSwitch = piece.currentSwitch
     }
     
     func setLock(context: CGContext) {
         
-        let w = frame.width / 10 * 9
-        let h = frame.height / 10 * 9
+        let w = frame.width// / 10 * 9
+        let h = frame.height// / 10 * 9
         let x = (frame.width - w) / 2
         let y = (frame.height - h) / 2
         let rect1 = CGRect(x: x, y: y, width: w, height: h)
@@ -1083,32 +1108,34 @@ class ShapeViewTopView: UIView {
             
         case .wall: //MARK: WALL VIEW
             
-            if isLocked == true {
-
-                let eclipseHeight2 = frame.height / 1.25
-                let eclipseWidth2 = frame.width / 1.25
-                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-                context.setFillColor(UIColor.black.cgColor)
-//                context.setFillColor(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.9).cgColor)
-
-                
-                context.addRect(rect3)
-                context.fill(rect3)
-                
+            print()
+            
+//            if isLocked == true {
+//
+//                let eclipseHeight2 = frame.height / 1.25
+//                let eclipseWidth2 = frame.width / 1.25
+//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
 //                context.setFillColor(UIColor.black.cgColor)
+////                context.setFillColor(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.9).cgColor)
+//
+//
+//                context.addRect(rect3)
+//                context.fill(rect3)
+//
+////                context.setFillColor(UIColor.black.cgColor)
+////                context.addEllipse(in: rect3)
+////                context.fillEllipse(in: rect3)
+//
+//            } else {
+//
+//                let eclipseHeight2 = frame.height / 4
+//                let eclipseWidth2 = frame.width / 4
+//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
+//                context.setFillColor(UIColor.darkGray.cgColor)
 //                context.addEllipse(in: rect3)
 //                context.fillEllipse(in: rect3)
-                
-            } else {
-            
-                let eclipseHeight2 = frame.height / 4
-                let eclipseWidth2 = frame.width / 4
-                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-                context.setFillColor(UIColor.darkGray.cgColor)
-                context.addEllipse(in: rect3)
-                context.fillEllipse(in: rect3)
-                
-            }
+//
+//            }
             
         case .ball: //MARK: BALL VIEW
             
@@ -1131,8 +1158,8 @@ class ShapeViewTopView: UIView {
             
             print("SOMETHING WENT WRONG HERE")
             
-            let w = frame.width / 10 * 9
-            let h = frame.height / 10 * 9
+            let w = frame.width / 10 * 8.0
+            let h = frame.height / 10 * 8.0
             let x = (frame.width - w) / 2
             let y = (frame.height - h) / 2
             let rect1 = CGRect(x: x, y: y, width: w, height: h)

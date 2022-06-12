@@ -89,6 +89,8 @@ import UIKit
 
 //TODO: Make it that the entrance and exit pieces can rotate as well (This will be tricky because you'll need to first have the ball auto move if pipes are lined up b/c after the change, there will no longer be a way to make the ball move by tapping it)
 
+//TODO: Need to make sure that the views for the crosses that were added when the piece passed or when tapped is added to pieces passed because right now its not getting rid of the view after the piece passes
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -1988,8 +1990,8 @@ class Model {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
-                    if piece.doesPivot == true && piece.isLocked == false {
-                        
+//                    if piece.doesPivot == true && piece.isLocked == false {
+                    if piece.doesPivot == true {
                         switchVersions(piece: piece)
     //                    switchVersions(piece: piece)
     //                    setPieceSides(piece: piece)

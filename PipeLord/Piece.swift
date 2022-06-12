@@ -22,7 +22,7 @@ class Piece {
     var isLocked = false
     var opening = String()
     var nextPiece: Piece?
-    var doesPivot = true
+    var doesPivot = false
     var center = CGPoint()
     
     init(){
