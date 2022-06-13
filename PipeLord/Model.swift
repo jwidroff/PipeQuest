@@ -91,6 +91,8 @@ import UIKit
 
 //TODO: Need to make sure that the views for the crosses that were added when the piece passed or when tapped is added to pieces passed because right now its not getting rid of the view after the piece passes
 
+//TODO: Make it that when a user taps on a not switching piece, it animates it trying to switch but doesnt work
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -1997,6 +1999,9 @@ class Model {
     //                    setPieceSides(piece: piece)
                         piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                         print()
+                        
+                        print("Version = \(piece.version)")
+                        
                         print("Top")
                         print("Open = \(piece.side.top.opening.isOpen)")
                         print("Color = \(piece.side.top.color?.accessibilityName)")
@@ -2230,12 +2235,9 @@ class Model {
                     
                 }
                 
-                
-                
-                
             } else {
                 
-                if piece.version != 4 {
+                if piece.version != piece.totalVersions {
                     
                     piece.version += 1
                     
@@ -2249,7 +2251,7 @@ class Model {
             
         default:
             
-            if piece.version != 4 {
+            if piece.version != piece.totalVersions {
                 
                 piece.version += 1
                 

@@ -24,6 +24,7 @@ class Piece {
     var nextPiece: Piece?
     var doesPivot = false
     var center = CGPoint()
+    var totalVersions = Int()
     
     init(){
         
@@ -52,7 +53,48 @@ class Piece {
         }
         
 //        setPieceSwitches() //MARK: NOT USED
+        
+        setPieceTotalVersions(shape: shape)
         setPieceSides(shape: shape, version: version, colors: self.colors, opening: opening)
+    }
+    
+    
+    func setPieceTotalVersions(shape: Shape) {
+        
+        
+        switch shape {
+            
+            
+        case .doubleElbow:
+            totalVersions = 8
+            
+        case .stick:
+            totalVersions = 4
+            
+        case .elbow:
+            totalVersions = 4
+            
+        case .cross:
+            totalVersions = 4
+            
+        case .diagElbow:
+            totalVersions = 4
+            
+        case .entrance:
+            totalVersions = 4
+            
+        case .exit:
+            totalVersions = 4
+            
+        case .pieceMaker:
+            totalVersions = 4
+            
+        default:
+            
+            break
+            
+        }
+        
     }
     
 //    private func setPieceSwitches() {
@@ -526,12 +568,10 @@ class Piece {
             switch version {
             case 1:
                 
-//                if currentSwitch == 1 {
-            
                     side.top.opening.isOpen = true
                     side.bottom.opening.isOpen = false
                     side.left.opening.isOpen = true
-                    side.right.opening.isOpen = false
+                    side.right.opening.isOpen = true
                     side.right.exitSide = "top"
                     side.left.exitSide = "top"
                     side.top.exitSide = "left"
@@ -539,62 +579,26 @@ class Piece {
                     side.right.color = colors[1]
                     side.top.color = colors[0]
                     side.left.color = colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    side.top.opening.isOpen = true
-//                    side.bottom.opening.isOpen = false
-//                    side.left.opening.isOpen = false
-//                    side.right.opening.isOpen = true
-//                    side.right.exitSide = "top"
-//                    side.left.exitSide = "top"
-//                    side.top.exitSide = "right"
-//                    side.bottom.exitSide = nil
-//                    side.right.color = colors[1]
-//                    side.top.color = colors[1]
-//                    side.left.color = colors[0]
-////                    piece.side.bottom.color = piece.colors[1]
-//                }
+
                 
             case 2:
 
-//                if currentSwitch == 1 {
-                    
-                    //left bottom
-                    side.top.opening.isOpen = true
-                    side.bottom.opening.isOpen = true
-                    side.left.opening.isOpen = true
-                    side.right.opening.isOpen = false
-                    side.right.exitSide = nil
-                    side.left.exitSide = "bottom"
-                    side.top.exitSide = "left"
-                    side.bottom.exitSide = "left"
-//                    piece.side.right.color = piece.colors[1]
-                    side.top.color = colors[1]
-                    side.left.color = colors[0]
-                    side.bottom.color = colors[0]
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    side.top.opening.isOpen = true
-//                    side.bottom.opening.isOpen = true
-//                    side.left.opening.isOpen = true
-//                    side.right.opening.isOpen = false
-//                    side.right.exitSide = nil
-//                    side.left.exitSide = "top"
-//                    side.top.exitSide = "left"
-//                    side.bottom.exitSide = "left"
-////                    piece.side.right.color = piece.colors[1]
-//                    side.top.color = colors[1]
-//                    side.left.color = colors[1]
-//                    side.bottom.color = colors[0]
-//                }
+                side.top.opening.isOpen = true
+                side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.right.opening.isOpen = true
+                side.right.exitSide = "top"
+                side.left.exitSide = nil
+                side.top.exitSide = "right"
+                side.bottom.exitSide = "right"
+                side.right.color = colors[0]
+                side.top.color = colors[0]
+                side.bottom.color = colors[1]
+                
+
                 
             case 3:
 
-//                if currentSwitch == 1 {
-                    
                     //Bottom Left on top
                     side.top.opening.isOpen = false
                     side.bottom.opening.isOpen = true
@@ -603,62 +607,26 @@ class Piece {
                     side.right.exitSide = "bottom"
                     side.left.exitSide = "bottom"
                     side.top.exitSide = nil
-                    side.bottom.exitSide = "left"
-                    side.right.color = colors[1]
-//                    side.top.color = colors[1]
-                    side.left.color = colors[0]
+                    side.bottom.exitSide = "right"
+                    side.right.color = colors[0]
+                    side.left.color = colors[1]
                     side.bottom.color = colors[0]
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    //Bottom right on top
-//                    side.top.opening.isOpen = false
-//                    side.bottom.opening.isOpen = true
-//                    side.left.opening.isOpen = true
-//                    side.right.opening.isOpen = true
-//                    side.right.exitSide = "bottom"
-//                    side.left.exitSide = "bottom"
-//                    side.top.exitSide = nil
-//                    side.bottom.exitSide = "right"
-//                    side.right.color = colors[1]
-////                    side.top.color = colors[1]
-//                    side.left.color = colors[0]
-//                    side.bottom.color = colors[1]
-//                }
+         
                 
             case 4:
                 
-//                if currentSwitch == 1 {
-                    
-                    side.top.opening.isOpen = true
-                    side.bottom.opening.isOpen = true
-                    side.left.opening.isOpen = false
-                    side.right.opening.isOpen = true
-                    side.right.exitSide = "top"
-                    side.left.exitSide = nil
-                    side.top.exitSide = "right"
-                    side.bottom.exitSide = "right"
-                    side.right.color = colors[0]
-                    side.top.color = colors[0]
-//                    piece.side.left.color = piece.colors[0]
-                    side.bottom.color = colors[1]
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    side.top.opening.isOpen = true
-//                    side.bottom.opening.isOpen = true
-//                    side.left.opening.isOpen = false
-//                    side.right.opening.isOpen = true
-//                    side.right.exitSide = "bottom"
-//                    side.left.exitSide = nil
-//                    side.top.exitSide = "right"
-//                    side.bottom.exitSide = "right"
-//                    side.right.color = colors[1]
-//                    side.top.color = colors[0]
-////                    piece.side.left.color = piece.colors[0]
-//                    side.bottom.color = colors[1]
-//                }
-                
+                side.top.opening.isOpen = true
+                side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = true
+                side.right.opening.isOpen = false
+                side.right.exitSide = nil
+                side.left.exitSide = "bottom"
+                side.top.exitSide = "left"
+                side.bottom.exitSide = "left"
+                side.top.color = colors[1]
+                side.left.color = colors[0]
+                side.bottom.color = colors[0]
+
             default:
                 break
             }

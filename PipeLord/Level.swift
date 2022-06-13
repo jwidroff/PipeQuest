@@ -142,19 +142,29 @@ class LevelModel {
             board.colorTheme.gradientBackgroundColor = [UIColor.yellow, UIColor.cyan]
             board.randomPieceColors = [UIColor.red]
             board.randomPieceShapes = [.diagElbow]
-            board.heightSpaces = 8
-            board.widthSpaces = 4
+            board.heightSpaces = 10
+            board.widthSpaces = 5
             addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
-            let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "bottom", doesPivot: nil)
+            let entrance = Piece(indexes: Indexes(x: 2, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "bottom", doesPivot: nil)
             board.pieces.append(entrance)
 
+            let entrance1 = Piece(indexes: Indexes(x: 1, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "right", doesPivot: nil)
+            board.pieces.append(entrance1)
+
+            let entrance2 = Piece(indexes: Indexes(x: 2, y: 3), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "top", doesPivot: nil)
+            board.pieces.append(entrance2)
+
+            let entrance3 = Piece(indexes: Indexes(x: 3, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "left", doesPivot: nil)
+            board.pieces.append(entrance3)
+
+            
 
             let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, opening: "top", doesPivot: nil)
             board.pieces.append(exit)
             
             
-            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .cross, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: false, opening: nil, doesPivot: true)
+            let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .doubleElbow, colors: [UIColor.red, UIColor.cyan], version: 1, isLocked: false, opening: nil, doesPivot: true)
             board.pieces.append(piece)
 
 
