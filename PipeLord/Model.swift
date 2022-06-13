@@ -1615,21 +1615,21 @@ class Model {
                     }
                 }
                 
-//                if piece.shape == .doubleElbow || piece.shape == .elbow {
-//
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-//
-////                    switchPieceAfterBall(piece: piece)
-////                    switchVersions(piece: piece)
-////                    setPieceSides(piece: piece)
-//
+                if piece.shape == .doubleElbow {
+
+                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+//                    switchPieceAfterBall(piece: piece)
+//                    switchVersions(piece: piece)
+//                    setPieceSides(piece: piece)
+
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                        self.switchPieceAfterBall(piece: piece)
-//                    }
-//                }
+
+                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                        self.switchPieceAfterBall(piece: piece)
+                    }
+                }
                 
                 if piece.shape == .stick {
                     
@@ -1702,26 +1702,26 @@ class Model {
                     }
                 }
                 
-//                if piece.shape == .doubleElbow || piece.shape == .elbow {
-//
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-//
-////                    switchPieceAfterBall(piece: piece)
-////                    switchVersions(piece: piece)
-////                    setPieceSides(piece: piece)
+                if piece.shape == .doubleElbow {
+                    
+                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+                    
+                    //                    switchPieceAfterBall(piece: piece)
+                    //                    switchVersions(piece: piece)
+                    //                    setPieceSides(piece: piece)
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//
+                    
 //                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 //
 //                        self.delegate?.replacePieceView(piece: piece)
 //                    }
-//                DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                    self.switchPieceAfterBall(piece: piece)
-//                }
-                
-                
-//                }
+                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+                        
+                        self.switchPieceAfterBall(piece: piece)
+                    }
+                    
+                    
+                }
                 
                 if piece.shape == .stick {
                     
@@ -1796,19 +1796,19 @@ class Model {
                     }
                 }
                 
-//                if piece.shape == .doubleElbow || piece.shape == .elbow {
-//
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-//
-////                    switchPieceAfterBall(piece: piece)
-////                    switchVersions(piece: piece)
-////                    setPieceSides(piece: piece)
+                if piece.shape == .doubleElbow {
+
+                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+//                    switchPieceAfterBall(piece: piece)
+//                    switchVersions(piece: piece)
+//                    setPieceSides(piece: piece)
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                        self.delegate?.replacePieceView(piece: piece)
-//                    }
-//                }
+                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                        self.switchPieceAfterBall(piece: piece)
+                    }
+                }
                 
                 if piece.shape == .stick {
                     
@@ -1882,19 +1882,19 @@ class Model {
                     }
                 }
                 
-//                if piece.shape == .doubleElbow || piece.shape == .elbow {
-//
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-//
-////                    switchPieceAfterBall(piece: piece)
-////                    switchVersions(piece: piece)
-////                    setPieceSides(piece: piece)
+                if piece.shape == .doubleElbow {
+
+                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+//                    switchPieceAfterBall(piece: piece)
+//                    switchVersions(piece: piece)
+//                    setPieceSides(piece: piece)
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                        self.delegate?.replacePieceView(piece: piece)
-//                    }
-//                }
+                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                        self.switchPieceAfterBall(piece: piece)
+                    }
+                }
                 
                 if piece.shape == .stick {
                     
@@ -2101,6 +2101,8 @@ class Model {
     
     func switchPieceAfterBall(piece: Piece) {
         
+        print("SWITCHHHHHHHHHHHHHHHHHHHHH")
+        
         
 //        return
 //        print("XXXXXXXXXXXXXXXXXX")
@@ -2142,15 +2144,10 @@ class Model {
                 piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                 
             delegate?.replacePieceView(piece: piece)
-                
-//                delegate?.rotateView(piece: piece, rotationDegrees: 90)
+              
 
             } else {
-//                //If the colors are different lets switch which pipe is on top
-//
-//
-////                print("Colors are different")
-//
+
                 switch piece.version {
 
                 case 1:
@@ -2175,7 +2172,38 @@ class Model {
 
 
         case .doubleElbow:
-            break
+            
+            print()
+  
+                switch piece.version {
+
+                case 1:
+                    piece.version = 5
+                case 2:
+                    piece.version = 6
+                case 3:
+                    piece.version = 7
+                case 4:
+                    piece.version = 8
+                case 5:
+                    piece.version = 1
+                case 6:
+                    piece.version = 2
+                case 7:
+                    piece.version = 3
+                case 8:
+                    piece.version = 4
+
+                default:
+                    break
+
+                }
+//
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+////                delegate?.replacePieceView(piece: piece)
+//
+                delegate?.switchCrissCross(piece: piece)
+//            }
 
         case .stick:
 

@@ -952,7 +952,7 @@ extension ViewController: ModelDelegate {
             
         } completion: { (true) in
             
-            if piece.shape == .cross && (piece.version == 1 || piece.version == 3)  {
+            if (piece.shape == .cross && (piece.version == 1 || piece.version == 3)) || (piece.shape == .doubleElbow && (piece.version == 1 || piece.version == 5))  {
 
                 self.switchCrissCross(piece: piece)
                 
