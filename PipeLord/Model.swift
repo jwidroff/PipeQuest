@@ -53,10 +53,6 @@ import UIKit
 
 //TODO: Need a level to introduce pieces that switch
 
-//TODO: Should diagElbows switch after passing?
-
-//TODO: Finish making color themes for each individual level
-
 //TODO: Consider making pieces stick together
 
 //Fix up menuView
@@ -77,12 +73,9 @@ import UIKit
 //Make it that all pieces move 90 degrees and they dont count as moves
 //Fix corners on pieces - doesnt look good when rotating
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
-//Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go
-//DoubleElbow - May need 8 versions (4 sides + switch b/w which is on top)
+//Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go)
 
 //Make a blank piece
-
-//DoubleElbow - Need to make it that the front pieces switch when a ball crosses
 
 
 //Consider a triple elbow or quad elbow
@@ -92,6 +85,8 @@ import UIKit
 //TODO: Need to make sure that the views for the crosses that were added when the piece passed or when tapped is added to pieces passed because right now its not getting rid of the view after the piece passes
 
 //TODO: Make it that when a user taps on a not switching piece, it animates it trying to switch but doesnt work
+
+//TODO: Need to enlarge pieces when the ball moves
 
 
 protocol ModelDelegate {

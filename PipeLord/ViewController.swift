@@ -223,12 +223,21 @@ class ViewController: UIViewController {
     
     func setupMenuButton() {
         
+        
+        
+        
+        
+        
         let controlHeight = pieceHeight / 2
         let buttonWidth = (boardWidth / 2) - 10
         let buttonHeight = controlHeight
         let menuButtonYFloat = model.board.view.frame.maxY + (controlHeight / 2)
         let menuButtonXFloat = model.board.view.frame.minX
         let menuButtonFrame = CGRect(x: menuButtonXFloat, y: menuButtonYFloat, width: buttonWidth, height: buttonHeight)
+        
+        
+        
+        
         menuButton = UIButton(frame: menuButtonFrame)
         menuButton.layer.cornerRadius = menuButton.frame.height / 2
         menuButton.backgroundColor = colorTheme.buttonColors
@@ -847,7 +856,7 @@ extension ViewController: ModelDelegate {
         let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
         
         
-        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn) {
             
             piece.view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
             
@@ -971,6 +980,8 @@ extension ViewController: ModelDelegate {
 
         self.boardView.addSubview(newView)
 
+        
+        
         piece.view.removeFromSuperview()
         
        

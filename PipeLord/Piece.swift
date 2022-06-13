@@ -145,6 +145,8 @@ class Piece {
         
         switch shape {
         
+            
+            
         case .stick:
             
             switch version {
@@ -702,6 +704,9 @@ class Piece {
             default:
                 break
             }
+        case .wall:
+            
+            print()
             
         case .diagElbow:
             
@@ -712,7 +717,7 @@ class Piece {
             
             switch version {
             
-            case 1, 3:
+            case 1:
                 
                 //Pivots on left and right
 //                if currentSwitch == 1 {
@@ -738,7 +743,7 @@ class Piece {
 //                    side.bottom.color = colors[0]
 //                }
                 
-            case 2, 4:
+            case 2:
                 
                 //Pivots on top and bottom
 //                if currentSwitch == 1 {
@@ -748,26 +753,48 @@ class Piece {
                     side.bottom.exitSide = "right"
                     side.top.exitSide = "left"
                     side.right.color = colors[1]
-                    side.top.color = colors[0]
+                    side.top.color = colors[1]
                     side.left.color = colors[0]
-                    side.bottom.color = colors[1]
+                    side.bottom.color = colors[0]
                 
 //                } else if currentSwitch == 2 {
 //
-//                    side.left.exitSide = "bottom"
-//                    side.right.exitSide = "top"
-//                    side.bottom.exitSide = "left"
-//                    side.top.exitSide = "right"
-//                    side.right.color = colors[0]
-//                    side.top.color = colors[0]
-//                    side.left.color = colors[1]
-//                    side.bottom.color = colors[1]
+                    
 //                }
                     
+            
+            case 3:
+                
+                side.left.exitSide = "bottom"
+                side.right.exitSide = "top"
+                side.bottom.exitSide = "left"
+                side.top.exitSide = "right"
+                side.right.color = colors[0]
+                side.top.color = colors[0]
+                side.left.color = colors[1]
+                side.bottom.color = colors[1]
+                
+            case 4:
+                
+                side.right.exitSide = "bottom"
+                side.left.exitSide = "top"
+                side.top.exitSide = "left"
+                side.bottom.exitSide = "right"
+                side.right.color = colors[1]
+                side.top.color = colors[0]
+                side.left.color = colors[0]
+                side.bottom.color = colors[1]
+                
+                
+               
+                
+                
+                
             default:
                 break
             }
         default:
+            print("DEFAULT")
             break
         }
     }
