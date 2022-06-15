@@ -815,7 +815,7 @@ extension ViewController: ModelDelegate {
 
             let frame = CGRect(x: x, y: y, width: w, height: h)
 
-            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: nil)
+            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: false)
             
             piece.view.removeFromSuperview()
             

@@ -15,12 +15,9 @@ class Piece {
     var shape: Shape = .regular
     var view = ShapeView()
     var colors = [UIColor()]
-//    var switches = Int()
-//    var currentSwitch = Int()
     var side = Side()
     var version = Int()
     var isLocked = false
-//    var opening = String()
     var nextPiece: Piece?
     var doesPivot = false
     var center = CGPoint()
@@ -30,7 +27,7 @@ class Piece {
         
     }
     
-    init(indexes: Indexes, shape: Shape, colors: [UIColor], version: Int, isLocked: Bool, doesPivot: Bool?) {
+    init(indexes: Indexes, shape: Shape, colors: [UIColor], version: Int, isLocked: Bool, doesPivot: Bool) {
         
         self.indexes = indexes
         self.shape = shape
@@ -39,9 +36,9 @@ class Piece {
 //        self.currentSwitch = currentSwitch
         self.isLocked = isLocked
         
-        if let doesPivot = doesPivot {
+//        if let doesPivot = doesPivot {
             self.doesPivot = doesPivot
-        }
+//        }
         
 //        if let opening = opening {
 //            self.opening = opening
