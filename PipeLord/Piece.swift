@@ -1015,7 +1015,7 @@ class Ball {
     var onColor = UIColor()
     var exited = Bool()
     var piecesPassed = [Piece]()
-    var possibleLoopedIndexes = [Indexes]()
+//    var possibleLoopedIndexes = [Indexes]()
     var loopedIndexes = [Indexes : Int]()
     var loopedPieces = [Piece]()
     var center = CGPoint()

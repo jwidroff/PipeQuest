@@ -111,6 +111,7 @@ protocol ModelDelegate {
     func removeHole(indexes: Indexes)
     func rotateView(piece: Piece, rotationDegrees: CGFloat)
     func switchCrissCross(piece: Piece)
+    func enlargePiece(view: UIView)
     
 }
 
@@ -1452,27 +1453,29 @@ class Model {
         for piece in fakePieces {
 
             if piece.shape == .entrance {
+                
+                let ball = Ball()
 
                 switch piece.version {
 
                 case 1:
                     
                     //Entrance opens on bottom
-                    checkNextPiece4Exit(pieces: fakePieces, piece: piece, side2Check: "top")
+                    checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "top")
 
 
                 case 2:
 
-                    checkNextPiece4Exit(pieces: fakePieces, piece: piece, side2Check: "right")
+                    checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "right")
 
 
                 case 3:
 
-                    checkNextPiece4Exit(pieces: fakePieces, piece: piece, side2Check: "bottom")
+                    checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "bottom")
 
                 case 4:
                     
-                    checkNextPiece4Exit(pieces: fakePieces, piece: piece, side2Check: "left")
+                    checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "left")
 
                 default:
 
@@ -1482,33 +1485,52 @@ class Model {
                 }
             }
         }
+        
     }
     
-    func checkNextPiece4Exit(pieces: [Piece], piece:Piece, side2Check: String) {
+    
+    func enlargeHelper(piece: Piece) {
+        
+        for pieceXX in board.pieces {
+            
+            if piece.indexes == pieceXX.indexes {
+                
+                delegate?.enlargePiece(view: pieceXX.view)
+                
+            }
+        }
+    }
+    
+    func checkNextPiece4Exit(ball: Ball, pieces: [Piece], piece:Piece, side2Check: String) {
+        
+        if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
+            
+            print("MOVE BALL FOR ENDLESS LOOP!")
+            
+            return
+        }
+        
+        print("CALLED")
         
         switch side2Check {
             //side to check is the side of the new piece
             
         case "top":
             
-            
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1), pieces: pieces) {
-                
-                print("piece type \(piece.shape)")
-                
                 
                 if pieceX.side.bottom.opening.isOpen == true {
                     if piece.side.top.color == pieceX.side.bottom.color {
                         
                         if pieceX.shape == .exit {
+                            
+                            
+                            
                             print("MOVE BALL!!!!!")
                         }
                         
                         else if pieceX.shape == .cross {
                             
-                            
-//                            print("Side top closing = \(pi)")
-
                             if pieceX.side.bottom.closing.isOpen == false {
                                 return
                             } else {
@@ -1528,7 +1550,6 @@ class Model {
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
                                 case 4:
-                                    
                                     pieceX.version = 2
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
@@ -1537,19 +1558,66 @@ class Model {
                                     break
                                     
                                 }
-                                
-                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
-                                
-                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
                             }
+                        }
+                        
+                        else if pieceX.shape == .doubleElbow {
 
+                            switch pieceX.version {
+
+                            case 1:
+                                pieceX.version = 5
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 2:
+                                pieceX.version = 6
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 3:
+                                pieceX.version = 7
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 4:
+                                pieceX.version = 8
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 5:
+                                pieceX.version = 1
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 6:
+                                pieceX.version = 2
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 7:
+                                pieceX.version = 3
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 8:
+                                pieceX.version = 4
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            default:
+
+                                break
+
+                            }
                         }
                         
-                        else {
-                            checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
-                            
-                        }
+//                        for pieceXX in board.pieces {
+//
+//                            if pieceX.indexes == pieceXX.indexes {
+//
+//                                delegate?.enlargePiece(view: pieceXX.view)
+//
+//                            }
+//                        }
                         
+                        addToFakePiecesPassed(ball: ball, piece: pieceX)
+                        
+                        
+//                        enlargeHelper(piece: pieceX)
+                        checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
                     }
                 }
             }
@@ -1557,9 +1625,6 @@ class Model {
             
         case "right":
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y), pieces: pieces) {
-                
-                print("piece type \(piece.shape)")
-                
                 
                 if pieceX.side.left.opening.isOpen == true {
                     if piece.side.right.color == pieceX.side.left.color {
@@ -1590,7 +1655,6 @@ class Model {
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
                                 case 4:
-                                    
                                     pieceX.version = 2
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
@@ -1599,20 +1663,66 @@ class Model {
                                     break
                                     
                                 }
-                                
-                                
-                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
-                                
-                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.left.exitSide!)
                             }
+                        }
+                        
+                        else if pieceX.shape == .doubleElbow {
 
+                            switch pieceX.version {
+
+                            case 1:
+                                pieceX.version = 5
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 2:
+                                pieceX.version = 6
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 3:
+                                pieceX.version = 7
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 4:
+                                pieceX.version = 8
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 5:
+                                pieceX.version = 1
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 6:
+                                pieceX.version = 2
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 7:
+                                pieceX.version = 3
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 8:
+                                pieceX.version = 4
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            default:
+
+                                break
+
+                            }
                         }
                         
-                        else {
-                            checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.left.exitSide!)
-                            
-                        }
+//                        for pieceXX in board.pieces {
+//
+//                            if pieceX.indexes == pieceXX.indexes {
+//
+//                                delegate?.enlargePiece(view: pieceXX.view)
+//
+//                            }
+//                        }
                         
+                        addToFakePiecesPassed(ball: ball, piece: pieceX)
+                        
+//                        enlargeHelper(piece: pieceX)
+
+                        checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.left.exitSide!)
                     }
                 }
             }
@@ -1620,8 +1730,6 @@ class Model {
         case "bottom":
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
                 
-                print("piece type \(piece.shape)")
-
                 if pieceX.side.top.opening.isOpen == true {
                     if piece.side.bottom.color == pieceX.side.top.color {
                         
@@ -1650,7 +1758,6 @@ class Model {
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
                                 case 4:
-                                    
                                     pieceX.version = 3
                                     pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
                                     
@@ -1659,26 +1766,69 @@ class Model {
                                     break
                                     
                                 }
-                                
-                                
-                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
-                                
-                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.top.exitSide!)
                             }
-
                         }
                         
-                        else {
-                            checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.top.exitSide!)
-                            
+                        else if pieceX.shape == .doubleElbow {
+
+                            switch pieceX.version {
+
+                            case 1:
+                                pieceX.version = 5
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 2:
+                                pieceX.version = 6
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 3:
+                                pieceX.version = 7
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 4:
+                                pieceX.version = 8
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 5:
+                                pieceX.version = 1
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 6:
+                                pieceX.version = 2
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 7:
+                                pieceX.version = 3
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 8:
+                                pieceX.version = 4
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            default:
+
+                                break
+
+                            }
                         }
+                        
+//                        for pieceXX in board.pieces {
+//
+//                            if pieceX.indexes == pieceXX.indexes {
+//
+//                                delegate?.enlargePiece(view: pieceXX.view)
+//
+//                            }
+//                        }
+                        
+                        addToFakePiecesPassed(ball: ball, piece: pieceX)
+                        
+//                        enlargeHelper(piece: pieceX)
+
+                        checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.top.exitSide!)
                         
                     }
                 }
-                
-                
-                
-
             }
 
         case "left":
@@ -1723,38 +1873,78 @@ class Model {
                                     break
                                     
                                 }
-                                
-                                
-                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
-                                
-                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.right.exitSide!)
                             }
 
                         }
                         
-                        else {
-                            checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.right.exitSide!)
-                            
+                        else if pieceX.shape == .doubleElbow {
+
+                            switch pieceX.version {
+
+
+                            case 1:
+                                pieceX.version = 5
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 2:
+                                pieceX.version = 6
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 3:
+                                pieceX.version = 7
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 4:
+
+                                pieceX.version = 8
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 5:
+                                pieceX.version = 1
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 6:
+                                pieceX.version = 2
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 7:
+                                pieceX.version = 3
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            case 8:
+                                pieceX.version = 4
+                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+
+                            default:
+
+                                break
+
+                            }
                         }
                         
+//                        for pieceXX in board.pieces {
+//
+//                            if pieceX.indexes == pieceXX.indexes {
+//
+//                                delegate?.enlargePiece(view: pieceXX.view)
+//
+//                            }
+//                        }
+                        
+                        addToFakePiecesPassed(ball: ball, piece: pieceX)
+
+//                        enlargeHelper(piece: pieceX)
+
+                        checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.right.exitSide!)
                     }
                 }
-                
-
             }
 
         default:
             
             break
-            
-            
-            
         }
-        
-        
     }
-    
-    
     
     func sortPieces(direction: UISwipeGestureRecognizer.Direction) {
         
@@ -1833,6 +2023,30 @@ class Model {
 //        return (bool, message)
     }
     
+    func addToFakePiecesPassed(ball: Ball, piece: Piece) {
+        
+        if !ball.piecesPassed.contains(where: { (pieceX) -> Bool in
+            piece.indexes == pieceX.indexes
+        }) {
+            
+            ball.piecesPassed.append(piece)
+        }
+        else {
+            
+            if ball.loopedIndexes[piece.indexes] != nil {
+                
+                ball.loopedIndexes[piece.indexes]! += 1
+                
+            } else {
+                
+                ball.loopedIndexes[piece.indexes] = 1
+            }
+            
+        }
+        
+    }
+    
+    
     func addToPiecesPassed(ball: Ball, piece: Piece) {
         
         if !ball.piecesPassed.contains(where: { (pieceX) -> Bool in
@@ -1843,7 +2057,7 @@ class Model {
         }
         else {
             
-            ball.possibleLoopedIndexes.append(piece.indexes)
+//            ball.possibleLoopedIndexes.append(piece.indexes)
             
             delegate?.changeViewColor(piece: piece, ball: ball)
             delegate?.changeAnimationSpeed(slowerOrFaster: "faster")
@@ -1860,6 +2074,33 @@ class Model {
         }
     }
     
+    func check4FakeEndlessLoop(ball: Ball, piece: Piece) -> Bool {
+        
+        var bool = false
+        
+        for index in ball.loopedIndexes {
+            
+            if index.value >= 10 {
+                
+//                let piece = getPieceInfo(index: index.key)
+               
+                ball.loopedPieces.append(piece)
+            }
+        }
+        if ball.loopedPieces.count >= 10 {
+
+            if !ball.loopedIndexes.contains(where: { (key, value) -> Bool in
+                value == 9
+            }) {
+                bool = true
+            }
+        }
+        return bool
+        
+        
+        
+    }
+    
     func check4EndlessLoop(ball: Ball) -> Bool {
         
         var bool = false
@@ -1869,6 +2110,7 @@ class Model {
             if index.value >= 10 {
                 
                 let piece = getPieceInfo(index: index.key)
+               
                 ball.loopedPieces.append(piece)
             }
         }

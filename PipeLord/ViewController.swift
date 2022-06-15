@@ -473,6 +473,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ModelDelegate {
+    func enlargePiece(view: UIView) {
+        
+        let transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        view.transform = transform
+        
+    }
+    
     
     
 

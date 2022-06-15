@@ -652,8 +652,11 @@ class LevelModel {
             board.randomPieceColors = [UIColor.red, UIColor.red, UIColor.red]
             board.randomPieceShapes = [.doubleElbow]//, .cross, .diagElbow, .elbow]
 
-            let entrance = Piece(indexes: Indexes(x: 2, y: 5), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            let entrance = Piece(indexes: Indexes(x: 3, y: 4), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
             board.pieces.append(entrance)
+            
+            let exit = Piece(indexes: Indexes(x: 3, y: 8), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            board.pieces.append(exit)
             
             let doubleElbow1 = Piece(indexes: Indexes(x: 3, y: 5), shape: .doubleElbow, colors: [UIColor.red, UIColor.red], version: 3, isLocked: false, doesPivot: true)
             board.pieces.append(doubleElbow1)
