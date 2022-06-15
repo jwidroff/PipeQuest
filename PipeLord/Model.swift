@@ -1618,21 +1618,43 @@ class Model {
             
             let startSide = "center"
             
-            let endSide = piece.opening
+//            let endSide = piece.opening
             
-            switch piece.opening {
+//            switch piece.opening {
+//
+//            case "top":
+//                ball.onColor = piece.side.top.color!
+//            case "bottom":
+//                ball.onColor = piece.side.bottom.color!
+//            case "left":
+//                ball.onColor = piece.side.left.color!
+//            case "right":
+//                ball.onColor = piece.side.right.color!
+//            default:
+//                break
+//            }
             
-            case "top":
+            var endSide = ""
+
+            
+            switch piece.version {
+            
+            case 1:
+                endSide = "bottom"
                 ball.onColor = piece.side.top.color!
-            case "bottom":
+            case 2:
+                endSide = "top"
                 ball.onColor = piece.side.bottom.color!
-            case "left":
+            case 3:
+                endSide = "left"
                 ball.onColor = piece.side.left.color!
-            case "right":
+            case 4:
+                endSide = "right"
                 ball.onColor = piece.side.right.color!
             default:
                 break
             }
+            
             
             addToPiecesPassed(ball: ball, piece: piece)
             delegate?.moveBallView(ball: ball, piece: piece, startSide: startSide, endSide: endSide)

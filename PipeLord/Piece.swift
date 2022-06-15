@@ -213,29 +213,93 @@ class Piece {
                 break
             }
             
+//        case .entrance:
+//
+//            switch opening {
+//
+//            case "top":
+//
+//                side.top.color = colors[0]
+//                side.top.exitSide = "center"
+//                side.top.opening.isOpen = true
+//
+//            case "bottom":
+//
+//                side.bottom.color = colors[0]
+//                side.bottom.exitSide = "center"
+//                side.bottom.opening.isOpen = true
+//
+//            case "left":
+//
+//                side.left.color = colors[0]
+//                side.left.exitSide = "center"
+//                side.left.opening.isOpen = true
+//
+//            case "right":
+//
+//                side.right.color = colors[0]
+//                side.right.exitSide = "center"
+//                side.right.opening.isOpen = true
+//
+//            default:
+//                break
+//            }
+//
+//        case .exit:
+//
+//            switch opening {
+//
+//            case "top":
+//
+//                side.top.color = colors[0]
+//                side.top.exitSide = "center"
+//                side.top.opening.isOpen = true
+//
+//            case "bottom":
+//
+//                side.bottom.color = colors[0]
+//                side.bottom.exitSide = "center"
+//                side.bottom.opening.isOpen = true
+//
+//            case "left":
+//
+//                side.left.color = colors[0]
+//                side.left.exitSide = "center"
+//                side.left.opening.isOpen = true
+//
+//            case "right":
+//
+//                side.right.color = colors[0]
+//                side.right.exitSide = "center"
+//                side.right.opening.isOpen = true
+//
+//            default:
+//                break
+//            }
+            
         case .entrance:
             
-            switch opening {
+            switch version {
             
-            case "top":
+            case 1:
                 
                 side.top.color = colors[0]
                 side.top.exitSide = "center"
                 side.top.opening.isOpen = true
 
-            case "bottom":
+            case 2:
                 
                 side.bottom.color = colors[0]
                 side.bottom.exitSide = "center"
                 side.bottom.opening.isOpen = true
 
-            case "left":
+            case 3:
                 
                 side.left.color = colors[0]
                 side.left.exitSide = "center"
                 side.left.opening.isOpen = true
 
-            case "right":
+            case 4:
                 
                 side.right.color = colors[0]
                 side.right.exitSide = "center"
@@ -247,27 +311,28 @@ class Piece {
         
         case .exit:
             
-            switch opening {
+            switch version {
             
-            case "top":
-                
-                side.top.color = colors[0]
-                side.top.exitSide = "center"
-                side.top.opening.isOpen = true
-                
-            case "bottom":
-                
+            case 1:
                 side.bottom.color = colors[0]
                 side.bottom.exitSide = "center"
                 side.bottom.opening.isOpen = true
                 
-            case "left":
+                
+                
+            case 2:
+                side.top.color = colors[0]
+                side.top.exitSide = "center"
+                side.top.opening.isOpen = true
+                
+                
+            case 3:
                 
                 side.left.color = colors[0]
                 side.left.exitSide = "center"
                 side.left.opening.isOpen = true
                 
-            case "right":
+            case 4:
                 
                 side.right.color = colors[0]
                 side.right.exitSide = "center"
@@ -276,6 +341,7 @@ class Piece {
             default:
                 break
             }
+            
             
         case .elbow:
             
