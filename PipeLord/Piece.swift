@@ -20,7 +20,7 @@ class Piece {
     var side = Side()
     var version = Int()
     var isLocked = false
-    var opening = String()
+//    var opening = String()
     var nextPiece: Piece?
     var doesPivot = false
     var center = CGPoint()
@@ -30,7 +30,7 @@ class Piece {
         
     }
     
-    init(indexes: Indexes, shape: Shape, colors: [UIColor], version: Int, isLocked: Bool, opening: String?, doesPivot: Bool?) {
+    init(indexes: Indexes, shape: Shape, colors: [UIColor], version: Int, isLocked: Bool, doesPivot: Bool?) {
         
         self.indexes = indexes
         self.shape = shape
@@ -43,9 +43,9 @@ class Piece {
             self.doesPivot = doesPivot
         }
         
-        if let opening = opening {
-            self.opening = opening
-        }
+//        if let opening = opening {
+//            self.opening = opening
+//        }
         
         if colors.count == 1 {
             
@@ -55,7 +55,7 @@ class Piece {
 //        setPieceSwitches() //MARK: NOT USED
         
         setPieceTotalVersions(shape: shape)
-        setPieceSides(shape: shape, version: version, colors: self.colors, opening: opening)
+        setPieceSides(shape: shape, version: version, colors: self.colors)
     }
     
     
@@ -141,7 +141,7 @@ class Piece {
 //        }
 //    }
     
-    func setPieceSides(shape: Shape, version: Int, colors: [UIColor], opening: String?) {
+    func setPieceSides(shape: Shape, version: Int, colors: [UIColor]) {
         
         switch shape {
         

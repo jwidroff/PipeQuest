@@ -785,7 +785,7 @@ extension ViewController: ModelDelegate {
     
     func replacePieceHelper(piece: Piece) { //NOT CALLED
         
-        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, opening: piece.opening, doesPivot: piece.doesPivot)
+        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
         
         let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
         
@@ -815,7 +815,7 @@ extension ViewController: ModelDelegate {
 
             let frame = CGRect(x: x, y: y, width: w, height: h)
 
-            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, opening: nil, doesPivot: nil)
+            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: nil)
             
             piece.view.removeFromSuperview()
             

@@ -937,7 +937,7 @@ class Model {
         setPieceShape(piece: nextPiece)
 //        setPieceSwitches(piece: nextPiece)
 //        setPieceSides(piece: nextPiece)
-        nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors, opening: nextPiece.opening)
+        nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
         
         piece.nextPiece = nextPiece
         delegate?.resetPieceMakerView(piece: piece)
@@ -2091,7 +2091,7 @@ class Model {
                         switchVersions(piece: piece)
     //                    switchVersions(piece: piece)
     //                    setPieceSides(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         print()
                         
                         print("Version = \(piece.version)")
@@ -2235,7 +2235,7 @@ class Model {
                     break
 
                 }
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                 
             delegate?.replacePieceView(piece: piece)
               
@@ -2257,7 +2257,7 @@ class Model {
 
                 }
 
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 //                delegate?.replacePieceView(piece: piece)
                 
                 delegate?.switchCrissCross(piece: piece)
@@ -2293,7 +2293,7 @@ class Model {
 
                 }
 //
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 ////                delegate?.replacePieceView(piece: piece)
 //
                 delegate?.switchCrissCross(piece: piece)

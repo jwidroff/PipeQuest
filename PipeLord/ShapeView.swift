@@ -17,7 +17,7 @@ class ShapeView : UIView {
     var switches = Int()
 //    var currentSwitch = Int()
     var isLocked: Bool?
-    var opening = String()
+//    var opening = String()
     var doesPivot: Bool?
     var nextPiece: Piece?
     var context : CGContext?
@@ -224,7 +224,7 @@ class ShapeViewTopView: UIView {
     var switches = Int()
 //    var currentSwitch = Int()
     var isLocked = false
-    var opening = String()
+//    var opening = String()
     var doesPivot = true
     var nextPiece: Piece?
     
@@ -249,7 +249,7 @@ class ShapeViewTopView: UIView {
         self.shape = piece.shape
         self.version = piece.version
         self.isLocked = piece.isLocked
-        self.opening = piece.opening
+//        self.opening = piece.opening
         self.doesPivot = piece.doesPivot
         
         if let nextPieceX = piece.nextPiece {
