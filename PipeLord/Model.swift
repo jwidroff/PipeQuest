@@ -890,7 +890,7 @@ class Model {
         
         var piece = Piece()
         
-        for pieceX in board.pieces {
+        for pieceX in pieces {
             
 //            print("piece shape \(piece.shape)")
             
@@ -1439,27 +1439,15 @@ class Model {
         
         
         print("Auto ball move called")
+//        let originalPieces = board.pieces
+        var fakePieces = [Piece]()
         
-        
-//        for piece in board.pieces {
-//
-//            print("piece shape \(piece.shape)")
-//
-//        }
-//        print()
-        
-//        let newBoard = board
-        
-//        for piece in board.pieces {
-//
-//            let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
-//
-//            newBoard.pieces.append(newPiece)
-//        }
-        
-        
-        let fakePieces = board.pieces
-        
+        for piece in board.pieces {
+            
+            let piece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
+            fakePieces.append(piece)
+            
+        }
         
         for piece in fakePieces {
 
@@ -1499,6 +1487,7 @@ class Model {
     func checkNextPiece4Exit(pieces: [Piece], piece:Piece, side2Check: String) {
         
         switch side2Check {
+            //side to check is the side of the new piece
             
         case "top":
             
@@ -1513,6 +1502,47 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                        }
+                        
+                        else if pieceX.shape == .cross {
+                            
+                            
+//                            print("Side top closing = \(pi)")
+
+                            if pieceX.side.bottom.closing.isOpen == false {
+                                return
+                            } else {
+                                
+                                switch pieceX.version {
+                                    
+                                case 1:
+                                    pieceX.version = 3
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 2:
+                                    pieceX.version = 4
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 3:
+                                    pieceX.version = 1
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 4:
+                                    
+                                    pieceX.version = 2
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                default:
+                                    
+                                    break
+                                    
+                                }
+                                
+                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
+                                
+                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
+                            }
+
                         }
                         
                         else {
@@ -1536,6 +1566,46 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                            return
+                        }
+                        
+                        else if pieceX.shape == .cross {
+
+                            if pieceX.side.left.closing.isOpen == false {
+                                return
+                            } else {
+                                
+                                switch pieceX.version {
+                                    
+                                case 1:
+                                    pieceX.version = 3
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 2:
+                                    pieceX.version = 4
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 3:
+                                    pieceX.version = 1
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 4:
+                                    
+                                    pieceX.version = 2
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                default:
+                                    
+                                    break
+                                    
+                                }
+                                
+                                
+                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
+                                
+                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.left.exitSide!)
+                            }
+
                         }
                         
                         else {
@@ -1557,6 +1627,45 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                        }
+                        
+                        else if pieceX.shape == .cross {
+
+                            if pieceX.side.top.closing.isOpen == false {
+                                return
+                            } else {
+                                
+                                switch pieceX.version {
+                                    
+                                case 1:
+                                    pieceX.version = 2
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 2:
+                                    pieceX.version = 1
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 3:
+                                    pieceX.version = 4
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 4:
+                                    
+                                    pieceX.version = 3
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                default:
+                                    
+                                    break
+                                    
+                                }
+                                
+                                
+                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
+                                
+                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.top.exitSide!)
+                            }
+
                         }
                         
                         else {
@@ -1582,6 +1691,45 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                        }
+                        
+                        else if pieceX.shape == .cross {
+
+                            if pieceX.side.right.closing.isOpen == false {
+                                return
+                            } else {
+                                
+                                switch pieceX.version {
+                                    
+                                case 1:
+                                    pieceX.version = 3
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 2:
+                                    pieceX.version = 4
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 3:
+                                    pieceX.version = 1
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                case 4:
+                                    
+                                    pieceX.version = 2
+                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    
+                                default:
+                                    
+                                    break
+                                    
+                                }
+                                
+                                
+                                delegate?.rotateView(piece: pieceX, rotationDegrees: 90)
+                                
+                                checkNextPiece4Exit(pieces: pieces, piece: pieceX, side2Check: pieceX.side.right.exitSide!)
+                            }
+
                         }
                         
                         else {
