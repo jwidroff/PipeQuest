@@ -997,36 +997,6 @@ class ShapeViewTopView: UIView {
             
             case 1:
                 
-                //Opens on bottom
-                
-                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
-                
-                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                
-                setShadow(context: context)
-                
-                let eclipseHeight1 = frame.height / 1.75
-                let eclipseWidth1 = frame.width / 1.75
-                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-                context.setFillColor(UIColor.black.cgColor)
-                context.addEllipse(in: rect2)
-                context.fillEllipse(in: rect2)
-
-                let eclipseHeight2 = frame.height / 2
-                let eclipseWidth2 = frame.width / 2
-                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-                context.setFillColor(colors[0])
-                context.addEllipse(in: rect3)
-                context.fillEllipse(in: rect3)
-                
-                context.restoreGState()
-                
-                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                
-                
-            case 2:
-                
                 ///Opens on top
                 
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
@@ -1057,9 +1027,68 @@ class ShapeViewTopView: UIView {
                 
                 
                 
+            case 2:
+                
+
+                //Opens on right
+                
+                let center = CGPoint(x: bounds.midX, y: bounds.midY)
+                let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
+                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
+                setShadow(context: context)
+                let eclipseHeight1 = frame.height / 1.75
+                let eclipseWidth1 = frame.width / 1.75
+                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
+                context.setFillColor(UIColor.black.cgColor)
+                context.addEllipse(in: rect2)
+                context.fillEllipse(in: rect2)
+
+                let eclipseHeight2 = frame.height / 2
+                let eclipseWidth2 = frame.width / 2
+                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
+                context.setFillColor(colors[0])
+                context.addEllipse(in: rect3)
+                context.fillEllipse(in: rect3)
+                context.restoreGState()
+                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
+                
+                
+                
             case 3:
                 
-                //Opens on Right
+                
+                
+                //Opens on bottom
+                
+                let center = CGPoint(x: bounds.midX, y: bounds.midY)
+                let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
+                
+                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
+                
+                setShadow(context: context)
+                
+                let eclipseHeight1 = frame.height / 1.75
+                let eclipseWidth1 = frame.width / 1.75
+                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
+                context.setFillColor(UIColor.black.cgColor)
+                context.addEllipse(in: rect2)
+                context.fillEllipse(in: rect2)
+
+                let eclipseHeight2 = frame.height / 2
+                let eclipseWidth2 = frame.width / 2
+                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
+                context.setFillColor(colors[0])
+                context.addEllipse(in: rect3)
+                context.fillEllipse(in: rect3)
+                
+                context.restoreGState()
+                
+                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
+                
+                
+            case 4:
+                
+                //Opens on left
                 
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.minX, y: bounds.midY)
@@ -1084,29 +1113,10 @@ class ShapeViewTopView: UIView {
                 
                 overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-            case 4:
                 
-                //Opens on right
                 
-                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
-                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                setShadow(context: context)
-                let eclipseHeight1 = frame.height / 1.75
-                let eclipseWidth1 = frame.width / 1.75
-                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-                context.setFillColor(UIColor.black.cgColor)
-                context.addEllipse(in: rect2)
-                context.fillEllipse(in: rect2)
-
-                let eclipseHeight2 = frame.height / 2
-                let eclipseWidth2 = frame.width / 2
-                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-                context.setFillColor(colors[0])
-                context.addEllipse(in: rect3)
-                context.fillEllipse(in: rect3)
-                context.restoreGState()
-                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
+                
+                
             
             default:
                 break

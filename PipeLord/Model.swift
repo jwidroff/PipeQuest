@@ -1640,17 +1640,25 @@ class Model {
             switch piece.version {
             
             case 1:
-                endSide = "bottom"
-                ball.onColor = piece.side.top.color!
-            case 2:
+                
                 endSide = "top"
-                ball.onColor = piece.side.bottom.color!
-            case 3:
-                endSide = "left"
-                ball.onColor = piece.side.left.color!
-            case 4:
+                ball.onColor = piece.side.top.color!
+                
+            case 2:
                 endSide = "right"
                 ball.onColor = piece.side.right.color!
+            case 3:
+                
+                endSide = "bottom"
+                ball.onColor = piece.side.bottom.color!
+                
+                
+                
+            case 4:
+                endSide = "left"
+                ball.onColor = piece.side.left.color!
+                
+               
             default:
                 break
             }

@@ -286,24 +286,31 @@ class Piece {
                 side.top.color = colors[0]
                 side.top.exitSide = "center"
                 side.top.opening.isOpen = true
+                
+               
 
             case 2:
-                
-                side.bottom.color = colors[0]
-                side.bottom.exitSide = "center"
-                side.bottom.opening.isOpen = true
-
-            case 3:
-                
-                side.left.color = colors[0]
-                side.left.exitSide = "center"
-                side.left.opening.isOpen = true
-
-            case 4:
                 
                 side.right.color = colors[0]
                 side.right.exitSide = "center"
                 side.right.opening.isOpen = true
+                
+               
+
+            case 3:
+                
+                side.bottom.color = colors[0]
+                side.bottom.exitSide = "center"
+                side.bottom.opening.isOpen = true
+                
+               
+
+            case 4:
+                
+                side.left.color = colors[0]
+                side.left.exitSide = "center"
+                side.left.opening.isOpen = true
+               
 
             default:
                 break
@@ -314,29 +321,29 @@ class Piece {
             switch version {
             
             case 1:
-                side.bottom.color = colors[0]
-                side.bottom.exitSide = "center"
-                side.bottom.opening.isOpen = true
-                
-                
-                
-            case 2:
                 side.top.color = colors[0]
                 side.top.exitSide = "center"
                 side.top.opening.isOpen = true
                 
                 
+                
+            case 2:
+                side.right.color = colors[0]
+                side.right.exitSide = "center"
+                side.right.opening.isOpen = true
+                
+                
             case 3:
+                
+                side.bottom.color = colors[0]
+                side.bottom.exitSide = "center"
+                side.bottom.opening.isOpen = true
+                
+            case 4:
                 
                 side.left.color = colors[0]
                 side.left.exitSide = "center"
                 side.left.opening.isOpen = true
-                
-            case 4:
-                
-                side.right.color = colors[0]
-                side.right.exitSide = "center"
-                side.right.opening.isOpen = true
                 
             default:
                 break
