@@ -994,7 +994,7 @@ class Model {
                                         
                     if piece.shape != .pieceMaker {
                         
-                        if piece.isLocked == false {
+//                        if piece.isLocked == false {
                             
                             updateMovesLeft()
                             
@@ -1029,7 +1029,7 @@ class Model {
                                     
                                 }
                             }
-                        }
+//                        }
                         
                     } else {
                         
@@ -1083,7 +1083,7 @@ class Model {
                     
                     if piece.shape != .pieceMaker {
                                                 
-                        if piece.isLocked == false {
+//                        if piece.isLocked == false {
                             
                             updateMovesLeft()
                             
@@ -1116,7 +1116,7 @@ class Model {
                                     break
                                 }
                             }
-                        }
+//                        }
                         
                     } else {
                                                 
@@ -1170,7 +1170,7 @@ class Model {
                     
                     if piece.shape != .pieceMaker {
                         
-                        if piece.isLocked == false {
+//                        if piece.isLocked == false {
                             
                             updateMovesLeft()
 
@@ -1201,7 +1201,7 @@ class Model {
                                     break
                                 }
                             }
-                        }
+//                        }
                         
                     } else {
                         
@@ -1253,7 +1253,7 @@ class Model {
                     
                     if piece.shape != .pieceMaker {
                         
-                        if piece.isLocked == false {
+//                        if piece.isLocked == false {
                             
                             updateMovesLeft()
                            
@@ -1284,7 +1284,7 @@ class Model {
                                     break
                                 }
                             }
-                        }
+//                        }
                         
                     } else {
                         
@@ -1393,6 +1393,77 @@ class Model {
         
         moveStarted = true
         
+        sortPieces(direction: direction)
+        
+        for piece in board.pieces {
+            if piece.isLocked == false {
+                movePiecesHelper(piece: piece, direction: direction)
+                delegate?.movePieceView(piece: piece)
+            }
+        }
+        
+        check4GameOver()
+        
+//        let gameIsOver = check4GameOver().0
+//
+//        if gameIsOver {
+//            let message = check4GameOver().1
+//            delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
+//            gameOver = false
+//            return
+//        }
+        
+        check4AutoBallMove()
+    }
+    
+    func check4AutoBallMove() {
+        
+        print("Auto ball move called")
+        
+        let newBoard = board
+        
+        for piece in newBoard.pieces {
+
+            if piece.shape == .entrance {
+
+                switch piece.version {
+
+                case 1:
+                    
+                    //Entrance opens on bottom
+                    checkNextPiece4Exit(piece: piece, side2Check: "top")
+
+
+//                case 2:
+//
+//
+//                case 3:
+//
+//
+//                case 4:
+                    
+
+                default:
+
+                    break
+
+
+                }
+            }
+        }
+    }
+    
+    func checkNextPiece4Exit(piece:Piece, side2Check: String) {
+        
+        
+        
+        
+    }
+    
+    
+    
+    func sortPieces(direction: UISwipeGestureRecognizer.Direction) {
+        
         switch direction {
             
         case .up:
@@ -1423,24 +1494,12 @@ class Model {
             break
         }
         
-        for piece in board.pieces {
-            movePiecesHelper(piece: piece, direction: direction)
-            delegate?.movePieceView(piece: piece)
-        }
         
-        let gameIsOver = check4GameOver().0
-        let message = check4GameOver().1
-        if gameIsOver {
-
-            delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
-            gameOver = false
-            return
-        }
+        
     }
-    
 
     
-    func check4GameOver() -> (Bool, String) {
+    func check4GameOver() {
         
         var message = ""
         var bool = false
@@ -1450,7 +1509,7 @@ class Model {
             
             bool = true
             message = "You lost your ball!"
-            return (bool, message)
+//            return (bool, message)
         }
         
         for piece in board.pieces {
@@ -1464,10 +1523,20 @@ class Model {
         if moveablePieceCount == 0 {
             bool = true
             message = "No more pieces to move!"
-            return (bool, message)
+//            return (bool, message)
         }
         
-        return (bool, message)
+        if bool == true {
+            
+//            let message = check4GameOver().1
+            delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
+            gameOver = false
+//            return
+            
+        }
+        
+        
+//        return (bool, message)
     }
     
     func addToPiecesPassed(ball: Ball, piece: Piece) {

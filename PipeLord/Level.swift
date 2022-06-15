@@ -676,7 +676,7 @@ class LevelModel {
             board.heightSpaces = 12
             board.widthSpaces = 6
 
-            let entrance1 = Piece(indexes: Indexes(x: 3, y: 5), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, opening: "bottom", doesPivot: nil)
+            let entrance1 = Piece(indexes: Indexes(x: 3, y: 5), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, opening: "bottom", doesPivot: nil)
             board.pieces.append(entrance1)
 
             let piece1 = Piece(indexes: Indexes(x: 4, y: 5), shape: .doubleElbow, colors: [UIColor.red, UIColor.red], version: 2, isLocked: false, opening: nil, doesPivot: true)
