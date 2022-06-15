@@ -153,10 +153,18 @@ class Piece {
                 
                     side.left.color = colors[0]
                     side.right.color = colors[1]
+                side.top.color = nil
+                side.bottom.color = nil
+
                     side.left.exitSide = "right"
                     side.right.exitSide = "left"
+                side.top.exitSide = nil
+                side.bottom.exitSide = nil
+
                     side.left.opening.isOpen = true
                     side.right.opening.isOpen = true
+                side.top.opening.isOpen = false
+                side.bottom.opening.isOpen = false
                 
 //                } else if currentSwitch == 2 {
 //
@@ -173,10 +181,18 @@ class Piece {
                     
                     side.top.color = colors[0]
                     side.bottom.color = colors[1]
+                side.left.color = nil
+                side.right.color = nil
+                
                     side.top.exitSide = "bottom"
                     side.bottom.exitSide = "top"
+                side.left.exitSide = nil
+                side.right.exitSide = nil
+                
                     side.top.opening.isOpen = true
                     side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.right.opening.isOpen = false
                     
 //                } else if currentSwitch == 2 {
 //
@@ -191,88 +207,40 @@ class Piece {
             case 3:
                 side.left.color = colors[1]
                 side.right.color = colors[0]
+                side.top.color = nil
+                side.bottom.color = nil
+                
                 side.left.exitSide = "right"
                 side.right.exitSide = "left"
+                side.top.exitSide = nil
+                side.bottom.exitSide = nil
+                
                 side.left.opening.isOpen = true
                 side.right.opening.isOpen = true
-
+                side.top.opening.isOpen = false
+                side.bottom.opening.isOpen = false
                 
             case 4:
                 
                 side.top.color = colors[1]
                 side.bottom.color = colors[0]
+                side.left.color = nil
+                side.right.color = nil
+                
                 side.top.exitSide = "bottom"
                 side.bottom.exitSide = "top"
+                side.left.exitSide = nil
+                side.right.exitSide = nil
+                
                 side.top.opening.isOpen = true
                 side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.right.opening.isOpen = false
                 
             default:
                 break
             }
-            
-//        case .entrance:
-//
-//            switch opening {
-//
-//            case "top":
-//
-//                side.top.color = colors[0]
-//                side.top.exitSide = "center"
-//                side.top.opening.isOpen = true
-//
-//            case "bottom":
-//
-//                side.bottom.color = colors[0]
-//                side.bottom.exitSide = "center"
-//                side.bottom.opening.isOpen = true
-//
-//            case "left":
-//
-//                side.left.color = colors[0]
-//                side.left.exitSide = "center"
-//                side.left.opening.isOpen = true
-//
-//            case "right":
-//
-//                side.right.color = colors[0]
-//                side.right.exitSide = "center"
-//                side.right.opening.isOpen = true
-//
-//            default:
-//                break
-//            }
-//
-//        case .exit:
-//
-//            switch opening {
-//
-//            case "top":
-//
-//                side.top.color = colors[0]
-//                side.top.exitSide = "center"
-//                side.top.opening.isOpen = true
-//
-//            case "bottom":
-//
-//                side.bottom.color = colors[0]
-//                side.bottom.exitSide = "center"
-//                side.bottom.opening.isOpen = true
-//
-//            case "left":
-//
-//                side.left.color = colors[0]
-//                side.left.exitSide = "center"
-//                side.left.opening.isOpen = true
-//
-//            case "right":
-//
-//                side.right.color = colors[0]
-//                side.right.exitSide = "center"
-//                side.right.opening.isOpen = true
-//
-//            default:
-//                break
-//            }
+
             
         case .entrance:
             
@@ -281,33 +249,80 @@ class Piece {
             case 1:
                 
                 side.top.color = colors[0]
+                side.left.color = nil
+                side.bottom.color = nil
+                side.right.color = nil
+                
                 side.top.exitSide = "center"
+                side.left.exitSide = nil
+                side.bottom.exitSide = nil
+                side.right.exitSide = nil
+                
+                
                 side.top.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.right.opening.isOpen = false
+
                 
                
 
             case 2:
                 
                 side.right.color = colors[0]
-                side.right.exitSide = "center"
-                side.right.opening.isOpen = true
+                side.left.color = nil
+                side.bottom.color = nil
+                side.top.color = nil
                 
+                side.right.exitSide = "center"
+                side.left.exitSide = nil
+                side.bottom.exitSide = nil
+                side.top.exitSide = nil
+                
+                side.right.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.top.opening.isOpen = false
                
 
             case 3:
                 
                 side.bottom.color = colors[0]
-                side.bottom.exitSide = "center"
-                side.bottom.opening.isOpen = true
+                side.left.color = nil
+                side.top.color = nil
+                side.right.color = nil
                 
+                
+                side.bottom.exitSide = "center"
+                side.left.exitSide = nil
+                side.top.exitSide = nil
+                side.right.exitSide = nil
+                
+                
+                side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.top.opening.isOpen = false
+                side.right.opening.isOpen = false
                
 
             case 4:
                 
                 side.left.color = colors[0]
+                side.top.color = nil
+                side.bottom.color = nil
+                side.right.color = nil
+                
+                
                 side.left.exitSide = "center"
+                side.top.exitSide = nil
+                side.bottom.exitSide = nil
+                side.right.exitSide = nil
+                
+                
                 side.left.opening.isOpen = true
-               
+                side.top.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.right.opening.isOpen = false
 
             default:
                 break
@@ -318,30 +333,83 @@ class Piece {
             switch version {
             
             case 1:
+                
                 side.top.color = colors[0]
+                side.left.color = nil
+                side.bottom.color = nil
+                side.right.color = nil
+                
                 side.top.exitSide = "center"
+                side.left.exitSide = nil
+                side.bottom.exitSide = nil
+                side.right.exitSide = nil
+                
+                
                 side.top.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.right.opening.isOpen = false
+
                 
-                
-                
+               
+
             case 2:
+                
                 side.right.color = colors[0]
+                side.left.color = nil
+                side.bottom.color = nil
+                side.top.color = nil
+                
                 side.right.exitSide = "center"
+                side.left.exitSide = nil
+                side.bottom.exitSide = nil
+                side.top.exitSide = nil
+                
                 side.right.opening.isOpen = true
-                
-                
+                side.left.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.top.opening.isOpen = false
+               
+
             case 3:
                 
                 side.bottom.color = colors[0]
-                side.bottom.exitSide = "center"
-                side.bottom.opening.isOpen = true
+                side.left.color = nil
+                side.top.color = nil
+                side.right.color = nil
                 
+                
+                side.bottom.exitSide = "center"
+                side.left.exitSide = nil
+                side.top.exitSide = nil
+                side.right.exitSide = nil
+                
+                
+                side.bottom.opening.isOpen = true
+                side.left.opening.isOpen = false
+                side.top.opening.isOpen = false
+                side.right.opening.isOpen = false
+               
+
             case 4:
                 
                 side.left.color = colors[0]
-                side.left.exitSide = "center"
-                side.left.opening.isOpen = true
+                side.top.color = nil
+                side.bottom.color = nil
+                side.right.color = nil
                 
+                
+                side.left.exitSide = "center"
+                side.top.exitSide = nil
+                side.bottom.exitSide = nil
+                side.right.exitSide = nil
+                
+                
+                side.left.opening.isOpen = true
+                side.top.opening.isOpen = false
+                side.bottom.opening.isOpen = false
+                side.right.opening.isOpen = false
+
             default:
                 break
             }
@@ -359,10 +427,14 @@ class Piece {
                     
                     side.top.opening.isOpen = true
                     side.left.opening.isOpen = true
+                side.bottom.opening.isOpen = false
+                side.right.opening.isOpen = false
+                
                     side.top.color = colors[0]
                     side.left.color = colors[0]
                     side.bottom.color = nil
                     side.right.color = nil
+                
                     side.top.exitSide = "left"
                     side.left.exitSide = "top"
                     side.right.exitSide = nil
@@ -388,10 +460,14 @@ class Piece {
                 
                 side.top.opening.isOpen = true
                 side.right.opening.isOpen = true
+                side.bottom.opening.isOpen = false
+                side.left.opening.isOpen = false
+                
                 side.top.exitSide = "right"
                 side.right.exitSide = "top"
                 side.bottom.exitSide = nil
                 side.left.exitSide = nil
+                
                 side.top.color = colors[0]
                 side.right.color = colors[0]
                 side.bottom.color = nil
@@ -431,10 +507,14 @@ class Piece {
                     
                     side.bottom.opening.isOpen = true
                     side.right.opening.isOpen = true
+                side.top.opening.isOpen = false
+                side.left.opening.isOpen = false
+                
                     side.bottom.exitSide = "right"
                     side.right.exitSide = "bottom"
                     side.top.exitSide = nil
                     side.left.exitSide = nil
+                
                     side.bottom.color = colors[0]
                     side.right.color = colors[0]
                     side.top.color = nil
@@ -464,10 +544,14 @@ class Piece {
                 
                 side.bottom.opening.isOpen = true
                 side.left.opening.isOpen = true
+                side.top.opening.isOpen = false
+                side.right.opening.isOpen = false
+                
                 side.bottom.exitSide = "left"
                 side.left.exitSide = "bottom"
                 side.right.exitSide = nil
                 side.top.exitSide = nil
+                
                 side.bottom.color = colors[0]
                 side.left.color = colors[0]
                 side.top.color = nil
@@ -646,13 +730,16 @@ class Piece {
                     side.bottom.opening.isOpen = false
                     side.left.opening.isOpen = true
                     side.right.opening.isOpen = true
+                
                     side.right.exitSide = "top"
                     side.left.exitSide = "top"
                     side.top.exitSide = "left"
                     side.bottom.exitSide = nil
+                
                     side.right.color = colors[1]
                     side.top.color = colors[0]
                     side.left.color = colors[0]
+                side.bottom.color = nil
 
                 
             case 2:
@@ -661,13 +748,16 @@ class Piece {
                 side.bottom.opening.isOpen = true
                 side.left.opening.isOpen = false
                 side.right.opening.isOpen = true
+                
                 side.right.exitSide = "top"
                 side.left.exitSide = nil
                 side.top.exitSide = "right"
                 side.bottom.exitSide = "right"
+                
                 side.right.color = colors[0]
                 side.top.color = colors[0]
                 side.bottom.color = colors[1]
+                side.left.color = nil
                 
 
                 
@@ -685,6 +775,7 @@ class Piece {
                     side.right.color = colors[0]
                     side.left.color = colors[1]
                     side.bottom.color = colors[0]
+                side.top.color = nil
          
                 
             case 4:
@@ -700,6 +791,7 @@ class Piece {
                 side.top.color = colors[1]
                 side.left.color = colors[0]
                 side.bottom.color = colors[0]
+                side.right.color = nil
 
             case 5:
                 
@@ -714,6 +806,7 @@ class Piece {
                     side.right.color = colors[1]
                     side.top.color = colors[1]
                     side.left.color = colors[0]
+                side.bottom.color = nil
 
                 
             case 6:
@@ -729,7 +822,8 @@ class Piece {
                 side.right.color = colors[1]
                 side.top.color = colors[0]
                 side.bottom.color = colors[1]
-                
+                side.left.color = nil
+
 
                 
             case 7:
@@ -746,7 +840,8 @@ class Piece {
                     side.right.color = colors[0]
                     side.left.color = colors[1]
                     side.bottom.color = colors[1]
-         
+                side.top.color = nil
+
                 
             case 8:
                 
@@ -761,16 +856,8 @@ class Piece {
                 side.top.color = colors[1]
                 side.left.color = colors[1]
                 side.bottom.color = colors[0]
+                side.right.color = nil
 
-                
-                
-                
-                
-                
-                
-                
-                
-                
             default:
                 break
             }

@@ -218,7 +218,7 @@ class LevelModel {
 
             addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
-            let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            let entrance = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
             board.pieces.append(entrance)
 
             let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
@@ -684,30 +684,39 @@ class LevelModel {
             board.widthSpaces = 5
             addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
-            let entrance = Piece(indexes: Indexes(x: board.widthSpaces - 3, y: board.heightSpaces - 2), shape: .entrance, colors: [UIColor.red], version: 2, isLocked: false, doesPivot: false)
+            let entrance = Piece(indexes: Indexes(x: board.widthSpaces - 4, y: board.heightSpaces - 2), shape: .entrance, colors: [UIColor.red], version: 2, isLocked: false, doesPivot: false)
             board.pieces.append(entrance)
 
-            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.red], version: 4, isLocked: false, doesPivot: false)
+            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 4), shape: .exit, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
             board.pieces.append(exit)
             
-            let entrance1 = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 3), shape: .entrance, colors: [UIColor.red], version: 4, isLocked: false, doesPivot: false)
-            board.pieces.append(entrance1)
-
-            let exit1 = Piece(indexes: Indexes(x: board.widthSpaces - 3, y: board.heightSpaces - 3), shape: .exit, colors: [UIColor.red], version: 2, isLocked: false, doesPivot: false)
-            board.pieces.append(exit1)
-
+            let stick = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 3), shape: .stick, colors: [UIColor.red], version: 2, isLocked: false, doesPivot: false)
+            board.pieces.append(stick)
             
-            let entrance3 = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
-            board.pieces.append(entrance3)
-
-            let exit3 = Piece(indexes: Indexes(x: 1, y: 2), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
-            board.pieces.append(exit3)
+//            let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 3), shape: .exit, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
+//            board.pieces.append(exit)
             
-            let entrance4 = Piece(indexes: Indexes(x: 2, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
-            board.pieces.append(entrance4)
-
-            let exit4 = Piece(indexes: Indexes(x: 2, y: 1), shape: .exit, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
-            board.pieces.append(exit4)
+            let piece = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .elbow, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            board.pieces.append(piece)
+            
+//            let entrance1 = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 3), shape: .entrance, colors: [UIColor.red], version: 4, isLocked: false, doesPivot: false)
+//            board.pieces.append(entrance1)
+//
+//            let exit1 = Piece(indexes: Indexes(x: board.widthSpaces - 3, y: board.heightSpaces - 3), shape: .exit, colors: [UIColor.red], version: 2, isLocked: false, doesPivot: false)
+//            board.pieces.append(exit1)
+//
+//
+//            let entrance3 = Piece(indexes: Indexes(x: 1, y: 1), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
+//            board.pieces.append(entrance3)
+//
+//            let exit3 = Piece(indexes: Indexes(x: 1, y: 2), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+//            board.pieces.append(exit3)
+//
+//            let entrance4 = Piece(indexes: Indexes(x: 2, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+//            board.pieces.append(entrance4)
+//
+//            let exit4 = Piece(indexes: Indexes(x: 2, y: 1), shape: .exit, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
+//            board.pieces.append(exit4)
             
             
 
@@ -1169,91 +1178,48 @@ class LevelModel {
 //        }
 //    }
     
-    private func setPieceSides(piece: Piece) { //NOT CALLED
-      
-        switch piece.shape {
-        
-        case .elbow:
-            
-            switch piece.version {
-
-            case 1:
-                
-                //Top Pivot
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.top.opening.isOpen = true
-                    piece.side.left.opening.isOpen = true
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.bottom.color = nil
-                    piece.side.right.color = nil
-                    piece.side.top.exitSide = "left"
-                    piece.side.left.exitSide = "top"
-                    piece.side.right.exitSide = nil
-                    piece.side.bottom.exitSide = nil
-                    
-//                } else if piece.currentSwitch == 2 {
+//    private func setPieceSides(piece: Piece) { //NOT CALLED
 //
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = true
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.right.color = piece.colors[0]
-//                    piece.side.bottom.color = nil
-//                    piece.side.left.color = nil
-//                    piece.side.top.exitSide = "right"
-//                    piece.side.right.exitSide = "top"
-//                    piece.side.bottom.exitSide = nil
-//                    piece.side.left.exitSide = nil
-//                }
-                
-            case 2:
-                
-                //Left Pivot
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.left.opening.isOpen = true
-                    piece.side.bottom.exitSide = "left"
-                    piece.side.left.exitSide = "bottom"
-                    piece.side.right.exitSide = nil
-                    piece.side.top.exitSide = nil
-                    piece.side.bottom.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.top.color = nil
-                    piece.side.right.color = nil
-                    
-//                } else if piece.currentSwitch == 2 {
+//        switch piece.shape {
+//
+//        case .elbow:
+//
+//            switch piece.version {
+//
+//            case 1:
+//
+//                //Top Pivot
+////                if piece.currentSwitch == 1 {
 //
 //                    piece.side.top.opening.isOpen = true
 //                    piece.side.left.opening.isOpen = true
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.left.exitSide = "top"
-//                    piece.side.right.exitSide = nil
-//                    piece.side.bottom.exitSide = nil
 //                    piece.side.top.color = piece.colors[0]
 //                    piece.side.left.color = piece.colors[0]
 //                    piece.side.bottom.color = nil
 //                    piece.side.right.color = nil
-//                }
-                
-            case 3:
-                
-                //Bottom Pivot
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    piece.side.bottom.exitSide = "right"
-                    piece.side.right.exitSide = "bottom"
-                    piece.side.top.exitSide = nil
-                    piece.side.left.exitSide = nil
-                    piece.side.bottom.color = piece.colors[0]
-                    piece.side.right.color = piece.colors[0]
-                    piece.side.top.color = nil
-                    piece.side.left.color = nil
-
-//                } else if piece.currentSwitch == 2 {
+//                    piece.side.top.exitSide = "left"
+//                    piece.side.left.exitSide = "top"
+//                    piece.side.right.exitSide = nil
+//                    piece.side.bottom.exitSide = nil
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = true
+////                    piece.side.top.color = piece.colors[0]
+////                    piece.side.right.color = piece.colors[0]
+////                    piece.side.bottom.color = nil
+////                    piece.side.left.color = nil
+////                    piece.side.top.exitSide = "right"
+////                    piece.side.right.exitSide = "top"
+////                    piece.side.bottom.exitSide = nil
+////                    piece.side.left.exitSide = nil
+////                }
+//
+//            case 2:
+//
+//                //Left Pivot
+////                if piece.currentSwitch == 1 {
 //
 //                    piece.side.bottom.opening.isOpen = true
 //                    piece.side.left.opening.isOpen = true
@@ -1265,26 +1231,25 @@ class LevelModel {
 //                    piece.side.left.color = piece.colors[0]
 //                    piece.side.top.color = nil
 //                    piece.side.right.color = nil
-//                }
-                
-            case 4:
-                
-                //Right Pivot
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.top.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    piece.side.top.exitSide = "right"
-                    piece.side.right.exitSide = "top"
-                    piece.side.bottom.exitSide = nil
-                    piece.side.left.exitSide = nil
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.right.color = piece.colors[0]
-                    piece.side.bottom.color = nil
-                    piece.side.left.color = nil
-
-//                } else if piece.currentSwitch == 2 {
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.top.exitSide = "left"
+////                    piece.side.left.exitSide = "top"
+////                    piece.side.right.exitSide = nil
+////                    piece.side.bottom.exitSide = nil
+////                    piece.side.top.color = piece.colors[0]
+////                    piece.side.left.color = piece.colors[0]
+////                    piece.side.bottom.color = nil
+////                    piece.side.right.color = nil
+////                }
+//
+//            case 3:
+//
+//                //Bottom Pivot
+////                if piece.currentSwitch == 1 {
 //
 //                    piece.side.bottom.opening.isOpen = true
 //                    piece.side.right.opening.isOpen = true
@@ -1296,122 +1261,149 @@ class LevelModel {
 //                    piece.side.right.color = piece.colors[0]
 //                    piece.side.top.color = nil
 //                    piece.side.left.color = nil
-//                }
-                
-            default:
-                break
-            }
-            
-        case .cross:
-            
-            piece.side.right.exitSide = "left"
-            piece.side.left.exitSide = "right"
-            piece.side.top.exitSide = "bottom"
-            piece.side.bottom.exitSide = "top"
-            piece.side.right.color = piece.colors[1]
-            piece.side.left.color = piece.colors[1]
-            piece.side.top.color = piece.colors[0]
-            piece.side.bottom.color = piece.colors[0]
-            piece.side.top.opening.isOpen = true
-            piece.side.bottom.opening.isOpen = true
-            piece.side.left.opening.isOpen = true
-            piece.side.right.opening.isOpen = true
-            
-            switch piece.version {
-            
-            case 1, 3:
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    //Horizontal Pipe on top
-                    piece.side.left.closing.isOpen = true
-                    piece.side.right.closing.isOpen = true
-                    piece.side.top.closing.isOpen = false
-                    piece.side.bottom.closing.isOpen = false
-                    
-//                } else if piece.currentSwitch == 2 {
 //
-//                    //Vertical Pipe on top
-//                    piece.side.left.closing.isOpen = false
-//                    piece.side.right.closing.isOpen = false
-//                    piece.side.top.closing.isOpen = true
-//                    piece.side.bottom.closing.isOpen = true
-//                }
-
-            case 2, 4:
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    //Horizontal Pipe on top
-                    piece.side.left.closing.isOpen = true
-                    piece.side.right.closing.isOpen = true
-                    piece.side.top.closing.isOpen = false
-                    piece.side.bottom.closing.isOpen = false
-                    
-//                } else if piece.currentSwitch == 2 {
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.bottom.opening.isOpen = true
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.bottom.exitSide = "left"
+////                    piece.side.left.exitSide = "bottom"
+////                    piece.side.right.exitSide = nil
+////                    piece.side.top.exitSide = nil
+////                    piece.side.bottom.color = piece.colors[0]
+////                    piece.side.left.color = piece.colors[0]
+////                    piece.side.top.color = nil
+////                    piece.side.right.color = nil
+////                }
 //
-//                    //Vertical Pipe on top
-//                    piece.side.left.closing.isOpen = false
-//                    piece.side.right.closing.isOpen = false
-//                    piece.side.top.closing.isOpen = true
-//                    piece.side.bottom.closing.isOpen = true
-//                }
-                
-            default:
-                break
-            }
-            
-//        case .stick:
-//            
-//            switch piece.version {
-//            case 1, 3:
-//                
-//                piece.side.right.exitSide = "left"
-//                piece.side.left.exitSide = "right"
-//                piece.side.right.color = piece.colors[0]
-//                piece.side.left.color = piece.colors[0]
-//                piece.side.left.opening.isOpen = true
-//                piece.side.right.opening.isOpen = true
-//                
-//            case 2, 4:
-//                    
-//                piece.side.top.exitSide = "bottom"
-//                piece.side.bottom.exitSide = "top"
-//                piece.side.top.color = piece.colors[0]
-//                piece.side.bottom.color = piece.colors[0]
-//                piece.side.top.opening.isOpen = true
-//                piece.side.bottom.opening.isOpen = true
-//                    
+//            case 4:
+//
+//                //Right Pivot
+//
+////                if piece.currentSwitch == 1 {
+//
+//                    piece.side.top.opening.isOpen = true
+//                    piece.side.right.opening.isOpen = true
+//                    piece.side.top.exitSide = "right"
+//                    piece.side.right.exitSide = "top"
+//                    piece.side.bottom.exitSide = nil
+//                    piece.side.left.exitSide = nil
+//                    piece.side.top.color = piece.colors[0]
+//                    piece.side.right.color = piece.colors[0]
+//                    piece.side.bottom.color = nil
+//                    piece.side.left.color = nil
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.bottom.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = true
+////                    piece.side.bottom.exitSide = "right"
+////                    piece.side.right.exitSide = "bottom"
+////                    piece.side.top.exitSide = nil
+////                    piece.side.left.exitSide = nil
+////                    piece.side.bottom.color = piece.colors[0]
+////                    piece.side.right.color = piece.colors[0]
+////                    piece.side.top.color = nil
+////                    piece.side.left.color = nil
+////                }
+//
 //            default:
 //                break
 //            }
-            
-            
-        case .doubleElbow:
-            
-            
-            switch piece.version {
-            
-            case 1:
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.top.opening.isOpen = true
-                    piece.side.bottom.opening.isOpen = false
-                    piece.side.left.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    piece.side.right.exitSide = "top"
-                    piece.side.left.exitSide = "top"
-                    piece.side.top.exitSide = "left"
-                    piece.side.bottom.exitSide = nil
-                    piece.side.right.color = piece.colors[1]
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
-                    
-                    
-//                } else if piece.currentSwitch == 2 {
 //
+//        case .cross:
+//
+//            piece.side.right.exitSide = "left"
+//            piece.side.left.exitSide = "right"
+//            piece.side.top.exitSide = "bottom"
+//            piece.side.bottom.exitSide = "top"
+//            piece.side.right.color = piece.colors[1]
+//            piece.side.left.color = piece.colors[1]
+//            piece.side.top.color = piece.colors[0]
+//            piece.side.bottom.color = piece.colors[0]
+//            piece.side.top.opening.isOpen = true
+//            piece.side.bottom.opening.isOpen = true
+//            piece.side.left.opening.isOpen = true
+//            piece.side.right.opening.isOpen = true
+//
+//            switch piece.version {
+//
+//            case 1, 3:
+//
+////                if piece.currentSwitch == 1 {
+//
+//                    //Horizontal Pipe on top
+//                    piece.side.left.closing.isOpen = true
+//                    piece.side.right.closing.isOpen = true
+//                    piece.side.top.closing.isOpen = false
+//                    piece.side.bottom.closing.isOpen = false
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    //Vertical Pipe on top
+////                    piece.side.left.closing.isOpen = false
+////                    piece.side.right.closing.isOpen = false
+////                    piece.side.top.closing.isOpen = true
+////                    piece.side.bottom.closing.isOpen = true
+////                }
+//
+//            case 2, 4:
+//
+////                if piece.currentSwitch == 1 {
+//
+//                    //Horizontal Pipe on top
+//                    piece.side.left.closing.isOpen = true
+//                    piece.side.right.closing.isOpen = true
+//                    piece.side.top.closing.isOpen = false
+//                    piece.side.bottom.closing.isOpen = false
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    //Vertical Pipe on top
+////                    piece.side.left.closing.isOpen = false
+////                    piece.side.right.closing.isOpen = false
+////                    piece.side.top.closing.isOpen = true
+////                    piece.side.bottom.closing.isOpen = true
+////                }
+//
+//            default:
+//                break
+//            }
+//
+////        case .stick:
+////
+////            switch piece.version {
+////            case 1, 3:
+////
+////                piece.side.right.exitSide = "left"
+////                piece.side.left.exitSide = "right"
+////                piece.side.right.color = piece.colors[0]
+////                piece.side.left.color = piece.colors[0]
+////                piece.side.left.opening.isOpen = true
+////                piece.side.right.opening.isOpen = true
+////
+////            case 2, 4:
+////
+////                piece.side.top.exitSide = "bottom"
+////                piece.side.bottom.exitSide = "top"
+////                piece.side.top.color = piece.colors[0]
+////                piece.side.bottom.color = piece.colors[0]
+////                piece.side.top.opening.isOpen = true
+////                piece.side.bottom.opening.isOpen = true
+////
+////            default:
+////                break
+////            }
+//
+//
+//        case .doubleElbow:
+//
+//
+//            switch piece.version {
+//
+//            case 1:
+//
+////                if piece.currentSwitch == 1 {
 //
 //                    piece.side.top.opening.isOpen = true
 //                    piece.side.bottom.opening.isOpen = false
@@ -1419,76 +1411,76 @@ class LevelModel {
 //                    piece.side.right.opening.isOpen = true
 //                    piece.side.right.exitSide = "top"
 //                    piece.side.left.exitSide = "top"
-//                    piece.side.top.exitSide = "right"
+//                    piece.side.top.exitSide = "left"
 //                    piece.side.bottom.exitSide = nil
 //                    piece.side.right.color = piece.colors[1]
-//                    piece.side.top.color = piece.colors[1]
+//                    piece.side.top.color = piece.colors[0]
 //                    piece.side.left.color = piece.colors[0]
 ////                    piece.side.bottom.color = piece.colors[1]
 //
-//                 }
-                
-            case 2:
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    
-                    //left bottom
-                    piece.side.top.opening.isOpen = true
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.left.opening.isOpen = true
-                    piece.side.right.opening.isOpen = false
-                    piece.side.right.exitSide = nil
-                    piece.side.left.exitSide = "bottom"
-                    piece.side.top.exitSide = "left"
-                    piece.side.bottom.exitSide = "left"
-//                    piece.side.right.color = piece.colors[1]
-                    piece.side.top.color = piece.colors[1]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.bottom.color = piece.colors[0]
-                    
-//                } else if piece.currentSwitch == 2 {
 //
-//                    //left top
+////                } else if piece.currentSwitch == 2 {
+////
+////
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.bottom.opening.isOpen = false
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = true
+////                    piece.side.right.exitSide = "top"
+////                    piece.side.left.exitSide = "top"
+////                    piece.side.top.exitSide = "right"
+////                    piece.side.bottom.exitSide = nil
+////                    piece.side.right.color = piece.colors[1]
+////                    piece.side.top.color = piece.colors[1]
+////                    piece.side.left.color = piece.colors[0]
+//////                    piece.side.bottom.color = piece.colors[1]
+////
+////                 }
 //
+//            case 2:
+//
+////                if piece.currentSwitch == 1 {
+//
+//
+//                    //left bottom
 //                    piece.side.top.opening.isOpen = true
 //                    piece.side.bottom.opening.isOpen = true
 //                    piece.side.left.opening.isOpen = true
 //                    piece.side.right.opening.isOpen = false
 //                    piece.side.right.exitSide = nil
-//                    piece.side.left.exitSide = "top"
+//                    piece.side.left.exitSide = "bottom"
 //                    piece.side.top.exitSide = "left"
 //                    piece.side.bottom.exitSide = "left"
 ////                    piece.side.right.color = piece.colors[1]
 //                    piece.side.top.color = piece.colors[1]
-//                    piece.side.left.color = piece.colors[1]
+//                    piece.side.left.color = piece.colors[0]
 //                    piece.side.bottom.color = piece.colors[0]
 //
+////                } else if piece.currentSwitch == 2 {
+////
+////                    //left top
+////
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.bottom.opening.isOpen = true
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = false
+////                    piece.side.right.exitSide = nil
+////                    piece.side.left.exitSide = "top"
+////                    piece.side.top.exitSide = "left"
+////                    piece.side.bottom.exitSide = "left"
+//////                    piece.side.right.color = piece.colors[1]
+////                    piece.side.top.color = piece.colors[1]
+////                    piece.side.left.color = piece.colors[1]
+////                    piece.side.bottom.color = piece.colors[0]
+////
+////
+////                 }
 //
-//                 }
-                
-            case 3:
-                
-//                if piece.currentSwitch == 1 {
-                    
-                    //Bottom Left on top
-                    piece.side.top.opening.isOpen = false
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.left.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    piece.side.right.exitSide = "bottom"
-                    piece.side.left.exitSide = "bottom"
-                    piece.side.top.exitSide = nil
-                    piece.side.bottom.exitSide = "left"
-                    piece.side.right.color = piece.colors[1]
-//                    piece.side.top.color = piece.colors[1]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.bottom.color = piece.colors[0]
-
-                    
-//                } else if piece.currentSwitch == 2 {
+//            case 3:
 //
-//                    //Bottom right on top
+////                if piece.currentSwitch == 1 {
+//
+//                    //Bottom Left on top
 //                    piece.side.top.opening.isOpen = false
 //                    piece.side.bottom.opening.isOpen = true
 //                    piece.side.left.opening.isOpen = true
@@ -1496,181 +1488,198 @@ class LevelModel {
 //                    piece.side.right.exitSide = "bottom"
 //                    piece.side.left.exitSide = "bottom"
 //                    piece.side.top.exitSide = nil
-//                    piece.side.bottom.exitSide = "right"
+//                    piece.side.bottom.exitSide = "left"
 //                    piece.side.right.color = piece.colors[1]
 ////                    piece.side.top.color = piece.colors[1]
 //                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
+//                    piece.side.bottom.color = piece.colors[0]
 //
 //
-//                 }
-                
-            case 4:
-                
-                
-//                 if piece.currentSwitch == 1 {
-                    
-                    piece.side.top.opening.isOpen = true
-                    piece.side.bottom.opening.isOpen = true
-                    piece.side.left.opening.isOpen = false
-                    piece.side.right.opening.isOpen = true
-                    piece.side.right.exitSide = "top"
-                    piece.side.left.exitSide = nil
-                    piece.side.top.exitSide = "right"
-                    piece.side.bottom.exitSide = "right"
-                    piece.side.right.color = piece.colors[0]
-                    piece.side.top.color = piece.colors[0]
-//                    piece.side.left.color = piece.colors[0]
-                    piece.side.bottom.color = piece.colors[1]
-                    
-//                } else if piece.currentSwitch == 2 {
+////                } else if piece.currentSwitch == 2 {
+////
+////                    //Bottom right on top
+////                    piece.side.top.opening.isOpen = false
+////                    piece.side.bottom.opening.isOpen = true
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = true
+////                    piece.side.right.exitSide = "bottom"
+////                    piece.side.left.exitSide = "bottom"
+////                    piece.side.top.exitSide = nil
+////                    piece.side.bottom.exitSide = "right"
+////                    piece.side.right.color = piece.colors[1]
+//////                    piece.side.top.color = piece.colors[1]
+////                    piece.side.left.color = piece.colors[0]
+////                    piece.side.bottom.color = piece.colors[1]
+////
+////
+////                 }
 //
+//            case 4:
+//
+//
+////                 if piece.currentSwitch == 1 {
 //
 //                    piece.side.top.opening.isOpen = true
 //                    piece.side.bottom.opening.isOpen = true
 //                    piece.side.left.opening.isOpen = false
 //                    piece.side.right.opening.isOpen = true
-//                    piece.side.right.exitSide = "bottom"
+//                    piece.side.right.exitSide = "top"
 //                    piece.side.left.exitSide = nil
 //                    piece.side.top.exitSide = "right"
 //                    piece.side.bottom.exitSide = "right"
-//                    piece.side.right.color = piece.colors[1]
+//                    piece.side.right.color = piece.colors[0]
 //                    piece.side.top.color = piece.colors[0]
 ////                    piece.side.left.color = piece.colors[0]
 //                    piece.side.bottom.color = piece.colors[1]
 //
-//                 }
-                
-            default:
-                break
-            }
-            
-            
-        case .stick:
-            
-            
-            switch piece.version {
-            
-            case 1, 3:
-                
-                //Horizontal Line
-//                if piece.currentSwitch == 1 {
-
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.right.color = piece.colors[1]
-                    piece.side.left.exitSide = "right"
-                    piece.side.right.exitSide = "left"
-                    piece.side.left.opening.isOpen = true
-                    piece.side.right.opening.isOpen = true
-                    
-//                } else if piece.currentSwitch == 2 {
+////                } else if piece.currentSwitch == 2 {
+////
+////
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.bottom.opening.isOpen = true
+////                    piece.side.left.opening.isOpen = false
+////                    piece.side.right.opening.isOpen = true
+////                    piece.side.right.exitSide = "bottom"
+////                    piece.side.left.exitSide = nil
+////                    piece.side.top.exitSide = "right"
+////                    piece.side.bottom.exitSide = "right"
+////                    piece.side.right.color = piece.colors[1]
+////                    piece.side.top.color = piece.colors[0]
+//////                    piece.side.left.color = piece.colors[0]
+////                    piece.side.bottom.color = piece.colors[1]
+////
+////                 }
 //
-//                    piece.side.left.color = piece.colors[1]
-//                    piece.side.right.color = piece.colors[0]
+//            default:
+//                break
+//            }
+//
+//
+//        case .stick:
+//
+//
+//            switch piece.version {
+//
+//            case 1, 3:
+//
+//                //Horizontal Line
+////                if piece.currentSwitch == 1 {
+//
+//                    piece.side.left.color = piece.colors[0]
+//                    piece.side.right.color = piece.colors[1]
 //                    piece.side.left.exitSide = "right"
 //                    piece.side.right.exitSide = "left"
 //                    piece.side.left.opening.isOpen = true
 //                    piece.side.right.opening.isOpen = true
-//                }
-                
-            case 2, 4:
-                
-                //Vertical Line
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.bottom.color = piece.colors[1]
-                    piece.side.top.exitSide = "bottom"
-                    piece.side.bottom.exitSide = "top"
-                    piece.side.top.opening.isOpen = true
-                    piece.side.bottom.opening.isOpen = true
-                
-//                } else if piece.currentSwitch == 2 {
 //
-//                    piece.side.top.color = piece.colors[1]
-//                    piece.side.bottom.color = piece.colors[0]
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.left.color = piece.colors[1]
+////                    piece.side.right.color = piece.colors[0]
+////                    piece.side.left.exitSide = "right"
+////                    piece.side.right.exitSide = "left"
+////                    piece.side.left.opening.isOpen = true
+////                    piece.side.right.opening.isOpen = true
+////                }
+//
+//            case 2, 4:
+//
+//                //Vertical Line
+////                if piece.currentSwitch == 1 {
+//
+//                    piece.side.top.color = piece.colors[0]
+//                    piece.side.bottom.color = piece.colors[1]
 //                    piece.side.top.exitSide = "bottom"
 //                    piece.side.bottom.exitSide = "top"
 //                    piece.side.top.opening.isOpen = true
 //                    piece.side.bottom.opening.isOpen = true
-//                }
-                    
-            default:
-                break
-            }
-            
-            
-            
-            
-        case .diagElbow:
-            
-            piece.side.top.opening.isOpen = true
-            piece.side.bottom.opening.isOpen = true
-            piece.side.left.opening.isOpen = true
-            piece.side.right.opening.isOpen = true
-            
-            switch piece.version {
-            
-            case 1, 3:
-                
-                //Pivots on left and right
-//                if piece.currentSwitch == 1 {
-
-                    piece.side.right.exitSide = "top"
-                    piece.side.left.exitSide = "bottom"
-                    piece.side.top.exitSide = "right"
-                    piece.side.bottom.exitSide = "left"
-                    piece.side.right.color = piece.colors[0]
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[1]
-                    piece.side.bottom.color = piece.colors[1]
-                    
-//                } else if piece.currentSwitch == 2 {
 //
-//                    piece.side.right.exitSide = "bottom"
-//                    piece.side.left.exitSide = "top"
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.bottom.exitSide = "right"
-//                    piece.side.right.color = piece.colors[0]
-//                    piece.side.top.color = piece.colors[1]
-//                    piece.side.left.color = piece.colors[1]
-//                    piece.side.bottom.color = piece.colors[0]
-//                }
-                
-            case 2, 4:
-                
-                //Pivots on top and bottom
-//                if piece.currentSwitch == 1 {
-                    
-                    piece.side.left.exitSide = "top"
-                    piece.side.right.exitSide = "bottom"
-                    piece.side.bottom.exitSide = "right"
-                    piece.side.top.exitSide = "left"
-                    piece.side.right.color = piece.colors[1]
-                    piece.side.top.color = piece.colors[0]
-                    piece.side.left.color = piece.colors[0]
-                    piece.side.bottom.color = piece.colors[1]
-                
-//                } else if piece.currentSwitch == 2 {
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.top.color = piece.colors[1]
+////                    piece.side.bottom.color = piece.colors[0]
+////                    piece.side.top.exitSide = "bottom"
+////                    piece.side.bottom.exitSide = "top"
+////                    piece.side.top.opening.isOpen = true
+////                    piece.side.bottom.opening.isOpen = true
+////                }
 //
-//                    piece.side.left.exitSide = "bottom"
+//            default:
+//                break
+//            }
+//
+//
+//
+//
+//        case .diagElbow:
+//
+//            piece.side.top.opening.isOpen = true
+//            piece.side.bottom.opening.isOpen = true
+//            piece.side.left.opening.isOpen = true
+//            piece.side.right.opening.isOpen = true
+//
+//            switch piece.version {
+//
+//            case 1, 3:
+//
+//                //Pivots on left and right
+////                if piece.currentSwitch == 1 {
+//
 //                    piece.side.right.exitSide = "top"
-//                    piece.side.bottom.exitSide = "left"
+//                    piece.side.left.exitSide = "bottom"
 //                    piece.side.top.exitSide = "right"
+//                    piece.side.bottom.exitSide = "left"
 //                    piece.side.right.color = piece.colors[0]
 //                    piece.side.top.color = piece.colors[0]
 //                    piece.side.left.color = piece.colors[1]
 //                    piece.side.bottom.color = piece.colors[1]
-//                }
-                    
-            default:
-                break
-            }
-            
-        default:
-            break
-        }
-    }
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.right.exitSide = "bottom"
+////                    piece.side.left.exitSide = "top"
+////                    piece.side.top.exitSide = "left"
+////                    piece.side.bottom.exitSide = "right"
+////                    piece.side.right.color = piece.colors[0]
+////                    piece.side.top.color = piece.colors[1]
+////                    piece.side.left.color = piece.colors[1]
+////                    piece.side.bottom.color = piece.colors[0]
+////                }
+//
+//            case 2, 4:
+//
+//                //Pivots on top and bottom
+////                if piece.currentSwitch == 1 {
+//
+//                    piece.side.left.exitSide = "top"
+//                    piece.side.right.exitSide = "bottom"
+//                    piece.side.bottom.exitSide = "right"
+//                    piece.side.top.exitSide = "left"
+//                    piece.side.right.color = piece.colors[1]
+//                    piece.side.top.color = piece.colors[0]
+//                    piece.side.left.color = piece.colors[0]
+//                    piece.side.bottom.color = piece.colors[1]
+//
+////                } else if piece.currentSwitch == 2 {
+////
+////                    piece.side.left.exitSide = "bottom"
+////                    piece.side.right.exitSide = "top"
+////                    piece.side.bottom.exitSide = "left"
+////                    piece.side.top.exitSide = "right"
+////                    piece.side.right.color = piece.colors[0]
+////                    piece.side.top.color = piece.colors[0]
+////                    piece.side.left.color = piece.colors[1]
+////                    piece.side.bottom.color = piece.colors[1]
+////                }
+//
+//            default:
+//                break
+//            }
+//
+//        default:
+//            break
+//        }
+//    }
     
     private func addBorderAroundBoardOf(_ shape: Shape, exceptionIndexes: [Indexes]) {
 
