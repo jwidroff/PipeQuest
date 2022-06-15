@@ -1435,6 +1435,9 @@ class Model {
     
     func check4AutoBallMove() {
         
+        //MARK: NEED TO ALSO ACCOUNT FOR AN ENDLESS LOOP
+        
+        
         print("Auto ball move called")
         
         
@@ -1443,9 +1446,9 @@ class Model {
 //            print("piece shape \(piece.shape)")
 //
 //        }
-        print()
+//        print()
         
-        let newBoard = board
+//        let newBoard = board
         
 //        for piece in board.pieces {
 //
@@ -2284,6 +2287,7 @@ class Model {
                 }
             }
         }
+        check4AutoBallMove()
     }
 
     func check4CrossCrash(piece: Piece, ball: Ball, startSide: String) -> Bool {
