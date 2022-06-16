@@ -898,14 +898,12 @@ extension ViewController: ModelDelegate {
 
         self.boardView.addSubview(newView)
 
+        let oldView = piece.view
         
-        
-        piece.view.removeFromSuperview()
-        
-       
-
         piece.view = newView
 
+        oldView.removeFromSuperview()
+        
 //        piece.view.makeSoft()
     }
     

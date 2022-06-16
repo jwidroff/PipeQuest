@@ -2264,7 +2264,7 @@ class Model {
 //
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.switchPieceAfterBall(piece: piece)
+                            self.switchPieceAfterBall(piece: piece, ball: ball)
 
 //                            self.delegate?.replacePieceView(piece: piece)
                         }
@@ -2283,7 +2283,7 @@ class Model {
 
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                        self.switchPieceAfterBall(piece: piece)
+                        self.switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
@@ -2353,7 +2353,7 @@ class Model {
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.switchPieceAfterBall(piece: piece)
+                            self.switchPieceAfterBall(piece: piece, ball: ball)
                         }
                     }
                 }
@@ -2373,7 +2373,7 @@ class Model {
 //                    }
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
-                        self.switchPieceAfterBall(piece: piece)
+                        self.switchPieceAfterBall(piece: piece, ball: ball)
                     }
                     
                     
@@ -2438,7 +2438,7 @@ class Model {
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.switchPieceAfterBall(piece: piece)
+                            self.switchPieceAfterBall(piece: piece, ball: ball)
                         }
                         
 //                        switchPieceAfterBall(piece: piece)
@@ -2462,7 +2462,7 @@ class Model {
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                        self.switchPieceAfterBall(piece: piece)
+                        self.switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
@@ -2533,7 +2533,7 @@ class Model {
                         
                         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.switchPieceAfterBall(piece: piece)
+                            self.switchPieceAfterBall(piece: piece, ball: ball)
                         }
                     }
                 }
@@ -2548,7 +2548,7 @@ class Model {
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                        self.switchPieceAfterBall(piece: piece)
+                        self.switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
@@ -2723,7 +2723,7 @@ class Model {
 //    }
     
     
-    func switchPieceAfterBall(piece: Piece) {
+    func switchPieceAfterBall(piece: Piece, ball: Ball) {
         
         print("SWITCHHHHHHHHHHHHHHHHHHHHH")
         
@@ -2767,13 +2767,13 @@ class Model {
                 }
                 piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                 
-            delegate?.replacePieceView(piece: piece)
+                delegate?.replacePieceView(piece: piece)
               
 
             } else {
-
+                
                 switch piece.version {
-
+                    
                 case 1:
                     piece.version = 3
                 case 2:
@@ -2784,11 +2784,11 @@ class Model {
                     piece.version = 2
                 default:
                     break
-
+                    
                 }
-
+                
                 piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-//                delegate?.replacePieceView(piece: piece)
+                //                delegate?.replacePieceView(piece: piece)
                 
                 delegate?.switchCrissCross(piece: piece)
             }
