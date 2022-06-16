@@ -1454,7 +1454,9 @@ class Model {
 
             if piece.shape == .entrance {
                 
+                
                 let ball = Ball()
+                ball.piecesPassed.append(piece)
 
                 switch piece.version {
 
@@ -1488,14 +1490,15 @@ class Model {
     }
     
     
-    func enlargeHelper(piece: Piece) {
+    func enlargeHelper(ball: Ball) {
         
-        for pieceXX in board.pieces {
+        for piece in board.pieces {
             
-            if piece.indexes == pieceXX.indexes {
+            if ball.piecesPassed.contains(where: { (pieceX) in
+                piece.indexes == pieceX.indexes
+            }) {
                 
-                delegate?.enlargePiece(view: pieceXX.view)
-                
+                delegate?.enlargePiece(view: piece.view)
             }
         }
     }
@@ -1507,7 +1510,16 @@ class Model {
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             
             print("MOVE BALL FOR ENDLESS LOOP!")
-            
+            for ballX in board.balls {
+                
+                if ballX.indexes == ball.piecesPassed[0].indexes {
+                    
+                    print("THIS SHOULD WORK")
+//                    enlargeHelper(ball: ballX)
+                    moveBall(ball: ballX, startSide: "unmoved")
+                }
+                
+            }
             return
         }
         
@@ -1527,6 +1539,19 @@ class Model {
                     if piece.side.top.color == pieceX.side.bottom.color {
                         
                         if pieceX.shape == .exit {
+                            
+                            
+                            for ballX in board.balls {
+                                
+                                if ballX.indexes == ball.piecesPassed[0].indexes {
+                                    
+                                    print("THIS SHOULD WORK")
+//                                    enlargeHelper(ball: ballX)
+
+                                    moveBall(ball: ballX, startSide: "unmoved")
+                                }
+                                
+                            }
                             
                             print("MOVE BALL!!!!!")
                             
@@ -1626,9 +1651,28 @@ class Model {
                     if piece.side.right.color == pieceX.side.left.color {
                         
                         if pieceX.shape == .exit {
+                            
+                            
                             print("MOVE BALL!!!!!")
+                            
+                            
+                            for ballX in board.balls {
+                                
+                                
+                                if ballX.indexes == ball.piecesPassed[0].indexes {
+                                    
+                                    print("THIS SHOULD WORK")
+//                                    enlargeHelper(ball: ballX)
+
+                                    
+                                    moveBall(ball: ballX, startSide: "unmoved")
+                                }
+                                
+                            }
 //                            moveBall(ball: ball, startSide: "center")
 
+                            
+                            
                             return
                         }
                         
@@ -1727,6 +1771,19 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                            
+                            for ballX in board.balls {
+                                
+                                if ballX.indexes == ball.piecesPassed[0].indexes {
+                                    
+                                    print("THIS SHOULD WORK")
+//                                    enlargeHelper(ball: ballX)
+
+                                    moveBall(ball: ballX, startSide: "unmoved")
+                                }
+                                
+                            }
+                            
 //                            moveBall(ball: ball, startSide: "center")
                             return
                         }
@@ -1829,6 +1886,20 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+                            
+                            for ballX in board.balls {
+                                
+                                if ballX.indexes == ball.piecesPassed[0].indexes {
+                                    
+                                    print("THIS SHOULD WORK")
+
+//                                    enlargeHelper(ball: ballX)
+
+                                    moveBall(ball: ballX, startSide: "unmoved")
+                                }
+                                
+                            }
+                            
 //                            moveBall(ball: ball, startSide: "center")
                             return
                         }
