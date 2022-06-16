@@ -1004,7 +1004,7 @@ class Opening {
 
 class Closing {
     
-    var isOpen = false
+    var isOpen = true
 }
 
 class Ball {

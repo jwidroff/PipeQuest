@@ -1529,39 +1529,38 @@ class Model {
                         if pieceX.shape == .exit {
                             
                             print("MOVE BALL!!!!!")
+                            
+                            
+//                            moveBall(ball: ball, startSide: "center")
+                            return
                         }
                         
-                        if pieceX.shape == .cross {
+                        if pieceX.side.bottom.closing.isOpen == false {
+                            return
+                        }
+                        
+                        if piece.shape == .cross {
                             
-                            if pieceX.side.bottom.closing.isOpen == false {
-                                return
-                            } else {
+                            switch piece.version {
                                 
-                                    
-                                    switch pieceX.version {
-                                        
-                                    case 1:
-                                        pieceX.version = 3
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 2:
-                                        pieceX.version = 4
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 3:
-                                        pieceX.version = 1
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 4:
-                                        pieceX.version = 2
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    default:
-                                        
-                                        break
-                                        
-                                    }
-                                    
+                            case 1:
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 2:
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 3:
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 4:
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            default:
+                                break
                             }
                         }
                         
@@ -1628,39 +1627,37 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+//                            moveBall(ball: ball, startSide: "center")
+
                             return
                         }
                         
-                        if pieceX.shape == .cross {
+                        if pieceX.side.left.closing.isOpen == false {
+                            return
+                        }
+                        
+                        if piece.shape == .cross {
                             
-                            if pieceX.side.left.closing.isOpen == false {
-                                return
-                            } else {
-                                                                    
-                                    switch pieceX.version {
-                                        
-                                    case 1:
-                                        pieceX.version = 3
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 2:
-                                        pieceX.version = 4
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 3:
-                                        pieceX.version = 1
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 4:
-                                        pieceX.version = 2
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    default:
-                                        
-                                        break
-                                        
-                                    }
-                                    
+                            switch piece.version {
+                                
+                            case 1:
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 2:
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 3:
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 4:
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            default:
+                                break
                             }
                         }
                         
@@ -1730,39 +1727,36 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+//                            moveBall(ball: ball, startSide: "center")
+                            return
                         }
                         
-                        if pieceX.shape == .cross {
-
-                            if pieceX.side.top.closing.isOpen == false {
-                                return
-                            } else {
+                        if pieceX.side.top.closing.isOpen == false {
+                            return
+                        }
+                        
+                        if piece.shape == .cross {
+                            
+                            switch piece.version {
                                 
-                                    
-                                    switch pieceX.version {
-                                        
-                                    case 1:
-                                        pieceX.version = 3
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 2:
-                                        pieceX.version = 4
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 3:
-                                        pieceX.version = 1
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 4:
-                                        pieceX.version = 2
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    default:
-                                        
-                                        break
-                                        
-                                    }
-                                    
+                            case 1:
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 2:
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 3:
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 4:
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            default:
+                                break
                             }
                         }
                         
@@ -1835,40 +1829,37 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             print("MOVE BALL!!!!!")
+//                            moveBall(ball: ball, startSide: "center")
+                            return
                         }
                         
-                        if pieceX.shape == .cross {
-
-                            if pieceX.side.right.closing.isOpen == false {
-                                return
-                            } else {
-                                                                    
-                                    switch pieceX.version {
-                                        
-                                    case 1:
-                                        pieceX.version = 3
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 2:
-                                        pieceX.version = 4
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 3:
-                                        pieceX.version = 1
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    case 4:
-                                        pieceX.version = 2
-                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                        
-                                    default:
-                                        
-                                        break
-                                        
-                                    }
-                                    
+                        if pieceX.side.right.closing.isOpen == false {
+                            return
+                        }
+                        
+                        if piece.shape == .cross {
+                            
+                            switch piece.version {
+                                
+                            case 1:
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 2:
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 3:
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            case 4:
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                
+                            default:
+                                break
                             }
-
                         }
                         
                         if piece.shape == .doubleElbow {
