@@ -227,6 +227,9 @@ class LevelModel {
 
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .stick, colors: [UIColor.red, UIColor.cyan], version: 4, isLocked: false, doesPivot: true)
             board.pieces.append(piece)
+            
+            let blank = Piece(indexes: Indexes(x: 2, y: 1), shape: .blank, colors: [UIColor.red, UIColor.cyan], version: 4, isLocked: false, doesPivot: false)
+            board.pieces.append(blank)
 
             setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 2, exception: [2], pieceMakerOpening: "")
             setupRowOrColumnOf(.wall, rowOrColumn: "row", index: 4, exception: [1], pieceMakerOpening: "")

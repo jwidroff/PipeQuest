@@ -12,7 +12,7 @@ import UIKit
 class Piece {
     
     var indexes = Indexes()
-    var shape: Shape = .regular
+    var shape: Shape = .blank
     var view = ShapeView()
     var colors = [UIColor()]
     var side = Side()
@@ -142,6 +142,24 @@ class Piece {
         
         switch shape {
         
+            
+        case .blank:
+            
+            
+            side.left.color = nil
+            side.right.color = nil
+        side.top.color = nil
+        side.bottom.color = nil
+
+            side.left.exitSide = nil
+            side.right.exitSide = nil
+        side.top.exitSide = nil
+        side.bottom.exitSide = nil
+
+            side.left.opening.isOpen = false
+            side.right.opening.isOpen = false
+        side.top.opening.isOpen = false
+        side.bottom.opening.isOpen = false
             
             
         case .stick:

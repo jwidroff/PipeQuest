@@ -11,7 +11,7 @@ import UIKit
 
 class ShapeView : UIView {
     
-    var shape:Shape = .regular
+    var shape:Shape = .blank
     var version = Int()
     var colors = [CGColor]()
     var switches = Int()
@@ -218,7 +218,7 @@ class ShapeView : UIView {
 
 class ShapeViewTopView: UIView {
     
-    var shape:Shape = .regular
+    var shape:Shape = .blank
     var version = Int()
     var colors = [CGColor]()
     var switches = Int()
@@ -1173,17 +1173,17 @@ class ShapeViewTopView: UIView {
             context2.setFillColor(UIColor.black.cgColor)
             context2.fillEllipse(in: rect2)
             
-        case .regular:
+        case .blank:
             
             print("SOMETHING WENT WRONG HERE")
             
-            let w = frame.width / 10 * 8.0
-            let h = frame.height / 10 * 8.0
-            let x = (frame.width - w) / 2
-            let y = (frame.height - h) / 2
-            let rect1 = CGRect(x: x, y: y, width: w, height: h)
-            context.addRects([rect1])
-            context.fill(rect1)
+//            let w = frame.width / 10 * 8.0
+//            let h = frame.height / 10 * 8.0
+//            let x = (frame.width - w) / 2
+//            let y = (frame.height - h) / 2
+//            let rect1 = CGRect(x: x, y: y, width: w, height: h)
+//            context.addRects([rect1])
+//            context.fill(rect1)
         }
     }
     
@@ -1339,7 +1339,7 @@ enum Shape {
     case wall
     case pieceMaker
     case ball
-    case regular
+    case blank
 }
 
 

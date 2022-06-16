@@ -17,15 +17,11 @@ import UIKit
 
 //TODO: Make the possibility for more balls in each entrance
 
-//TODO: Give pieces the ability to rotate (May want to consider the cross piece
-
 //TODO: Make it that the pieceMakers can have multiple openings
 
 //TODO: MAKE IT THAT THAT PIECEMAKER CAN ALSO MAKE PIECEMAKERS
 
 //TODO: Make cracks for ice
-
-//TODO: Make a ball stopper piece
 
 //TODO: Make a gradient for the colorChangers view
 
@@ -38,20 +34,12 @@ import UIKit
 //TODO: Make it that the pieceMaker can also spit out walls
 
 
-//TODO: Make the buttons show that theyre being pressed
-
-//TODO: May need to utilize the closing property for the doubleElbow when is comes in from a side but the pivot is the other way
 
 
 //TODO: Random ColorChanger needs work - SEE EVERYTHING LEVEL! PIECES COME OUT IN BLACK CIRCLES
 
-//TODO: FOR SOME REASON THE BALL DOESNT FOLLOW THE PIECE INTO THE HOLE BUT ONLY WHEN SWIPING UP
-
-//TODO: May want to consider putting in a special piece (possibly one that changes shape/color every time its tapped) when a loop is made or when a line is complete. Whichever is harder
 
 //TODO: May want to consider saving pieces from a level and using all those pieces for the bonus level
-
-//TODO: Need a level to introduce pieces that switch
 
 //TODO: Consider making pieces stick together
 
@@ -59,21 +47,13 @@ import UIKit
 
 //Need to disable movePiece when balls are moving
 
-//Need to make sure that the check if ball exited works when a ball goes into an infinite loop
-
-
-//Make ball move automatically if there is a connection complete (Hard to do due to needing to know if pieces switched and which pieces switched)
 
 //Sometimes there are multiple popups trying to come up at the same time since there is multiple reasons why the user has lost (Ex losing an entrance piece as a last moveable piece)
 
 
 //Fix PieceMaker
-//See if the Opening init for the Piece class is necessary
 //Make game playable only horizontal and move buttons etc
-//Make it that all pieces move 90 degrees and they dont count as moves
-//Fix corners on pieces - doesnt look good when rotating
 //Fix walls when theyre supposed to fill up holes. Doesnt seem to be working
-//Make it that ball doesnt need to be tapped to move (need to make a fake board and pieces to test to see if the piece would go)
 
 //Make a blank piece
 
