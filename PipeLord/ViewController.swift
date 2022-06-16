@@ -1411,9 +1411,7 @@ extension ViewController: ModelDelegate {
     func setUpPiecesView() {
         
         let center = CGPoint(x: (self.boardWidth / 2) - (pieceWidth / 2), y: self.boardHeight / 2 - (pieceHeight / 2))
-        
-        print("Set up pieces view called")
-        
+    
         UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveEaseInOut) {  [self] in
             
             for piece in model.board.pieces {

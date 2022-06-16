@@ -1485,7 +1485,6 @@ class Model {
                 }
             }
         }
-        
     }
     
     
@@ -1503,6 +1502,8 @@ class Model {
     
     func checkNextPiece4Exit(ball: Ball, pieces: [Piece], piece:Piece, side2Check: String) {
         
+        
+        
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             
             print("MOVE BALL FOR ENDLESS LOOP!")
@@ -1510,12 +1511,15 @@ class Model {
             return
         }
         
-        print("CALLED")
         
         switch side2Check {
             //side to check is the side of the new piece
             
+            
         case "top":
+            
+            print("TOP")
+            print(piece.version)
             
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1), pieces: pieces) {
                 
@@ -1524,78 +1528,78 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             
-                            
-                            
                             print("MOVE BALL!!!!!")
                         }
                         
-                        else if pieceX.shape == .cross {
+                        if pieceX.shape == .cross {
                             
                             if pieceX.side.bottom.closing.isOpen == false {
                                 return
                             } else {
                                 
-                                switch pieceX.version {
                                     
-                                case 1:
-                                    pieceX.version = 3
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    switch pieceX.version {
+                                        
+                                    case 1:
+                                        pieceX.version = 3
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 2:
+                                        pieceX.version = 4
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 3:
+                                        pieceX.version = 1
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 4:
+                                        pieceX.version = 2
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    default:
+                                        
+                                        break
+                                        
+                                    }
                                     
-                                case 2:
-                                    pieceX.version = 4
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 3:
-                                    pieceX.version = 1
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 4:
-                                    pieceX.version = 2
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                default:
-                                    
-                                    break
-                                    
-                                }
                             }
                         }
                         
-                        else if pieceX.shape == .doubleElbow {
+                        if piece.shape == .doubleElbow {
 
-                            switch pieceX.version {
+                            switch piece.version {
 
                             case 1:
-                                pieceX.version = 5
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 5
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 2:
-                                pieceX.version = 6
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 6
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 3:
-                                pieceX.version = 7
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 7
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 4:
-                                pieceX.version = 8
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 8
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 5:
-                                pieceX.version = 1
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 6:
-                                pieceX.version = 2
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 7:
-                                pieceX.version = 3
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 8:
-                                pieceX.version = 4
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             default:
 
@@ -1603,20 +1607,8 @@ class Model {
 
                             }
                         }
-                        
-//                        for pieceXX in board.pieces {
-//
-//                            if pieceX.indexes == pieceXX.indexes {
-//
-//                                delegate?.enlargePiece(view: pieceXX.view)
-//
-//                            }
-//                        }
-                        
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
                         
-                        
-//                        enlargeHelper(piece: pieceX)
                         checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
                     }
                 }
@@ -1624,6 +1616,11 @@ class Model {
             
             
         case "right":
+            
+            print("Right")
+            print(piece.version)
+
+            
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y), pieces: pieces) {
                 
                 if pieceX.side.left.opening.isOpen == true {
@@ -1634,73 +1631,74 @@ class Model {
                             return
                         }
                         
-                        else if pieceX.shape == .cross {
-
+                        if pieceX.shape == .cross {
+                            
                             if pieceX.side.left.closing.isOpen == false {
                                 return
                             } else {
-                                
-                                switch pieceX.version {
+                                                                    
+                                    switch pieceX.version {
+                                        
+                                    case 1:
+                                        pieceX.version = 3
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 2:
+                                        pieceX.version = 4
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 3:
+                                        pieceX.version = 1
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 4:
+                                        pieceX.version = 2
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    default:
+                                        
+                                        break
+                                        
+                                    }
                                     
-                                case 1:
-                                    pieceX.version = 3
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 2:
-                                    pieceX.version = 4
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 3:
-                                    pieceX.version = 1
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 4:
-                                    pieceX.version = 2
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                default:
-                                    
-                                    break
-                                    
-                                }
                             }
                         }
                         
-                        else if pieceX.shape == .doubleElbow {
+                        if piece.shape == .doubleElbow {
 
-                            switch pieceX.version {
+                            switch piece.version {
 
                             case 1:
-                                pieceX.version = 5
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 5
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 2:
-                                pieceX.version = 6
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 6
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 3:
-                                pieceX.version = 7
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 7
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 4:
-                                pieceX.version = 8
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 8
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 5:
-                                pieceX.version = 1
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 6:
-                                pieceX.version = 2
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 7:
-                                pieceX.version = 3
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 8:
-                                pieceX.version = 4
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             default:
 
@@ -1709,14 +1707,6 @@ class Model {
                             }
                         }
                         
-//                        for pieceXX in board.pieces {
-//
-//                            if pieceX.indexes == pieceXX.indexes {
-//
-//                                delegate?.enlargePiece(view: pieceXX.view)
-//
-//                            }
-//                        }
                         
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
                         
@@ -1728,6 +1718,11 @@ class Model {
             }
 
         case "bottom":
+            
+            print("Bottom")
+            print(piece.version)
+
+
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
                 
                 if pieceX.side.top.opening.isOpen == true {
@@ -1737,73 +1732,75 @@ class Model {
                             print("MOVE BALL!!!!!")
                         }
                         
-                        else if pieceX.shape == .cross {
+                        if pieceX.shape == .cross {
 
                             if pieceX.side.top.closing.isOpen == false {
                                 return
                             } else {
                                 
-                                switch pieceX.version {
                                     
-                                case 1:
-                                    pieceX.version = 2
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                    switch pieceX.version {
+                                        
+                                    case 1:
+                                        pieceX.version = 3
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 2:
+                                        pieceX.version = 4
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 3:
+                                        pieceX.version = 1
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 4:
+                                        pieceX.version = 2
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    default:
+                                        
+                                        break
+                                        
+                                    }
                                     
-                                case 2:
-                                    pieceX.version = 1
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 3:
-                                    pieceX.version = 4
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 4:
-                                    pieceX.version = 3
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                default:
-                                    
-                                    break
-                                    
-                                }
                             }
                         }
                         
-                        else if pieceX.shape == .doubleElbow {
+                        if piece.shape == .doubleElbow {
 
-                            switch pieceX.version {
+                            switch piece.version {
 
                             case 1:
-                                pieceX.version = 5
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 5
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 2:
-                                pieceX.version = 6
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 6
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 3:
-                                pieceX.version = 7
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 7
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 4:
-                                pieceX.version = 8
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 8
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 5:
-                                pieceX.version = 1
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 6:
-                                pieceX.version = 2
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 7:
-                                pieceX.version = 3
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 8:
-                                pieceX.version = 4
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             default:
 
@@ -1812,14 +1809,6 @@ class Model {
                             }
                         }
                         
-//                        for pieceXX in board.pieces {
-//
-//                            if pieceX.indexes == pieceXX.indexes {
-//
-//                                delegate?.enlargePiece(view: pieceXX.view)
-//
-//                            }
-//                        }
                         
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
                         
@@ -1832,9 +1821,14 @@ class Model {
             }
 
         case "left":
+            
+            print("Left")
+            print(piece.version)
+
+
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y), pieces: pieces) {
                 
-                print("piece type \(piece.shape)")
+//                print("piece type \(piece.shape)")
 
                 if pieceX.side.right.opening.isOpen == true {
                     if piece.side.left.color == pieceX.side.right.color {
@@ -1843,77 +1837,75 @@ class Model {
                             print("MOVE BALL!!!!!")
                         }
                         
-                        else if pieceX.shape == .cross {
+                        if pieceX.shape == .cross {
 
                             if pieceX.side.right.closing.isOpen == false {
                                 return
                             } else {
-                                
-                                switch pieceX.version {
+                                                                    
+                                    switch pieceX.version {
+                                        
+                                    case 1:
+                                        pieceX.version = 3
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 2:
+                                        pieceX.version = 4
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 3:
+                                        pieceX.version = 1
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    case 4:
+                                        pieceX.version = 2
+                                        pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                        
+                                    default:
+                                        
+                                        break
+                                        
+                                    }
                                     
-                                case 1:
-                                    pieceX.version = 3
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 2:
-                                    pieceX.version = 4
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 3:
-                                    pieceX.version = 1
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                case 4:
-                                    
-                                    pieceX.version = 2
-                                    pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
-                                    
-                                default:
-                                    
-                                    break
-                                    
-                                }
                             }
 
                         }
                         
-                        else if pieceX.shape == .doubleElbow {
+                        if piece.shape == .doubleElbow {
 
-                            switch pieceX.version {
-
+                            switch piece.version {
 
                             case 1:
-                                pieceX.version = 5
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 5
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 2:
-                                pieceX.version = 6
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 6
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 3:
-                                pieceX.version = 7
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 7
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 4:
-
-                                pieceX.version = 8
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 8
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 5:
-                                pieceX.version = 1
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 1
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 6:
-                                pieceX.version = 2
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 2
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 7:
-                                pieceX.version = 3
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 3
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             case 8:
-                                pieceX.version = 4
-                                pieceX.setPieceSides(shape: pieceX.shape, version: pieceX.version, colors: pieceX.colors)
+                                piece.version = 4
+                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 
                             default:
 
@@ -1922,14 +1914,6 @@ class Model {
                             }
                         }
                         
-//                        for pieceXX in board.pieces {
-//
-//                            if pieceX.indexes == pieceXX.indexes {
-//
-//                                delegate?.enlargePiece(view: pieceXX.view)
-//
-//                            }
-//                        }
                         
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
 
@@ -2630,29 +2614,29 @@ class Model {
                         piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         print()
                         
-                        print("Version = \(piece.version)")
-                        
-                        print("Top")
-                        print("Open = \(piece.side.top.opening.isOpen)")
-                        print("Color = \(piece.side.top.color?.accessibilityName)")
-                        print("closing side = \(piece.side.top.closing.isOpen)")
-                        print()
-                        print("Right")
-                        print("Open = \(piece.side.right.opening.isOpen)")
-                        print("Color = \(piece.side.right.color?.accessibilityName)")
-                        print("closing side = \(piece.side.right.closing.isOpen)")
-
-                        print()
-                        print("Bottom")
-                        print("Open = \(piece.side.bottom.opening.isOpen)")
-                        print("Color = \(piece.side.bottom.color?.accessibilityName)")
-                        print("closing side = \(piece.side.bottom.closing.isOpen)")
-
-                        print()
-                        print("Left")
-                        print("Open = \(piece.side.left.opening.isOpen)")
-                        print("Color = \(piece.side.left.color?.accessibilityName)")
-                        print("closing side = \(piece.side.left.closing.isOpen)")
+//                        print("Version = \(piece.version)")
+//
+//                        print("Top")
+//                        print("Open = \(piece.side.top.opening.isOpen)")
+//                        print("Color = \(piece.side.top.color?.accessibilityName)")
+//                        print("closing side = \(piece.side.top.closing.isOpen)")
+//                        print()
+//                        print("Right")
+//                        print("Open = \(piece.side.right.opening.isOpen)")
+//                        print("Color = \(piece.side.right.color?.accessibilityName)")
+//                        print("closing side = \(piece.side.right.closing.isOpen)")
+//
+//                        print()
+//                        print("Bottom")
+//                        print("Open = \(piece.side.bottom.opening.isOpen)")
+//                        print("Color = \(piece.side.bottom.color?.accessibilityName)")
+//                        print("closing side = \(piece.side.bottom.closing.isOpen)")
+//
+//                        print()
+//                        print("Left")
+//                        print("Open = \(piece.side.left.opening.isOpen)")
+//                        print("Color = \(piece.side.left.color?.accessibilityName)")
+//                        print("closing side = \(piece.side.left.closing.isOpen)")
 
                         
 
@@ -2803,9 +2787,7 @@ class Model {
 
 
         case .doubleElbow:
-            
-            print()
-  
+              
                 switch piece.version {
 
                 case 1:
@@ -2906,6 +2888,8 @@ class Model {
                 }
                 
             }
+            
+            
             
             
         default:
