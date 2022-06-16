@@ -769,6 +769,10 @@ class LevelModel {
             let doubleElbow7 = Piece(indexes: Indexes(x: 4, y: 9), shape: .doubleElbow, colors: [UIColor.red, UIColor.red], version: 1, isLocked: false, doesPivot: true)
             board.pieces.append(doubleElbow7)
             
+            let wall = Piece(indexes: Indexes(x: 2, y: 2), shape: .wall, colors: [UIColor.red, UIColor.red], version: 1, isLocked: true, doesPivot: false)
+            board.pieces.append(wall)
+            
+            
             addBorderAroundBoardOf(.wall, exceptionIndexes: [])
 
         case "rattle snake":

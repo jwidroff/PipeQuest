@@ -2644,7 +2644,7 @@ class Model {
             let x1 = Int(board.grid[piece.indexes]!.x)
             let y1 = Int(board.grid[piece.indexes]!.y)
             
-            if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) && piece.shape != .entrance && piece.shape != .exit {
+            if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2){//} && piece.shape != .entrance && piece.shape != .exit {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
@@ -2657,18 +2657,20 @@ class Model {
                     
                 }
                 
-            } else if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) && piece.shape == .entrance && piece.shape != .exit {
-                
-                moveStarted = false
-                
-                for ball in board.balls {
-                    
-                    if board.grid[ball.indexes] == center {
-                        
-                        moveBall(ball: ball, startSide: "unmoved")
-                    }
-                }
             }
+            
+//            else if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) && piece.shape == .entrance && piece.shape != .exit {
+//                
+//                moveStarted = false
+//                
+//                for ball in board.balls {
+//                    
+//                    if board.grid[ball.indexes] == center {
+//                        
+//                        moveBall(ball: ball, startSide: "unmoved")
+//                    }
+//                }
+//            }
         }
         check4AutoBallMove()
     }

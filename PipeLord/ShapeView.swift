@@ -54,7 +54,7 @@ class ShapeView : UIView {
     func makeSoft() {
 //        self.backgroundColor = UIColor.clear
         self.layer.masksToBounds = false
-        var cornerRadius: CGFloat = 5
+        var cornerRadius: CGFloat = 1
         var frame = CGRect.zero
         
         if doesPivot == false {
@@ -68,7 +68,7 @@ class ShapeView : UIView {
             frame = self.layer.bounds
         }
         
-        let shadowRadius: CGFloat = 2
+        let shadowRadius: CGFloat = 1
         let darkShadow = CALayer()
         darkShadow.frame = frame
         darkShadow.backgroundColor = ColorTheme.boardBackground.cgColor

@@ -134,7 +134,7 @@ class BoardView : UIView {
     private func makeSoft(view: UIView) {
         
         view.backgroundColor = ColorTheme.boardBackground
-        let shadowRadius: CGFloat = 4
+        let shadowRadius: CGFloat = 1
         let darkShadow = CALayer()
 //
 //        let lightShadow = CALayer()

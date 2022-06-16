@@ -163,35 +163,35 @@ class ViewController: UIViewController {
         setupLevelNameLabel()
     }
     
-    func makeViewSoft(view: UIView) {
-        
-        //TODO: This needs to be adjusted.
-        view.layer.shadowOpacity = 1.0
-        view.layer.masksToBounds = false
-
-        let cornerRadius: CGFloat = view.frame.height / 2
-        let shadowRadius: CGFloat = 3
-
-        let darkShadow = CALayer()
-        darkShadow.frame = view.bounds
-        darkShadow.backgroundColor = view.backgroundColor?.cgColor
-        darkShadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
-        darkShadow.cornerRadius = cornerRadius
-        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-        darkShadow.shadowOpacity = 1
-        darkShadow.shadowRadius = shadowRadius
-        view.layer.insertSublayer(darkShadow, at: 0)
-
-        let lightShadow = CALayer()
-        lightShadow.frame = view.bounds
-        lightShadow.backgroundColor = view.backgroundColor?.cgColor
-        lightShadow.shadowColor = UIColor.black.cgColor
-        lightShadow.cornerRadius = cornerRadius
-        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-        lightShadow.shadowOpacity = 1
-        lightShadow.shadowRadius = shadowRadius
-        view.layer.insertSublayer(lightShadow, at: 0)
-    }
+//    func makeViewSoft(view: UIView) {
+//        
+//        //TODO: This needs to be adjusted.
+//        view.layer.shadowOpacity = 1.0
+//        view.layer.masksToBounds = false
+//
+//        let cornerRadius: CGFloat = view.frame.height / 2
+//        let shadowRadius: CGFloat = 3
+//
+//        let darkShadow = CALayer()
+//        darkShadow.frame = view.bounds
+//        darkShadow.backgroundColor = view.backgroundColor?.cgColor
+//        darkShadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
+//        darkShadow.cornerRadius = cornerRadius
+//        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+//        darkShadow.shadowOpacity = 1
+//        darkShadow.shadowRadius = shadowRadius
+//        view.layer.insertSublayer(darkShadow, at: 0)
+//
+//        let lightShadow = CALayer()
+//        lightShadow.frame = view.bounds
+//        lightShadow.backgroundColor = view.backgroundColor?.cgColor
+//        lightShadow.shadowColor = UIColor.black.cgColor
+//        lightShadow.cornerRadius = cornerRadius
+//        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+//        lightShadow.shadowOpacity = 1
+//        lightShadow.shadowRadius = shadowRadius
+//        view.layer.insertSublayer(lightShadow, at: 0)
+//    }
     
     func setupRetryButton() {
         
@@ -774,7 +774,7 @@ extension ViewController: ModelDelegate {
                 if let sublayers = piece.view.layer.sublayers {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 2
+                    let shadowRadius: CGFloat = 1
                     
                     
                     sublayers[0].frame = piece.view.layer.bounds
@@ -799,7 +799,7 @@ extension ViewController: ModelDelegate {
                 if let sublayers = piece.view.layer.sublayers {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 2
+                    let shadowRadius: CGFloat = 1
                     
                     sublayers[0].frame = piece.view.layer.bounds
                     sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
@@ -825,7 +825,7 @@ extension ViewController: ModelDelegate {
                 if let sublayers = piece.view.layer.sublayers {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 2
+                    let shadowRadius: CGFloat = 1
                     
                     
                     sublayers[0].frame = piece.view.layer.bounds
@@ -851,7 +851,7 @@ extension ViewController: ModelDelegate {
                 if let sublayers = piece.view.layer.sublayers {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 2
+                    let shadowRadius: CGFloat = 1
                     
                     
                     sublayers[0].frame = piece.view.layer.bounds
