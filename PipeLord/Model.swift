@@ -2648,44 +2648,11 @@ class Model {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
-//                    if piece.doesPivot == true && piece.isLocked == false {
                     if piece.doesPivot == true {
                         switchVersions(piece: piece)
-    //                    switchVersions(piece: piece)
-    //                    setPieceSides(piece: piece)
                         piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                        print()
-                        
-//                        print("Version = \(piece.version)")
-//
-//                        print("Top")
-//                        print("Open = \(piece.side.top.opening.isOpen)")
-//                        print("Color = \(piece.side.top.color?.accessibilityName)")
-//                        print("closing side = \(piece.side.top.closing.isOpen)")
-//                        print()
-//                        print("Right")
-//                        print("Open = \(piece.side.right.opening.isOpen)")
-//                        print("Color = \(piece.side.right.color?.accessibilityName)")
-//                        print("closing side = \(piece.side.right.closing.isOpen)")
-//
-//                        print()
-//                        print("Bottom")
-//                        print("Open = \(piece.side.bottom.opening.isOpen)")
-//                        print("Color = \(piece.side.bottom.color?.accessibilityName)")
-//                        print("closing side = \(piece.side.bottom.closing.isOpen)")
-//
-//                        print()
-//                        print("Left")
-//                        print("Open = \(piece.side.left.opening.isOpen)")
-//                        print("Color = \(piece.side.left.color?.accessibilityName)")
-//                        print("closing side = \(piece.side.left.closing.isOpen)")
-
-                        
-
-                        
                         
                         delegate?.replacePieceView(piece: piece)
-                        
                     }
                     
                 }

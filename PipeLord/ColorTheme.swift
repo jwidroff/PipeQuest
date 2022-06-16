@@ -26,10 +26,10 @@ class ColorTheme {
     
     init() {
         
-        gameBackground = UIColor.yellow
-        ColorTheme.boardBackground = UIColor.gray
+//        gameBackground = UIColor.yellow
+        ColorTheme.boardBackground = UIColor(red: 0.6, green: 0.5, blue: 0.7, alpha: 0.9)
         pieceBackground = UIColor.clear
-        lockedPieceBackground = UIColor(red: 0.2, green: 0.2, blue: 0.3, alpha: 0.4)
+        lockedPieceBackground = UIColor(red: 0.2, green: 0.2, blue: 0.3, alpha: 0.8)
         
         lockPieceScrewColor = UIColor.lightGray
         holeColor = gameBackground

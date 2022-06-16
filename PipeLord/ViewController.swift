@@ -94,13 +94,6 @@ class ViewController: UIViewController {
         //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
         self.view.layer.insertSublayer(gradient2, at: 2)
         
-        
-        
-        
-        
-        
-        
-        
     }
     
     //MARK: Initial Setup
@@ -156,9 +149,9 @@ class ViewController: UIViewController {
         heightCushion = self.view.frame.height / 5
         boardHeight = self.view.frame.height - heightCushion
         boardWidth = boardHeight / 2
-        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 8.0
-        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 8.0
-        distanceFromPieceCenter = (pieceWidth / 8.0 * 10) / 2
+        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.5
+        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.5
+        distanceFromPieceCenter = (pieceWidth / 9.5 * 10) / 2
         
     }
     
@@ -217,16 +210,10 @@ class ViewController: UIViewController {
         retryButton.setTitleColor(colorTheme.buttonTextColor, for: .normal)
         retryButton.addTarget(self, action: #selector(handleTap4Retry(sender:)), for: .touchUpInside)
         retryButton.showsTouchWhenHighlighted = true
-        //        makeViewSoft(view: retryButton)
         view.addSubview(retryButton)
     }
     
     func setupMenuButton() {
-        
-        
-        
-        
-        
         
         let controlHeight = pieceHeight / 2
         let buttonWidth = (boardWidth / 2) - 10
@@ -234,9 +221,6 @@ class ViewController: UIViewController {
         let menuButtonYFloat = model.board.view.frame.maxY + (controlHeight / 2)
         let menuButtonXFloat = model.board.view.frame.minX
         let menuButtonFrame = CGRect(x: menuButtonXFloat, y: menuButtonYFloat, width: buttonWidth, height: buttonHeight)
-        
-        
-        
         
         menuButton = UIButton(frame: menuButtonFrame)
         menuButton.layer.cornerRadius = menuButton.frame.height / 2
@@ -246,7 +230,6 @@ class ViewController: UIViewController {
         menuButton.setTitleColor(colorTheme.buttonTextColor, for: .normal)
         menuButton.addTarget(self, action: #selector(handleTap4Menu(sender:)), for: .touchUpInside)
         menuButton.showsTouchWhenHighlighted = true
-        //        makeViewSoft(view: menuButton)
         view.addSubview(menuButton)
     }
     
@@ -268,8 +251,6 @@ class ViewController: UIViewController {
         let movesLeftTextLabelFrame = CGRect(x: swipesLeftXFloat - 30, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
         
         movesLeftTextLabel = UILabel(frame: movesLeftTextLabelFrame)
-        
-        
         movesLeftTextLabel.frame = movesLeftTextLabelFrame
         movesLeftTextLabel.backgroundColor = .clear
         movesLeftTextLabel.textAlignment = .right
@@ -318,12 +299,6 @@ class ViewController: UIViewController {
             default:
                 break
             }
-//            if model.check4GameOver() == true {
-//
-//                runPopUpView(title: "You Lose", message: "No Pieces ")
-//
-//
-//            }
         }
     }
     
@@ -686,7 +661,6 @@ extension ViewController: ModelDelegate {
             pieceX.indexes == piece.indexes
         }) {
             
-
             var radianDegrees: CGFloat = 0
             
             switch piece.view.rotations {
@@ -707,84 +681,8 @@ extension ViewController: ModelDelegate {
             default:
                 break
             }
-        
             
             rotateView(piece: piece, rotationDegrees: radianDegrees)
-            
-//            if piece.shape == .cross && (piece.version == 1 || piece.version == 3)  {
-//
-////                replacePieceView(piece: piece)
-//
-//
-//                //MARK: COME BACK HERE
-//
-//                print("YEESSSSSSSSSSSSSSSSSSSS")
-////                piece.view.draw(piece.view.bounds)
-//
-//
-//                let newView = ShapeView(frame: piece.view.frame, piece: piece)
-//
-//                addTapGestureRecognizer(view: newView)
-//
-//                boardView.addSubview(newView)
-//
-//                piece.view.removeFromSuperview()
-//
-//                piece.view = newView
-//
-////                piece.view.setNeedsDisplay()
-//
-//
-//            }
-            
-//            if piece.shape == .colorChanger {
-//
-//                rotateView(view: piece.view, rotationDegrees: 180)
-//
-//            } else if piece.shape == .cross {
-//
-//                if piece.colors[0] == piece.colors[1] {
-////                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
-//                    rotateView(view: piece.view, rotationDegrees: 90)
-////
-////
-////
-////                    let cornerRadius: CGFloat = piece.view.frame.height / 20
-////                    let shadowRadius: CGFloat = 2
-////
-////                    let darkShadow = CALayer()
-////                    darkShadow.frame = piece.view.layer.bounds
-////                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-////                    darkShadow.shadowColor = UIColor.black.cgColor
-////                    darkShadow.cornerRadius = cornerRadius
-////                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-////                    darkShadow.shadowOpacity = 1
-////                    darkShadow.shadowRadius = shadowRadius
-////                    piece.view.layer.insertSublayer(darkShadow, at: 0)
-////
-////                    let lightShadow = CALayer()
-////                    lightShadow.frame = piece.view.layer.bounds
-////                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-////                    lightShadow.shadowColor = UIColor.white.cgColor
-////                    lightShadow.cornerRadius = cornerRadius
-////                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-////                    lightShadow.shadowOpacity = 1
-////                    lightShadow.shadowRadius = shadowRadius
-////                    piece.view.layer.insertSublayer(lightShadow, at: 0)
-////
-//
-//
-//                } else {
-//                    replacePieceHelper(piece: piece)
-//                }
-//            } else if piece.shape == .wall {
-//
-//                lockPieceInPlace(piece: piece)
-//
-//            } else {
-//
-//                replacePieceHelper(piece: piece)
-//            }
         }
     }
     
@@ -877,19 +775,21 @@ extension ViewController: ModelDelegate {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
+                    
+                    
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = UIColor.gray.cgColor
-                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[0].shadowColor = UIColor.black.cgColor
                     sublayers[0].cornerRadius = cornerRadius
-                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+                    sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
                     
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = UIColor.gray.cgColor
-                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[1].shadowColor = UIColor.white.cgColor
                     sublayers[1].cornerRadius = cornerRadius
-                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+                    sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
                 }
@@ -900,20 +800,23 @@ extension ViewController: ModelDelegate {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
+                    
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = UIColor.gray.cgColor
-                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[0].shadowColor = UIColor.black.cgColor
                     sublayers[0].cornerRadius = cornerRadius
-                    sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
+                    
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = UIColor.gray.cgColor
-                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[1].shadowColor = UIColor.white.cgColor
                     sublayers[1].cornerRadius = cornerRadius
-                    sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
+                    
                 }
                 
                 
@@ -923,20 +826,24 @@ extension ViewController: ModelDelegate {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
+                    
+                    
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = UIColor.gray.cgColor
-                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[0].shadowColor = UIColor.black.cgColor
                     sublayers[0].cornerRadius = cornerRadius
-                    sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
+                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
+                    
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = UIColor.gray.cgColor
-                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[1].shadowColor = UIColor.white.cgColor
                     sublayers[1].cornerRadius = cornerRadius
-                    sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
+                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
+                    
                 }
                 
             case 360:
@@ -945,20 +852,24 @@ extension ViewController: ModelDelegate {
                     
                     let cornerRadius: CGFloat = piece.view.frame.width / 2
                     let shadowRadius: CGFloat = 2
+                    
+                    
                     sublayers[0].frame = piece.view.layer.bounds
-                    sublayers[0].backgroundColor = UIColor.gray.cgColor
-                    sublayers[0].shadowColor = UIColor.white.cgColor
+                    sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[0].shadowColor = UIColor.black.cgColor
                     sublayers[0].cornerRadius = cornerRadius
-                    sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
+                    sublayers[0].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
                     sublayers[0].shadowOpacity = 1
                     sublayers[0].shadowRadius = shadowRadius
+                    
                     sublayers[1].frame = piece.view.layer.bounds
-                    sublayers[1].backgroundColor = UIColor.gray.cgColor
-                    sublayers[1].shadowColor = UIColor.black.cgColor
+                    sublayers[1].backgroundColor = ColorTheme.boardBackground.cgColor
+                    sublayers[1].shadowColor = UIColor.white.cgColor
                     sublayers[1].cornerRadius = cornerRadius
-                    sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+                    sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
+                    
                 }
                 
             default:
@@ -1122,44 +1033,12 @@ extension ViewController: ModelDelegate {
     
     func resetPieceMakerView(piece: Piece) {
  
-//        let frame = piece.view.subviews.first!.frame
-        
-//        piece.nextPiece?.view.removeFromSuperview()
-        
         let w = piece.view.frame.width / 2
         let h = piece.view.frame.height / 2
         let x = (piece.view.frame.width - w) / 2
         let y = (piece.view.frame.height - h) / 2
-
-
-
         let frame = CGRect(x: x, y: y, width: w, height: h)
-        
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
-//        nextPieceView.backgroundColor = .darkGray
-        
-//        if let sublayers = nextPieceView.layer.sublayers {
-//
-//            let cornerRadius: CGFloat = nextPieceView.frame.width / 4
-//            let shadowRadius: CGFloat = 2
-//            sublayers[0].frame = nextPieceView.layer.bounds
-//            sublayers[0].backgroundColor = UIColor.darkGray.cgColor
-//            sublayers[0].shadowColor = UIColor.red.cgColor
-//            sublayers[0].cornerRadius = cornerRadius
-//            sublayers[0].shadowOffset = CGSize(width: -shadowRadius, height: shadowRadius)
-//            sublayers[0].shadowOpacity = 1
-//            sublayers[0].shadowRadius = shadowRadius
-//            sublayers[1].frame = nextPieceView.layer.bounds
-//            sublayers[1].backgroundColor = UIColor.darkGray.cgColor
-//            sublayers[1].shadowColor = UIColor.green.cgColor
-//            sublayers[1].cornerRadius = cornerRadius
-//            sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
-//            sublayers[1].shadowOpacity = 1
-//            sublayers[1].shadowRadius = shadowRadius
-//        }
-        
-//        piece.view.subviews[0].removeFromSuperview()
-        
         
         piece.view.addSubview(nextPieceView)
     }
