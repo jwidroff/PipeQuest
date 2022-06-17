@@ -2590,6 +2590,9 @@ class Model {
     
     func checkIfBallExited(ball: Ball, endSide: String) {
                
+        print("Check called")
+        print(ball.piecesPassed.count)
+        
         if endSide == "center" {
             
             CATransaction.begin()
@@ -2603,10 +2606,28 @@ class Model {
             
             for piece in ball.piecesPassed {
                 
-                self.delegate?.removeView(view: piece.view)
-                board.pieces.removeAll { (pieceX) -> Bool in
-                    pieceX.indexes == piece.indexes
+                print("Piece location \(piece.indexes)")
+                
+//                piece.view.removeFromSuperview()
+                
+                
+                let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+//                    switchPieceAfterBall(piece: piece)
+//                    switchVersions(piece: piece)
+//                    setPieceSides(piece: piece)
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+                DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                    self.delegate?.removeView(view: piece.view)
+                    self.board.pieces.removeAll { (pieceX) -> Bool in
+                        pieceX.indexes == piece.indexes
+                    }
                 }
+                
+                
+                
+                
             }
             
             self.board.balls.removeAll { (ballX) -> Bool in
@@ -2748,31 +2769,31 @@ class Model {
 
         case .cross:
 
-            if piece.colors[1] == piece.colors[0] {
-                //If the colors are the same lets rotate
-
-                switch piece.version {
-
-                case 1:
-
-                    piece.version = 2
-                    
-                case 2:
-                    piece.version = 1
-                case 3:
-                    piece.version = 4
-                case 4:
-                    piece.version = 3
-                default:
-                    break
-
-                }
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                
-                delegate?.replacePieceView(piece: piece)
+//            if piece.colors[1] == piece.colors[0] {
+//                //If the colors are the same lets rotate
+//
+//                switch piece.version {
+//
+//                case 1:
+//
+//                    piece.version = 2
+//
+//                case 2:
+//                    piece.version = 1
+//                case 3:
+//                    piece.version = 4
+//                case 4:
+//                    piece.version = 3
+//                default:
+//                    break
+//
+//                }
+//                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+//
+//                delegate?.replacePieceView(piece: piece)
               
 
-            } else {
+//            } else {
                 
                 switch piece.version {
                     
@@ -2793,7 +2814,7 @@ class Model {
                 //                delegate?.replacePieceView(piece: piece)
                 
                 delegate?.switchCrissCross(piece: piece)
-            }
+//            }
 
 
 
@@ -2824,7 +2845,10 @@ class Model {
                 }
 //
                 piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-////                delegate?.replacePieceView(piece: piece)
+            
+            //MARK: ISSUE IS HERE - WHEN SWITCHCRISSCROSS IS CALLED EVERYTHING WORKS PROPERLY EXCEPT THAT THE VIEWS DONT GET REMOVED WHEN A BALL EXITS. WHEN REPLACE PIECEVIEW IS CALLED, EVERYTHING WORKS EXCEPT WHEN THE BALL MOVES, THE VIEWS FOR THE PIECES ROTATE BY 90 DEGREES INSTEAD OF SWITCHING THE TOP COLORS
+            
+//                delegate?.replacePieceView(piece: piece)
 //
                 delegate?.switchCrissCross(piece: piece)
 //            }

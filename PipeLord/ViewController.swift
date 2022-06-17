@@ -688,72 +688,72 @@ extension ViewController: ModelDelegate {
     
     
     
-    func replacePieceHelper(piece: Piece) { //NOT CALLED
-        
-        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
-        
-        let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
-        
-        let shapeView = ShapeView(frame: frame, piece: newPiece)
-        piece.view.removeFromSuperview()
-        piece.view = shapeView
-        self.addTapGestureRecognizer(view: piece.view)
-        self.model.board.view.addSubview(piece.view)
-        
-        for ball in self.model.board.balls {
-            
-            self.model.board.view.bringSubviewToFront(ball.view)
-        }
-    }
-    
-    func lockPieceInPlace(piece: Piece) { //Not Called
-        
-        if piece.isLocked == false {
-            
-//            piece.view.backgroundColor = .darkGray
-            
-            let w = piece.view.frame.width / 10 * 9.5
-            let h = piece.view.frame.height / 10 * 9.5
-            let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
-            let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
-
-
-            let frame = CGRect(x: x, y: y, width: w, height: h)
-
-            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: false)
-            
-            piece.view.removeFromSuperview()
-            
-
-            let pieceView = ShapeView(frame: frame, piece: lockView)
-            
-//            let lockView = UIView(frame: frame)
-//            lockView.backgroundColor = .black
-//            model.board.view.insertSubview(lockView, belowSubview: piece.view)
-
-            model.board.view.addSubview(pieceView)
-            
-            piece.view = pieceView
-            piece.isLocked = true
-            
-//            piece.isLocked = true
-        }
-//        else {
-//            for subview in model.board.view.subviews {
-//                if subview.center == piece.center && subview.backgroundColor == .black {
-//                    removeView(view: subview)
+//    func replacePieceHelper(piece: Piece) { //NOT CALLED
 //
-//                }
-//            }
+//        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
 //
-//            piece.isLocked = false
+//        let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
 //
+//        let shapeView = ShapeView(frame: frame, piece: newPiece)
+//        piece.view.removeFromSuperview()
+//        piece.view = shapeView
+//        self.addTapGestureRecognizer(view: piece.view)
+//        self.model.board.view.addSubview(piece.view)
 //
+//        for ball in self.model.board.balls {
+//
+//            self.model.board.view.bringSubviewToFront(ball.view)
 //        }
-        
-        
-        
-    }
+//    }
+    
+//    func lockPieceInPlace(piece: Piece) { //Not Called
+//        
+//        if piece.isLocked == false {
+//            
+////            piece.view.backgroundColor = .darkGray
+//            
+//            let w = piece.view.frame.width / 10 * 9.5
+//            let h = piece.view.frame.height / 10 * 9.5
+//            let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
+//            let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
+//
+//
+//            let frame = CGRect(x: x, y: y, width: w, height: h)
+//
+//            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: false)
+//            
+//            piece.view.removeFromSuperview()
+//            
+//
+//            let pieceView = ShapeView(frame: frame, piece: lockView)
+//            
+////            let lockView = UIView(frame: frame)
+////            lockView.backgroundColor = .black
+////            model.board.view.insertSubview(lockView, belowSubview: piece.view)
+//
+//            model.board.view.addSubview(pieceView)
+//            
+//            piece.view = pieceView
+//            piece.isLocked = true
+//            
+////            piece.isLocked = true
+//        }
+////        else {
+////            for subview in model.board.view.subviews {
+////                if subview.center == piece.center && subview.backgroundColor == .black {
+////                    removeView(view: subview)
+////
+////                }
+////            }
+////
+////            piece.isLocked = false
+////
+////
+////        }
+//        
+//        
+//        
+//    }
     
     
     func rotateView(piece: Piece, rotationDegrees: CGFloat) {
@@ -761,7 +761,7 @@ extension ViewController: ModelDelegate {
         let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
         
         
-        UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0.20, delay: 0.0, options: .curveEaseIn) {
             
             piece.view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
             
@@ -881,6 +881,8 @@ extension ViewController: ModelDelegate {
             
             if (piece.shape == .cross && (piece.version == 1 || piece.version == 3)) || (piece.shape == .doubleElbow && (piece.version == 1 || piece.version == 5))  {
 
+                
+                
                 self.switchCrissCross(piece: piece)
                 
 

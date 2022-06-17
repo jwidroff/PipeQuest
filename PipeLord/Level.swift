@@ -61,6 +61,7 @@ class LevelModel {
                       "Sharp Elbow", //DIFFICULT
                       "intro to double elbow",
                       "puzzle",
+                      "el shape",
                       "test2",
                       "zigzag",
                       "holy hell",
@@ -534,6 +535,22 @@ class LevelModel {
             let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.cyan], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(exit)
 
+            
+        case "el shape":
+            
+            board.amountOfRandomPieces = 10
+            board.heightSpaces = 14
+            board.widthSpaces = 7
+            
+            setupRowOrColumnOf(.wall, rowOrColumn: "row", index: board.heightSpaces - 1, exception: [], pieceMakerOpening: nil)
+            setupRowOrColumnOf(.wall, rowOrColumn: "column", index: board.widthSpaces - 1, exception: [], pieceMakerOpening: nil)
+            
+            let entrance = Piece(indexes: Indexes(x: 1, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            board.pieces.append(entrance)
+
+            let exit = Piece(indexes: Indexes(x: 2, y: 4), shape: .exit, colors: [UIColor.cyan], version: 1, isLocked: true, doesPivot: false)
+            board.pieces.append(exit)
+            
         case "test2":
 
             board.colorTheme.gradientBackgroundColor = [UIColor.yellow, UIColor.purple]
@@ -658,11 +675,11 @@ class LevelModel {
 //            let entrance = Piece(indexes: Indexes(x: 3, y: 3), shape: .entrance, colors: [UIColor.red], version: 3, isLocked: false, doesPivot: false)
 //            board.pieces.append(entrance)
 //
-            let entrance1 = Piece(indexes: Indexes(x: 4, y: 8), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            let entrance1 = Piece(indexes: Indexes(x: 4, y: 8), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
             board.pieces.append(entrance1)
             
             
-            let exit = Piece(indexes: Indexes(x: 3, y: 9), shape: .exit, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            let exit = Piece(indexes: Indexes(x: 3, y: 9), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: false, doesPivot: false)
             board.pieces.append(exit)
             
             let doubleElbow1 = Piece(indexes: Indexes(x: 3, y: 5), shape: .doubleElbow, colors: [UIColor.red, UIColor.red], version: 2, isLocked: false, doesPivot: true)
