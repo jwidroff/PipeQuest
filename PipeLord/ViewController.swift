@@ -149,9 +149,9 @@ class ViewController: UIViewController {
         heightCushion = self.view.frame.height / 5
         boardHeight = self.view.frame.height - heightCushion
         boardWidth = boardHeight / 2
-        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.5
-        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.5
-        distanceFromPieceCenter = (pieceWidth / 9.5 * 10) / 2
+        pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.0
+        pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.0
+        distanceFromPieceCenter = (pieceWidth / 9.0 * 10) / 2
         
     }
     
@@ -894,17 +894,29 @@ extension ViewController: ModelDelegate {
     
     func switchCrissCross(piece: Piece) {
         
-        let newView = ShapeView(frame: piece.view.frame, piece: piece)
-
-        self.addTapGestureRecognizer(view: newView)
-
-        self.boardView.addSubview(newView)
-
-        let oldView = piece.view
         
-        piece.view = newView
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
-        oldView.removeFromSuperview()
+        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+            
+            
+            let newView = ShapeView(frame: piece.view.frame, piece: piece)
+
+            self.addTapGestureRecognizer(view: newView)
+
+            self.boardView.addSubview(newView)
+
+            let oldView = piece.view
+            
+            piece.view = newView
+
+            oldView.removeFromSuperview()
+            
+            
+            
+        }
+        
+       
         
 //        piece.view.makeSoft()
     }
@@ -986,11 +998,11 @@ extension ViewController: ModelDelegate {
         let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
-        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
             
             
             
-            UIView.animate(withDuration: self.duration4Animation, delay: 0.0, options: .curveEaseInOut) {
+//            UIView.animate(withDuration: self.duration4Animation, delay: 0.0, options: .curveEaseInOut) {
                 
                 self.model.board.view.layer.mask?.shadowOpacity = 0.1
                 
@@ -1002,13 +1014,13 @@ extension ViewController: ModelDelegate {
                 
                 
 
-            } completion: { (true) in
+//            } completion: { (true) in
 
 //                self.removeView(view: view)
                 
-                view.removeFromSuperview()
-            }
-        }
+//                view.removeFromSuperview()
+//            }
+//        }
     }
     
     func removeHole(indexes: Indexes) {
@@ -1339,7 +1351,7 @@ extension ViewController: ModelDelegate {
             return
         }
         
-        let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
         
         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
         

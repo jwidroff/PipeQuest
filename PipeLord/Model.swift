@@ -68,6 +68,8 @@ import UIKit
 
 //TODO: Need to enlarge pieces when the ball moves
 
+//TODO: Need to make sure that the ball waits a few seconds before moving
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -960,15 +962,15 @@ class Model {
                 
                 if board.moves == 0 {
                     
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
 
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
                         for ball in self.board.balls {
 
                             self.moveBall(ball: ball, startSide: "unmoved")
                         }
-                    }
+//                    }
                 }
                 
             } else {
@@ -2166,8 +2168,22 @@ class Model {
             ball.indexes == ballX.indexes
         }
         
-        delegate?.removeView(view: ball.view)
-        delegate?.changeAnimationSpeed(slowerOrFaster: "slower")
+//        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+//                    switchPieceAfterBall(piece: piece)
+//                    switchVersions(piece: piece)
+//                    setPieceSides(piece: piece)
+//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
+//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+            self.delegate?.removeView(view: ball.view)
+            self.delegate?.changeAnimationSpeed(slowerOrFaster: "slower")
+            
+            
+            
+//        }
+        
+        
     }
     
     func moveBall(ball: Ball, startSide: String) {
@@ -2251,7 +2267,7 @@ class Model {
                         
                     } else {
  
-                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
 //                        switchPieceAfterBall(piece: piece)
 
@@ -2262,18 +2278,18 @@ class Model {
                         
 //                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
 //
-                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.switchPieceAfterBall(piece: piece, ball: ball)
 
 //                            self.delegate?.replacePieceView(piece: piece)
-                        }
+//                        }
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
 
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
 //                    switchPieceAfterBall(piece: piece)
 //                    switchVersions(piece: piece)
@@ -2281,10 +2297,10 @@ class Model {
 
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
 
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                         self.switchPieceAfterBall(piece: piece, ball: ball)
-                    }
+//                    }
                 }
                 
                 if piece.shape == .stick {
@@ -2338,7 +2354,7 @@ class Model {
                         
                     } else {
                         
-                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
 //                        switchPieceAfterBall(piece: piece)
 //                        switchVersions(piece: piece)
@@ -2351,16 +2367,16 @@ class Model {
 //                        }
                         
                         
-                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.switchPieceAfterBall(piece: piece, ball: ball)
-                        }
+//                        }
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
                     
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                     
                     //                    switchPieceAfterBall(piece: piece)
                     //                    switchVersions(piece: piece)
@@ -2371,10 +2387,10 @@ class Model {
 //
 //                        self.delegate?.replacePieceView(piece: piece)
 //                    }
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
                         
                         self.switchPieceAfterBall(piece: piece, ball: ball)
-                    }
+//                    }
                     
                     
                 }
@@ -2433,13 +2449,13 @@ class Model {
                         
                     } else {
                         
-                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
                         
                         
-                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.switchPieceAfterBall(piece: piece, ball: ball)
-                        }
+//                        }
                         
 //                        switchPieceAfterBall(piece: piece)
 //                        switchVersions(piece: piece)
@@ -2454,16 +2470,16 @@ class Model {
                 
                 if piece.shape == .doubleElbow {
 
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
 //                    switchPieceAfterBall(piece: piece)
 //                    switchVersions(piece: piece)
 //                    setPieceSides(piece: piece)
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                         self.switchPieceAfterBall(piece: piece, ball: ball)
-                    }
+//                    }
                 }
                 
                 if piece.shape == .stick {
@@ -2531,25 +2547,25 @@ class Model {
 //                            self.delegate?.replacePieceView(piece: piece)
 //                        }
                         
-                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                             self.switchPieceAfterBall(piece: piece, ball: ball)
-                        }
+//                        }
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
 
-                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
 //                    switchPieceAfterBall(piece: piece)
 //                    switchVersions(piece: piece)
 //                    setPieceSides(piece: piece)
 //                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                         self.switchPieceAfterBall(piece: piece, ball: ball)
-                    }
+//                    }
                 }
                 
                 if piece.shape == .stick {
@@ -2599,8 +2615,22 @@ class Model {
             
             CATransaction.setCompletionBlock {
                 
+                
+
                 self.delegate?.addSwipeGestureRecognizer(view: self.board.view)
                 self.check4Winner()
+                
+                let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+                DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                    self.delegate?.removeView(view: ball.view)
+
+                    
+                    
+                    
+                }
+                
+//                self.delegate?.removeView(view: ball.view)
                 return
             }
             
@@ -2635,7 +2665,7 @@ class Model {
                 ballX.indexes == ball.indexes
             }
             
-            self.delegate?.removeView(view: ball.view)
+//            self.delegate?.removeView(view: ball.view)
             CATransaction.commit()
         }
     }
