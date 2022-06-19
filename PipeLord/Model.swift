@@ -1444,7 +1444,6 @@ class Model {
 
                 case 1:
                     
-                    //Entrance opens on bottom
                     checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "top")
 
 
@@ -1487,7 +1486,7 @@ class Model {
     
     func checkNextPiece4Exit(ball: Ball, pieces: [Piece], piece:Piece, side2Check: String) {
         
-        
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
         
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             
@@ -1530,7 +1529,15 @@ class Model {
                                     print("THIS SHOULD WORK")
 //                                    enlargeHelper(ball: ballX)
 
-                                    moveBall(ball: ballX, startSide: "unmoved")
+                                    
+                                    
+                                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                                        self.moveBall(ball: ballX, startSide: "unmoved")
+                                        
+                                        
+                                        
+                                    }
                                 }
                                 
                             }
@@ -1647,7 +1654,13 @@ class Model {
 //                                    enlargeHelper(ball: ballX)
 
                                     
-                                    moveBall(ball: ballX, startSide: "unmoved")
+                                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                                        self.moveBall(ball: ballX, startSide: "unmoved")
+                                        
+                                        
+                                        
+                                    }
                                 }
                                 
                             }
@@ -1761,7 +1774,13 @@ class Model {
                                     print("THIS SHOULD WORK")
 //                                    enlargeHelper(ball: ballX)
 
-                                    moveBall(ball: ballX, startSide: "unmoved")
+                                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                                        self.moveBall(ball: ballX, startSide: "unmoved")
+                                        
+                                        
+                                        
+                                    }
                                 }
                                 
                             }
@@ -1877,7 +1896,13 @@ class Model {
 
 //                                    enlargeHelper(ball: ballX)
 
-                                    moveBall(ball: ballX, startSide: "unmoved")
+                                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                                        self.moveBall(ball: ballX, startSide: "unmoved")
+                                        
+                                        
+                                        
+                                    }
                                 }
                                 
                             }
