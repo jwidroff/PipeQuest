@@ -33,34 +33,19 @@ class Piece {
         self.shape = shape
         self.colors = colors
         self.version = version
-//        self.currentSwitch = currentSwitch
         self.isLocked = isLocked
-        
-//        if let doesPivot = doesPivot {
-            self.doesPivot = doesPivot
-//        }
-        
-//        if let opening = opening {
-//            self.opening = opening
-//        }
-        
+        self.doesPivot = doesPivot
         if colors.count == 1 {
             
             self.colors.append(colors[0])
         }
-        
-//        setPieceSwitches() //MARK: NOT USED
-        
         setPieceTotalVersions(shape: shape)
         setPieceSides(shape: shape, version: version, colors: self.colors)
     }
     
-    
     func setPieceTotalVersions(shape: Shape) {
         
-        
         switch shape {
-            
             
         case .doubleElbow:
             totalVersions = 8
@@ -87,11 +72,8 @@ class Piece {
             totalVersions = 4
             
         default:
-            
             break
-            
         }
-        
     }
     
     func setPieceSides(shape: Shape, version: Int, colors: [UIColor]) {

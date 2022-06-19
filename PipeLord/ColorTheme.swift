@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class ColorTheme {
+class ColorTheme { //TODO: Make all of these into static vars
     
     var gameBackground = UIColor()
     static var boardBackground = UIColor()

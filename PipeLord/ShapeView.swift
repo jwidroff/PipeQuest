@@ -136,34 +136,7 @@ class ShapeViewTopView: UIView {
             self.layer.cornerRadius = self.frame.width / 2
             
         }
-        
-//        if piece.isLocked == true {
-//
-//            self.backgroundColor = .black
-//        }
-        
-        
-        
-//        self.switches = piece.switches
-//        self.currentSwitch = piece.currentSwitch
     }
-    
-//    func setLock(context: CGContext) {
-//        
-//        let w = frame.width// / 10 * 9
-//        let h = frame.height// / 10 * 9
-//        let x = (frame.width - w) / 2
-//        let y = (frame.height - h) / 2
-//        let rect1 = CGRect(x: x, y: y, width: w, height: h)
-//        context.saveGState()
-//        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
-////        context.addEllipse(in: rect1)
-//        
-//        context.addRect(rect1)
-//        context.fill(rect1)
-////        context.fillEllipse(in: rect1)
-//        context.restoreGState()
-//    }
     
     override func draw(_ rect: CGRect) {
         
@@ -181,8 +154,6 @@ class ShapeViewTopView: UIView {
         
         if isLocked == true {
             
-//            setLock(context: context)
-            
             context.saveGState()
             context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
             context.fill(rect)
@@ -190,23 +161,7 @@ class ShapeViewTopView: UIView {
         }
         
         switch shape {
-        
-//        case .stick: //MARK: STICK VIEW
-//            
-//            switch version {
-//            
-//            case 1, 3:
-//                
-//                drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[0])
-//                
-//            case 2, 4:
-//                
-//                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
-//                
-//            default:
-//                break
-//            }
-            
+
         case .elbow: //MARK: ELBOW VIEW
             
             context.setFillColor(colors[0])
@@ -214,90 +169,13 @@ class ShapeViewTopView: UIView {
             switch version {
             
             case 1:
-                
-                //TOP PIVOT
-                
-//                if currentSwitch == 1 {
-                    
-                    // TOP PIVOT TO LEFT SIDE
-                    drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    // TOP PIVOT TO RIGHT SIDE
-//                    drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
-//                }
-                
-//                if isLocked == false && doesPivot == true {
-//
-//                    addPivotRect(context: context, side: "top", color: colors[0])
-//                }
-                
+                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
             case 2:
-                
-                //Left Pivot
- 
-//                if currentSwitch == 1 {
-                    
-                    //LEFT PIVOT TO BOTTOM
-//                    drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
-                
                 drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    //LEFT PIVOT TO TOP
-//                    drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
-//
-//                }
-                
-//                if isLocked == false && doesPivot == true {
-//
-//                    addPivotRect(context: context, side: "left", color: colors[0])
-//                }
-                
             case 3:
-                
-                //Bottom pivot
-
-//                if currentSwitch == 1 {
-                    
-                    //BOTTOM PIVOT TO RIGHT
-                    drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
-                    
-//                } else if currentSwitch == 2  {
-//
-//                    //BOTTOM PIVOT TO LEFT
-//                    drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
-//                }
-                
-//                if isLocked == false && doesPivot == true {
-//
-//                    addPivotRect(context: context, side: "bottom", color: colors[0])
-//                }
-               
+                drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
             case 4:
-
-                //Right Pivot
-
-//                if currentSwitch == 1 {
-                    
-                    //RIGHT PIVOT TO TOP
-                
                 drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
-//                    drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
-                    
-//                } else if currentSwitch == 2  {
-//
-//                    //RIGHT PIVOT TO BOTTOM
-//                    drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
-//
-//                }
-                
-//                if isLocked == false && doesPivot == true {
-//
-//                    addPivotRect(context: context, side: "right", color: colors[0])
-//                }
                 
             default:
                 break
@@ -308,106 +186,53 @@ class ShapeViewTopView: UIView {
             switch version {
                 
             case 1:
-                
                 context2.setFillColor(colors[1])
-                
                 drawPath(path: path2, context: context2, pivotPoint: topCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[1])
                 
-                
                 context.setFillColor(colors[0])
-                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
-                
             case 2:
-                
                 context.setFillColor(colors[1])
-                
                 drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[1])
                 
-                
                 context2.setFillColor(colors[0])
-                
                 drawPath(path: path2, context: context2, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
-                
-                
             case 3:
-                
                 context.setFillColor(colors[1])
-                
                 drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[1])
                 
-                
                 context2.setFillColor(colors[0])
-                
                 drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
-                
             case 4:
-                
                 context2.setFillColor(colors[1])
-                
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: center, endPoint: topCenterPoint, color: colors[1])
                 
-                //
                 context.setFillColor(colors[0])
-                
                 drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
-                
             case 5:
-                
-               
-                
                 context.setFillColor(colors[0])
-                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
                 
-                
                 context2.setFillColor(colors[1])
-                
                 drawPath(path: path2, context: context2, pivotPoint: topCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[1])
-                
-                
             case 6:
-                
-               
-                
-                
                 context2.setFillColor(colors[0])
-                
                 drawPath(path: path2, context: context2, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
                 
                 context.setFillColor(colors[1])
-                
                 drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[1])
-                
             case 7:
-                
-               
-                
-                
                 context2.setFillColor(colors[0])
-                
                 drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
                 
                 context.setFillColor(colors[1])
-                
                 drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[1])
-                
             case 8:
-                
-                
-                
-                //
                 context.setFillColor(colors[0])
-                
                 drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
                 
                 context2.setFillColor(colors[1])
-                
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: center, endPoint: topCenterPoint, color: colors[1])
-                
-                
-                
-                
             default:
                 break
             }
@@ -417,107 +242,22 @@ class ShapeViewTopView: UIView {
             switch version {
             
             case 1, 3:
+                drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
                 
-//                if currentSwitch == 1 {
-                    
-                    //RIGHT PIVOT TO TOP SIDE
-                    
-                    drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
-                    
-                    context.setFillColor(colors[0])
-                    
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context, side: "right", color: colors[0])
-//                    }
-                    
-                    //LEFT PIVOT TO BOTTOM SIDE
-                    
-                    drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[1])
-                    
-                    context2.setFillColor(colors[1])
-                    
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context2, side: "left", color: colors[1])
-//                    }
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    //LEFT PIVOT TO TOP SIDE
-//
-//                    drawPath(path: path, context: context, pivotPoint: leftCenterPoint, center: center, endPoint: topCenterPoint, color: colors[1])
-//
-//                    context.setFillColor(colors[1])
-//
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context, side: "left", color: colors[1])
-//                    }
-//
-//                    //RIGHT PIVOT TO BOTTOM SIDE
-//
-//                    drawPath(path: path2, context: context2, pivotPoint: rightCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
-//
-//                    context2.setFillColor(colors[0])
-//
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context2, side: "right", color: colors[0])
-//                    }
-//                }
+                context.setFillColor(colors[0])
+                
+                drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[1])
+                
+                context2.setFillColor(colors[1])
                 
             case 2, 4:
+                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
                 
-//                if currentSwitch == 1 {
-                    
-                    //TOP PIVOT TO LEFT SIDE
-                    
-                    drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
-                    
-                    context.setFillColor(colors[0])
-                    
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context, side: "top", color: colors[0])
-//                    }
-                    
-                    //BOTTOM PIVOT TO RIGHT SIDE
-                    
-                    drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[1])
-                    
-                    context2.setFillColor(colors[1])
-                    
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context2, side: "bottom", color: colors[1])
-//                    }
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    //BOTTOM PIVOT TO LEFT SIDE
-//
-//                    drawPath(path: path, context: context, pivotPoint: bottomCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[1])
-//
-//                    context.setFillColor(colors[1])
-//
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context, side: "bottom", color: colors[1])
-//                    }
-//
-//                    //TOP PIVOT TO RIGHT SIDE
-//
-//                    drawPath(path: path2, context: context2, pivotPoint: topCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
-//
-//                    context2.setFillColor(colors[0])
-//
-//                    if isLocked == false && doesPivot == true {
-//
-//                        addPivotRect(context: context2, side: "top", color: colors[0])
-//                    }
-//                }
+                context.setFillColor(colors[0])
                 
+                drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[1])
+                
+                context2.setFillColor(colors[1])
             default:
                 break
             }
@@ -527,32 +267,20 @@ class ShapeViewTopView: UIView {
             switch version {
             
             case 1:
-                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
                 
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[1])
-                
             case 2:
-                
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[0])
                 
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[1])
             case 3:
-                
-                
-               
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[1])
                 
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[0])
-                
             case 4:
-                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: centerPoint, endPoint: bottomCenterPoint, color: colors[1])
                 drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: centerPoint, endPoint: rightCenterPoint, color: colors[0])
-               
-                
-                
-                
             default:
                 break
             }
@@ -643,84 +371,36 @@ class ShapeViewTopView: UIView {
             nextPieceView.layer.cornerRadius = nextPieceView.frame.width / 2
             nextPieceView.layer.shadowRadius = 0
             
-        case .stick: //MARK: COLORCHANGER VIEW
+        case .stick: //MARK: STICK VIEW
                         
-//            let eclipseHeight1 = frame.height / 1.75
-//            let eclipseWidth1 = frame.width / 1.75
-//            let rectX = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-//            context.addEllipse(in: rectX)
-//            context.setFillColor(UIColor.black.cgColor)
-//            context.fillEllipse(in: rectX)
-            
             switch version { //MARK: Had to make changes here
             
             case 1:
+                let path3 = UIBezierPath()
+                let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
+                let center = CGPoint(x: bounds.midX, y: bounds.midY)
+                let endpoint3 = CGPoint(x: bounds.minX, y: bounds.midY)
                 
-                //Horizontal Line
+                drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[0])
                 
-//                if currentSwitch == 1 {
+                let path4 = UIBezierPath()
+                let endpoint4 = CGPoint(x: bounds.maxX, y: bounds.midY)
                 
-                    let path3 = UIBezierPath()
-                    let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-                    let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                    let endpoint3 = CGPoint(x: bounds.minX, y: bounds.midY)
-                    
-                    drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[0])
-                    
-                    let path4 = UIBezierPath()
-                    let endpoint4 = CGPoint(x: bounds.maxX, y: bounds.midY)
-                    
-                    drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
-                    
-//                } else if currentSwitch == 2 {
-//
-//                    let path3 = UIBezierPath()
-//                    let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-//                    let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                    let endpoint3 = CGPoint(x: bounds.minX, y: bounds.midY)
-//
-//                    drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[1])
-//
-//                    let path4 = UIBezierPath()
-//                    let endpoint4 = CGPoint(x: bounds.maxX, y: bounds.midY)
-//
-//                    drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
-//
-//                }
+                drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
                 
             case 2:
                 
-                //Vertical Line
+                let path3 = UIBezierPath()
+                let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
+                let center = CGPoint(x: bounds.midX, y: bounds.midY)
+                let endpoint3 = CGPoint(x: bounds.midX, y: bounds.minY)
                 
-//                if currentSwitch == 1 {
-                    
-                    let path3 = UIBezierPath()
-                    let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-                    let center = CGPoint(x: bounds.midX, y: bounds.midY)
-                    let endpoint3 = CGPoint(x: bounds.midX, y: bounds.minY)
-                    
-                    drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[0])
-                    
-                    let path4 = UIBezierPath()
-                    let endpoint4 = CGPoint(x: bounds.midX, y: bounds.maxY)
-                    
-                    drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
-                    
-//                } else if  currentSwitch == 2 {
-//                    
-//                    let path3 = UIBezierPath()
-//                    let pivotPoint = CGPoint(x: bounds.midX, y: bounds.midY)
-//                    let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                    let endpoint3 = CGPoint(x: bounds.midX, y: bounds.minY)
-//                    
-//                    drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[1])
-//                    
-//                    let path4 = UIBezierPath()
-//                    let endpoint4 = CGPoint(x: bounds.midX, y: bounds.maxY)
-//                    
-//                    drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
-//
-//                }
+                drawPath(path: path3, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint3, color: colors[0])
+                
+                let path4 = UIBezierPath()
+                let endpoint4 = CGPoint(x: bounds.midX, y: bounds.maxY)
+                
+                drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[1])
                 
             case 3:
                 
@@ -750,136 +430,20 @@ class ShapeViewTopView: UIView {
                 
                 drawPath(path: path4, context: context, pivotPoint: pivotPoint, center: center, endPoint: endpoint4, color: colors[0])
                 
-                
             default:
                 break
             }
-            
-//        case .entrance, .exit: //MARK: ENT & EXIT VIEW
-//
-//            switch opening {
-//
-//            case "top":
-//
-//                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                let endPoint = CGPoint(x: bounds.midX, y: bounds.minY)
-//
-//                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//                setShadow(context: context)
-//
-//
-//                let eclipseHeight1 = frame.height / 1.75
-//                let eclipseWidth1 = frame.width / 1.75
-//                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-//                context.setFillColor(UIColor.black.cgColor)
-//                context.addEllipse(in: rect2)
-//                context.fillEllipse(in: rect2)
-//
-//                let eclipseHeight2 = frame.height / 2
-//                let eclipseWidth2 = frame.width / 2
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(colors[0])
-//                context.addEllipse(in: rect3)
-//                context.fillEllipse(in: rect3)
-//
-//                context.restoreGState()
-//
-//                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//            case "bottom":
-//
-//                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
-//
-//                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//                setShadow(context: context)
-//
-//                let eclipseHeight1 = frame.height / 1.75
-//                let eclipseWidth1 = frame.width / 1.75
-//                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-//                context.setFillColor(UIColor.black.cgColor)
-//                context.addEllipse(in: rect2)
-//                context.fillEllipse(in: rect2)
-//
-//                let eclipseHeight2 = frame.height / 2
-//                let eclipseWidth2 = frame.width / 2
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(colors[0])
-//                context.addEllipse(in: rect3)
-//                context.fillEllipse(in: rect3)
-//
-//                context.restoreGState()
-//
-//                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//            case "left":
-//
-//                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                let endPoint = CGPoint(x: bounds.minX, y: bounds.midY)
-//                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//                setShadow(context: context)
-//
-//                let eclipseHeight1 = frame.height / 1.75
-//                let eclipseWidth1 = frame.width / 1.75
-//                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-//                context.setFillColor(UIColor.black.cgColor)
-//                context.addEllipse(in: rect2)
-//                context.fillEllipse(in: rect2)
-//
-//                let eclipseHeight2 = frame.height / 2
-//                let eclipseWidth2 = frame.width / 2
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(colors[0])
-//                context.addEllipse(in: rect3)
-//                context.fillEllipse(in: rect3)
-//
-//                context.restoreGState()
-//
-//                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//            case "right":
-//
-//                let center = CGPoint(x: bounds.midX, y: bounds.midY)
-//                let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
-//                drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//                setShadow(context: context)
-//                let eclipseHeight1 = frame.height / 1.75
-//                let eclipseWidth1 = frame.width / 1.75
-//                let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
-//                context.setFillColor(UIColor.black.cgColor)
-//                context.addEllipse(in: rect2)
-//                context.fillEllipse(in: rect2)
-//
-//                let eclipseHeight2 = frame.height / 2
-//                let eclipseWidth2 = frame.width / 2
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(colors[0])
-//                context.addEllipse(in: rect3)
-//                context.fillEllipse(in: rect3)
-//                context.restoreGState()
-//                overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//
-//            default:
-//
-//                break
-//            }
             
         case .entrance, .exit: //MARK: ENT & EXIT VIEW
             
             switch version {
             
             case 1:
-                
-                ///Opens on top
-                
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.midX, y: bounds.minY)
                 
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-//                setShadow(context: context)
                 context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
@@ -899,19 +463,15 @@ class ShapeViewTopView: UIView {
                 context.restoreGState()
                 
                 overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                
-                
-                
-            case 2:
-                
 
-                //Opens on right
+            case 2:
                 
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//                setShadow(context: context)
+                
                 context.saveGState()
+                
                 let eclipseHeight1 = frame.height / 1.75
                 let eclipseWidth1 = frame.width / 1.75
                 let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
@@ -925,23 +485,18 @@ class ShapeViewTopView: UIView {
                 context.setFillColor(colors[0])
                 context.addEllipse(in: rect3)
                 context.fillEllipse(in: rect3)
+                
                 context.restoreGState()
+                
                 overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-                
-                
             case 3:
-                
-                
-                
-                //Opens on bottom
                 
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.midX, y: bounds.maxY)
                 
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-//                setShadow(context: context)
                 context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
@@ -962,15 +517,12 @@ class ShapeViewTopView: UIView {
                 
                 overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-                
             case 4:
-                
-                //Opens on left
                 
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.minX, y: bounds.midY)
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-//                setShadow(context: context)
+                
                 context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
@@ -991,48 +543,13 @@ class ShapeViewTopView: UIView {
                 
                 overlapPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-                
-                
-                
-                
-            
             default:
                 break
             }
             
-            
-            
-            
         case .wall: //MARK: WALL VIEW
             
             print()
-            
-//            if isLocked == true {
-//
-//                let eclipseHeight2 = frame.height / 1.25
-//                let eclipseWidth2 = frame.width / 1.25
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(UIColor.black.cgColor)
-////                context.setFillColor(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.9).cgColor)
-//
-//
-//                context.addRect(rect3)
-//                context.fill(rect3)
-//
-////                context.setFillColor(UIColor.black.cgColor)
-////                context.addEllipse(in: rect3)
-////                context.fillEllipse(in: rect3)
-//
-//            } else {
-//
-//                let eclipseHeight2 = frame.height / 4
-//                let eclipseWidth2 = frame.width / 4
-//                let rect3 = CGRect(x: (frame.width / 2) - (eclipseWidth2 / 2), y: (frame.height / 2) - (eclipseHeight2 / 2), width: eclipseWidth2, height: eclipseHeight2)
-//                context.setFillColor(UIColor.darkGray.cgColor)
-//                context.addEllipse(in: rect3)
-//                context.fillEllipse(in: rect3)
-//
-//            }
             
         case .ball: //MARK: BALL VIEW
             
@@ -1053,22 +570,9 @@ class ShapeViewTopView: UIView {
             
         case .blank:
             
-            print("SOMETHING WENT WRONG HERE")
-            
-//            let w = frame.width / 10 * 8.0
-//            let h = frame.height / 10 * 8.0
-//            let x = (frame.width - w) / 2
-//            let y = (frame.height - h) / 2
-//            let rect1 = CGRect(x: x, y: y, width: w, height: h)
-//            context.addRects([rect1])
-//            context.fill(rect1)
+            print()
         }
     }
-
-//    func setShadow(context: CGContext) {
-//        context.saveGState()
-//    }
-    
     
     func drawPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
         
@@ -1145,7 +649,6 @@ enum Shape {
     case elbow
     case diagElbow
     case cross
-//    case stick
     case stick
     case doubleElbow
     case entrance

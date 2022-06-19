@@ -31,28 +31,12 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-//        self.view.backgroundColor = colorTheme.gameBackground
-        
-        
         addGradient()
-        
-        
-        
         model = Model()
         model.delegate = self
-//        model.showLoadingAnimation()
-        
-        
-        
-//        let delayedTime = DispatchTime.now() + .milliseconds(Int(5000))
-//
-//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-            
-            self.model.board.view.removeFromSuperview()
-            self.model.setUpGame()
-            self.model.loadingMode = false
-//        }
+        model.board.view.removeFromSuperview()
+        model.setUpGame()
+        model.loadingMode = false
     }
     
     func addGradient() {
@@ -110,11 +94,8 @@ class ViewController: UIViewController {
         var frameY = CGFloat()
         
         if deviceIsNarrow {
-
             frameY = self.view.frame.midY - (boardHeight / 2) + (heightCushion / 4)
-            
         } else {
-            
             frameY = self.view.frame.midY - (boardHeight / 2)// + (heightCushion)
         }
         
@@ -138,9 +119,7 @@ class ViewController: UIViewController {
         
         boardView = BoardView(frame: frame, xArray: xArray, yArray: yArray, iceLocations: model.board.iceLocations, holeLocations: model.board.holeLocations, colorTheme: board.colorTheme)
         self.model.board.view = boardView
-//        self.model.board.view.backgroundColor = ColorTheme.boardBackground
         self.addSwipeGestureRecognizer(view: model.board.view)
-        
         view.addSubview(self.model.board.view)
     }
     
@@ -152,7 +131,6 @@ class ViewController: UIViewController {
         pieceWidth = boardWidth / CGFloat(model.board.widthSpaces) / 10 * 9.0
         pieceHeight = boardHeight / CGFloat(model.board.heightSpaces) / 10 * 9.0
         distanceFromPieceCenter = (pieceWidth / 9.0 * 10) / 2
-        
     }
     
     func setupControls() {
@@ -162,36 +140,6 @@ class ViewController: UIViewController {
         setupMovesLeftLabel()
         setupLevelNameLabel()
     }
-    
-//    func makeViewSoft(view: UIView) {
-//        
-//        //TODO: This needs to be adjusted.
-//        view.layer.shadowOpacity = 1.0
-//        view.layer.masksToBounds = false
-//
-//        let cornerRadius: CGFloat = view.frame.height / 2
-//        let shadowRadius: CGFloat = 3
-//
-//        let darkShadow = CALayer()
-//        darkShadow.frame = view.bounds
-//        darkShadow.backgroundColor = view.backgroundColor?.cgColor
-//        darkShadow.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0).cgColor
-//        darkShadow.cornerRadius = cornerRadius
-//        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-//        darkShadow.shadowOpacity = 1
-//        darkShadow.shadowRadius = shadowRadius
-//        view.layer.insertSublayer(darkShadow, at: 0)
-//
-//        let lightShadow = CALayer()
-//        lightShadow.frame = view.bounds
-//        lightShadow.backgroundColor = view.backgroundColor?.cgColor
-//        lightShadow.shadowColor = UIColor.black.cgColor
-//        lightShadow.cornerRadius = cornerRadius
-//        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-//        lightShadow.shadowOpacity = 1
-//        lightShadow.shadowRadius = shadowRadius
-//        view.layer.insertSublayer(lightShadow, at: 0)
-//    }
     
     func setupRetryButton() {
         
@@ -235,7 +183,6 @@ class ViewController: UIViewController {
     
     func setupMovesLeftLabel() {
         
-        
         let controlHeight = pieceHeight / 2
         let movesLeftLabelHeight = controlHeight
         let movesLeftLabelWidth = (boardWidth / 2) - (controlHeight / 2)
@@ -247,7 +194,6 @@ class ViewController: UIViewController {
         movesLeftLabel.textAlignment = .right
         view.addSubview(movesLeftLabel)
         
-        
         let movesLeftTextLabelFrame = CGRect(x: swipesLeftXFloat - 30, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
         
         movesLeftTextLabel = UILabel(frame: movesLeftTextLabelFrame)
@@ -257,8 +203,6 @@ class ViewController: UIViewController {
         movesLeftTextLabel.text = "Moves left: "
         movesLeftTextLabel.textAlignment = .right
         view.addSubview(movesLeftTextLabel)
-        
-        
     }
     
     func setupLevelNameLabel() {
@@ -307,9 +251,6 @@ class ViewController: UIViewController {
                 self.model.check4AutoBallMove()
                 self.model.check4GameOver()
             }
-            
-            
-            
         }
     }
     
@@ -331,7 +272,6 @@ class ViewController: UIViewController {
     
     func runMenuView() {
         
-        //TODO: Finish this
         let width = self.view.frame.width / 10 * 9
         let height = self.view.frame.height / 10 * 9
         let x = (self.view.frame.width - width) / 2
@@ -459,16 +399,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: ModelDelegate {
+    
     func enlargePiece(view: UIView) {
         
         let transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
         view.transform = transform
-        
     }
     
-    
-    
-
     func addSwipeGestureRecognizer(view: UIView) {
         
         var upSwipe = UISwipeGestureRecognizer()
@@ -607,65 +544,6 @@ extension ViewController: ModelDelegate {
         }
     }
     
-//    func replacePieceView(piece: Piece) {
-//
-//        if self.model.board.pieces.contains(where: { (pieceX) -> Bool in
-//            pieceX.indexes == piece.indexes
-//        }) {
-//
-//
-//
-//            if piece.shape == .colorChanger {
-//
-//                rotateView(view: piece.view, rotationDegrees: 180)
-//
-//            } else if piece.shape == .cross {
-//
-//                if piece.colors[0] == piece.colors[1] {
-////                    rotateView(view: piece.view.subviews[0], rotationDegrees: 90)
-//                    rotateView(view: piece.view, rotationDegrees: 90)
-////
-////
-////
-////                    let cornerRadius: CGFloat = piece.view.frame.height / 20
-////                    let shadowRadius: CGFloat = 2
-////
-////                    let darkShadow = CALayer()
-////                    darkShadow.frame = piece.view.layer.bounds
-////                    darkShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-////                    darkShadow.shadowColor = UIColor.black.cgColor
-////                    darkShadow.cornerRadius = cornerRadius
-////                    darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
-////                    darkShadow.shadowOpacity = 1
-////                    darkShadow.shadowRadius = shadowRadius
-////                    piece.view.layer.insertSublayer(darkShadow, at: 0)
-////
-////                    let lightShadow = CALayer()
-////                    lightShadow.frame = piece.view.layer.bounds
-////                    lightShadow.backgroundColor = piece.view.backgroundColor?.cgColor
-////                    lightShadow.shadowColor = UIColor.white.cgColor
-////                    lightShadow.cornerRadius = cornerRadius
-////                    lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-////                    lightShadow.shadowOpacity = 1
-////                    lightShadow.shadowRadius = shadowRadius
-////                    piece.view.layer.insertSublayer(lightShadow, at: 0)
-////
-//
-//
-//                } else {
-//                    replacePieceHelper(piece: piece)
-//                }
-//            } else if piece.shape == .wall {
-//
-//                lockPieceInPlace(piece: piece)
-//
-//            } else {
-//
-//                replacePieceHelper(piece: piece)
-//            }
-//        }
-//    }
-    
     func replacePieceView(piece: Piece) {
         
         if self.model.board.pieces.contains(where: { (pieceX) -> Bool in
@@ -697,96 +575,23 @@ extension ViewController: ModelDelegate {
         }
     }
     
-    
-    
-//    func replacePieceHelper(piece: Piece) { //NOT CALLED
-//
-//        let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
-//
-//        let frame = CGRect(x: self.model.board.grid[piece.indexes]!.x - (self.pieceWidth / 2), y:  self.model.board.grid[piece.indexes]!.y - (self.pieceHeight / 2), width: self.pieceWidth, height: self.pieceHeight)
-//
-//        let shapeView = ShapeView(frame: frame, piece: newPiece)
-//        piece.view.removeFromSuperview()
-//        piece.view = shapeView
-//        self.addTapGestureRecognizer(view: piece.view)
-//        self.model.board.view.addSubview(piece.view)
-//
-//        for ball in self.model.board.balls {
-//
-//            self.model.board.view.bringSubviewToFront(ball.view)
-//        }
-//    }
-    
-//    func lockPieceInPlace(piece: Piece) { //Not Called
-//        
-//        if piece.isLocked == false {
-//            
-////            piece.view.backgroundColor = .darkGray
-//            
-//            let w = piece.view.frame.width / 10 * 9.5
-//            let h = piece.view.frame.height / 10 * 9.5
-//            let x = piece.view.frame.minX + ((piece.view.frame.width - w) / 2)
-//            let y = piece.view.frame.minY + ((piece.view.frame.height - h) / 2)
-//
-//
-//            let frame = CGRect(x: x, y: y, width: w, height: h)
-//
-//            let lockView = Piece(indexes: piece.indexes, shape: piece.shape, colors: [UIColor.darkGray], version: 1, isLocked: true, doesPivot: false)
-//            
-//            piece.view.removeFromSuperview()
-//            
-//
-//            let pieceView = ShapeView(frame: frame, piece: lockView)
-//            
-////            let lockView = UIView(frame: frame)
-////            lockView.backgroundColor = .black
-////            model.board.view.insertSubview(lockView, belowSubview: piece.view)
-//
-//            model.board.view.addSubview(pieceView)
-//            
-//            piece.view = pieceView
-//            piece.isLocked = true
-//            
-////            piece.isLocked = true
-//        }
-////        else {
-////            for subview in model.board.view.subviews {
-////                if subview.center == piece.center && subview.backgroundColor == .black {
-////                    removeView(view: subview)
-////
-////                }
-////            }
-////
-////            piece.isLocked = false
-////
-////
-////        }
-//        
-//        
-//        
-//    }
-    
-    
     func rotateView(piece: Piece, rotationDegrees: CGFloat) {
         
         let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
-        
+        let cornerRadius: CGFloat = piece.view.frame.width / 2
+        let shadowRadius: CGFloat = 1
         
         UIView.animate(withDuration: 0.10, delay: 0.0, options: .curveEaseIn) {
             
             piece.view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
             
-            print(rotationDegrees)
+            
             
             switch rotationDegrees {
                 
             case 90:
                 
                 if let sublayers = piece.view.layer.sublayers {
-                    
-                    let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 1
-                    
                     
                     sublayers[0].frame = piece.view.layer.bounds
                     sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
@@ -809,9 +614,6 @@ extension ViewController: ModelDelegate {
                 
                 if let sublayers = piece.view.layer.sublayers {
                     
-                    let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 1
-                    
                     sublayers[0].frame = piece.view.layer.bounds
                     sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
                     sublayers[0].shadowColor = UIColor.black.cgColor
@@ -827,17 +629,11 @@ extension ViewController: ModelDelegate {
                     sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
-                    
                 }
-                
                 
             case 270:
                 
                 if let sublayers = piece.view.layer.sublayers {
-                    
-                    let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 1
-                    
                     
                     sublayers[0].frame = piece.view.layer.bounds
                     sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
@@ -854,16 +650,11 @@ extension ViewController: ModelDelegate {
                     sublayers[1].shadowOffset = CGSize(width: shadowRadius, height: -shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
-                    
                 }
                 
             case 360:
                 
                 if let sublayers = piece.view.layer.sublayers {
-                    
-                    let cornerRadius: CGFloat = piece.view.frame.width / 2
-                    let shadowRadius: CGFloat = 1
-                    
                     
                     sublayers[0].frame = piece.view.layer.bounds
                     sublayers[0].backgroundColor = ColorTheme.boardBackground.cgColor
@@ -880,7 +671,6 @@ extension ViewController: ModelDelegate {
                     sublayers[1].shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
                     sublayers[1].shadowOpacity = 1
                     sublayers[1].shadowRadius = shadowRadius
-                    
                 }
                 
             default:
@@ -892,63 +682,25 @@ extension ViewController: ModelDelegate {
             
             if (piece.shape == .cross && (piece.version == 1 || piece.version == 3)) || (piece.shape == .doubleElbow && (piece.version == 1 || piece.version == 5))  {
 
-                
-                
                 self.switchCrissCross(piece: piece)
-                
-
-//                piece.view.makeSoft()
             }
         }
-        
     }
     
     func switchCrissCross(piece: Piece) {
-        
         
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
             
-            
             let newView = ShapeView(frame: piece.view.frame, piece: piece)
-
             self.addTapGestureRecognizer(view: newView)
-
             self.boardView.addSubview(newView)
-
             let oldView = piece.view
-            
             piece.view = newView
-
             oldView.removeFromSuperview()
-            
-            
-            
         }
-        
-       
-        
-//        piece.view.makeSoft()
     }
-    
-    
-    
-//    func replaceView(piece: Piece) {
-//
-//        let newView = ShapeView(frame: piece.view.frame, piece: piece)
-//
-//        self.addTapGestureRecognizer(view: newView)
-//
-//        self.boardView.addSubview(newView)
-//
-//        piece.view.removeFromSuperview()
-//
-//        piece.view = newView
-//
-//
-//
-//    }
     
     func crashBallViewIntoCross(piece: Piece, ball: Ball) {
         
@@ -1001,37 +753,10 @@ extension ViewController: ModelDelegate {
         self.model.board.view.layer.mask?.shadowOpacity = 0.2
         model.board.view.bringSubviewToFront(view)
         
-        
-//        model.board.view.insertSubview(view, at: 10)
-        
-        
-        
         let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-
-//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-            
-            
-            
-//            UIView.animate(withDuration: self.duration4Animation, delay: 0.0, options: .curveEaseInOut) {
-                
-                self.model.board.view.layer.mask?.shadowOpacity = 0.1
-                
-                
-                self.model.board.view.bringSubviewToFront(view)
-                
-                
-                view.transform = scale
-                
-                
-
-//            } completion: { (true) in
-
-//                self.removeView(view: view)
-                
-//                view.removeFromSuperview()
-//            }
-//        }
+        self.model.board.view.layer.mask?.shadowOpacity = 0.1
+        self.model.board.view.bringSubviewToFront(view)
+        view.transform = scale
     }
     
     func removeHole(indexes: Indexes) {
@@ -1231,9 +956,7 @@ extension ViewController: ModelDelegate {
     }
     
     func movePieceView(piece: Piece) {
-        
-        
-        
+
         if piece.indexes.x! < 0{
             
             UIView.animate(withDuration: 0.25) {
@@ -1317,19 +1040,14 @@ extension ViewController: ModelDelegate {
         UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveEaseInOut) {  [self] in
             
             for piece in model.board.pieces {
-            
-                
-                let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
 
-//                let frame = CGRect(x: 0, y: 0, width: pieceWidth, height: pieceHeight)
+                let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
                 piece.view = ShapeView(frame: frame, piece: piece)
                 piece.center = CGPoint(x: model.board.grid[piece.indexes]?.x ?? piece.center.x, y: model.board.grid[piece.indexes]?.y ?? piece.center.y)
-                
-                
+
                 piece.view.center = piece.center
                 if piece.shape != .pieceMaker {
                     addTapGestureRecognizer(view: piece.view)
-
                 }
                 model.board.view.addSubview(piece.view)
             }
@@ -1431,18 +1149,8 @@ extension ViewController: ModelDelegate {
         UIView.animate(withDuration: 0.25) {
             
             let center = CGPoint(x: self.boardWidth / 2, y: self.boardHeight / 2)
-            
             let translationX = center.x - view.center.x
-            
             let translationY = center.y - view.center.y
-            
-            
-            
-            
-//            let translationX = self.model.board.grid[Indexes(x: 0, y: 0)]!.x - view.center.x
-//
-//            let translationY = self.model.board.grid[Indexes(x: 0, y: 0)]!.x - view.center.y
-            
             let transform = CGAffineTransform(translationX: translationX, y: translationY)
             
             view.transform = transform

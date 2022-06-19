@@ -135,22 +135,6 @@ class Model {
         self.board.heightSpaces = 8
         self.board.widthSpaces = 4
         
-//        let piece1 = Piece(indexes: Indexes(x: 1, y: 4), shape: .elbow, colors: [UIColor.red], version: 4, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
-//
-//        let piece2 = Piece(indexes: Indexes(x: 1, y: 3), shape: .doubleElbow, colors: [UIColor.red], version: 4, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
-//
-//        let piece3 = Piece(indexes: Indexes(x: 2, y: 4), shape: .elbow, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
-//
-//        let piece4 = Piece(indexes: Indexes(x: 2, y: 3), shape: .elbow, colors: [UIColor.red], version: 2, currentSwitch: 1, isLocked: false, opening: nil, doesPivot: false)
-//
-//        let piece5 = Piece(indexes: Indexes(x: 1, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, currentSwitch: 1, isLocked: false, opening: "bottom", doesPivot: false)
-        
-//        board.pieces.append(piece1)
-//        board.pieces.append(piece2)
-//        board.pieces.append(piece3)
-//        board.pieces.append(piece4)
-//        board.pieces.append(piece5)
-
         let ball = Ball()
         board.balls.append(ball)
 
@@ -182,613 +166,6 @@ class Model {
         updateLevelInfo()
     }
     
-//    func setPieceSides(piece: Piece) { //NOT CALLED
-//
-//        switch piece.shape {
-//
-//        case .elbow:
-//
-//            switch piece.version {
-//
-//            case 1:
-//
-//                //Top Pivot
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.left.opening.isOpen = true
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = nil
-//                    piece.side.right.color = nil
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.left.exitSide = "top"
-//                    piece.side.right.exitSide = nil
-//                    piece.side.bottom.exitSide = nil
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.top.color = piece.colors[0]
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.bottom.color = nil
-////                    piece.side.left.color = nil
-////                    piece.side.top.exitSide = "right"
-////                    piece.side.right.exitSide = "top"
-////                    piece.side.bottom.exitSide = nil
-////                    piece.side.left.exitSide = nil
-////                }
-//
-//            case 2:
-//
-//                //Left Pivot
-////                if piece.currentSwitch == 1 {
-//
-//
-//                piece.side.bottom.opening.isOpen = true
-//                piece.side.left.opening.isOpen = true
-//                piece.side.bottom.exitSide = "left"
-//                piece.side.left.exitSide = "bottom"
-//                piece.side.right.exitSide = nil
-//                piece.side.top.exitSide = nil
-//                piece.side.bottom.color = piece.colors[0]
-//                piece.side.left.color = piece.colors[0]
-//                piece.side.top.color = nil
-//                piece.side.right.color = nil
-//
-//
-//
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.bottom.exitSide = "left"
-////                    piece.side.left.exitSide = "bottom"
-////                    piece.side.right.exitSide = nil
-////                    piece.side.top.exitSide = nil
-////                    piece.side.bottom.color = piece.colors[0]
-////                    piece.side.left.color = piece.colors[0]
-////                    piece.side.top.color = nil
-////                    piece.side.right.color = nil
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.top.exitSide = "left"
-////                    piece.side.left.exitSide = "top"
-////                    piece.side.right.exitSide = nil
-////                    piece.side.bottom.exitSide = nil
-////                    piece.side.top.color = piece.colors[0]
-////                    piece.side.left.color = piece.colors[0]
-////                    piece.side.bottom.color = nil
-////                    piece.side.right.color = nil
-////                }
-//
-//            case 3:
-//
-//                //Bottom Pivot
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.bottom.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = true
-//                    piece.side.bottom.exitSide = "right"
-//                    piece.side.right.exitSide = "bottom"
-//                    piece.side.top.exitSide = nil
-//                    piece.side.left.exitSide = nil
-//                    piece.side.bottom.color = piece.colors[0]
-//                    piece.side.right.color = piece.colors[0]
-//                    piece.side.top.color = nil
-//                    piece.side.left.color = nil
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.bottom.exitSide = "left"
-////                    piece.side.left.exitSide = "bottom"
-////                    piece.side.right.exitSide = nil
-////                    piece.side.top.exitSide = nil
-////                    piece.side.bottom.color = piece.colors[0]
-////                    piece.side.left.color = piece.colors[0]
-////                    piece.side.top.color = nil
-////                    piece.side.right.color = nil
-////                }
-//
-//            case 4:
-//
-//                //Right Pivot
-////                if piece.currentSwitch == 1 {
-//
-//                piece.side.bottom.opening.isOpen = true
-//                piece.side.left.opening.isOpen = true
-//                piece.side.bottom.exitSide = "left"
-//                piece.side.left.exitSide = "bottom"
-//                piece.side.right.exitSide = nil
-//                piece.side.top.exitSide = nil
-//                piece.side.bottom.color = piece.colors[0]
-//                piece.side.left.color = piece.colors[0]
-//                piece.side.top.color = nil
-//                piece.side.right.color = nil
-//
-//
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.top.exitSide = "right"
-////                    piece.side.right.exitSide = "top"
-////                    piece.side.bottom.exitSide = nil
-////                    piece.side.left.exitSide = nil
-////                    piece.side.top.color = piece.colors[0]
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.bottom.color = nil
-////                    piece.side.left.color = nil
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.bottom.exitSide = "right"
-////                    piece.side.right.exitSide = "bottom"
-////                    piece.side.top.exitSide = nil
-////                    piece.side.left.exitSide = nil
-////                    piece.side.bottom.color = piece.colors[0]
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.top.color = nil
-////                    piece.side.left.color = nil
-////                }
-//            default:
-//                break
-//            }
-//
-//        case .cross:
-//
-//            piece.side.right.exitSide = "left"
-//            piece.side.left.exitSide = "right"
-//            piece.side.top.exitSide = "bottom"
-//            piece.side.bottom.exitSide = "top"
-//
-//            piece.side.right.color = piece.colors[1]
-//            piece.side.left.color = piece.colors[1]
-//            piece.side.top.color = piece.colors[0]
-//            piece.side.bottom.color = piece.colors[0]
-//
-//            piece.side.top.opening.isOpen = true
-//            piece.side.bottom.opening.isOpen = true
-//            piece.side.left.opening.isOpen = true
-//            piece.side.right.opening.isOpen = true
-//
-//
-//
-//            switch piece.version {
-//
-//            case 1, 3:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //Horizontal Pipe on top
-//                    piece.side.left.closing.isOpen = true
-//                    piece.side.right.closing.isOpen = true
-//                    piece.side.top.closing.isOpen = false
-//                    piece.side.bottom.closing.isOpen = false
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //Vertical Pipe on top
-////                    piece.side.left.closing.isOpen = false
-////                    piece.side.right.closing.isOpen = false
-////                    piece.side.top.closing.isOpen = true
-////                    piece.side.bottom.closing.isOpen = true
-////                }
-//
-//            case 2, 4:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //Horizontal Pipe on top
-//                    piece.side.left.closing.isOpen = true
-//                    piece.side.right.closing.isOpen = true
-//                    piece.side.top.closing.isOpen = false
-//                    piece.side.bottom.closing.isOpen = false
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //Vertical Pipe on top
-////                    piece.side.left.closing.isOpen = false
-////                    piece.side.right.closing.isOpen = false
-////                    piece.side.top.closing.isOpen = true
-////                    piece.side.bottom.closing.isOpen = true
-////                }
-//
-//            default:
-//                break
-//
-//            }
-//
-////        case .stick:
-////
-////            switch piece.version {
-////            case 1, 3:
-////
-////                piece.side.right.exitSide = "left"
-////                piece.side.left.exitSide = "right"
-////                piece.side.right.color = piece.colors[0]
-////                piece.side.left.color = piece.colors[0]
-////                piece.side.left.opening.isOpen = true
-////                piece.side.right.opening.isOpen = true
-////
-////            case 2, 4:
-////
-////                piece.side.top.exitSide = "bottom"
-////                piece.side.bottom.exitSide = "top"
-////                piece.side.top.color = piece.colors[0]
-////                piece.side.bottom.color = piece.colors[0]
-////                piece.side.top.opening.isOpen = true
-////                piece.side.bottom.opening.isOpen = true
-////
-////            default:
-////                break
-////            }
-//
-//        case .doubleElbow:
-//
-//            switch piece.version {
-//            case 1:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //Top Left
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.bottom.opening.isOpen = false
-//                    piece.side.left.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = true
-//                    piece.side.right.exitSide = "top"
-//                    piece.side.left.exitSide = "top"
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.bottom.exitSide = nil
-//                    piece.side.right.color = piece.colors[1]
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.left.color = piece.colors[0]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //Top Right
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.bottom.opening.isOpen = false
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.right.exitSide = "top"
-////                    piece.side.left.exitSide = "top"
-////                    piece.side.top.exitSide = "right"
-////                    piece.side.bottom.exitSide = nil
-////                    piece.side.right.color = piece.colors[1]
-////                    piece.side.top.color = piece.colors[1]
-////                    piece.side.left.color = piece.colors[0]
-////                }
-//
-//            case 2:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //left bottom
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.bottom.opening.isOpen = true
-//                    piece.side.left.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = false
-//                    piece.side.right.exitSide = nil
-//                    piece.side.left.exitSide = "bottom"
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.bottom.exitSide = "left"
-//                    piece.side.top.color = piece.colors[1]
-//                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[0]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //left top
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = false
-////                    piece.side.right.exitSide = nil
-////                    piece.side.left.exitSide = "top"
-////                    piece.side.top.exitSide = "left"
-////                    piece.side.bottom.exitSide = "left"
-////                    piece.side.top.color = piece.colors[1]
-////                    piece.side.left.color = piece.colors[1]
-////                    piece.side.bottom.color = piece.colors[0]
-////                }
-//
-//            case 3:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //Bottom Left on top
-//                    piece.side.top.opening.isOpen = false
-//                    piece.side.bottom.opening.isOpen = true
-//                    piece.side.left.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = true
-//                    piece.side.right.exitSide = "bottom"
-//                    piece.side.left.exitSide = "bottom"
-//                    piece.side.top.exitSide = nil
-//                    piece.side.bottom.exitSide = "left"
-//                    piece.side.right.color = piece.colors[1]
-//                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[0]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //Bottom right on top
-////                    piece.side.top.opening.isOpen = false
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.right.exitSide = "bottom"
-////                    piece.side.left.exitSide = "bottom"
-////                    piece.side.top.exitSide = nil
-////                    piece.side.bottom.exitSide = "right"
-////                    piece.side.right.color = piece.colors[1]
-////                    piece.side.left.color = piece.colors[0]
-////                    piece.side.bottom.color = piece.colors[1]
-////                }
-//
-//            case 4:
-//
-////                if piece.currentSwitch == 1 {
-//
-//                    //Right top
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.bottom.opening.isOpen = true
-//                    piece.side.left.opening.isOpen = false
-//                    piece.side.right.opening.isOpen = true
-//                    piece.side.right.exitSide = "top"
-//                    piece.side.left.exitSide = nil
-//                    piece.side.top.exitSide = "right"
-//                    piece.side.bottom.exitSide = "right"
-//                    piece.side.right.color = piece.colors[0]
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    //Right Bottom
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.bottom.opening.isOpen = true
-////                    piece.side.left.opening.isOpen = false
-////                    piece.side.right.opening.isOpen = true
-////                    piece.side.right.exitSide = "bottom"
-////                    piece.side.left.exitSide = nil
-////                    piece.side.top.exitSide = "right"
-////                    piece.side.bottom.exitSide = "right"
-////                    piece.side.right.color = piece.colors[1]
-////                    piece.side.top.color = piece.colors[0]
-////                    piece.side.bottom.color = piece.colors[1]
-////                }
-//
-//            default:
-//                break
-//            }
-//
-//        case .diagElbow:
-//
-//            piece.side.top.opening.isOpen = true
-//            piece.side.bottom.opening.isOpen = true
-//            piece.side.left.opening.isOpen = true
-//            piece.side.right.opening.isOpen = true
-//
-//            switch piece.version {
-//
-//            case 1, 3:
-//
-//                //Pivots on left and right
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.right.exitSide = "top"
-//                    piece.side.left.exitSide = "bottom"
-//                    piece.side.top.exitSide = "right"
-//                    piece.side.bottom.exitSide = "left"
-//                    piece.side.right.color = piece.colors[0]
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.left.color = piece.colors[1]
-//                    piece.side.bottom.color = piece.colors[1]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.right.exitSide = "bottom"
-////                    piece.side.left.exitSide = "top"
-////                    piece.side.top.exitSide = "left"
-////                    piece.side.bottom.exitSide = "right"
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.top.color = piece.colors[1]
-////                    piece.side.left.color = piece.colors[1]
-////                    piece.side.bottom.color = piece.colors[0]
-////                }
-//
-//            case 2, 4:
-//
-//                //Pivots on top and bottom
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.left.exitSide = "top"
-//                    piece.side.right.exitSide = "bottom"
-//                    piece.side.bottom.exitSide = "right"
-//                    piece.side.top.exitSide = "left"
-//                    piece.side.right.color = piece.colors[1]
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.left.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.left.exitSide = "bottom"
-////                    piece.side.right.exitSide = "top"
-////                    piece.side.bottom.exitSide = "left"
-////                    piece.side.top.exitSide = "right"
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.top.color = piece.colors[0]
-////                    piece.side.left.color = piece.colors[1]
-////                    piece.side.bottom.color = piece.colors[1]
-////                }
-//
-//            default:
-//                break
-//            }
-//
-//
-//        case .stick:
-//
-//            switch piece.version {
-//
-//            case 1:
-//
-//                //Horizontal Line
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.left.color = piece.colors[0]
-//                    piece.side.right.color = piece.colors[1]
-//                piece.side.top.color = nil
-//                piece.side.bottom.color = nil
-//                    piece.side.left.exitSide = "right"
-//                    piece.side.right.exitSide = "left"
-//                piece.side.top.exitSide = nil
-//                piece.side.bottom.exitSide = nil
-//                    piece.side.left.opening.isOpen = true
-//                    piece.side.right.opening.isOpen = true
-//                piece.side.top.opening.isOpen = false
-//                piece.side.bottom.opening.isOpen = false
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.left.color = piece.colors[1]
-////                    piece.side.right.color = piece.colors[0]
-////                    piece.side.left.exitSide = "right"
-////                    piece.side.right.exitSide = "left"
-////                    piece.side.left.opening.isOpen = true
-////                    piece.side.right.opening.isOpen = true
-////                }
-//
-//            case 2:
-//
-//                //Vertical Line
-////                if piece.currentSwitch == 1 {
-//
-//                    piece.side.top.color = piece.colors[0]
-//                    piece.side.bottom.color = piece.colors[1]
-//                piece.side.left.color = nil
-//                piece.side.right.color = nil
-//                    piece.side.top.exitSide = "bottom"
-//                    piece.side.bottom.exitSide = "top"
-//                piece.side.left.exitSide = nil
-//                piece.side.right.exitSide = nil
-//                    piece.side.top.opening.isOpen = true
-//                    piece.side.bottom.opening.isOpen = true
-//                piece.side.right.opening.isOpen = false
-//                piece.side.left.opening.isOpen = false
-//
-////                } else if piece.currentSwitch == 2 {
-////
-////                    piece.side.top.color = piece.colors[1]
-////                    piece.side.bottom.color = piece.colors[0]
-////                    piece.side.top.exitSide = "bottom"
-////                    piece.side.bottom.exitSide = "top"
-////                    piece.side.top.opening.isOpen = true
-////                    piece.side.bottom.opening.isOpen = true
-////                }
-//
-//            case 3:
-//
-//                piece.side.top.color = nil
-//                piece.side.bottom.color = nil
-//                piece.side.left.color = piece.colors[1]
-//                piece.side.right.color = piece.colors[0]
-//                piece.side.left.exitSide = "right"
-//                piece.side.right.exitSide = "left"
-//
-//                piece.side.top.exitSide = nil
-//                piece.side.bottom.exitSide = nil
-//
-//
-//                piece.side.left.opening.isOpen = true
-//                piece.side.right.opening.isOpen = true
-//                piece.side.top.opening.isOpen = false
-//                piece.side.bottom.opening.isOpen = false
-//
-//            case 4:
-//
-//                piece.side.top.color = piece.colors[1]
-//                piece.side.bottom.color = piece.colors[0]
-//                piece.side.left.color = nil
-//                piece.side.right.color = nil
-//
-//                piece.side.top.exitSide = "bottom"
-//                piece.side.bottom.exitSide = "top"
-//                piece.side.left.exitSide = nil
-//                piece.side.right.exitSide = nil
-//
-//                piece.side.top.opening.isOpen = true
-//                piece.side.bottom.opening.isOpen = true
-//                piece.side.right.opening.isOpen = false
-//                piece.side.left.opening.isOpen = false
-//
-//
-//            default:
-//                break
-//            }
-//        default:
-//            break
-//        }
-//    }
-    
-//    func setPieceSwitches(piece: Piece) {
-//
-//        switch piece.shape {
-//
-//        case .diagElbow, .elbow:
-//
-//            let pivotDecision = 1
-//
-//            switch pivotDecision {
-//            case 1:
-//                print()
-////                piece.switches = 2
-////                piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-//
-//            case 2:
-////                piece.switches = 1
-////                piece.currentSwitch = 1
-//                piece.doesPivot = false
-//
-//            default:
-//                break
-//            }
-//
-//        case .doubleElbow:
-//
-//            print()
-////            piece.switches = 2
-////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-//
-//        case .cross:
-//            print()
-//
-////            piece.switches = 2
-////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-//
-////        case .stick:
-////            print()
-//
-////            piece.switches = 1
-////            piece.currentSwitch = 1
-//
-//        case .stick:
-//            print()
-//
-////            piece.switches = 2
-////            piece.currentSwitch = Int(arc4random_uniform(UInt32(2))) + 1
-//
-//        default:
-//            break
-//        }
-//    }
-    
     func setPieceShape(piece: Piece) {
                 
         let version = Int(arc4random_uniform(UInt32(4))) + 1
@@ -806,7 +183,6 @@ class Model {
                 setPieceShape(piece: piece)
             }
         }
-        
     }
     
     func setPieceColor(piece: Piece) {
@@ -874,9 +250,7 @@ class Model {
         var piece = Piece()
         
         for pieceX in pieces {
-            
-//            print("piece shape \(piece.shape)")
-            
+                        
             if pieceX.indexes == index {
                 
                 piece = pieceX
@@ -899,14 +273,12 @@ class Model {
     }
     
     func checkForHole(piece: Piece, direction: Direction) -> Bool {
-
         
         var bool = false
         
         if board.holeLocations.contains(where: { (index) -> Bool in
             index == piece.indexes
         }) {
-            
             
             if piece.shape == .wall {
                 
@@ -935,10 +307,7 @@ class Model {
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
-//        setPieceSwitches(piece: nextPiece)
-//        setPieceSides(piece: nextPiece)
         nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
-        
         piece.nextPiece = nextPiece
         delegate?.resetPieceMakerView(piece: piece)
     }
@@ -962,17 +331,8 @@ class Model {
                 
                 if board.moves == 0 {
                     
-//                    if check4AutoBallMove()
-                    
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
-//
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                        for ball in self.board.balls {
-//
-//                            self.moveBall(ball: ball, startSide: "unmoved")
-//                        }
-//                    }
+                    print("Need to check to see if any pieces can move and if the game should be over. If not, need to popup for retry level")
+
                 }
                 
             } else {
@@ -987,350 +347,333 @@ class Model {
     func movePiecesHelper(piece: Piece, direction: UISwipeGestureRecognizer.Direction) {
         
         switch direction {
-        
+            
         case .up:
             
             let spaceIsntBlocked = isNextSpaceBlocked(direction: .up, indexes: piece.indexes)
+            
+            if spaceIsntBlocked {
                 
-                if spaceIsntBlocked {
-                                        
-                    if piece.shape != .pieceMaker {
+                if piece.shape != .pieceMaker {
+                    
+                    updateMovesLeft()
+                    
+                    piece.indexes.y = piece.indexes.y! - 1
+                    
+                    if piece.shape == .entrance {
                         
-//                        if piece.isLocked == false {
+                        for ball in board.balls {
                             
-                            updateMovesLeft()
-                            
-                            piece.indexes.y = piece.indexes.y! - 1
-                            
-                            if piece.shape == .entrance {
+                            if ball.indexes == Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1) {
                                 
-                                for ball in board.balls {
-                                    
-                                    if ball.indexes == Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1) {
-                                        
-                                        ball.indexes = piece.indexes
-                                    }
-                                }
-                            }
-                            
-                            if checkForIce(piece: piece) == true {
-                                delegate?.movePieceView(piece: piece)
-                                movePiecesHelper(piece: piece, direction: direction)
-                                return
-                            }
-                            
-                            if checkForHole(piece: piece, direction: .up) == true {
-                                
-                                deletePiece(piece: piece)
-                                
-                                if piece.shape == .entrance {
-                                    
-//                                    board.balls.removeAll()
-                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    break
-                                    
-                                }
-                            }
-//                        }
-                        
-                    } else {
-                        
-                        if piece.version == 3 {
-                                                        
-                            if piece.nextPiece != nil {
-                                
-                                updateMovesLeft()
-                                
-                                let newPiece = piece.nextPiece!
-                                
-                                newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
-                                                                
-                                delegate?.addPieceView(piece: newPiece)
-                                
-                                board.pieces.append(newPiece)
-                                
-                                newPiece.indexes.y = newPiece.indexes.y! - 1
-                                
-                                delegate?.movePieceView(piece: newPiece)
-                                
-                                if checkForIce(piece: newPiece) == true {
-                                    movePiecesHelper(piece: newPiece, direction: direction)
-                                    return
-                                }
-                                
-                                if checkForHole(piece: newPiece, direction: .down) == true {
-                                    
-                                    deletePiece(piece: newPiece)
-                                    
-                                    if piece.shape == .entrance {
-//                                        board.balls.removeAll()
-                                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        break
-                                    }
-                                }
-                                resetPieceMaker(piece: piece)
+                                ball.indexes = piece.indexes
                             }
                         }
                     }
                     
+                    if checkForIce(piece: piece) == true {
+                        delegate?.movePieceView(piece: piece)
+                        movePiecesHelper(piece: piece, direction: direction)
+                        return
+                    }
+                    
+                    if checkForHole(piece: piece, direction: .up) == true {
+                        
+                        deletePiece(piece: piece)
+                        
+                        if piece.shape == .entrance {
+                            
+                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                            break
+                        }
+                    }
+                    
                 } else {
-                    return
+                    
+                    if piece.version == 3 {
+                        
+                        if piece.nextPiece != nil {
+                            
+                            updateMovesLeft()
+                            
+                            let newPiece = piece.nextPiece!
+                            
+                            newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
+                            
+                            delegate?.addPieceView(piece: newPiece)
+                            
+                            board.pieces.append(newPiece)
+                            
+                            newPiece.indexes.y = newPiece.indexes.y! - 1
+                            
+                            delegate?.movePieceView(piece: newPiece)
+                            
+                            if checkForIce(piece: newPiece) == true {
+                                movePiecesHelper(piece: newPiece, direction: direction)
+                                return
+                            }
+                            
+                            if checkForHole(piece: newPiece, direction: .down) == true {
+                                
+                                deletePiece(piece: newPiece)
+                                
+                                if piece.shape == .entrance {
+                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                                    break
+                                }
+                            }
+                            resetPieceMaker(piece: piece)
+                        }
+                    }
                 }
+                
+            } else {
+                return
+            }
             
         case .down:
             
             let spaceIsntBlocked = isNextSpaceBlocked(direction: .down, indexes: piece.indexes)
-
-                if spaceIsntBlocked {
+            
+            if spaceIsntBlocked {
+                
+                if piece.shape != .pieceMaker {
                     
-                    if piece.shape != .pieceMaker {
-                                                
-//                        if piece.isLocked == false {
+                    updateMovesLeft()
+                    
+                    piece.indexes.y = piece.indexes.y! + 1
+                    
+                    if piece.shape == .entrance {
+                        
+                        for ball in board.balls {
+                            
+                            if ball.indexes == Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1) {
+                                
+                                ball.indexes = piece.indexes
+                            }
+                        }
+                    }
+                    
+                    if checkForIce(piece: piece) == true {
+                        
+                        delegate?.movePieceView(piece: piece)
+                        movePiecesHelper(piece: piece, direction: direction)
+                        return
+                    }
+                    
+                    if checkForHole(piece: piece, direction: .down) == true {
+                        
+                        deletePiece(piece: piece)
+                        
+                        if piece.shape == .entrance {
+                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                            break
+                        }
+                    }
+                    
+                } else {
+                    
+                    if piece.version == 1 {
+                        
+                        if piece.nextPiece != nil {
                             
                             updateMovesLeft()
                             
-                            piece.indexes.y = piece.indexes.y! + 1
+                            let newPiece = piece.nextPiece!
                             
-                            if piece.shape == .entrance {
-                                
-                                for ball in board.balls {
-                                    
-                                    if ball.indexes == Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1) {
-                                        
-                                        ball.indexes = piece.indexes
-                                    }
-                                }
-                            }
+                            newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
                             
-                            if checkForIce(piece: piece) == true {
+                            delegate?.addPieceView(piece: newPiece)
+                            
+                            board.pieces.append(newPiece)
+                            
+                            newPiece.indexes.y = newPiece.indexes.y! + 1
+                            
+                            delegate?.movePieceView(piece: newPiece)
+                            
+                            if checkForIce(piece: newPiece) == true {
                                 
-                                delegate?.movePieceView(piece: piece)
-                                movePiecesHelper(piece: piece, direction: direction)
+                                movePiecesHelper(piece: newPiece, direction: direction)
                                 return
                             }
                             
-                            if checkForHole(piece: piece, direction: .down) == true {
+                            if checkForHole(piece: newPiece, direction: .down) == true {
                                 
-                                deletePiece(piece: piece)
+                                deletePiece(piece: newPiece)
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                                     break
                                 }
                             }
-//                        }
-                        
-                    } else {
-                                                
-                        if piece.version == 1 {
-                            
-                            if piece.nextPiece != nil {
-
-                                updateMovesLeft()
-
-                                let newPiece = piece.nextPiece!
-                                
-                                newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
-
-                                delegate?.addPieceView(piece: newPiece)
-                                
-                                board.pieces.append(newPiece)
-                                
-                                newPiece.indexes.y = newPiece.indexes.y! + 1
-                                
-                                delegate?.movePieceView(piece: newPiece)
-                                
-                                if checkForIce(piece: newPiece) == true {
-                                    
-                                    movePiecesHelper(piece: newPiece, direction: direction)
-                                    return
-                                }
-                                
-                                if checkForHole(piece: newPiece, direction: .down) == true {
-                                    
-                                    deletePiece(piece: newPiece)
-                                    
-                                    if piece.shape == .entrance {
-                                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        break
-                                    }
-                                }
-                                resetPieceMaker(piece: piece)
-                            }
+                            resetPieceMaker(piece: piece)
                         }
                     }
-                    
-                } else {
-                    return
                 }
+                
+            } else {
+                return
+            }
             
         case .left:
             
             let spaceIsntBlocked = isNextSpaceBlocked(direction: .left, indexes: piece.indexes)
-
-                if spaceIsntBlocked {
+            
+            if spaceIsntBlocked {
+                
+                if piece.shape != .pieceMaker {
                     
-                    if piece.shape != .pieceMaker {
+                    updateMovesLeft()
+                    
+                    piece.indexes.x = piece.indexes.x! - 1
+                    
+                    if piece.shape == .entrance {
                         
-//                        if piece.isLocked == false {
+                        for ball in board.balls {
+                            
+                            if ball.indexes == Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y) {
+                                
+                                ball.indexes = piece.indexes
+                            }
+                        }
+                    }
+                    
+                    if checkForIce(piece: piece) == true {
+                        delegate?.movePieceView(piece: piece)
+                        movePiecesHelper(piece: piece, direction: direction)
+                    }
+                    
+                    if checkForHole(piece: piece, direction: .left) == true {
+                        
+                        deletePiece(piece: piece)
+                        
+                        if piece.shape == .entrance {
+                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                            break
+                        }
+                    }
+                    
+                } else {
+                    
+                    if piece.version == 2 {
+                        
+                        if piece.nextPiece != nil {
                             
                             updateMovesLeft()
-
-                            piece.indexes.x = piece.indexes.x! - 1
                             
-                            if piece.shape == .entrance {
-                                
-                                for ball in board.balls {
-                                    
-                                    if ball.indexes == Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y) {
-                                        
-                                        ball.indexes = piece.indexes
-                                    }
-                                }
+                            let newPiece = piece.nextPiece!
+                            
+                            newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
+                            
+                            delegate?.addPieceView(piece: newPiece)
+                            
+                            board.pieces.append(newPiece)
+                            
+                            newPiece.indexes.x = newPiece.indexes.x! - 1
+                            
+                            delegate?.movePieceView(piece: newPiece)
+                            
+                            if checkForIce(piece: newPiece) == true {
+                                movePiecesHelper(piece: newPiece, direction: direction)
                             }
                             
-                            if checkForIce(piece: piece) == true {
-                                delegate?.movePieceView(piece: piece)
-                                movePiecesHelper(piece: piece, direction: direction)
-                            }
-                            
-                            if checkForHole(piece: piece, direction: .left) == true {
+                            if checkForHole(piece: newPiece, direction: .left) == true {
                                 
-                                deletePiece(piece: piece)
+                                deletePiece(piece: newPiece)
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                                     break
                                 }
                             }
-//                        }
-                        
-                    } else {
-                        
-                        if piece.version == 2 {
-                            
-                            if piece.nextPiece != nil {
-                                
-                                updateMovesLeft()
-
-                                let newPiece = piece.nextPiece!
-                                
-                                newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
-
-                                delegate?.addPieceView(piece: newPiece)
-
-                                board.pieces.append(newPiece)
-                                
-                                newPiece.indexes.x = newPiece.indexes.x! - 1
-                                
-                                delegate?.movePieceView(piece: newPiece)
-
-                                if checkForIce(piece: newPiece) == true {
-                                    movePiecesHelper(piece: newPiece, direction: direction)
-                                }
-                                
-                                if checkForHole(piece: newPiece, direction: .left) == true {
-                                    
-                                    deletePiece(piece: newPiece)
-                                    
-                                    if piece.shape == .entrance {
-                                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        break
-                                    }
-                                }
-                                resetPieceMaker(piece: piece)
-                            }
+                            resetPieceMaker(piece: piece)
                         }
                     }
-                    
-                } else {
-                    return
                 }
+                
+            } else {
+                return
+            }
             
         case .right:
             
             let spaceIsntBlocked = isNextSpaceBlocked(direction: .right, indexes: piece.indexes)
+            
+            if spaceIsntBlocked {
                 
-                if spaceIsntBlocked {
+                if piece.shape != .pieceMaker {
                     
-                    if piece.shape != .pieceMaker {
+                    updateMovesLeft()
+                    
+                    piece.indexes.x = piece.indexes.x! + 1
+                    
+                    if piece.shape == .entrance {
                         
-//                        if piece.isLocked == false {
+                        for ball in board.balls {
+                            
+                            if ball.indexes == Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y) {
+                                
+                                ball.indexes = piece.indexes
+                            }
+                        }
+                    }
+                    
+                    if checkForIce(piece: piece) == true {
+                        delegate?.movePieceView(piece: piece)
+                        movePiecesHelper(piece: piece, direction: direction)
+                    }
+                    
+                    if checkForHole(piece: piece, direction: .right) == true {
+                        
+                        deletePiece(piece: piece)
+                        
+                        if piece.shape == .entrance {
+                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                            break
+                        }
+                    }
+                    
+                } else {
+                    
+                    if piece.nextPiece != nil {
+                        
+                        if piece.version == 4 {
                             
                             updateMovesLeft()
-                           
-                            piece.indexes.x = piece.indexes.x! + 1
                             
-                            if piece.shape == .entrance {
-                                
-                                for ball in board.balls {
-                                    
-                                    if ball.indexes == Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y) {
-                                        
-                                        ball.indexes = piece.indexes
-                                    }
-                                }
+                            let newPiece = piece.nextPiece!
+                            
+                            newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
+                            
+                            delegate?.addPieceView(piece: newPiece)
+                            
+                            board.pieces.append(newPiece)
+                            
+                            newPiece.indexes.x = newPiece.indexes.x! + 1
+                            
+                            delegate?.movePieceView(piece: newPiece)
+                            
+                            if checkForIce(piece: newPiece) == true {
+                                movePiecesHelper(piece: newPiece, direction: direction)
                             }
                             
-                            if checkForIce(piece: piece) == true {
-                                delegate?.movePieceView(piece: piece)
-                                movePiecesHelper(piece: piece, direction: direction)
-                            }
-                            
-                            if checkForHole(piece: piece, direction: .right) == true {
+                            if checkForHole(piece: newPiece, direction: .right) == true {
                                 
-                                deletePiece(piece: piece)
+                                deletePiece(piece: newPiece)
                                 
                                 if piece.shape == .entrance {
                                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                                     break
                                 }
                             }
-//                        }
-                        
-                    } else {
-                        
-                        if piece.nextPiece != nil {
-                            
-                            if piece.version == 4 {
-                                
-                                updateMovesLeft()
-
-                                let newPiece = piece.nextPiece!
-                                
-                                newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
-
-                                delegate?.addPieceView(piece: newPiece)
-                                
-                                board.pieces.append(newPiece)
-                                
-                                newPiece.indexes.x = newPiece.indexes.x! + 1
-                                
-                                delegate?.movePieceView(piece: newPiece)
-
-                                if checkForIce(piece: newPiece) == true {
-                                    movePiecesHelper(piece: newPiece, direction: direction)
-                                }
-                                
-                                if checkForHole(piece: newPiece, direction: .right) == true {
-                                    
-                                    deletePiece(piece: newPiece)
-                                    
-                                    if piece.shape == .entrance {
-                                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                        break
-                                    }
-                                    
-                                  
-                                }
-                                resetPieceMaker(piece: piece)
-                            }
+                            resetPieceMaker(piece: piece)
                         }
                     }
-                    
-                } else {
-                    return
                 }
+                
+            } else {
+                return
+            }
             
         default:
             break
@@ -1403,29 +746,10 @@ class Model {
                 delegate?.movePieceView(piece: piece)
             }
         }
-        
-//        check4AutoBallMove()
-//        check4GameOver()
-//        
-//        let gameIsOver = check4GameOver().0
-//
-//        if gameIsOver {
-//            let message = check4GameOver().1
-//            delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
-//            gameOver = false
-//            return
-//        }
-        
-        
     }
     
     func check4AutoBallMove() {
         
-        //MARK: NEED TO ALSO ACCOUNT FOR AN ENDLESS LOOP
-        
-        
-        print("Auto ball move called")
-//        let originalPieces = board.pieces
         var fakePieces = [Piece]()
         
         for piece in board.pieces {
@@ -1439,40 +763,27 @@ class Model {
 
             if piece.shape == .entrance {
                 
-                
                 let ball = Ball()
                 ball.piecesPassed.append(piece)
 
                 switch piece.version {
 
                 case 1:
-                    
                     checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "top")
-
-
                 case 2:
-
                     checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "right")
-
-
                 case 3:
-
                     checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "bottom")
-
                 case 4:
-                    
                     checkNextPiece4Exit(ball: ball, pieces: fakePieces, piece: piece, side2Check: "left")
 
                 default:
 
                     break
-
-
                 }
             }
         }
     }
-    
     
     func enlargeHelper(ball: Ball) {
         
@@ -1493,29 +804,19 @@ class Model {
         
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             
-            print("MOVE BALL FOR ENDLESS LOOP!")
             for ballX in board.balls {
                 
                 if ballX.indexes == ball.piecesPassed[0].indexes {
                     
-                    print("THIS SHOULD WORK")
-//                    enlargeHelper(ball: ballX)
                     moveBall(ball: ballX, startSide: "unmoved")
                 }
-                
             }
             return
         }
         
-        
         switch side2Check {
             //side to check is the side of the new piece
-            
-            
         case "top":
-            
-            print("TOP")
-            print(piece.version)
             
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1), pieces: pieces) {
                 
@@ -1524,31 +825,16 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             
-                            
                             for ballX in board.balls {
                                 
                                 if ballX.indexes == ball.piecesPassed[0].indexes {
                                     
-                                    print("THIS SHOULD WORK")
-//                                    enlargeHelper(ball: ballX)
-
-                                    
-                                    
                                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
+                                        
                                         self.moveBall(ball: ballX, startSide: "unmoved")
-                                        
-                                        
-                                        
                                     }
                                 }
-                                
                             }
-                            
-                            print("MOVE BALL!!!!!")
-                            
-                            
-//                            moveBall(ball: ball, startSide: "center")
                             return
                         }
                         
@@ -1624,18 +910,12 @@ class Model {
                             }
                         }
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
-                        
                         checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.bottom.exitSide!)
                     }
                 }
             }
             
-            
         case "right":
-            
-            print("Right")
-            print(piece.version)
-
             
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y), pieces: pieces) {
                 
@@ -1644,33 +924,16 @@ class Model {
                         
                         if pieceX.shape == .exit {
                             
-                            
-                            print("MOVE BALL!!!!!")
-                            
-                            
                             for ballX in board.balls {
                                 
-                                
                                 if ballX.indexes == ball.piecesPassed[0].indexes {
-                                    
-                                    print("THIS SHOULD WORK")
-//                                    enlargeHelper(ball: ballX)
-
                                     
                                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                                         self.moveBall(ball: ballX, startSide: "unmoved")
-                                        
-                                        
-                                        
                                     }
                                 }
-                                
                             }
-//                            moveBall(ball: ball, startSide: "center")
-
-                            
-                            
                             return
                         }
                         
@@ -1745,12 +1008,7 @@ class Model {
 
                             }
                         }
-                        
-                        
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
-                        
-//                        enlargeHelper(piece: pieceX)
-
                         checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.left.exitSide!)
                     }
                 }
@@ -1758,37 +1016,23 @@ class Model {
 
         case "bottom":
             
-            print("Bottom")
-            print(piece.version)
-
-
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
                 
                 if pieceX.side.top.opening.isOpen == true {
                     if piece.side.bottom.color == pieceX.side.top.color {
                         
                         if pieceX.shape == .exit {
-                            print("MOVE BALL!!!!!")
-                            
+
                             for ballX in board.balls {
                                 
                                 if ballX.indexes == ball.piecesPassed[0].indexes {
                                     
-                                    print("THIS SHOULD WORK")
-//                                    enlargeHelper(ball: ballX)
-
                                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                                         self.moveBall(ball: ballX, startSide: "unmoved")
-                                        
-                                        
-                                        
                                     }
                                 }
-                                
                             }
-                            
-//                            moveBall(ball: ball, startSide: "center")
                             return
                         }
                         
@@ -1863,54 +1107,31 @@ class Model {
 
                             }
                         }
-                        
-                        
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
-                        
-//                        enlargeHelper(piece: pieceX)
-
                         checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.top.exitSide!)
-                        
                     }
                 }
             }
 
         case "left":
             
-            print("Left")
-            print(piece.version)
-
-
             if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y), pieces: pieces) {
                 
-//                print("piece type \(piece.shape)")
-
                 if pieceX.side.right.opening.isOpen == true {
                     if piece.side.left.color == pieceX.side.right.color {
                         
                         if pieceX.shape == .exit {
-                            print("MOVE BALL!!!!!")
-                            
+
                             for ballX in board.balls {
                                 
                                 if ballX.indexes == ball.piecesPassed[0].indexes {
                                     
-                                    print("THIS SHOULD WORK")
-
-//                                    enlargeHelper(ball: ballX)
-
                                     DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                                         self.moveBall(ball: ballX, startSide: "unmoved")
-                                        
-                                        
-                                        
                                     }
                                 }
-                                
                             }
-                            
-//                            moveBall(ball: ball, startSide: "center")
                             return
                         }
                         
@@ -1985,12 +1206,7 @@ class Model {
 
                             }
                         }
-                        
-                        
                         addToFakePiecesPassed(ball: ball, piece: pieceX)
-
-//                        enlargeHelper(piece: pieceX)
-
                         checkNextPiece4Exit(ball: ball, pieces: pieces, piece: pieceX, side2Check: pieceX.side.right.exitSide!)
                     }
                 }
@@ -2033,11 +1249,7 @@ class Model {
         default:
             break
         }
-        
-        
-        
     }
-
     
     func check4GameOver() {
         
@@ -2049,34 +1261,25 @@ class Model {
             
             bool = true
             message = "You lost your ball!"
-//            return (bool, message)
         }
         
         for piece in board.pieces {
             
             if piece.isLocked == false {
                 moveablePieceCount += 1
-                
             }
         }
         
         if moveablePieceCount == 0 {
             bool = true
             message = "No more pieces to move!"
-//            return (bool, message)
         }
         
         if bool == true {
-            
-//            let message = check4GameOver().1
             delegate?.runPopUpView(title: message, message: "TRY AGAIN?")
             gameOver = false
-//            return
-            
+            return
         }
-        
-        
-//        return (bool, message)
     }
     
     func addToFakePiecesPassed(ball: Ball, piece: Piece) {
@@ -2097,11 +1300,8 @@ class Model {
                 
                 ball.loopedIndexes[piece.indexes] = 1
             }
-            
         }
-        
     }
-    
     
     func addToPiecesPassed(ball: Ball, piece: Piece) {
         
@@ -2112,8 +1312,6 @@ class Model {
             ball.piecesPassed.append(piece)
         }
         else {
-            
-//            ball.possibleLoopedIndexes.append(piece.indexes)
             
             delegate?.changeViewColor(piece: piece, ball: ball)
             delegate?.changeAnimationSpeed(slowerOrFaster: "faster")
@@ -2138,8 +1336,6 @@ class Model {
             
             if index.value >= 10 {
                 
-//                let piece = getPieceInfo(index: index.key)
-               
                 ball.loopedPieces.append(piece)
             }
         }
@@ -2152,9 +1348,6 @@ class Model {
             }
         }
         return bool
-        
-        
-        
     }
     
     func check4EndlessLoop(ball: Ball) -> Bool {
@@ -2195,23 +1388,8 @@ class Model {
         board.balls.removeAll { (ballX) -> Bool in
             ball.indexes == ballX.indexes
         }
-        
-//        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-
-//                    switchPieceAfterBall(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-            self.delegate?.removeView(view: ball.view)
-            self.delegate?.changeAnimationSpeed(slowerOrFaster: "slower")
-            
-            
-            
-//        }
-        
-        
+        delegate?.removeView(view: ball.view)
+        delegate?.changeAnimationSpeed(slowerOrFaster: "slower")
     }
     
     func moveBall(ball: Ball, startSide: String) {
@@ -2223,52 +1401,27 @@ class Model {
         case "unmoved":
             
             let startSide = "center"
-            
-//            let endSide = piece.opening
-            
-//            switch piece.opening {
-//
-//            case "top":
-//                ball.onColor = piece.side.top.color!
-//            case "bottom":
-//                ball.onColor = piece.side.bottom.color!
-//            case "left":
-//                ball.onColor = piece.side.left.color!
-//            case "right":
-//                ball.onColor = piece.side.right.color!
-//            default:
-//                break
-//            }
-            
-            var endSide = ""
 
+            var endSide = ""
             
             switch piece.version {
             
             case 1:
-                
                 endSide = "top"
                 ball.onColor = piece.side.top.color!
-                
             case 2:
                 endSide = "right"
                 ball.onColor = piece.side.right.color!
             case 3:
-                
                 endSide = "bottom"
                 ball.onColor = piece.side.bottom.color!
-                
-                
-                
             case 4:
                 endSide = "left"
                 ball.onColor = piece.side.left.color!
                 
-               
             default:
                 break
             }
-            
             
             addToPiecesPassed(ball: ball, piece: piece)
             delegate?.moveBallView(ball: ball, piece: piece, startSide: startSide, endSide: endSide)
@@ -2288,47 +1441,17 @@ class Model {
                 if piece.shape == .cross {
                     
                     if check4CrossCrash(piece: piece, ball: ball, startSide: startSide) == true {
-                        
                         delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                        
                         break
                         
                     } else {
- 
-//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                        
-//                        switchPieceAfterBall(piece: piece)
-
-//                        switchVersions(piece: piece)
-//                        setPieceSides(piece: piece)
-                        
-                        
-                        
-//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                            self.switchPieceAfterBall(piece: piece, ball: ball)
-
-//                            self.delegate?.replacePieceView(piece: piece)
-//                        }
+                        switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
 
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-
-//                    switchPieceAfterBall(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                        self.switchPieceAfterBall(piece: piece, ball: ball)
-//                    }
+                    switchPieceAfterBall(piece: piece, ball: ball)
                 }
                 
                 if piece.shape == .stick {
@@ -2344,8 +1467,7 @@ class Model {
                     removePiecesInPath(ball: ball)
                     check4Winner()
                     
-                    self.delegate?.addSwipeGestureRecognizer(view: self.board.view)
-                    
+                    delegate?.addSwipeGestureRecognizer(view: self.board.view)
                     break
                     
                 } else {
@@ -2369,7 +1491,7 @@ class Model {
                     
                     delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
                     
-                    return
+                    break
                 }
                 
                 if piece.shape == .cross {
@@ -2382,45 +1504,13 @@ class Model {
                         
                     } else {
                         
-//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                        
-//                        switchPieceAfterBall(piece: piece)
-//                        switchVersions(piece: piece)
-//                        setPieceSides(piece: piece)
-//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                            self.delegate?.replacePieceView(piece: piece)
-//                        }
-                        
-                        
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                            self.switchPieceAfterBall(piece: piece, ball: ball)
-//                        }
+                        switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
                     
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                    
-                    //                    switchPieceAfterBall(piece: piece)
-                    //                    switchVersions(piece: piece)
-                    //                    setPieceSides(piece: piece)
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-                    
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                        self.delegate?.replacePieceView(piece: piece)
-//                    }
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        self.switchPieceAfterBall(piece: piece, ball: ball)
-//                    }
-                    
-                    
+                    switchPieceAfterBall(piece: piece, ball: ball)
                 }
                 
                 if piece.shape == .stick {
@@ -2436,7 +1526,7 @@ class Model {
                     removePiecesInPath(ball: ball)
                     check4Winner()
 
-                    self.delegate?.addSwipeGestureRecognizer(view: self.board.view)
+                    delegate?.addSwipeGestureRecognizer(view: self.board.view)
                     
                     break
                     
@@ -2477,37 +1567,13 @@ class Model {
                         
                     } else {
                         
-//                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                        
-                        
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                            self.switchPieceAfterBall(piece: piece, ball: ball)
-//                        }
-                        
-//                        switchPieceAfterBall(piece: piece)
-//                        switchVersions(piece: piece)
-//                        setPieceSides(piece: piece)
-//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                            self.delegate?.replacePieceView(piece: piece)
-//                        }
+                        switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
 
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-
-//                    switchPieceAfterBall(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                        self.switchPieceAfterBall(piece: piece, ball: ball)
-//                    }
+                    switchPieceAfterBall(piece: piece, ball: ball)
                 }
                 
                 if piece.shape == .stick {
@@ -2523,7 +1589,7 @@ class Model {
                     removePiecesInPath(ball: ball)
                     check4Winner()
                     
-                    self.delegate?.addSwipeGestureRecognizer(view: self.board.view)
+                    delegate?.addSwipeGestureRecognizer(view: self.board.view)
                     
                     break
                     
@@ -2563,37 +1629,14 @@ class Model {
                         break
                         
                     } else {
-                        
-                        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-                        
-//                        switchPieceAfterBall(piece: piece)
-//                        switchVersions(piece: piece)
-//                        setPieceSides(piece: piece)
-//                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-//
-//                            self.delegate?.replacePieceView(piece: piece)
-//                        }
-                        
-//                        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
-                            self.switchPieceAfterBall(piece: piece, ball: ball)
-//                        }
+                        switchPieceAfterBall(piece: piece, ball: ball)
                     }
                 }
                 
                 if piece.shape == .doubleElbow {
 
-//                    let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-
-//                    switchPieceAfterBall(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
-//                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-
-                        self.switchPieceAfterBall(piece: piece, ball: ball)
-//                    }
+                    switchPieceAfterBall(piece: piece, ball: ball)
                 }
                 
                 if piece.shape == .stick {
@@ -2643,8 +1686,6 @@ class Model {
             
             CATransaction.setCompletionBlock {
                 
-                
-
                 self.delegate?.addSwipeGestureRecognizer(view: self.board.view)
                 self.check4Winner()
                 
@@ -2652,29 +1693,15 @@ class Model {
                 DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                     self.delegate?.removeView(view: ball.view)
-
-                    
-                    
-                    
                 }
                 
-//                self.delegate?.removeView(view: ball.view)
                 return
             }
             
             for piece in ball.piecesPassed {
                 
-                print("Piece location \(piece.indexes)")
-                
-//                piece.view.removeFromSuperview()
-                
-                
                 let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
-//                    switchPieceAfterBall(piece: piece)
-//                    switchVersions(piece: piece)
-//                    setPieceSides(piece: piece)
-//                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors, opening: piece.opening)
                 DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
                     self.delegate?.removeView(view: piece.view)
@@ -2682,10 +1709,6 @@ class Model {
                         pieceX.indexes == piece.indexes
                     }
                 }
-                
-                
-                
-                
             }
             
             self.board.balls.removeAll { (ballX) -> Bool in
@@ -2693,7 +1716,6 @@ class Model {
                 ballX.indexes == ball.indexes
             }
             
-//            self.delegate?.removeView(view: ball.view)
             CATransaction.commit()
         }
     }
@@ -2723,7 +1745,7 @@ class Model {
             let x1 = Int(board.grid[piece.indexes]!.x)
             let y1 = Int(board.grid[piece.indexes]!.y)
             
-            if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2){//} && piece.shape != .entrance && piece.shape != .exit {
+            if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
@@ -2733,23 +1755,8 @@ class Model {
                         
                         delegate?.replacePieceView(piece: piece)
                     }
-                    
                 }
-                
             }
-            
-//            else if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) && piece.shape == .entrance && piece.shape != .exit {
-//                
-//                moveStarted = false
-//                
-//                for ball in board.balls {
-//                    
-//                    if board.grid[ball.indexes] == center {
-//                        
-//                        moveBall(ball: ball, startSide: "unmoved")
-//                    }
-//                }
-//            }
         }
         check4AutoBallMove()
     }
@@ -2791,91 +1798,29 @@ class Model {
         return bool
     }
     
-//    func switchPivot(piece: Piece, ball: Ball) {
-//
-//        if piece.currentSwitch == 1 {
-//            piece.currentSwitch = 2
-//        } else {
-//            piece.currentSwitch = 1
-//        }
-//
-//        setPieceSides(piece: piece)
-//        delegate?.replacePieceView(piece: piece)
-//    }
-    
-    
     func switchPieceAfterBall(piece: Piece, ball: Ball) {
-        
-        print("SWITCHHHHHHHHHHHHHHHHHHHHH")
-        
-        
-//        return
-//        print("XXXXXXXXXXXXXXXXXX")
-        
-        
-//        if piece.version != 4 {
-//
-//            piece.version += 1
-//
-//        } else {
-//
-//            piece.version = 1
-//        }
-        
         
         switch piece.shape {
 
         case .cross:
-
-//            if piece.colors[1] == piece.colors[0] {
-//                //If the colors are the same lets rotate
-//
-//                switch piece.version {
-//
-//                case 1:
-//
-//                    piece.version = 2
-//
-//                case 2:
-//                    piece.version = 1
-//                case 3:
-//                    piece.version = 4
-//                case 4:
-//                    piece.version = 3
-//                default:
-//                    break
-//
-//                }
-//                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-//
-//                delegate?.replacePieceView(piece: piece)
-              
-
-//            } else {
+            
+            switch piece.version {
                 
-                switch piece.version {
-                    
-                case 1:
-                    piece.version = 3
-                case 2:
-                    piece.version = 4
-                case 3:
-                    piece.version = 1
-                case 4:
-                    piece.version = 2
-                default:
-                    break
-                    
-                }
-                
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                //                delegate?.replacePieceView(piece: piece)
-                
-                delegate?.switchCrissCross(piece: piece)
-//            }
-
-
-
+            case 1:
+                piece.version = 3
+            case 2:
+                piece.version = 4
+            case 3:
+                piece.version = 1
+            case 4:
+                piece.version = 2
+            default:
+                break
+            }
+            
+            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+            delegate?.switchCrissCross(piece: piece)
+            
         case .doubleElbow:
               
                 switch piece.version {
@@ -2899,47 +1844,23 @@ class Model {
 
                 default:
                     break
-
                 }
-//
+
                 piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-            
-            //MARK: ISSUE IS HERE - WHEN SWITCHCRISSCROSS IS CALLED EVERYTHING WORKS PROPERLY EXCEPT THAT THE VIEWS DONT GET REMOVED WHEN A BALL EXITS. WHEN REPLACE PIECEVIEW IS CALLED, EVERYTHING WORKS EXCEPT WHEN THE BALL MOVES, THE VIEWS FOR THE PIECES ROTATE BY 90 DEGREES INSTEAD OF SWITCHING THE TOP COLORS
-            
-//                delegate?.replacePieceView(piece: piece)
-//
                 delegate?.switchCrissCross(piece: piece)
-//            }
-
+            
         case .stick:
-
             break
         case .diagElbow:
             break
-
         case .elbow:
-
             break
         default:
-
             break
-
-
         }
-        
     }
     
-    
     func switchVersions(piece: Piece) {
-        
-//        print(piece.currentSwitch)
-
-//        if piece.isLocked || piece.doesPivot == false { return }
-        
-//        if piece.shape != .entrance {
-            
-//            updateMovesLeft()
-//        }
         
         if piece.shape == .wall && piece.version == 2 { //MARK: CHANGED THIS TO VERSION FROM CURRENT SWITCH
             return
@@ -2958,32 +1879,19 @@ class Model {
                 case 2:
                     piece.version = 1
                 case 3:
-                    
                     piece.version = 4
                 case 4:
                     piece.version = 3
-                    
                 default:
-                    
                     break
-                    
                 }
-                
             } else {
-                
                 if piece.version != piece.totalVersions {
-                    
                     piece.version += 1
-                    
                 } else {
-                    
                     piece.version = 1
                 }
-                
             }
-            
-            
-            
             
         default:
             
@@ -2995,10 +1903,7 @@ class Model {
                 
                 piece.version = 1
             }
-            
         }
-        
-        
     }
  
     func updateUserDefaults() {

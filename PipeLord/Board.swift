@@ -136,27 +136,23 @@ class BoardView : UIView {
         view.backgroundColor = ColorTheme.boardBackground
         let shadowRadius: CGFloat = 1
         let darkShadow = CALayer()
-//
+
 //        let lightShadow = CALayer()
 //        lightShadow.frame = view.layer.bounds
 //        lightShadow.backgroundColor = ColorTheme.boardBackground.cgColor
 //        lightShadow.shadowColor = UIColor.white.cgColor
 //        lightShadow.shadowOffset = CGSize(width: -shadowRadius, height: -shadowRadius)
-//        lightShadow.shadowOpacity = 0.5
+//        lightShadow.shadowOpacity = 1
 ////        lightShadow.cornerRadius = 5
 //        view.layer.insertSublayer(lightShadow, at: 0)
-//
-        
+
         darkShadow.frame = view.layer.bounds
         darkShadow.backgroundColor = ColorTheme.boardBackground.cgColor
         darkShadow.shadowColor = UIColor.black.cgColor
         darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
         darkShadow.shadowOpacity = 1
 //        darkShadow.cornerRadius = 5
-
         view.layer.insertSublayer(darkShadow, at: 1)
-
-        
     }
     
     private func addIce(iceLocations: [Indexes]) {
