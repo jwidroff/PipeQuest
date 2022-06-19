@@ -769,10 +769,10 @@ extension ViewController: ModelDelegate {
             let subviewCenter = CGPoint(x: subview.center.x.rounded(), y: subview.center.y.rounded())
 
             if subviewCenter  == pieceCenter {
-                    let piece = self.model.getPieceInfo(index: indexes)
+                let piece = self.model.getPieceInfo(index: indexes, pieces: model.board.pieces)
                     self.removeView(view: subview)
-                    self.removeView(view: piece.view)
-                    self.model.deletePiece(piece: piece)
+                self.removeView(view: piece!.view)
+                    self.model.deletePiece(piece: piece!)
 
                 return
             }
@@ -1046,9 +1046,9 @@ extension ViewController: ModelDelegate {
                 piece.center = CGPoint(x: model.board.grid[piece.indexes]?.x ?? piece.center.x, y: model.board.grid[piece.indexes]?.y ?? piece.center.y)
 
                 piece.view.center = piece.center
-                if piece.shape != .pieceMaker {
-                    addTapGestureRecognizer(view: piece.view)
-                }
+//                if piece.shape != .pieceMaker {
+//                    addTapGestureRecognizer(view: piece.view)
+//                }
                 model.board.view.addSubview(piece.view)
             }
             setUpBallsView()

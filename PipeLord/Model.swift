@@ -70,6 +70,8 @@ import UIKit
 
 //TODO: Need to make sure that the ball waits a few seconds before moving
 
+//TODO: Need to make animation when falling into hole better
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -129,28 +131,28 @@ class Model {
         delegate?.updateLevelInfo(name: name, moves: moves)
     }
     
-    func showLoadingAnimation() {
-        
-        self.board = Board()
-        self.board.heightSpaces = 8
-        self.board.widthSpaces = 4
-        
-        let ball = Ball()
-        board.balls.append(ball)
-
-        for piece in board.pieces {
-
-            if piece.shape == .entrance {
-
-                ball.indexes = piece.indexes
-                ball.onColor = piece.colors[0]
-            }
-        }
-
-        delegate?.setUpGameViews(board: self.board)
-        delegate?.setUpPiecesView()
-        moveBall(ball: ball, startSide: "unmoved")
-    }
+//    func showLoadingAnimation() { //NOT CALLED
+//
+//        self.board = Board()
+//        self.board.heightSpaces = 8
+//        self.board.widthSpaces = 4
+//
+//        let ball = Ball()
+//        board.balls.append(ball)
+//
+//        for piece in board.pieces {
+//
+//            if piece.shape == .entrance {
+//
+//                ball.indexes = piece.indexes
+//                ball.onColor = piece.colors[0]
+//            }
+//        }
+//
+//        delegate?.setUpGameViews(board: self.board)
+//        delegate?.setUpPiecesView()
+//        moveBall(ball: ball, startSide: "unmoved")
+//    }
     
     func getLevel() {
         
@@ -167,25 +169,36 @@ class Model {
     }
     
     func setPieceShape(piece: Piece) {
-                
-        let version = Int(arc4random_uniform(UInt32(4))) + 1
         let randomShapes:[Shape] = board.randomPieceShapes
         piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
+        
+        var maxVersions = 4
+
+        
+        if piece.shape == .doubleElbow {
+            maxVersions = 8
+        }
+        
+        
+        let version = Int(arc4random_uniform(UInt32(maxVersions))) + 1
+        
         piece.version = version
         
-        if board.randomPieceColors.count == 1 && piece.shape == .stick {
-                        
-            setPieceShape(piece: piece)
-            
-        } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
-                        
-            if piece.colors[0] == piece.colors[1] {
-                setPieceShape(piece: piece)
-            }
-        }
+//        if board.randomPieceColors.count == 1 && piece.shape == .stick {
+//
+//            setPieceShape(piece: piece)
+//
+//        } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
+//
+//            if piece.colors[0] == piece.colors[1] {
+//                setPieceShape(piece: piece)
+//            }
+//        }
     }
     
     func setPieceColor(piece: Piece) {
+        
+        //TODO: Make it that the pieceMakers can have the option to have specific pieces that come out
         
         let randomColors:[UIColor] = board.randomPieceColors
         let randomColor1 = randomColors[Int(arc4random_uniform(UInt32(randomColors.count - 1)))]
@@ -231,7 +244,7 @@ class Model {
         return bool
     }
     
-    func getPieceInfo(index: Indexes) -> Piece {
+    func getPieceInfo(index: Indexes, pieces: [Piece]) -> Piece? {
         
         var piece = Piece()
         
@@ -245,19 +258,19 @@ class Model {
         return piece
     }
     
-    func getPieceInfoOptional(index: Indexes, pieces: [Piece]) -> Piece? {
-        
-        var piece = Piece()
-        
-        for pieceX in pieces {
-                        
-            if pieceX.indexes == index {
-                
-                piece = pieceX
-            }
-        }
-        return piece
-    }
+//    func getPieceInfoOptional(index: Indexes, pieces: [Piece]) -> Piece? {
+//        
+//        var piece = Piece()
+//        
+//        for pieceX in pieces {
+//                        
+//            if pieceX.indexes == index {
+//                
+//                piece = pieceX
+//            }
+//        }
+//        return piece
+//    }
     
     
     func checkForIce(piece: Piece) -> Bool {
@@ -303,12 +316,16 @@ class Model {
     
     func resetPieceMaker(piece: Piece) {
         
+        //TODO: Make it that the pieceMakers can have the option to have specific pieces that come out
+        
         let nextPiece = Piece()
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
         nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
+        nextPiece.doesPivot = true
         piece.nextPiece = nextPiece
+        
         delegate?.resetPieceMakerView(piece: piece)
     }
     
@@ -346,6 +363,10 @@ class Model {
     
     func movePiecesHelper(piece: Piece, direction: UISwipeGestureRecognizer.Direction) {
         
+        
+        print("Piece = \(piece.shape)")
+        
+        
         switch direction {
             
         case .up:
@@ -370,24 +391,6 @@ class Model {
                             }
                         }
                     }
-                    
-                    if checkForIce(piece: piece) == true {
-                        delegate?.movePieceView(piece: piece)
-                        movePiecesHelper(piece: piece, direction: direction)
-                        return
-                    }
-                    
-                    if checkForHole(piece: piece, direction: .up) == true {
-                        
-                        deletePiece(piece: piece)
-                        
-                        if piece.shape == .entrance {
-                            
-                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                            break
-                        }
-                    }
-                    
                 } else {
                     
                     if piece.version == 3 {
@@ -408,22 +411,39 @@ class Model {
                             
                             delegate?.movePieceView(piece: newPiece)
                             
-                            if checkForIce(piece: newPiece) == true {
-                                movePiecesHelper(piece: newPiece, direction: direction)
-                                return
-                            }
-                            
-                            if checkForHole(piece: newPiece, direction: .down) == true {
-                                
-                                deletePiece(piece: newPiece)
-                                
-                                if piece.shape == .entrance {
-                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    break
-                                }
-                            }
+//                            if checkForIce(piece: newPiece) == true {
+//                                movePiecesHelper(piece: newPiece, direction: direction)
+//                                return
+//                            }
+//
+//                            if checkForHole(piece: newPiece, direction: .down) == true {
+//
+//                                deletePiece(piece: newPiece)
+//
+//                                if piece.shape == .entrance {
+//                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                                    break
+//                                }
+//                            }
                             resetPieceMaker(piece: piece)
                         }
+                    }
+                }
+                
+                if checkForIce(piece: piece) == true {
+                    delegate?.movePieceView(piece: piece)
+                    movePiecesHelper(piece: piece, direction: direction)
+                    return
+                }
+                
+                if checkForHole(piece: piece, direction: .up) == true {
+                    
+                    deletePiece(piece: piece)
+                    
+                    if piece.shape == .entrance {
+                        
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
                     }
                 }
                 
@@ -454,26 +474,14 @@ class Model {
                         }
                     }
                     
-                    if checkForIce(piece: piece) == true {
-                        
-                        delegate?.movePieceView(piece: piece)
-                        movePiecesHelper(piece: piece, direction: direction)
-                        return
-                    }
-                    
-                    if checkForHole(piece: piece, direction: .down) == true {
-                        
-                        deletePiece(piece: piece)
-                        
-                        if piece.shape == .entrance {
-                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                            break
-                        }
-                    }
+                   
                     
                 } else {
                     
+                    print("Working so far")
+
                     if piece.version == 1 {
+                        
                         
                         if piece.nextPiece != nil {
                             
@@ -491,23 +499,40 @@ class Model {
                             
                             delegate?.movePieceView(piece: newPiece)
                             
-                            if checkForIce(piece: newPiece) == true {
-                                
-                                movePiecesHelper(piece: newPiece, direction: direction)
-                                return
-                            }
-                            
-                            if checkForHole(piece: newPiece, direction: .down) == true {
-                                
-                                deletePiece(piece: newPiece)
-                                
-                                if piece.shape == .entrance {
-                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    break
-                                }
-                            }
+//                            if checkForIce(piece: newPiece) == true {
+//
+//                                movePiecesHelper(piece: newPiece, direction: direction)
+//                                return
+//                            }
+//
+//                            if checkForHole(piece: newPiece, direction: .down) == true {
+//
+//                                deletePiece(piece: newPiece)
+//
+//                                if piece.shape == .entrance {
+//                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                                    break
+//                                }
+//                            }
                             resetPieceMaker(piece: piece)
                         }
+                    }
+                }
+                
+                if checkForIce(piece: piece) == true {
+                    
+                    delegate?.movePieceView(piece: piece)
+                    movePiecesHelper(piece: piece, direction: direction)
+                    return
+                }
+                
+                if checkForHole(piece: piece, direction: .down) == true {
+                    
+                    deletePiece(piece: piece)
+                    
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
                     }
                 }
                 
@@ -538,20 +563,7 @@ class Model {
                         }
                     }
                     
-                    if checkForIce(piece: piece) == true {
-                        delegate?.movePieceView(piece: piece)
-                        movePiecesHelper(piece: piece, direction: direction)
-                    }
                     
-                    if checkForHole(piece: piece, direction: .left) == true {
-                        
-                        deletePiece(piece: piece)
-                        
-                        if piece.shape == .entrance {
-                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                            break
-                        }
-                    }
                     
                 } else {
                     
@@ -573,24 +585,37 @@ class Model {
                             
                             delegate?.movePieceView(piece: newPiece)
                             
-                            if checkForIce(piece: newPiece) == true {
-                                movePiecesHelper(piece: newPiece, direction: direction)
-                            }
-                            
-                            if checkForHole(piece: newPiece, direction: .left) == true {
-                                
-                                deletePiece(piece: newPiece)
-                                
-                                if piece.shape == .entrance {
-                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    break
-                                }
-                            }
+//                            if checkForIce(piece: newPiece) == true {
+//                                movePiecesHelper(piece: newPiece, direction: direction)
+//                            }
+//
+//                            if checkForHole(piece: newPiece, direction: .left) == true {
+//
+//                                deletePiece(piece: newPiece)
+//
+//                                if piece.shape == .entrance {
+//                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                                    break
+//                                }
+//                            }
                             resetPieceMaker(piece: piece)
                         }
                     }
                 }
+                if checkForIce(piece: piece) == true {
+                    delegate?.movePieceView(piece: piece)
+                    movePiecesHelper(piece: piece, direction: direction)
+                }
                 
+                if checkForHole(piece: piece, direction: .left) == true {
+                    
+                    deletePiece(piece: piece)
+                    
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
+                    }
+                }
             } else {
                 return
             }
@@ -618,20 +643,7 @@ class Model {
                         }
                     }
                     
-                    if checkForIce(piece: piece) == true {
-                        delegate?.movePieceView(piece: piece)
-                        movePiecesHelper(piece: piece, direction: direction)
-                    }
                     
-                    if checkForHole(piece: piece, direction: .right) == true {
-                        
-                        deletePiece(piece: piece)
-                        
-                        if piece.shape == .entrance {
-                            delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                            break
-                        }
-                    }
                     
                 } else {
                     
@@ -653,21 +665,35 @@ class Model {
                             
                             delegate?.movePieceView(piece: newPiece)
                             
-                            if checkForIce(piece: newPiece) == true {
-                                movePiecesHelper(piece: newPiece, direction: direction)
-                            }
-                            
-                            if checkForHole(piece: newPiece, direction: .right) == true {
-                                
-                                deletePiece(piece: newPiece)
-                                
-                                if piece.shape == .entrance {
-                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                                    break
-                                }
-                            }
+//                            if checkForIce(piece: newPiece) == true {
+//                                movePiecesHelper(piece: newPiece, direction: direction)
+//                            }
+//
+//                            if checkForHole(piece: newPiece, direction: .right) == true {
+//
+//                                deletePiece(piece: newPiece)
+//
+//                                if piece.shape == .entrance {
+//                                    delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                                    break
+//                                }
+//                            }
                             resetPieceMaker(piece: piece)
                         }
+                    }
+                }
+                if checkForIce(piece: piece) == true {
+                    delegate?.movePieceView(piece: piece)
+                    movePiecesHelper(piece: piece, direction: direction)
+                }
+                
+                if checkForHole(piece: piece, direction: .right) == true {
+                    
+                    deletePiece(piece: piece)
+                    
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
                     }
                 }
                 
@@ -741,7 +767,7 @@ class Model {
         sortPieces(direction: direction)
         
         for piece in board.pieces {
-            if piece.isLocked == false {
+            if piece.isLocked == false || piece.shape == .pieceMaker{
                 movePiecesHelper(piece: piece, direction: direction)
                 delegate?.movePieceView(piece: piece)
             }
@@ -818,7 +844,7 @@ class Model {
             //side to check is the side of the new piece
         case "top":
             
-            if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1), pieces: pieces) {
+            if let pieceX = getPieceInfo(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! - 1), pieces: pieces) {
                 
                 if pieceX.side.bottom.opening.isOpen == true {
                     if piece.side.top.color == pieceX.side.bottom.color {
@@ -917,7 +943,7 @@ class Model {
             
         case "right":
             
-            if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y), pieces: pieces) {
+            if let pieceX = getPieceInfo(index: Indexes(x: piece.indexes.x! + 1, y: piece.indexes.y), pieces: pieces) {
                 
                 if pieceX.side.left.opening.isOpen == true {
                     if piece.side.right.color == pieceX.side.left.color {
@@ -1016,7 +1042,7 @@ class Model {
 
         case "bottom":
             
-            if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
+            if let pieceX = getPieceInfo(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
                 
                 if pieceX.side.top.opening.isOpen == true {
                     if piece.side.bottom.color == pieceX.side.top.color {
@@ -1115,7 +1141,7 @@ class Model {
 
         case "left":
             
-            if let pieceX = getPieceInfoOptional(index: Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y), pieces: pieces) {
+            if let pieceX = getPieceInfo(index: Indexes(x: piece.indexes.x! - 1, y: piece.indexes.y), pieces: pieces) {
                 
                 if pieceX.side.right.opening.isOpen == true {
                     if piece.side.left.color == pieceX.side.right.color {
@@ -1358,9 +1384,11 @@ class Model {
             
             if index.value >= 10 {
                 
-                let piece = getPieceInfo(index: index.key)
+                if let piece = getPieceInfo(index: index.key, pieces: board.pieces) {
+                    ball.loopedPieces.append(piece)
+
+                }
                
-                ball.loopedPieces.append(piece)
             }
         }
         if ball.loopedPieces.count >= 10 {
@@ -1394,7 +1422,7 @@ class Model {
     
     func moveBall(ball: Ball, startSide: String) {
         
-        let piece = getPieceInfo(index: ball.indexes)
+        let piece = getPieceInfo(index: ball.indexes, pieces: board.pieces)!
         
         switch startSide {
         

@@ -614,6 +614,34 @@ class Piece {
             
             print()
             
+//        case .pieceMaker:
+//
+//
+//            switch version {
+//
+//            case 1:
+//                //Bottom
+//
+//            case 2:
+//                //Left
+//
+//            case 3:
+//                //top
+//
+//            case 4:
+//                //right
+//
+//            default:
+//
+//                break
+//
+//
+//
+//
+//            }
+            
+            
+            
         case .diagElbow:
             
             side.top.opening.isOpen = true

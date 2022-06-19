@@ -555,7 +555,7 @@ class LevelModel {
 
             board.colorTheme.gradientBackgroundColor = [UIColor.yellow, UIColor.purple]
             board.randomPieceColors = [UIColor.cyan, UIColor.red]//, UIColor.yellow]
-            board.randomPieceShapes = [.stick, .wall]//, .cross]// .wall, .diagElbow, .cross, .stick, .elbow]
+            board.randomPieceShapes = [.stick, .cross, .wall, .diagElbow, .cross, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
             board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1)]
@@ -572,7 +572,7 @@ class LevelModel {
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: false, doesPivot: false)
             board.pieces.append(piece)
 
-            let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, isLocked: true,  doesPivot: false)
+            let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, isLocked: true,  doesPivot: true)
             board.pieces.append(pieceMaker)
 
         case "test3":
@@ -1077,13 +1077,15 @@ class LevelModel {
                 nextPiece.indexes = piece.indexes
                 setPieceColor(piece: nextPiece)
                 setPieceShape(piece: nextPiece)
-//                setPieceSwitches(piece: nextPiece)
-//                setPieceSides(piece: nextPiece)
                 nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
+                nextPiece.doesPivot = true
                 piece.nextPiece = nextPiece
+//                board.pieces.append(nextPiece)
             }
         }
     }
+    
+
     
     private func setPieceIndex(piece: Piece) {
 
@@ -1114,22 +1116,31 @@ class LevelModel {
             piece.version = version
             piece.shape = board.randomPieceShapes[Int(arc4random_uniform(UInt32(board.randomPieceShapes.count)))]
             
-            if board.randomPieceColors.count == 1 && piece.shape == .stick {
-                                
-                setPieceShape(piece: piece)
-                
-            } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
-                                
-                if piece.colors[0] == piece.colors[1] {
-                    setPieceShape(piece: piece)
-                }
-            }
+//            if board.randomPieceColors.count == 1 && piece.shape == .stick {
+//
+//                setPieceShape(piece: piece)
+//
+//            } else if board.randomPieceColors.count == 2 && piece.shape == .stick {
+//
+//                if piece.colors[0] == piece.colors[1] {
+//                    setPieceShape(piece: piece)
+//                }
+//            }
         } else {
             
-            let version = Int(arc4random_uniform(UInt32(4))) + 1
-            piece.version = version
+            
             let randomShapes:[Shape] = [.wall, .elbow, .doubleElbow, .diagElbow, .stick]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
+            
+            var maxVersions = 4
+
+            
+            if piece.shape == .doubleElbow {
+                maxVersions = 8
+            }
+            let version = Int(arc4random_uniform(UInt32(maxVersions))) + 1
+            piece.version = version
+            
             
         }
     }
