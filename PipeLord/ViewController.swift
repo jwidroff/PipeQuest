@@ -299,6 +299,17 @@ class ViewController: UIViewController {
             default:
                 break
             }
+            
+            let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+            DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+
+                self.model.check4AutoBallMove()
+                self.model.check4GameOver()
+            }
+            
+            
+            
         }
     }
     
@@ -761,7 +772,7 @@ extension ViewController: ModelDelegate {
         let rotationAngle = CGFloat(rotationDegrees * Double.pi / 180.0)
         
         
-        UIView.animate(withDuration: 0.20, delay: 0.0, options: .curveEaseIn) {
+        UIView.animate(withDuration: 0.10, delay: 0.0, options: .curveEaseIn) {
             
             piece.view.transform = CGAffineTransform.init(rotationAngle: rotationAngle)
             

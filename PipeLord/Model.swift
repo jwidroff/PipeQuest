@@ -962,14 +962,16 @@ class Model {
                 
                 if board.moves == 0 {
                     
+//                    if check4AutoBallMove()
+                    
 //                    let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
-
+//
 //                    DispatchQueue.main.asyncAfter(deadline: delayedTime) {
-                        
-                        for ball in self.board.balls {
-
-                            self.moveBall(ball: ball, startSide: "unmoved")
-                        }
+//
+//                        for ball in self.board.balls {
+//
+//                            self.moveBall(ball: ball, startSide: "unmoved")
+//                        }
 //                    }
                 }
                 
@@ -1402,8 +1404,9 @@ class Model {
             }
         }
         
-        check4GameOver()
-        
+//        check4AutoBallMove()
+//        check4GameOver()
+//        
 //        let gameIsOver = check4GameOver().0
 //
 //        if gameIsOver {
@@ -1413,7 +1416,7 @@ class Model {
 //            return
 //        }
         
-        check4AutoBallMove()
+        
     }
     
     func check4AutoBallMove() {
@@ -1486,7 +1489,7 @@ class Model {
     
     func checkNextPiece4Exit(ball: Ball, pieces: [Piece], piece:Piece, side2Check: String) {
         
-        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
         
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             

@@ -43,16 +43,16 @@ class ShapeView : UIView {
         doesPivot = piece.doesPivot
 
         makeSoft()
-        
+        addTopView(piece: piece)
+    }
+    
+    func addTopView(piece: Piece) {
         let frameX = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         let topView = ShapeViewTopView(frame: frameX, piece: piece)
-        
         self.addSubview(topView)
-        
     }
     
     func makeSoft() {
-//        self.backgroundColor = UIColor.clear
         self.layer.masksToBounds = false
         var cornerRadius: CGFloat = 1
         var frame = CGRect.zero
@@ -89,122 +89,6 @@ class ShapeView : UIView {
         lightShadow.shadowRadius = shadowRadius
         self.layer.insertSublayer(lightShadow, at: 1)
     }
-    
-    func setLock(context: CGContext) {
-        
-        let w = frame.width / 10 * 9
-        let h = frame.height / 10 * 9
-        let x = (frame.width - w) / 2
-        let y = (frame.height - h) / 2
-        let rect1 = CGRect(x: x, y: y, width: w, height: h)
-        setShadow(context: context)
-        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
-        context.addEllipse(in: rect1)
-        context.fillEllipse(in: rect1)
-        
-//        context.addRect(rect1)
-//        context.fill(rect1)
-        
-        context.restoreGState()
-    }
-    
-//    func addPivotRect(context: CGContext, side: String, color: CGColor) {
-//
-//
-//        let color = UIColor.black.cgColor
-//
-//        switch side {
-//
-//        case "top":
-//
-//            let width = bounds.width / 2
-//            let x = (bounds.midX - (width / 2))
-//            let pivotRect2 = CGRect(x: x, y: bounds.minY, width: width, height: bounds.height / 10)
-//            let rect2 = CGRect(x: pivotRect2.minX - pivotRect2.width * 0.1 , y: 0, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
-//            context.addRects([rect2])
-//            context.setFillColor(ColorTheme.boardBackground.cgColor)
-//            context.fill(rect2)
-//            context.setFillColor(color)
-//            context.addRects([pivotRect2])
-//            context.fill(pivotRect2)
-//
-//        case "bottom":
-//
-//            let width = bounds.width / 2
-//            let x = (bounds.midX - (width / 2))
-//            let pivotRect = CGRect(x: x, y: bounds.maxY - (bounds.height / 10), width: width, height: bounds.height / 10)
-//            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.1 , y: pivotRect.minY - pivotRect.height * 0.2, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
-//            context.addRects([rect])
-//            context.setFillColor(ColorTheme.boardBackground.cgColor)
-//            context.fill(rect)
-//            context.setFillColor(color)
-//            context.addRects([pivotRect])
-//            context.fill(pivotRect)
-//
-//        case "left":
-//
-//            let height = bounds.height / 2
-//            let y = (bounds.midY - (height / 2))
-//            let pivotRect2 = CGRect(x: bounds.minX, y: y, width: bounds.width / 10, height: height)
-//            let rect2 = CGRect(x: 0 , y: pivotRect2.minY - pivotRect2.height * 0.1, width: pivotRect2.width + (pivotRect2.width * 0.2), height: pivotRect2.height + (pivotRect2.height * 0.2))
-//            context.addRects([rect2])
-//            context.setFillColor(ColorTheme.boardBackground.cgColor)
-//            context.fill(rect2)
-//            context.setFillColor(color)
-//            context.addRects([pivotRect2])
-//            context.fill(pivotRect2)
-//
-//        case "right":
-//
-//            let height = bounds.height / 2
-//            let y = (bounds.midY - (height / 2))
-//            let pivotRect = CGRect(x: bounds.maxX - (bounds.height / 10), y: y, width: bounds.width / 10, height: height)
-//            let rect = CGRect(x: pivotRect.minX - pivotRect.width * 0.2 , y: pivotRect.minY - pivotRect.height * 0.1, width: pivotRect.width + (pivotRect.width * 0.2), height: pivotRect.height + (pivotRect.height * 0.2))
-//            context.addRects([rect])
-//            context.setFillColor(ColorTheme.boardBackground.cgColor)
-//            context.fill(rect)
-//            context.setFillColor(color)
-//            context.addRects([pivotRect])
-//            context.fill(pivotRect)
-//
-//        default:
-//            break
-//        }
-//    }
-    
-    func setShadow(context: CGContext) {
-        context.saveGState()
-    }
-    
-    func drawPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
-
-        setShadow(context: context)
-        path.move(to: pivotPoint)
-        path.addQuadCurve(to: endPoint, controlPoint: center)
-        context.addPath(path.cgPath)
-        context.setStrokeColor(UIColor.black.cgColor)
-        context.setLineWidth(frame.height / 3)
-        context.strokePath()
-        path.move(to: pivotPoint)
-        path.addQuadCurve(to: endPoint, controlPoint: center)
-        context.addPath(path.cgPath)
-        context.setStrokeColor(color)
-        context.setLineWidth(frame.height / 4)
-        context.strokePath()
-        context.restoreGState()
-        
-    }
-    
-    func overlapPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
-        
-        path.move(to: pivotPoint)
-        path.addQuadCurve(to: endPoint, controlPoint: center)
-        context.addPath(path.cgPath)
-        context.setStrokeColor(color)
-        context.setLineWidth(frame.height / 4)
-        context.strokePath()
-    }
-    
 }
 
 class ShapeViewTopView: UIView {
@@ -213,9 +97,7 @@ class ShapeViewTopView: UIView {
     var version = Int()
     var colors = [CGColor]()
     var switches = Int()
-//    var currentSwitch = Int()
     var isLocked = false
-//    var opening = String()
     var doesPivot = true
     var nextPiece: Piece?
     
@@ -240,7 +122,6 @@ class ShapeViewTopView: UIView {
         self.shape = piece.shape
         self.version = piece.version
         self.isLocked = piece.isLocked
-//        self.opening = piece.opening
         self.doesPivot = piece.doesPivot
         
         if let nextPieceX = piece.nextPiece {
@@ -250,8 +131,6 @@ class ShapeViewTopView: UIView {
         self.backgroundColor = .clear
         self.layer.cornerRadius = 2
         self.clipsToBounds = true
-        
-        
         if piece.doesPivot == true {
             
             self.layer.cornerRadius = self.frame.width / 2
@@ -269,22 +148,22 @@ class ShapeViewTopView: UIView {
 //        self.currentSwitch = piece.currentSwitch
     }
     
-    func setLock(context: CGContext) {
-        
-        let w = frame.width// / 10 * 9
-        let h = frame.height// / 10 * 9
-        let x = (frame.width - w) / 2
-        let y = (frame.height - h) / 2
-        let rect1 = CGRect(x: x, y: y, width: w, height: h)
-        setShadow(context: context)
-        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
-//        context.addEllipse(in: rect1)
-        
-        context.addRect(rect1)
-        context.fill(rect1)
-//        context.fillEllipse(in: rect1)
-        context.restoreGState()
-    }
+//    func setLock(context: CGContext) {
+//        
+//        let w = frame.width// / 10 * 9
+//        let h = frame.height// / 10 * 9
+//        let x = (frame.width - w) / 2
+//        let y = (frame.height - h) / 2
+//        let rect1 = CGRect(x: x, y: y, width: w, height: h)
+//        context.saveGState()
+//        context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
+////        context.addEllipse(in: rect1)
+//        
+//        context.addRect(rect1)
+//        context.fill(rect1)
+////        context.fillEllipse(in: rect1)
+//        context.restoreGState()
+//    }
     
     override func draw(_ rect: CGRect) {
         
@@ -302,7 +181,12 @@ class ShapeViewTopView: UIView {
         
         if isLocked == true {
             
-            setLock(context: context)
+//            setLock(context: context)
+            
+            context.saveGState()
+            context.setFillColor(colorTheme.lockedPieceBackground.cgColor)
+            context.fill(rect)
+            context.restoreGState()
         }
         
         switch shape {
@@ -995,8 +879,8 @@ class ShapeViewTopView: UIView {
                 
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-                setShadow(context: context)
-                
+//                setShadow(context: context)
+                context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
                 let eclipseWidth1 = frame.width / 1.75
@@ -1026,7 +910,8 @@ class ShapeViewTopView: UIView {
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.maxX, y: bounds.midY)
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                setShadow(context: context)
+//                setShadow(context: context)
+                context.saveGState()
                 let eclipseHeight1 = frame.height / 1.75
                 let eclipseWidth1 = frame.width / 1.75
                 let rect2 = CGRect(x: (frame.width / 2) - (eclipseWidth1 / 2), y: (frame.height / 2) - (eclipseHeight1 / 2), width: eclipseWidth1, height: eclipseHeight1)
@@ -1056,7 +941,8 @@ class ShapeViewTopView: UIView {
                 
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
                 
-                setShadow(context: context)
+//                setShadow(context: context)
+                context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
                 let eclipseWidth1 = frame.width / 1.75
@@ -1084,7 +970,8 @@ class ShapeViewTopView: UIView {
                 let center = CGPoint(x: bounds.midX, y: bounds.midY)
                 let endPoint = CGPoint(x: bounds.minX, y: bounds.midY)
                 drawPath(path: path, context: context, pivotPoint: center, center: center, endPoint: endPoint, color: colors[0])
-                setShadow(context: context)
+//                setShadow(context: context)
+                context.saveGState()
                 
                 let eclipseHeight1 = frame.height / 1.75
                 let eclipseWidth1 = frame.width / 1.75
@@ -1178,9 +1065,9 @@ class ShapeViewTopView: UIView {
         }
     }
 
-    func setShadow(context: CGContext) {
-        context.saveGState()
-    }
+//    func setShadow(context: CGContext) {
+//        context.saveGState()
+//    }
     
     
     func drawPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
