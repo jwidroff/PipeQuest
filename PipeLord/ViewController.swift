@@ -787,7 +787,10 @@ extension ViewController: ModelDelegate {
         let y = (piece.view.frame.height - h) / 2
         let frame = CGRect(x: x, y: y, width: w, height: h)
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
-        
+        for subview in piece.view.subviews {
+            
+            subview.removeFromSuperview()
+        }
         piece.view.addSubview(nextPieceView)
     }
     
