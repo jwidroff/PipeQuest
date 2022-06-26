@@ -555,7 +555,7 @@ class LevelModel {
 
             board.colorTheme.gradientBackgroundColor = [UIColor.yellow, UIColor.purple]
             board.randomPieceColors = [UIColor.cyan, UIColor.red]//, UIColor.yellow]
-            board.randomPieceShapes = [.stick, .cross, .wall, .diagElbow, .cross, .elbow]
+            board.randomPieceShapes = [.doubleElbow, .cross]//.stick, .cross, .wall, .diagElbow, .cross, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
             board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1)]
@@ -1077,6 +1077,10 @@ class LevelModel {
                 nextPiece.indexes = piece.indexes
                 setPieceColor(piece: nextPiece)
                 setPieceShape(piece: nextPiece)
+                //MARK: Need to set version
+                nextPiece.setPieceTotalVersions(shape: nextPiece.shape)
+                nextPiece.version = returnRandomVersion(piece: nextPiece)
+                
                 nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
                 nextPiece.doesPivot = true
                 piece.nextPiece = nextPiece
@@ -1112,8 +1116,8 @@ class LevelModel {
                 
         if board.randomPieceShapes != [Shape]() {
             
-            let version = Int(arc4random_uniform(UInt32(4))) + 1
-            piece.version = version
+//            let version = Int(arc4random_uniform(UInt32(4))) + 1
+//            piece.version = version
             piece.shape = board.randomPieceShapes[Int(arc4random_uniform(UInt32(board.randomPieceShapes.count)))]
             
 //            if board.randomPieceColors.count == 1 && piece.shape == .stick {
@@ -1132,18 +1136,38 @@ class LevelModel {
             let randomShapes:[Shape] = [.wall, .elbow, .doubleElbow, .diagElbow, .stick]
             piece.shape = randomShapes[Int(arc4random_uniform(UInt32(randomShapes.count)))]
             
-            var maxVersions = 4
-
-            
-            if piece.shape == .doubleElbow {
-                maxVersions = 8
-            }
-            let version = Int(arc4random_uniform(UInt32(maxVersions))) + 1
-            piece.version = version
+//            var maxVersions = 4
+//
+//
+//            if piece.shape == .doubleElbow {
+//                maxVersions = 8
+//            }
+//            let version = Int(arc4random_uniform(UInt32(maxVersions))) + 1
+//            piece.version = returnRandomVersion(pieceShape: piece.shape)
             
             
         }
     }
+    
+    private func returnRandomVersion(piece: Piece) -> Int {
+        
+//        var int = 1
+        
+//        var maxVersions = 4
+
+        
+//        if pieceShape == .doubleElbow {
+//            maxVersions = 8
+//        }
+        let int = Int(arc4random_uniform(UInt32(piece.totalVersions))) + 1
+        
+        
+        
+        
+        return int
+        
+    }
+    
     
     
     private func setPieceColor(piece: Piece) {

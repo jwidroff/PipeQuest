@@ -322,9 +322,13 @@ class Model {
         nextPiece.indexes = piece.indexes
         setPieceColor(piece: nextPiece)
         setPieceShape(piece: nextPiece)
+        nextPiece.setPieceTotalVersions(shape: nextPiece.shape)
         nextPiece.setPieceSides(shape: nextPiece.shape, version: nextPiece.version, colors: nextPiece.colors)
         nextPiece.doesPivot = true
         piece.nextPiece = nextPiece
+        
+        print("NEXT PIECE VERSION = \(nextPiece.version)")
+        
         
         delegate?.resetPieceMakerView(piece: piece)
     }
@@ -1895,6 +1899,34 @@ class Model {
         }
         
         switch piece.shape {
+            
+//        case .doubleElbow:
+            
+//            switch piece.version{
+//
+//            case 1:
+//                piece.version = 5
+//            case 2:
+//                piece.version = 6
+//            case 3:
+//                piece.version = 7
+//            case 4:
+//                piece.version = 8
+//            case 5:
+//                piece.version = 1
+//            case 6:
+//                piece.version = 2
+//            case 7:
+//                piece.version = 3
+//            case 8:
+//                piece.version = 4
+//            default:
+//                break
+//            }
+            
+            
+            
+            
             
         case .cross:
             

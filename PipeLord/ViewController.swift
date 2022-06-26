@@ -1047,7 +1047,7 @@ extension ViewController: ModelDelegate {
 
                 piece.view.center = piece.center
 //                if piece.shape != .pieceMaker {
-//                    addTapGestureRecognizer(view: piece.view)
+                addTapGestureRecognizer(view: piece.view)
 //                }
                 model.board.view.addSubview(piece.view)
             }
