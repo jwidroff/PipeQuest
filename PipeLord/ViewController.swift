@@ -789,9 +789,15 @@ extension ViewController: ModelDelegate {
         let nextPieceView = ShapeView(frame: frame, piece: piece.nextPiece!)
         for subview in piece.view.subviews {
             
-            subview.removeFromSuperview()
+            for sub in subview.subviews {
+                
+//                sub.superview?.removeFromSuperview()
+                sub.removeFromSuperview()
+            }
+//            subview.removeFromSuperview()
+         
         }
-        piece.view.addSubview(nextPieceView)
+        piece.view.subviews[0].addSubview(nextPieceView)
     }
     
     func addPieceView(piece: Piece) {
