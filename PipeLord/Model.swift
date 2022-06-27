@@ -248,7 +248,7 @@ class Model {
         
         var piece = Piece()
         
-        for pieceX in board.pieces {
+        for pieceX in pieces {
             
             if pieceX.indexes == index {
                 
@@ -784,8 +784,10 @@ class Model {
         
         for piece in board.pieces {
             
-            let piece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
-            fakePieces.append(piece)
+            let newPiece = Piece(indexes: piece.indexes, shape: piece.shape, colors: piece.colors, version: piece.version, isLocked: piece.isLocked, doesPivot: piece.doesPivot)
+            newPiece.setPieceTotalVersions(shape: newPiece.shape)
+            newPiece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+            fakePieces.append(newPiece)
             
         }
         
@@ -844,6 +846,11 @@ class Model {
             return
         }
         
+        print()
+        print("SIDE TO CHECK = \(side2Check)")
+        print("piece shape = \(piece.shape)")
+        print("piece version = \(piece.version)")
+        
         switch side2Check {
             //side to check is the side of the new piece
         case "top":
@@ -869,32 +876,48 @@ class Model {
                         }
                         
                         if pieceX.side.bottom.closing.isOpen == false {
+                            
+                            
+                            print("cross version \(piece.version)")
+                            print("bottom closing is closed")
                             return
                         }
                         
                         if piece.shape == .cross {
-                            
-                            switch piece.version {
-                                
-                            case 1:
-                                piece.version = 3
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 2:
-                                piece.version = 4
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 3:
-                                piece.version = 1
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 4:
-                                piece.version = 2
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            default:
-                                break
+
+                            print("piece is a cross")
+
+                            if piece.colors[0] == piece.colors[1] {
+
+                                switch piece.version{
+
+                                case 1:
+                                    piece.version = 2
+                                case 2:
+                                    piece.version = 1
+                                case 3:
+                                    piece.version = 4
+                                case 4:
+                                    piece.version = 3
+                                default:
+                                    break
+                                }
+                            } else {
+                                switch piece.version{
+                                    
+                                case 1:
+                                    piece.version = 3
+                                case 2:
+                                    piece.version = 4
+                                case 3:
+                                    piece.version = 1
+                                case 4:
+                                    piece.version = 2
+                                default:
+                                    break
+                                }
                             }
+                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         }
                         
                         if piece.shape == .doubleElbow {
@@ -968,32 +991,54 @@ class Model {
                         }
                         
                         if pieceX.side.left.closing.isOpen == false {
+                            print("left closing is closed")
                             return
                         }
                         
                         if piece.shape == .cross {
-                            
-                            switch piece.version {
+
+                            print("piece is a cross")
+
+
+                            if piece.colors[0] == piece.colors[1] {
+
+                                switch piece.version{
+
+                                case 1:
+                                    piece.version = 2
+                                case 2:
+                                    piece.version = 1
+                                case 3:
+                                    piece.version = 4
+                                case 4:
+                                    piece.version = 3
+                                default:
+                                    break
+                                }
+                            } else {
                                 
-                            case 1:
-                                piece.version = 3
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                switch piece.version{
+                                    
+                                case 1:
+                                    piece.version = 3
+                                case 2:
+                                    piece.version = 4
+                                case 3:
+                                    piece.version = 1
+                                case 4:
+                                    piece.version = 2
+                                default:
+                                    break
+                                }
                                 
-                            case 2:
-                                piece.version = 4
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                                 
-                            case 3:
-                                piece.version = 1
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 4:
-                                piece.version = 2
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            default:
-                                break
+//                                if piece.version != piece.totalVersions {
+//                                    piece.version += 1
+//                                } else {
+//                                    piece.version = 1
+//                                }
                             }
+                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         }
                         
                         if piece.shape == .doubleElbow {
@@ -1046,9 +1091,19 @@ class Model {
 
         case "bottom":
             
+            print("checking bottom")
+            
             if let pieceX = getPieceInfo(index: Indexes(x: piece.indexes.x, y: piece.indexes.y! + 1), pieces: pieces) {
                 
+                
+                print("piece version = \(piece.version)")
+                print("piece top closing = \(piece.side.top.closing.isOpen)")
+
                 if pieceX.side.top.opening.isOpen == true {
+                    
+                    print("piece color = \(piece.side.bottom.color)")
+                    print("pieceX color = \(pieceX.side.top.color)")
+                    
                     if piece.side.bottom.color == pieceX.side.top.color {
                         
                         if pieceX.shape == .exit {
@@ -1067,34 +1122,56 @@ class Model {
                         }
                         
                         if pieceX.side.top.closing.isOpen == false {
+                            print("top closing is closed")
                             return
                         }
                         
                         if piece.shape == .cross {
-                            
-                            switch piece.version {
+
+
+                            print("piece is a cross")
+
+                            if piece.colors[0] == piece.colors[1] {
+
+                                switch piece.version{
+
+                                case 1:
+                                    piece.version = 2
+                                case 2:
+                                    piece.version = 1
+                                case 3:
+                                    piece.version = 4
+                                case 4:
+                                    piece.version = 3
+                                default:
+                                    break
+                                }
+                            } else {
                                 
-                            case 1:
-                                piece.version = 3
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                switch piece.version{
+                                    
+                                case 1:
+                                    piece.version = 3
+                                case 2:
+                                    piece.version = 4
+                                case 3:
+                                    piece.version = 1
+                                case 4:
+                                    piece.version = 2
+                                default:
+                                    break
+                                }
                                 
-                            case 2:
-                                piece.version = 4
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                                 
-                            case 3:
-                                piece.version = 1
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 4:
-                                piece.version = 2
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            default:
-                                break
+//                                if piece.version != piece.totalVersions {
+//                                    piece.version += 1
+//                                } else {
+//                                    piece.version = 1
+//                                }
                             }
+                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         }
-                        
+//
                         if piece.shape == .doubleElbow {
 
                             switch piece.version {
@@ -1166,32 +1243,56 @@ class Model {
                         }
                         
                         if pieceX.side.right.closing.isOpen == false {
+                            
+                            print("piece version is \(piece.version)")
+                            
+                            print("right closing is closed")
                             return
                         }
                         
                         if piece.shape == .cross {
-                            
-                            switch piece.version {
+
+                            print("piece is a cross")
+
+                            if piece.colors[0] == piece.colors[1] {
+
+                                switch piece.version{
+
+                                case 1:
+                                    piece.version = 2
+                                case 2:
+                                    piece.version = 1
+                                case 3:
+                                    piece.version = 4
+                                case 4:
+                                    piece.version = 3
+                                default:
+                                    break
+                                }
+                            } else {
                                 
-                            case 1:
-                                piece.version = 3
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                                switch piece.version{
+                                    
+                                case 1:
+                                    piece.version = 3
+                                case 2:
+                                    piece.version = 4
+                                case 3:
+                                    piece.version = 1
+                                case 4:
+                                    piece.version = 2
+                                default:
+                                    break
+                                }
                                 
-                            case 2:
-                                piece.version = 4
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                                 
-                            case 3:
-                                piece.version = 1
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            case 4:
-                                piece.version = 2
-                                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                                
-                            default:
-                                break
+//                                if piece.version != piece.totalVersions {
+//                                    piece.version += 1
+//                                } else {
+//                                    piece.version = 1
+//                                }
                             }
+                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                         }
                         
                         if piece.shape == .doubleElbow {
@@ -1781,12 +1882,30 @@ class Model {
                 
                 if board.moves > 0 || infiniteMoves == true {
                     
-                    if piece.doesPivot == true {
-                        switchVersions(piece: piece)
-                        piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+//                    if piece.shape == .entrance {
+//
+//
+//                        for ball in board.balls {
+//
+//
+//                            if ball.indexes == piece.indexes {
+//
+//                                moveBall(ball: ball, startSide: ball.startSide)
+//                            }
+//                        }
+//
+//
+//
+//                    } else {
                         
-                        delegate?.replacePieceView(piece: piece)
-                    }
+                        if piece.doesPivot == true {
+                            switchVersions(piece: piece)
+                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                            
+                            delegate?.replacePieceView(piece: piece)
+                        }
+//                    }
+                    
                 }
             }
         }
@@ -1832,64 +1951,76 @@ class Model {
     
     func switchPieceAfterBall(piece: Piece, ball: Ball) {
         
-        switch piece.shape {
-
-        case .cross:
+//        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+//
+//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
             
-            switch piece.version {
+            
+            
+            switch piece.shape {
+
+            case .cross:
                 
-            case 1:
-                piece.version = 3
-            case 2:
-                piece.version = 4
-            case 3:
-                piece.version = 1
-            case 4:
-                piece.version = 2
+                switch piece.version {
+                    
+                case 1:
+                    piece.version = 3
+                case 2:
+                    piece.version = 4
+                case 3:
+                    piece.version = 1
+                case 4:
+                    piece.version = 2
+                default:
+                    break
+                }
+                
+                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                self.delegate?.switchCrissCross(piece: piece)
+                
+            case .doubleElbow:
+                  
+                    switch piece.version {
+
+                    case 1:
+                        piece.version = 5
+                    case 2:
+                        piece.version = 6
+                    case 3:
+                        piece.version = 7
+                    case 4:
+                        piece.version = 8
+                    case 5:
+                        piece.version = 1
+                    case 6:
+                        piece.version = 2
+                    case 7:
+                        piece.version = 3
+                    case 8:
+                        piece.version = 4
+
+                    default:
+                        break
+                    }
+
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
+                self.delegate?.switchCrissCross(piece: piece)
+                
+            case .stick:
+                break
+            case .diagElbow:
+                break
+            case .elbow:
+                break
             default:
                 break
             }
             
-            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-            delegate?.switchCrissCross(piece: piece)
             
-        case .doubleElbow:
-              
-                switch piece.version {
-
-                case 1:
-                    piece.version = 5
-                case 2:
-                    piece.version = 6
-                case 3:
-                    piece.version = 7
-                case 4:
-                    piece.version = 8
-                case 5:
-                    piece.version = 1
-                case 6:
-                    piece.version = 2
-                case 7:
-                    piece.version = 3
-                case 8:
-                    piece.version = 4
-
-                default:
-                    break
-                }
-
-                piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                delegate?.switchCrissCross(piece: piece)
             
-        case .stick:
-            break
-        case .diagElbow:
-            break
-        case .elbow:
-            break
-        default:
-            break
-        }
+//        }
+        
+      
     }
     
     func switchVersions(piece: Piece) {
@@ -1946,6 +2077,12 @@ class Model {
                     break
                 }
             } else {
+                
+                //MARK: WHY DOESNT THIS HAVE TO BE LIKE THE OTHERS? (SEE LINE 1134)
+                
+                
+                
+                
                 if piece.version != piece.totalVersions {
                     piece.version += 1
                 } else {

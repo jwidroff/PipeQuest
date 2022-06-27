@@ -696,7 +696,7 @@ extension ViewController: ModelDelegate {
         
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
-        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
             
             let newView = ShapeView(frame: piece.view.frame, piece: piece)
             self.addTapGestureRecognizer(view: newView)
@@ -704,7 +704,7 @@ extension ViewController: ModelDelegate {
             let oldView = piece.view
             piece.view = newView
             oldView.removeFromSuperview()
-        }
+//        }
     }
     
     func crashBallViewIntoCross(piece: Piece, ball: Ball) {
