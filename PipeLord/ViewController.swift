@@ -689,6 +689,11 @@ extension ViewController: ModelDelegate {
     
     func switchCrissCross(piece: Piece) {
         
+        for view in piece.view.subviews{
+            view.backgroundColor = .white
+        }
+        
+        
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
 
         DispatchQueue.main.asyncAfter(deadline: delayedTime) {
@@ -791,11 +796,8 @@ extension ViewController: ModelDelegate {
             
             for sub in subview.subviews {
                 
-//                sub.superview?.removeFromSuperview()
                 sub.removeFromSuperview()
             }
-//            subview.removeFromSuperview()
-         
         }
         piece.view.subviews[0].addSubview(nextPieceView)
     }
