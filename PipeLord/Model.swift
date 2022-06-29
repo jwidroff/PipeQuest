@@ -72,6 +72,8 @@ import UIKit
 
 //TODO: Need to make animation when falling into hole better
 
+//TODO: Immediately after a ball leaves an entrance, turn it into an exit
+
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -832,7 +834,7 @@ class Model {
     
     func checkNextPiece4Exit(ball: Ball, pieces: [Piece], piece:Piece, side2Check: String) {
         
-        let delayedTime = DispatchTime.now() + .milliseconds(Int(500))
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(100))
         
         if check4FakeEndlessLoop(ball: ball, piece: piece) == true {
             
@@ -1951,9 +1953,14 @@ class Model {
     
     func switchPieceAfterBall(piece: Piece, ball: Ball) {
         
-//        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
-//
-//        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+        
+        piece.view.subviews[0].backgroundColor = .white
+        
+        let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+
+        DispatchQueue.main.asyncAfter(deadline: delayedTime) {
+            
+            
             
             
             
@@ -2018,7 +2025,7 @@ class Model {
             
             
             
-//        }
+        }
         
       
     }
@@ -2063,6 +2070,8 @@ class Model {
             
             if piece.colors[0] == piece.colors[1] {
                 
+                print("Colors are the same")
+                
                 switch piece.version{
                     
                 case 1:
@@ -2079,10 +2088,32 @@ class Model {
             } else {
                 
                 //MARK: WHY DOESNT THIS HAVE TO BE LIKE THE OTHERS? (SEE LINE 1134)
+                //MARK: SOMETHING DEFINITELY STILL WRONG WITH CROSS
+                
+//                print("Colors are diff")
+//
+//
+//
+//                switch piece.version{
+//
+//                case 1:
+//                    piece.version = 3
+//                case 2:
+//                    piece.version = 4
+//                case 3:
+//                    piece.version = 1
+//                case 4:
+//                    piece.version = 2
+//                default:
+//                    break
+//                }
                 
                 
                 
                 
+                
+                print("colors are diff")
+
                 if piece.version != piece.totalVersions {
                     piece.version += 1
                 } else {

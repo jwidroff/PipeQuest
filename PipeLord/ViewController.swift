@@ -244,7 +244,7 @@ class ViewController: UIViewController {
                 break
             }
             
-            let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
+            let delayedTime = DispatchTime.now() + .milliseconds(Int(1000))
 
             DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
@@ -497,7 +497,7 @@ extension ViewController: ModelDelegate {
     
     func changeViewColor(piece: Piece, ball: Ball) {
         
-        var backgroundColor = UIColor.systemYellow
+        var backgroundColor = UIColor.clear
         
         if ball.loopedIndexes[piece.indexes] == 1 {
             

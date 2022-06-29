@@ -535,6 +535,9 @@ class LevelModel {
             let exit = Piece(indexes: Indexes(x: board.widthSpaces - 2, y: board.heightSpaces - 2), shape: .exit, colors: [UIColor.cyan], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(exit)
 
+//            let randomPiece = Piece(indexes: Indexes(x: Int(arc4random_uniform(UInt32(board.widthSpaces)) + 1), y: Int(arc4random_uniform(UInt32(board.heightSpaces))) + 1), shape: .stick, colors: [UIColor.cyan], version: 1, isLocked: false, doesPivot: true)
+//            board.pieces.append(randomPiece)
+            
             
         case "el shape":
             
@@ -1992,9 +1995,13 @@ class LevelModel {
             
             let piece = Piece()
             setPieceIndex(piece: piece)
+
             setPieceShape(piece: piece)
             setPieceColor(piece: piece)
+            
 //            setPieceSwitches(piece: piece)
+            piece.setPieceTotalVersions(shape: piece.shape)
+            piece.version = returnRandomVersion(piece: piece)
             piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
 //            setPieceSides(piece: piece)
             board.pieces.append(piece)
