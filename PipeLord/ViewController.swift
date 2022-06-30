@@ -755,13 +755,26 @@ extension ViewController: ModelDelegate {
     
     func removeView(view: UIView) {
         
-        self.model.board.view.layer.mask?.shadowOpacity = 0.2
-        model.board.view.bringSubviewToFront(view)
         
-        let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        self.model.board.view.layer.mask?.shadowOpacity = 0.1
-        self.model.board.view.bringSubviewToFront(view)
-        view.transform = scale
+            
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            
+            self.model.board.view.layer.mask?.shadowOpacity = 0.2
+            self.model.board.view.bringSubviewToFront(view)
+            
+            let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            self.model.board.view.layer.mask?.shadowOpacity = 0.1
+            self.model.board.view.bringSubviewToFront(view)
+            view.transform = scale
+            
+        } completion: { (true) in
+            print()
+        }
+
+        
+        
     }
     
     func removeHole(indexes: Indexes) {

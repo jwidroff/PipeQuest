@@ -444,6 +444,8 @@ class Model {
                 
                 if checkForHole(piece: piece, direction: .up) == true {
                     
+                    
+
                     deletePiece(piece: piece)
                     
                     if piece.shape == .entrance {
@@ -534,6 +536,7 @@ class Model {
                 
                 if checkForHole(piece: piece, direction: .down) == true {
                     
+                    
                     deletePiece(piece: piece)
                     
                     if piece.shape == .entrance {
@@ -614,7 +617,7 @@ class Model {
                 }
                 
                 if checkForHole(piece: piece, direction: .left) == true {
-                    
+                                        
                     deletePiece(piece: piece)
                     
                     if piece.shape == .entrance {
@@ -717,6 +720,9 @@ class Model {
         board.pieces.removeAll { (piece) -> Bool in
             
             if piece.indexes.x! < 0 || piece.indexes.x! > board.widthSpaces - 1 || piece.indexes.y! < 0 || piece.indexes.y! > board.heightSpaces - 1 {
+                
+                
+                
                 
                 delegate?.removeView(view: piece.view)
                 
