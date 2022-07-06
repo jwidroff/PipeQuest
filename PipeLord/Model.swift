@@ -472,6 +472,8 @@ class Model {
                     
                     piece.indexes.y = piece.indexes.y! + 1
                     
+                    print("Pieces new index \(piece.indexes)")
+                    
                     if piece.shape == .entrance {
                         
                         for ball in board.balls {
@@ -483,7 +485,7 @@ class Model {
                         }
                     }
                     
-                   
+//                    delegate?.movePieceView(piece: piece)
                     
                 } else {
                     
@@ -508,8 +510,10 @@ class Model {
                             
                             delegate?.movePieceView(piece: newPiece)
                             
+                            
+                            
 //                            if checkForIce(piece: newPiece) == true {
-//
+//                                
 //                                movePiecesHelper(piece: newPiece, direction: direction)
 //                                return
 //                            }
@@ -782,9 +786,13 @@ class Model {
         for piece in board.pieces {
             if piece.isLocked == false || piece.shape == .pieceMaker{
                 movePiecesHelper(piece: piece, direction: direction)
-                delegate?.movePieceView(piece: piece)
+                delegate?.movePieceView(piece: piece) //MARK: this needs to be put individually in the helper func
             }
         }
+        
+//        for piece in board.pieces {
+//            delegate?.movePieceView(piece: piece)
+//        }
     }
     
     func check4AutoBallMove() {

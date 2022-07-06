@@ -981,7 +981,8 @@ extension ViewController: ModelDelegate {
     
     func movePieceView(piece: Piece) {
 
-        if piece.indexes.x! < 0{
+        
+        if piece.indexes.x! < 0 {
             
             UIView.animate(withDuration: 0.25) {
                 piece.center = CGPoint(x: piece.center.x - (self.distanceFromPieceCenter * 2), y: piece.center.y)
@@ -1067,13 +1068,11 @@ extension ViewController: ModelDelegate {
         
             for piece in model.board.pieces {
 
-                counter += 0.05
+                counter += 0.03
                 
-                UIView.animate(withDuration: 0.75, delay: counter, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: .curveEaseIn) {
+                UIView.animate(withDuration: 1.0, delay: counter, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseInOut) {
                     
-                    if piece.shape == .pieceMaker {
-                        self.setUpBallsView()
-                    }
+                    
                     
                     let frame = CGRect(x: center.x, y: center.y, width: self.pieceWidth, height: self.pieceHeight)
                     piece.view = ShapeView(frame: frame, piece: piece)
@@ -1085,9 +1084,14 @@ extension ViewController: ModelDelegate {
     //                }
                     self.model.board.view.addSubview(piece.view)
                     
+                    if piece.shape == .entrance {
+                        self.setUpBallsView()
+                        
+                    }
+                    
                 } completion: { (true) in
                     
-                   
+                    
                     
                     
                 }
@@ -1120,8 +1124,9 @@ extension ViewController: ModelDelegate {
             ball.view = BallView(frame: frame)
             ball.center = CGPoint(x: model.board.grid[ball.indexes]?.x ?? ball.view.center.x, y: model.board.grid[ball.indexes]?.y ?? ball.view.center.y)
             ball.view.center = ball.center
-            addTapGestureRecognizer(view: ball.view)
+//            addTapGestureRecognizer(view: ball.view)
             self.model.board.view.addSubview(ball.view)
+            view.bringSubviewToFront(ball.view)
         }
     }
     
