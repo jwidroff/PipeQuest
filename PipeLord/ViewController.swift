@@ -1061,25 +1061,53 @@ extension ViewController: ModelDelegate {
         
         let center = CGPoint(x: (self.boardWidth / 2) - (pieceWidth / 2), y: self.boardHeight / 2 - (pieceHeight / 2))
     
-        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveEaseInOut) {  [self] in
+//        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveEaseInOut) {  [self] in
             
+        var counter = 0.0
+        
             for piece in model.board.pieces {
 
-                let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
-                piece.view = ShapeView(frame: frame, piece: piece)
-                piece.center = CGPoint(x: model.board.grid[piece.indexes]?.x ?? piece.center.x, y: model.board.grid[piece.indexes]?.y ?? piece.center.y)
+                counter += 0.05
+                
+                UIView.animate(withDuration: 0.75, delay: counter, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.9, options: .curveEaseIn) {
+                    
+                    if piece.shape == .pieceMaker {
+                        self.setUpBallsView()
+                    }
+                    
+                    let frame = CGRect(x: center.x, y: center.y, width: self.pieceWidth, height: self.pieceHeight)
+                    piece.view = ShapeView(frame: frame, piece: piece)
+                    piece.center = CGPoint(x: self.model.board.grid[piece.indexes]?.x ?? piece.center.x, y: self.model.board.grid[piece.indexes]?.y ?? piece.center.y)
 
-                piece.view.center = piece.center
-//                if piece.shape != .pieceMaker {
-                addTapGestureRecognizer(view: piece.view)
-//                }
-                model.board.view.addSubview(piece.view)
+                    piece.view.center = piece.center
+    //                if piece.shape != .pieceMaker {
+                    self.addTapGestureRecognizer(view: piece.view)
+    //                }
+                    self.model.board.view.addSubview(piece.view)
+                    
+                } completion: { (true) in
+                    
+                   
+                    
+                    
+                }
+
+                
+//                let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
+//                piece.view = ShapeView(frame: frame, piece: piece)
+//                piece.center = CGPoint(x: model.board.grid[piece.indexes]?.x ?? piece.center.x, y: model.board.grid[piece.indexes]?.y ?? piece.center.y)
+//
+//                piece.view.center = piece.center
+////                if piece.shape != .pieceMaker {
+//                addTapGestureRecognizer(view: piece.view)
+////                }
+//                model.board.view.addSubview(piece.view)
             }
-            setUpBallsView()
             
-        } completion: { (false) in
-            print()
-        }
+            
+//        } completion: { (false) in
+//            print()
+//        }
     }
     
     func setUpBallsView() {

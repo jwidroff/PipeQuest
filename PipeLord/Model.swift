@@ -74,6 +74,7 @@ import UIKit
 
 //TODO: Immediately after a ball leaves an entrance, turn it into an exit
 
+//TODO: Need to also make it that popup for no more moves only comes about after an actual piece moves (right now, if theres a piecemaker and you can swipe down to move it but if you swipe up and no other pieces move, the popup comes on even though you can technically swipe down)
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
