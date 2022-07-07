@@ -562,9 +562,6 @@ class Model {
             
             if piece.indexes.x! < 0 || piece.indexes.x! > board.widthSpaces - 1 || piece.indexes.y! < 0 || piece.indexes.y! > board.heightSpaces - 1 {
                 
-                
-                
-                
                 delegate?.removeView(view: piece.view)
                 
                 return true

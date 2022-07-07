@@ -231,42 +231,53 @@ class IceView: UIView {
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.frame = frame
-        let gradient = CAGradientLayer()
         
-        //These angle the gradient on the X & Y axis (negative numbers can be used too)
-        gradient.startPoint = .init(x: 0.0, y: 0.0)
-        gradient.endPoint = .init(x: 0.0, y: 2.0)
+        let label = UILabel(frame: bounds)
+        label.backgroundColor = UIColor.cyan.withAlphaComponent(0.2)
+        label.text = "🧊"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: frame.height / 10 * 9)
         
-        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
-        gradient.locations = [-0.1, 0.5, 1.1]
+        self.addSubview(label)
         
-        //This keeps the gradient within the bounds of the view
-        gradient.frame = bounds
-        gradient.opacity = 0.5
-        //These are the colors of the gradient(that are being passed in)
-        gradient.colors = [UIColor.cyan.cgColor, UIColor.white.cgColor, UIColor.blue.cgColor]
         
-        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
-        layer.insertSublayer(gradient, at: 1)
         
-        let gradient2 = CAGradientLayer()
-        
-        //These angle the gradient on the X & Y axis (negative numbers can be used too)
-        gradient2.startPoint = .init(x: 0.0, y: 0.0)
-        gradient2.endPoint = .init(x: 2.0, y: 0.0)
-        
-        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
-        gradient2.locations = [-0.1, 0.5, 1.1]
-        
-        //This keeps the gradient within the bounds of the view
-        gradient2.frame = bounds
-        gradient2.opacity = 0.5
-        //These are the colors of the gradient(that are being passed in)
-        gradient2.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
-        
-
-        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
-        layer.insertSublayer(gradient2, at: 2)
+//        let gradient = CAGradientLayer()
+//
+//        //These angle the gradient on the X & Y axis (negative numbers can be used too)
+//        gradient.startPoint = .init(x: 0.0, y: 0.0)
+//        gradient.endPoint = .init(x: 0.0, y: 2.0)
+//
+//        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
+//        gradient.locations = [-0.1, 0.5, 1.1]
+//
+//        //This keeps the gradient within the bounds of the view
+//        gradient.frame = bounds
+//        gradient.opacity = 0.5
+//        //These are the colors of the gradient(that are being passed in)
+//        gradient.colors = [UIColor.cyan.cgColor, UIColor.white.cgColor, UIColor.blue.cgColor]
+//
+//        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
+//        layer.insertSublayer(gradient, at: 1)
+//
+//        let gradient2 = CAGradientLayer()
+//
+//        //These angle the gradient on the X & Y axis (negative numbers can be used too)
+//        gradient2.startPoint = .init(x: 0.0, y: 0.0)
+//        gradient2.endPoint = .init(x: 2.0, y: 0.0)
+//
+//        //This is the location of where in the middle the colors are together. (the closer they are together, the less they mesh. If its too far, you cant even notice that its 2 colors so it'll just look like one color that the two colors make)
+//        gradient2.locations = [-0.1, 0.5, 1.1]
+//
+//        //This keeps the gradient within the bounds of the view
+//        gradient2.frame = bounds
+//        gradient2.opacity = 0.5
+//        //These are the colors of the gradient(that are being passed in)
+//        gradient2.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.white.cgColor]
+//
+//
+//        //This determines the layer of the view you're setting the gradient (the higher up the number is, the more outer of a layer it is - which is why "gradientColors2" wont show up if gradientColors is higher and vise versa)
+//        layer.insertSublayer(gradient2, at: 2)
     }
     
     required init?(coder aDecoder: NSCoder) {
