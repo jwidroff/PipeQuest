@@ -1066,7 +1066,7 @@ extension ViewController: ModelDelegate {
             
         var counter = 0.0
         
-            for piece in model.board.pieces {
+        for piece in model.board.pieces {
 
                 counter += 0.03
                 

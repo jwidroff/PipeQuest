@@ -575,8 +575,8 @@ class LevelModel {
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(piece)
             
-            let piece1 = Piece(indexes: Indexes(x: 2, y: 5), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: false, doesPivot: false)
-            board.pieces.append(piece1)
+//            let piece1 = Piece(indexes: Indexes(x: 2, y: 5), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: false, doesPivot: false)
+//            board.pieces.append(piece1)
 
             let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, isLocked: true,  doesPivot: true)
             board.pieces.append(pieceMaker)

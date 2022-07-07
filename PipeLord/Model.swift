@@ -1313,6 +1313,12 @@ class Model {
     
     func check4GameOver() {
         
+        guard !board.pieces.contains(where: { (piece) in
+            piece.shape == .pieceMaker
+        }) else {
+            return
+        }
+        
         var message = ""
         var bool = false
         var moveablePieceCount = 0
@@ -1324,7 +1330,7 @@ class Model {
         }
         
         for piece in board.pieces {
-            
+            //MARK: Need to make this also check to make sure theres no pieceMakers
             if piece.isLocked == false {
                 moveablePieceCount += 1
             }

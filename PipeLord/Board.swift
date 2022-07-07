@@ -159,8 +159,8 @@ class BoardView : UIView {
         
         for iceLocation in self.iceLocations {
 
-            let point1 = CGPoint(x: self.xArray[0], y: self.yArray[0])
-            let point2 = CGPoint(x: self.xArray[1], y: self.yArray[1])
+            let point1 = CGPoint(x: self.xArray[0] / 10 * 9, y: self.yArray[0] / 10 * 9)
+            let point2 = CGPoint(x: self.xArray[1] / 10 * 9, y: self.yArray[1] / 10 * 9)
             let halfX = (point1.x - point2.x) / 2
             let halfY = (point1.y - point2.y) / 2
 
@@ -233,7 +233,7 @@ class IceView: UIView {
         self.frame = frame
         
         let label = UILabel(frame: bounds)
-        label.backgroundColor = UIColor.cyan.withAlphaComponent(0.2)
+        label.backgroundColor = UIColor.cyan.withAlphaComponent(0.3)
         label.text = "🧊"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: frame.height / 10 * 9)
