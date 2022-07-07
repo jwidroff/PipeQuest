@@ -561,19 +561,22 @@ class LevelModel {
             board.randomPieceShapes = [.doubleElbow, .cross]//.stick, .cross, .wall, .diagElbow, .cross, .elbow]
             board.amountOfRandomPieces = 0
             board.iceLocations = [Indexes(x: 1, y: 5)]//, Indexes(x: 3, y: 2), Indexes(x: 3, y: 3)]
-            board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1)]
+            board.holeLocations = [Indexes(x: 3, y: 1),Indexes(x:3, y: 0), Indexes(x:4, y: 0), Indexes(x:4, y: 1), Indexes(x: 0, y: 4)]
             board.heightSpaces = 10
             board.widthSpaces = 5
-            addBorderAroundBoardOf(.wall, exceptionIndexes: [Indexes(x: 0, y: 1),Indexes(x: 3, y: 1),Indexes(x: 3, y: 0), Indexes(x: 4, y: 0), Indexes(x: 4, y: 1)])
+            addBorderAroundBoardOf(.wall, exceptionIndexes: [Indexes(x: 0, y: 1),Indexes(x: 3, y: 1),Indexes(x: 3, y: 0), Indexes(x: 4, y: 0), Indexes(x: 4, y: 1), Indexes(x: 0, y: 4)])
 
             let entrance = Piece(indexes: Indexes(x: 1, y: 2), shape: .entrance, colors: [UIColor.red], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(entrance)
 
-            let exit = Piece(indexes: Indexes(x: 2, y: 4), shape: .exit, colors: [UIColor.cyan], version: 1, isLocked: true, doesPivot: false)
+            let exit = Piece(indexes: Indexes(x: 3, y: 4), shape: .exit, colors: [UIColor.cyan], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(exit)
 
             let piece = Piece(indexes: Indexes(x: 2, y: 2), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: true, doesPivot: false)
             board.pieces.append(piece)
+            
+            let piece1 = Piece(indexes: Indexes(x: 2, y: 5), shape: .diagElbow, colors: [UIColor.cyan, UIColor.red], version: 1, isLocked: false, doesPivot: false)
+            board.pieces.append(piece1)
 
             let pieceMaker = Piece(indexes: Indexes(x: 1, y: 4), shape: .pieceMaker, colors: [.clear], version: 1, isLocked: true,  doesPivot: true)
             board.pieces.append(pieceMaker)

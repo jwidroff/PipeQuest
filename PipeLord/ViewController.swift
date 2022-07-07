@@ -1084,14 +1084,14 @@ extension ViewController: ModelDelegate {
     //                }
                     self.model.board.view.addSubview(piece.view)
                     
-                    if piece.shape == .entrance {
-                        self.setUpBallsView()
-                        
-                    }
+                    
                     
                 } completion: { (true) in
                     
-                    
+                    if piece.shape == .entrance {
+                        self.setUpBallView(piece: piece)
+                        
+                    }
                     
                     
                 }
@@ -1114,19 +1114,25 @@ extension ViewController: ModelDelegate {
 //        }
     }
     
-    func setUpBallsView() {
+    func setUpBallView(piece: Piece) {
         
-        let center = CGPoint(x: (self.boardWidth / 2) - (pieceWidth / 2), y: self.boardHeight / 2 - (pieceHeight / 2))
+//        let center = CGPoint(x: (self.boardWidth / 2) - (pieceWidth / 2), y: self.boardHeight / 2 - (pieceHeight / 2))
                 
         for ball in self.model.board.balls {
             
-            let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
-            ball.view = BallView(frame: frame)
-            ball.center = CGPoint(x: model.board.grid[ball.indexes]?.x ?? ball.view.center.x, y: model.board.grid[ball.indexes]?.y ?? ball.view.center.y)
-            ball.view.center = ball.center
-//            addTapGestureRecognizer(view: ball.view)
-            self.model.board.view.addSubview(ball.view)
-            view.bringSubviewToFront(ball.view)
+            if ball.indexes == piece.indexes {
+                
+                
+                let frame = CGRect(x: piece.view.center.x, y: piece.view.center.y, width: pieceWidth, height: pieceHeight)
+                ball.view = BallView(frame: frame)
+                ball.center = CGPoint(x: model.board.grid[ball.indexes]?.x ?? ball.view.center.x, y: model.board.grid[ball.indexes]?.y ?? ball.view.center.y)
+                ball.view.center = ball.center
+                addTapGestureRecognizer(view: ball.view)
+                self.model.board.view.addSubview(ball.view)
+                view.bringSubviewToFront(ball.view)
+            }
+            
+            
         }
     }
     
