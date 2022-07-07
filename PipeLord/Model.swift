@@ -618,32 +618,25 @@ class Model {
         moveStarted = true
         
         sortPieces(direction: direction)
-        
-        addNextPieces(direction: direction)
-        
+
         for piece in board.pieces {
             if piece.isLocked == false || piece.shape == .pieceMaker{
                 movePiecesHelper(piece: piece, direction: direction)
                 delegate?.movePieceView(piece: piece) //MARK: this needs to be put individually in the helper func
             }
         }
-        
-//        for piece in board.pieces {
-//            delegate?.movePieceView(piece: piece)
-//        }
+        //Need to add next pieces last in order to make sure that there are no pieces blocking the pieceMaker
+        addNextPieces(direction: direction)
     }
     
-    func createNextPiece(piece: Piece) {
+    func createNextPiece(piece: Piece, direction: UISwipeGestureRecognizer.Direction) {
         
         let newPiece = piece.nextPiece!
-        
         newPiece.view = ShapeView(frame: piece.view.frame, piece: newPiece)
-        
-        
         delegate?.addPieceView(piece: newPiece)
-        
         board.pieces.append(newPiece)
-
+        movePiecesHelper(piece: newPiece, direction: direction)
+        delegate?.movePieceView(piece: newPiece)
         resetPieceMaker(piece: piece)
     }
     
@@ -665,13 +658,10 @@ class Model {
                             if piece.nextPiece != nil {
                                 
                                 updateMovesLeft()
-                                
-                                createNextPiece(piece: piece)
+                                createNextPiece(piece: piece, direction: direction)
                             }
                         }
-                        
                     }
-                    
                     
                 case 2:
                     if direction == .left {
@@ -682,9 +672,7 @@ class Model {
                             if piece.nextPiece != nil {
                                 
                                 updateMovesLeft()
-                                
-                                createNextPiece(piece: piece)
-                            }
+                                createNextPiece(piece: piece, direction: direction)                            }
                         }
                     }
                 case 3:
@@ -696,8 +684,7 @@ class Model {
                             if piece.nextPiece != nil {
                                 
                                 updateMovesLeft()
-                                
-                                createNextPiece(piece: piece)
+                                createNextPiece(piece: piece, direction: direction)
                             }
                         }
                     }
@@ -711,8 +698,7 @@ class Model {
                             if piece.nextPiece != nil {
                                 
                                 updateMovesLeft()
-                                
-                                createNextPiece(piece: piece)
+                                createNextPiece(piece: piece, direction: direction)
                             }
                         }
                     }
@@ -720,16 +706,9 @@ class Model {
                 default:
                     
                     break
-                    
-                    
-                    
                 }
-                
-                
-                
             }
         }
-        
     }
     
     func check4AutoBallMove() {
@@ -742,7 +721,6 @@ class Model {
             newPiece.setPieceTotalVersions(shape: newPiece.shape)
             newPiece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
             fakePieces.append(newPiece)
-            
         }
         
         for piece in fakePieces {
