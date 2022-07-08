@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var colorTheme = ColorTheme()
     var boardView = UIView()
     var duration4Animation = 0.25
-    var movesLeftLabel = UILabel()
+    var movesLeftNumberLabel = UILabel()
     var movesLeftTextLabel = UILabel()
     var levelNameLabel = UILabel()
     var levelObjectiveLabel = UILabel()
@@ -184,25 +184,37 @@ class ViewController: UIViewController {
     func setupMovesLeftLabel() {
         
         let controlHeight = pieceHeight / 2
+        
+        
+        let swipesLeftLabelHeight = controlHeight
+        let swipesLeftLabelWidth = (boardWidth / 10)
+       
+        let swipesLeftYFloat = (model.board.view.frame.minY / 2)
+        let swipesLeftXFloat = model.board.view.frame.maxX - swipesLeftLabelWidth
+        let swipesLeftLabelFrame = CGRect(x: swipesLeftXFloat, y: swipesLeftYFloat, width: swipesLeftLabelWidth, height: swipesLeftLabelHeight)
+        
+        movesLeftNumberLabel.layer.borderColor = UIColor.black.cgColor
+        movesLeftNumberLabel.layer.borderWidth = 1
+        movesLeftNumberLabel.frame = swipesLeftLabelFrame
+        movesLeftNumberLabel.backgroundColor = .clear
+        movesLeftNumberLabel.textAlignment = .center
+        movesLeftNumberLabel.font = UIFont.boldSystemFont(ofSize: 500)
+        movesLeftNumberLabel.adjustsFontSizeToFitWidth = true
+        view.addSubview(movesLeftNumberLabel)
+        
+        
         let movesLeftLabelHeight = controlHeight
-        let movesLeftLabelWidth = (boardWidth / 2) - (controlHeight / 2)
-        let swipesLeftYFloat = model.board.view.frame.minY - movesLeftLabelHeight
-        let swipesLeftXFloat = model.board.view.frame.minX + (boardWidth / 2) + 10
-        let movesLeftLabelFrame = CGRect(x: swipesLeftXFloat, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
-        movesLeftLabel.frame = movesLeftLabelFrame
-        movesLeftLabel.backgroundColor = .clear
-        movesLeftLabel.textAlignment = .right
-        movesLeftLabel.font = UIFont.boldSystemFont(ofSize: 500)
-        movesLeftLabel.adjustsFontSizeToFitWidth = true
-        view.addSubview(movesLeftLabel)
+        let movesLeftLabelWidth = (boardWidth / 2) - swipesLeftLabelWidth
         
-        let movesLeftTextLabelFrame = CGRect(x: swipesLeftXFloat - 30, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
+        let movesLeftTextLabelFrame = CGRect(x: model.board.view.frame.midX, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
         
-        movesLeftTextLabel = UILabel(frame: movesLeftTextLabelFrame)
+//        movesLeftTextLabel.layer.borderColor = UIColor.black.cgColor
+//        movesLeftTextLabel.layer.borderWidth = 1
+//        movesLeftTextLabel = UILabel(frame: movesLeftTextLabelFrame)
         movesLeftTextLabel.frame = movesLeftTextLabelFrame
         movesLeftTextLabel.backgroundColor = .clear
         movesLeftTextLabel.textAlignment = .right
-        movesLeftTextLabel.text = "Moves left:"
+        movesLeftTextLabel.text = "Swipes left:"
         movesLeftTextLabel.textAlignment = .right
         movesLeftTextLabel.font = UIFont.boldSystemFont(ofSize: 500)
         movesLeftTextLabel.adjustsFontSizeToFitWidth = true
@@ -214,7 +226,7 @@ class ViewController: UIViewController {
         let controlHeight = pieceHeight / 2
         let levelNameLabelHeight = controlHeight
         let levelNameLabelWidth = boardWidth / 2
-        let levelNameYFloat = model.board.view.frame.minY - levelNameLabelHeight
+        let levelNameYFloat = (model.board.view.frame.minY / 2)
         let levelNameXFloat = model.board.view.frame.minX
         let levelNameLabelFrame = CGRect(x: levelNameXFloat, y: levelNameYFloat, width: levelNameLabelWidth, height: levelNameLabelHeight)
         levelNameLabel.frame = levelNameLabelFrame
@@ -253,7 +265,7 @@ class ViewController: UIViewController {
                 break
             }
             
-            let delayedTime = DispatchTime.now() + .milliseconds(Int(1000))
+            let delayedTime = DispatchTime.now() + .milliseconds(Int(150))
 
             DispatchQueue.main.asyncAfter(deadline: delayedTime) {
 
@@ -449,18 +461,20 @@ extension ViewController: ModelDelegate {
     
     func updateMovesLeftLabel(moves: String) {
         
-        movesLeftLabel.text = " \(moves)"
+        movesLeftNumberLabel.text = " \(moves)"
         
         if moves == "0" {
         
-            movesLeftLabel.font = UIFont.boldSystemFont(ofSize: movesLeftLabel.font.pointSize)
-            movesLeftLabel.textColor = UIColor.red
+            movesLeftNumberLabel.font = UIFont.boldSystemFont(ofSize: movesLeftNumberLabel.font.pointSize)
+            movesLeftNumberLabel.textColor = UIColor.red
+            movesLeftNumberLabel.backgroundColor = .yellow.withAlphaComponent(0.5)
         
         } else if Int(moves) ?? 0 >= model.board.moves / 2 && Int(moves) ?? 0 <= 3 {
             
             if moves != "∞" {
-                movesLeftLabel.font = UIFont.boldSystemFont(ofSize: movesLeftLabel.font.pointSize)
-                movesLeftLabel.textColor = UIColor.purple
+                movesLeftNumberLabel.font = UIFont.boldSystemFont(ofSize: movesLeftNumberLabel.font.pointSize)
+                movesLeftNumberLabel.textColor = UIColor.purple
+                movesLeftNumberLabel.backgroundColor = .yellow.withAlphaComponent(0.2)
             }
         }
     }
@@ -481,7 +495,7 @@ extension ViewController: ModelDelegate {
             model.infiniteMoves = false
         }
         
-        movesLeftLabel.text = " \(movesX)"
+        movesLeftNumberLabel.text = " \(movesX)"
     }
     
     func changeAnimationSpeed(slowerOrFaster: String) {
@@ -1173,7 +1187,7 @@ extension ViewController: ModelDelegate {
                         self.model.updateUserDefaults()
                     }
                     
-                    self.movesLeftLabel.textColor = UIColor.black
+                    self.movesLeftNumberLabel.textColor = UIColor.black
                     
                     self.model.resetGame()
                     
@@ -1216,7 +1230,7 @@ extension ViewController: ModelDelegate {
         self.boardView.removeFromSuperview()
         self.retryButton.removeFromSuperview()
         self.menuButton.removeFromSuperview()
-        self.movesLeftLabel.removeFromSuperview()
+        self.movesLeftNumberLabel.removeFromSuperview()
         self.movesLeftTextLabel.removeFromSuperview()
         self.model.setUpGame()
     }

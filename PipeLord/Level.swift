@@ -1050,10 +1050,20 @@ class LevelModel {
     
     private func setUpLevelDefaults() {
 
+        countBalls()
         setupRandomPieces()
         setupNextPieces()
         setupBalls()
         setupLocks()
+    }
+    
+    func countBalls() {
+        
+        for piece in self.board.pieces {
+            if piece.shape == .entrance{
+                board.levelBalls += 1
+            }
+        }
     }
     
     private func setupLocks() {

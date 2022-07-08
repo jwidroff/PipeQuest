@@ -410,11 +410,11 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-                    if piece.shape == .entrance {
-                        
-                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                        break
-                    }
+//                    if piece.shape == .entrance {
+//
+//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                        break
+//                    }
                 }
                 
             } else {
@@ -457,10 +457,10 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-                    if piece.shape == .entrance {
-                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                        break
-                    }
+//                    if piece.shape == .entrance {
+//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                        break
+//                    }
                 }
                 
             } else {
@@ -500,10 +500,10 @@ class Model {
                                         
                     deletePiece(piece: piece)
                     
-                    if piece.shape == .entrance {
-                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                        break
-                    }
+//                    if piece.shape == .entrance {
+//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                        break
+//                    }
                 }
             } else {
                 return
@@ -541,10 +541,10 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-                    if piece.shape == .entrance {
-                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-                        break
-                    }
+//                    if piece.shape == .entrance {
+//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+//                        break
+//                    }
                 }
                 
             } else {
@@ -624,6 +624,9 @@ class Model {
         }
         //Adding the next pieces last in order to make sure that there are no pieces blocking the pieceMaker
         addNextPieces(direction: direction)
+//        self.model.check4AutoBallMove()
+//        self.model.check4GameOver()
+        
     }
     
     func createNextPiece(piece: Piece, direction: UISwipeGestureRecognizer.Direction) {
@@ -770,6 +773,7 @@ class Model {
                 if ballX.indexes == ball.piecesPassed[0].indexes {
                     
                     moveBall(ball: ballX, startSide: "unmoved")
+                    board.levelBalls -= 1
                 }
             }
             return
@@ -1323,8 +1327,24 @@ class Model {
         var bool = false
         var moveablePieceCount = 0
         
-        if board.balls.count < level.board.balls.count {
+        
+        print("board.balls.count \(board.balls.count)")
+        print("level.board.balls.count \(level.board.balls.count)")
+        
+//        var originalEntrancePieces = 0
+//
+//        for piece in level.board.pieces {
+//            if piece.shape == .entrance{
+//                originalEntrancePieces += 1
+//            }
+//        }
+        
+    
+        
+        if board.balls.count < board.levelBalls {
             
+            
+
             bool = true
             message = "You lost your ball!"
         }
@@ -1404,15 +1424,15 @@ class Model {
         
         for index in ball.loopedIndexes {
             
-            if index.value >= 10 {
+            if index.value >= 5 {
                 
                 ball.loopedPieces.append(piece)
             }
         }
-        if ball.loopedPieces.count >= 10 {
+        if ball.loopedPieces.count >= 5 {
 
             if !ball.loopedIndexes.contains(where: { (key, value) -> Bool in
-                value == 9
+                value == 4
             }) {
                 bool = true
             }
@@ -1426,7 +1446,7 @@ class Model {
         
         for index in ball.loopedIndexes {
             
-            if index.value >= 10 {
+            if index.value >= 5 {
                 
                 if let piece = getPieceInfo(index: index.key, pieces: board.pieces) {
                     ball.loopedPieces.append(piece)
@@ -1435,10 +1455,10 @@ class Model {
                
             }
         }
-        if ball.loopedPieces.count >= 10 {
+        if ball.loopedPieces.count >= 5 {
 
             if !ball.loopedIndexes.contains(where: { (key, value) -> Bool in
-                value == 9
+                value == 4
             }) {
                 bool = true
             }
@@ -1819,33 +1839,12 @@ class Model {
             
             if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) {
                 
-//                if board.moves >= 0 || infiniteMoves == true {
+                if piece.doesPivot == true {
+                    switchVersions(piece: piece)
+                    piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
                     
-//                    if piece.shape == .entrance {
-//
-//
-//                        for ball in board.balls {
-//
-//
-//                            if ball.indexes == piece.indexes {
-//
-//                                moveBall(ball: ball, startSide: ball.startSide)
-//                            }
-//                        }
-//
-//
-//
-//                    } else {
-                        
-                        if piece.doesPivot == true {
-                            switchVersions(piece: piece)
-                            piece.setPieceSides(shape: piece.shape, version: piece.version, colors: piece.colors)
-                            
-                            delegate?.replacePieceView(piece: piece)
-                        }
-//                    }
-                    
-//                }
+                    delegate?.replacePieceView(piece: piece)
+                }
             }
         }
         check4AutoBallMove()
