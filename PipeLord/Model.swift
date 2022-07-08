@@ -60,9 +60,6 @@ import UIKit
 
 //Consider a triple elbow or quad elbow
 
-//TODO: Make it that the entrance and exit pieces can rotate as well (This will be tricky because you'll need to first have the ball auto move if pipes are lined up b/c after the change, there will no longer be a way to make the ball move by tapping it)
-
-//TODO: Need to make sure that the views for the crosses that were added when the piece passed or when tapped is added to pieces passed because right now its not getting rid of the view after the piece passes
 
 //TODO: Make it that when a user taps on a not switching piece, it animates it trying to switch but doesnt work
 
@@ -75,6 +72,10 @@ import UIKit
 //TODO: Immediately after a ball leaves an entrance, turn it into an exit
 
 //TODO: Need to also make it that popup for no more moves only comes about after an actual piece moves (right now, if theres a piecemaker and you can swipe down to move it but if you swipe up and no other pieces move, the popup comes on even though you can technically swipe down)
+
+//TODO: Countdown to zero doesnt show a popup when its game over
+
+//TODO: Fix popups
 
 protocol ModelDelegate {
     func setUpGameViews(board: Board)
@@ -99,7 +100,7 @@ protocol ModelDelegate {
     func rotateView(piece: Piece, rotationDegrees: CGFloat)
     func switchCrissCross(piece: Piece)
     func enlargePiece(view: UIView)
-    
+    func disableSwipes()
 }
 
 class Model {
@@ -355,8 +356,7 @@ class Model {
                 
                 if board.moves == 0 {
                     
-                    print("Need to check to see if any pieces can move and if the game should be over. If not, need to popup for retry level")
-
+                    delegate?.disableSwipes()
                 }
                 
             } else {
@@ -619,10 +619,10 @@ class Model {
         for piece in board.pieces {
             if piece.isLocked == false || piece.shape == .pieceMaker{
                 movePiecesHelper(piece: piece, direction: direction)
-                delegate?.movePieceView(piece: piece) //MARK: this needs to be put individually in the helper func
+                delegate?.movePieceView(piece: piece)
             }
         }
-        //Need to add next pieces last in order to make sure that there are no pieces blocking the pieceMaker
+        //Adding the next pieces last in order to make sure that there are no pieces blocking the pieceMaker
         addNextPieces(direction: direction)
     }
     
@@ -1313,32 +1313,36 @@ class Model {
     
     func check4GameOver() {
         
-        guard !board.pieces.contains(where: { (piece) in
-            piece.shape == .pieceMaker
-        }) else {
-            return
-        }
+//        guard !board.pieces.contains(where: { (piece) in
+//            piece.shape == .pieceMaker
+//        }) else {
+//            return
+//        }
         
         var message = ""
         var bool = false
         var moveablePieceCount = 0
         
-        if board.balls.count == 0 {
+        if board.balls.count < level.board.balls.count {
             
             bool = true
             message = "You lost your ball!"
         }
         
         for piece in board.pieces {
-            //MARK: Need to make this also check to make sure theres no pieceMakers
             if piece.isLocked == false {
                 moveablePieceCount += 1
             }
         }
         
         if moveablePieceCount == 0 {
-            bool = true
-            message = "No more pieces to move!"
+            
+            if !board.pieces.contains(where: { (piece) in
+                piece.shape == .pieceMaker
+            }) {
+                bool = true
+                message = "No more pieces to move!"
+            }
         }
         
         if bool == true {
@@ -1815,7 +1819,7 @@ class Model {
             
             if CGPoint(x: x1, y: y1) == CGPoint(x: x2, y: y2) {
                 
-                if board.moves > 0 || infiniteMoves == true {
+//                if board.moves >= 0 || infiniteMoves == true {
                     
 //                    if piece.shape == .entrance {
 //
@@ -1841,7 +1845,7 @@ class Model {
                         }
 //                    }
                     
-                }
+//                }
             }
         }
         check4AutoBallMove()

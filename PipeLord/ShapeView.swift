@@ -169,6 +169,9 @@ class ShapeViewTopView: UIView {
             switch version {
             
             case 1:
+                
+                
+                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
             case 2:
                 drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
@@ -595,7 +598,7 @@ class ShapeViewTopView: UIView {
     func overlapPath(path: UIBezierPath, context: CGContext, pivotPoint: CGPoint, center: CGPoint, endPoint: CGPoint, color: CGColor) {
         path.move(to: pivotPoint)
         path.addQuadCurve(to: endPoint, controlPoint: center)
-        
+
         context.addPath(path.cgPath)
         context.setStrokeColor(color)
         context.setLineWidth(frame.height / 4)

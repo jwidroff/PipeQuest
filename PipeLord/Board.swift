@@ -237,7 +237,7 @@ class IceView: UIView {
         label.text = "🧊"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: frame.height / 10 * 9)
-        
+        label.adjustsFontSizeToFitWidth = true
         self.addSubview(label)
         
         

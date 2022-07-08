@@ -81,7 +81,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: Initial Setup
-    func setupGrid() {
+    func setupGrid() { //MARK: This should be in the Model
 
         let frameX = (self.model.board.view.frame.width - boardWidth) / 2
         let frameY = (self.model.board.view.frame.height - boardHeight) / 2
@@ -192,6 +192,8 @@ class ViewController: UIViewController {
         movesLeftLabel.frame = movesLeftLabelFrame
         movesLeftLabel.backgroundColor = .clear
         movesLeftLabel.textAlignment = .right
+        movesLeftLabel.font = UIFont.boldSystemFont(ofSize: 500)
+        movesLeftLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(movesLeftLabel)
         
         let movesLeftTextLabelFrame = CGRect(x: swipesLeftXFloat - 30, y: swipesLeftYFloat, width: movesLeftLabelWidth, height: movesLeftLabelHeight)
@@ -200,8 +202,10 @@ class ViewController: UIViewController {
         movesLeftTextLabel.frame = movesLeftTextLabelFrame
         movesLeftTextLabel.backgroundColor = .clear
         movesLeftTextLabel.textAlignment = .right
-        movesLeftTextLabel.text = "Moves left: "
+        movesLeftTextLabel.text = "Moves left:"
         movesLeftTextLabel.textAlignment = .right
+        movesLeftTextLabel.font = UIFont.boldSystemFont(ofSize: 500)
+        movesLeftTextLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(movesLeftTextLabel)
     }
     
@@ -209,13 +213,18 @@ class ViewController: UIViewController {
         
         let controlHeight = pieceHeight / 2
         let levelNameLabelHeight = controlHeight
-        let levelNameLabelWidth = boardWidth
+        let levelNameLabelWidth = boardWidth / 2
         let levelNameYFloat = model.board.view.frame.minY - levelNameLabelHeight
         let levelNameXFloat = model.board.view.frame.minX
         let levelNameLabelFrame = CGRect(x: levelNameXFloat, y: levelNameYFloat, width: levelNameLabelWidth, height: levelNameLabelHeight)
         levelNameLabel.frame = levelNameLabelFrame
         levelNameLabel.backgroundColor = .clear
         levelNameLabel.textAlignment = .left
+        levelNameLabel.baselineAdjustment = UIBaselineAdjustment.alignBaselines
+        levelNameLabel.numberOfLines = 0
+        levelNameLabel.font = UIFont.boldSystemFont(ofSize: 500)
+//        levelNameLabel.sizeToFit()
+        levelNameLabel.adjustsFontSizeToFitWidth = true
         levelNameLabel.text = "[LEVEL NAME]"
         view.addSubview(levelNameLabel)
     }
@@ -262,7 +271,7 @@ class ViewController: UIViewController {
     
     @objc func handleTap4Retry(sender: UITapGestureRecognizer) {
                         
-        runPopUpView(title: "", message: "Are you sure you want to restart?")
+        runPopUpView(title: "Restart", message: "Are you sure you want to restart?")
     }
     
     @objc func handleTap4Menu(sender: UITapGestureRecognizer) {
@@ -833,7 +842,7 @@ extension ViewController: ModelDelegate {
     }
 
     func moveBallView(ball: Ball, piece: Piece, startSide: String, endSide: String) {
-        
+                
         model.board.view.gestureRecognizers?.removeAll()
         
         var beginPoint = CGPoint()
@@ -1061,57 +1070,31 @@ extension ViewController: ModelDelegate {
     func setUpPiecesView() {
         
         let center = CGPoint(x: (self.boardWidth / 2) - (pieceWidth / 2), y: self.boardHeight / 2 - (pieceHeight / 2))
-    
-//        UIView.animate(withDuration: 0.25, delay: 0.25, options: .curveEaseInOut) {  [self] in
-            
+        
         var counter = 0.0
         
         for piece in model.board.pieces {
-
-                counter += 0.03
+            
+            counter += 0.03
+            
+            UIView.animate(withDuration: 1.0, delay: counter, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseInOut) {
                 
-                UIView.animate(withDuration: 1.0, delay: counter, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .curveEaseInOut) {
-                    
-                    
-                    
-                    let frame = CGRect(x: center.x, y: center.y, width: self.pieceWidth, height: self.pieceHeight)
-                    piece.view = ShapeView(frame: frame, piece: piece)
-                    piece.center = CGPoint(x: self.model.board.grid[piece.indexes]?.x ?? piece.center.x, y: self.model.board.grid[piece.indexes]?.y ?? piece.center.y)
-
-                    piece.view.center = piece.center
-    //                if piece.shape != .pieceMaker {
-                    self.addTapGestureRecognizer(view: piece.view)
-    //                }
-                    self.model.board.view.addSubview(piece.view)
-                    
-                    
-                    
-                } completion: { (true) in
-                    
-                    if piece.shape == .entrance {
-                        self.setUpBallView(piece: piece)
-                        
-                    }
-                    
+                let frame = CGRect(x: center.x, y: center.y, width: self.pieceWidth, height: self.pieceHeight)
+                piece.view = ShapeView(frame: frame, piece: piece)
+                piece.center = CGPoint(x: self.model.board.grid[piece.indexes]?.x ?? piece.center.x, y: self.model.board.grid[piece.indexes]?.y ?? piece.center.y)
+                
+                piece.view.center = piece.center
+                self.addTapGestureRecognizer(view: piece.view)
+                self.model.board.view.addSubview(piece.view)
+                
+            } completion: { (true) in
+                
+                if piece.shape == .entrance {
+                    self.setUpBallView(piece: piece)
                     
                 }
-
-                
-//                let frame = CGRect(x: center.x, y: center.y, width: pieceWidth, height: pieceHeight)
-//                piece.view = ShapeView(frame: frame, piece: piece)
-//                piece.center = CGPoint(x: model.board.grid[piece.indexes]?.x ?? piece.center.x, y: model.board.grid[piece.indexes]?.y ?? piece.center.y)
-//
-//                piece.view.center = piece.center
-////                if piece.shape != .pieceMaker {
-//                addTapGestureRecognizer(view: piece.view)
-////                }
-//                model.board.view.addSubview(piece.view)
             }
-            
-            
-//        } completion: { (false) in
-//            print()
-//        }
+        }
     }
     
     func setUpBallView(piece: Piece) {
@@ -1136,12 +1119,46 @@ extension ViewController: ModelDelegate {
         }
     }
     
+    func disableGestureRecognizers() {
+        
+        disableSwipes()
+        disableTaps()
+        
+        
+        
+    }
+    
+    func disableSwipes() {
+        model.board.view.gestureRecognizers?.removeAll()
+    }
+    
+    func disableTaps() {
+        
+        for piece in model.board.pieces {
+            
+            piece.view.gestureRecognizers?.removeAll()
+            
+        }
+    }
+    
+    
     func runPopUpView(title: String, message: String) {
+                
+        //MARK: Need to remove gesture Recognizers here
+        
+        if title == "YOU LOSE" {
+            
+            
+            disableGestureRecognizers()
+        }
         
         if model.gameOver == true {
+            
             model.gameOver = false
             return
         }
+        
+        
         
         let delayedTime = DispatchTime.now() + .milliseconds(Int(250))
         
@@ -1172,17 +1189,25 @@ extension ViewController: ModelDelegate {
                 }
             }
             
-            let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (cancelAction) in
-                alert.dismiss(animated: true) {
-                    
-                    self.model.gameOver = false
-                }
-            }
             alert.addAction(action)
-            alert.addAction(cancelAction)
+
+            
+            if title == "Restart" {
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (cancelAction) in
+                    alert.dismiss(animated: true) {
+                        
+                        self.model.gameOver = false
+                    }
+                }
+                alert.addAction(cancelAction)
+                
+            }
+            
             self.present(alert, animated: true) {
                 //completion here
             }
+            
         }
     }
     
