@@ -461,7 +461,7 @@ extension ViewController: ModelDelegate {
     
     func updateMovesLeftLabel(moves: String) {
         
-        movesLeftNumberLabel.text = " \(moves)"
+        movesLeftNumberLabel.text = "\(moves)"
         
         if moves == "0" {
         
@@ -495,7 +495,7 @@ extension ViewController: ModelDelegate {
             model.infiniteMoves = false
         }
         
-        movesLeftNumberLabel.text = " \(movesX)"
+        movesLeftNumberLabel.text = "\(movesX)"
     }
     
     func changeAnimationSpeed(slowerOrFaster: String) {

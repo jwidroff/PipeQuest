@@ -779,10 +779,10 @@ class Model {
             return
         }
         
-//        print()
-//        print("SIDE TO CHECK = \(side2Check)")
-//        print("piece shape = \(piece.shape)")
-//        print("piece version = \(piece.version)")
+        print()
+        print("SIDE TO CHECK = \(side2Check)")
+        print("piece shape = \(piece.shape)")
+        print("piece version = \(piece.version)")
         
         switch side2Check {
             //side to check is the side of the new piece
@@ -1328,8 +1328,8 @@ class Model {
         var moveablePieceCount = 0
         
         
-        print("board.balls.count \(board.balls.count)")
-        print("level.board.balls.count \(level.board.balls.count)")
+//        print("board.balls.count \(board.balls.count)")
+//        print("level.board.balls.count \(level.board.balls.count)")
         
 //        var originalEntrancePieces = 0
 //
@@ -1845,6 +1845,39 @@ class Model {
                     
                     delegate?.replacePieceView(piece: piece)
                 }
+                
+                print("PIECE SHAPE = \(piece.shape)")
+                print("PIECE VERSION = \(piece.version)")
+                print(">")
+                
+                print("PIECE TOP COLOR = \(piece.side.top.color)")
+                print("PIECE TOP OPEN? = \(piece.side.top.opening.isOpen)")
+                print("PIECE TOP EXITSIDE = \(piece.side.top.exitSide)")
+
+                print(">")
+
+                print("PIECE RIGHT COLOR = \(piece.side.right.color)")
+                print("PIECE RIGHT OPEN? = \(piece.side.right.opening.isOpen)")
+                print("PIECE RIGHT EXITSIDE = \(piece.side.right.exitSide)")
+                print(">")
+
+                
+                print("PIECE BOTTOM COLOR = \(piece.side.bottom.color)")
+                print("PIECE BOTTOM OPEN? = \(piece.side.bottom.opening.isOpen)")
+                print("PIECE BOTTOM EXITSIDE = \(piece.side.bottom.exitSide)")
+                print(">")
+
+                
+                
+                print("PIECE LEFT COLOR = \(piece.side.left.color)")
+                print("PIECE LEFT OPEN? = \(piece.side.left.opening.isOpen)")
+                print("PIECE LEFT EXITSIDE = \(piece.side.left.exitSide)")
+
+                
+                
+                
+                
+                
             }
         }
         check4AutoBallMove()

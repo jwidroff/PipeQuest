@@ -244,7 +244,7 @@ class ShapeViewTopView: UIView {
             
             switch version {
             
-            case 1, 3:
+            case 1:
                 drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[0])
                 
                 context.setFillColor(colors[0])
@@ -253,7 +253,29 @@ class ShapeViewTopView: UIView {
                 
                 context2.setFillColor(colors[1])
                 
-            case 2, 4:
+            case 2:
+                drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[1])
+                
+                context.setFillColor(colors[1])
+                
+                drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[0])
+                
+                context2.setFillColor(colors[0])
+                
+                
+            case 3:
+                
+                drawPath(path: path, context: context, pivotPoint: rightCenterPoint, center: center, endPoint: topCenterPoint, color: colors[1])
+                
+                context.setFillColor(colors[1])
+                
+                drawPath(path: path2, context: context2, pivotPoint: leftCenterPoint, center: center, endPoint: bottomCenterPoint, color: colors[0])
+                
+                context2.setFillColor(colors[0])
+                
+                
+            case 4:
+                
                 drawPath(path: path, context: context, pivotPoint: topCenterPoint, center: center, endPoint: leftCenterPoint, color: colors[0])
                 
                 context.setFillColor(colors[0])
@@ -261,6 +283,9 @@ class ShapeViewTopView: UIView {
                 drawPath(path: path2, context: context2, pivotPoint: bottomCenterPoint, center: center, endPoint: rightCenterPoint, color: colors[1])
                 
                 context2.setFillColor(colors[1])
+                
+                
+                
             default:
                 break
             }

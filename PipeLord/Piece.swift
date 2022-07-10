@@ -668,9 +668,9 @@ class Piece {
                 side.right.exitSide = "bottom"
                 side.bottom.exitSide = "right"
                 side.top.exitSide = "left"
-                side.right.color = colors[1]
+                side.right.color = colors[0]
                 side.top.color = colors[1]
-                side.left.color = colors[0]
+                side.left.color = colors[1]
                 side.bottom.color = colors[0]
 
             case 3:
@@ -679,10 +679,10 @@ class Piece {
                 side.right.exitSide = "top"
                 side.bottom.exitSide = "left"
                 side.top.exitSide = "right"
-                side.right.color = colors[0]
-                side.top.color = colors[0]
-                side.left.color = colors[1]
-                side.bottom.color = colors[1]
+                side.right.color = colors[1]
+                side.top.color = colors[1]
+                side.left.color = colors[0]
+                side.bottom.color = colors[0]
                 
             case 4:
                 
