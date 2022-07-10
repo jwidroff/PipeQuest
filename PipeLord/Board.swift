@@ -25,7 +25,6 @@ class Board {
     var widthSpaces = Int()
     var colorTheme = ColorTheme()
     var moves = Int()
-    var levelBalls = Int()
 }
 
 class BoardView : UIView {

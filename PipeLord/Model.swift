@@ -410,11 +410,11 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-//                    if piece.shape == .entrance {
-//
-//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-//                        break
-//                    }
+                    if piece.shape == .entrance {
+
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
+                    }
                 }
                 
             } else {
@@ -457,10 +457,10 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-//                    if piece.shape == .entrance {
-//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-//                        break
-//                    }
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
+                    }
                 }
                 
             } else {
@@ -500,10 +500,10 @@ class Model {
                                         
                     deletePiece(piece: piece)
                     
-//                    if piece.shape == .entrance {
-//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-//                        break
-//                    }
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
+                    }
                 }
             } else {
                 return
@@ -541,10 +541,10 @@ class Model {
                     
                     deletePiece(piece: piece)
                     
-//                    if piece.shape == .entrance {
-//                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
-//                        break
-//                    }
+                    if piece.shape == .entrance {
+                        delegate?.runPopUpView(title: "YOU LOSE", message: "TRY AGAIN?")
+                        break
+                    }
                 }
                 
             } else {
@@ -773,7 +773,6 @@ class Model {
                 if ballX.indexes == ball.piecesPassed[0].indexes {
                     
                     moveBall(ball: ballX, startSide: "unmoved")
-                    board.levelBalls -= 1
                 }
             }
             return
@@ -1328,9 +1327,6 @@ class Model {
         var moveablePieceCount = 0
         
         
-//        print("board.balls.count \(board.balls.count)")
-//        print("level.board.balls.count \(level.board.balls.count)")
-        
 //        var originalEntrancePieces = 0
 //
 //        for piece in level.board.pieces {
@@ -1339,15 +1335,6 @@ class Model {
 //            }
 //        }
         
-    
-        
-        if board.balls.count < board.levelBalls {
-            
-            
-
-            bool = true
-            message = "You lost your ball!"
-        }
         
         for piece in board.pieces {
             if piece.isLocked == false {
