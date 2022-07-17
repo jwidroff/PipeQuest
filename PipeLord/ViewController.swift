@@ -801,37 +801,61 @@ extension ViewController: ModelDelegate {
     }
     
     
-    func removeHole(piece: Piece) { //MARK: The issue now is that when a piecemaker shoots out a blank into a hole, the blank closes the hole but the animation is no good
+    func removeHole(piece: Piece) { 
+        
+ 
+        
+        let x = (self.model.board.grid[piece.indexes]?.x)! //- self.pieceWidth / 2
+        
+        let y = (self.model.board.grid[piece.indexes]?.y)! //- self.pieceHeight / 2
+                    
+        let newView = UIView(frame: CGRect(x: x - (self.pieceWidth) / 2, y: y - (self.pieceHeight) / 2, width: pieceWidth, height: pieceHeight))
+                    
+        newView.backgroundColor = ColorTheme.boardBackground
         
         
+        let shadowRadius: CGFloat = 1
+        let darkShadow = CALayer()
+
+
+        darkShadow.frame = newView.bounds
+        darkShadow.backgroundColor = ColorTheme.boardBackground.cgColor
+        darkShadow.shadowColor = UIColor.black.cgColor
+        darkShadow.shadowOffset = CGSize(width: shadowRadius, height: shadowRadius)
+        darkShadow.shadowOpacity = 1
+//        darkShadow.cornerRadius = 5
+        newView.layer.insertSublayer(darkShadow, at: 1)
         
-//        let transform = CGAffineTransform(scaleX: 1.0, y: 10)
-//
-//        piece.view.transform = transform
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut) {
+            self.removeView(view: piece.view)
+            
+            self.model.board.view.addSubview(newView)
+            
+            let scale = CGAffineTransform(scaleX: 0.01, y: 0.01)
+            
+
+            newView.transform = scale
+            
+        } completion: { (true) in
+            
+            UIView.animate(withDuration: 0.25) {
+                
+                
+                let scale2 = CGAffineTransform(scaleX: 1, y: 1)
+                
+
+                newView.transform = scale2
+                
+               
+                
+                self.model.board.view.sendSubviewToBack(newView)
+            }
             
             
             
-            
-            
-            piece.view.subviews[0].layer.cornerRadius = 0
-            
-            
-//            piece.view.contentMode = .center
-            
-    //        piece.view.subviews[0].clipsToBounds = true
-            
-            piece.view.subviews[0].layer.layoutIfNeeded()
-            piece.view.subviews[0].layer.setNeedsDisplay()
-            piece.view.subviews[0].layoutIfNeeded()
-            piece.view.subviews[0].setNeedsDisplay()
-            
-            
-            
-            
-//            piece.view.removeFromSuperview()
         }
+
         
         
         
