@@ -800,25 +800,64 @@ extension ViewController: ModelDelegate {
         
     }
     
-    func removeHole(indexes: Indexes) {
+    
+    func removeHole(piece: Piece) { //MARK: The issue now is that when a piecemaker shoots out a blank into a hole, the blank closes the hole but the animation is no good
         
-        for subview in model.board.view.subviews {
-
-            let centerX = self.model.board.grid[indexes]
-            let pieceCenter = CGPoint(x: centerX!.x.rounded(), y: centerX!.y.rounded())
+        
+        
+//        let transform = CGAffineTransform(scaleX: 1.0, y: 10)
+//
+//        piece.view.transform = transform
+        
+        UIView.animate(withDuration: 0.5) {
             
-            let subviewCenter = CGPoint(x: subview.center.x.rounded(), y: subview.center.y.rounded())
-
-            if subviewCenter  == pieceCenter {
-                let piece = self.model.getPieceInfo(index: indexes, pieces: model.board.pieces)
-                    self.removeView(view: subview)
-                self.removeView(view: piece!.view)
-                    self.model.deletePiece(piece: piece!)
-
-                return
-            }
+            
+            
+            
+            
+            piece.view.subviews[0].layer.cornerRadius = 0
+            
+            
+//            piece.view.contentMode = .center
+            
+    //        piece.view.subviews[0].clipsToBounds = true
+            
+            piece.view.subviews[0].layer.layoutIfNeeded()
+            piece.view.subviews[0].layer.setNeedsDisplay()
+            piece.view.subviews[0].layoutIfNeeded()
+            piece.view.subviews[0].setNeedsDisplay()
+            
+            
+            
+            
+//            piece.view.removeFromSuperview()
         }
+        
+        
+        
     }
+    
+    
+    
+//    func removeHole(indexes: Indexes) { //MARK: UP TO HERE. NEED TO FIX THIS
+//
+//        for subview in model.board.view.subviews {
+//
+//            let centerX = self.model.board.grid[indexes]
+//            let pieceCenter = CGPoint(x: centerX!.x.rounded(), y: centerX!.y.rounded())
+//
+//            let subviewCenter = CGPoint(x: subview.center.x.rounded(), y: subview.center.y.rounded())
+//
+//            if subviewCenter  == pieceCenter {
+//                let piece = self.model.getPieceInfo(index: indexes, pieces: model.board.pieces)
+//                self.removeView(view: subview)
+//                self.removeView(view: piece!.view)
+//                self.model.deletePiece(piece: piece!)
+//
+//                return
+//            }
+//        }
+//    }
     
     func resetPieceMakerView(piece: Piece) {
  

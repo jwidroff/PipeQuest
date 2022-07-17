@@ -96,7 +96,7 @@ protocol ModelDelegate {
     func updateLevelInfo(name: String, moves: String)
     func updateMovesLeftLabel(moves: String)
     func addSwipeGestureRecognizer(view: UIView)
-    func removeHole(indexes: Indexes)
+    func removeHole(piece: Piece)
     func rotateView(piece: Piece, rotationDegrees: CGFloat)
     func switchCrissCross(piece: Piece)
     func enlargePiece(view: UIView)
@@ -297,11 +297,11 @@ class Model {
             index == piece.indexes
         }) {
             
-            if piece.shape == .wall {
+            if piece.shape == .blank {
                 
                 let indexOfHole = piece.indexes
                 bool = false
-                delegate?.removeHole(indexes: indexOfHole)
+                delegate?.removeHole(piece: piece)
                 
                 var int = 0
                 for holeLocation in board.holeLocations {
@@ -311,6 +311,11 @@ class Model {
                     }
                     int += 1
                 }
+                
+                board.pieces.removeAll { (pieceX) in
+                    pieceX.indexes == piece.indexes
+                }
+                
             } else {
                 bool = true
             }
@@ -558,6 +563,8 @@ class Model {
     
     func deletePiece(piece: Piece) {
         
+        print("delete piece called")
+        
         board.pieces.removeAll { (piece) -> Bool in
             
             if piece.indexes.x! < 0 || piece.indexes.x! > board.widthSpaces - 1 || piece.indexes.y! < 0 || piece.indexes.y! > board.heightSpaces - 1 {
@@ -617,6 +624,7 @@ class Model {
         sortPieces(direction: direction)
 
         for piece in board.pieces {
+            board.view.bringSubviewToFront(piece.view)
             if piece.isLocked == false || piece.shape == .pieceMaker{
                 movePiecesHelper(piece: piece, direction: direction)
                 delegate?.movePieceView(piece: piece)

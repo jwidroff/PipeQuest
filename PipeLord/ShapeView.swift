@@ -161,6 +161,13 @@ class ShapeViewTopView: UIView {
         }
         
         switch shape {
+            
+            
+        case .blank:
+
+            print()
+            backgroundColor = PieceColors.green
+            
 
         case .elbow: //MARK: ELBOW VIEW
             
